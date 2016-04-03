@@ -11,13 +11,13 @@ namespace RankOne.Business.Analyzers
         public AnalyzeResult Analyse(XDocument document, string keyword)
         {
             var result = new AnalyzeResult();
-            result.Title = "metadescriptionanalyzer_title";
+            result.Title = "keywordmetadescriptionanalyzer_title";
 
             var metaTags = HtmlHelper.GetElements(document, "meta");
 
             if (!metaTags.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = "metadescriptionanalyzer_no_meta_tags", Type = ResultType.Error });
+                result.ResultRules.Add(new ResultRule { Code = "keywordmetadescriptionanalyzer_no_meta_tags", Type = ResultType.Error });
             }
             else
             {

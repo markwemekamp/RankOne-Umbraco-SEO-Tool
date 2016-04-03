@@ -11,7 +11,7 @@ namespace RankOne.Business.Analyzers
         public AnalyzeResult Analyse(XDocument document, string keyword)
         {
             var result = new AnalyzeResult();
-            result.Title = "titleanalyzer_title";
+            result.Title = "keywordtitleanalyzer_title";
 
             var titleTags = HtmlHelper.GetElements(document, "title");
 
