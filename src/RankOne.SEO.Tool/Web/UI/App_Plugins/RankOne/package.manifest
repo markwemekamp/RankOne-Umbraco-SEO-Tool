@@ -1,0 +1,32 @@
+﻿{
+    propertyEditors: [
+        {
+            alias: "RankOne",
+            name: "Rank One - Seo Analyzer",
+            icon: "icon-code",
+            editor: {
+                view: "~/App_Plugins/RankOne/RankOne.html",
+				hideLabel: true
+            }
+        }
+    ],
+    javascript: [
+		'~/App_Plugins/RankOne/seoTips.controller.js',
+		'~/App_Plugins/RankOne/result.service.js',
+		'~/App_Plugins/RankOne/score.service.js',
+		'~/App_Plugins/RankOne/circle.directive.js',
+		'~/App_Plugins/RankOne/result.directive.js',
+		'~/App_Plugins/RankOne/information.directive.js',
+		'~/App_Plugins/RankOne/resultline.directive.js',
+		'~/App_Plugins/RankOne/section.directive.js',
+		'~/App_Plugins/RankOne/icon.directive.js',
+		'~/App_Plugins/RankOne/badge.directive.js',
+		'~/App_Plugins/RankOne/cog-example.js'
+    ],
+	css : [
+		'~/App_Plugins/RankOne/result.css',
+		'~/App_Plugins/RankOne/circle.css',
+		'~/App_Plugins/RankOne/cog.css',
+		'~/App_Plugins/RankOne/section.css'
+	]
+}

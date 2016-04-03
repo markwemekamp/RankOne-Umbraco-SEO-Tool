@@ -1,0 +1,44 @@
+﻿<div id="rankOne" ng-controller="rankOne">
+
+    <div id="loader" class="overlay-loader" ng-show="loading">
+        <img class="loader-icon spinning-cog" src="/App_Plugins/RankOne/cog.svg">
+    </div>
+
+    <div ng-show="!loading">
+        <h1>
+            <localize key="dashboard_title"></localize>
+        </h1>
+        <div ng-click="setFilter('')" class="clickable">
+            <circle progress="overallScore"></circle>
+        </div>
+
+        <div class="summary clearfix">
+            <div>
+                Last analysis summary for: http://seositecheckup.com/seo-audit/www.novaware.nl
+            </div>
+
+            <div class="summary-block clickable" ng-click="setFilter('error')">
+                <strong class="error">{{errorCount}}</strong>
+                <small>Errors</small>
+            </div>
+            <div class="summary-block clickable" ng-click="setFilter('warning')">
+                <strong class="warning">{{warningCount}}</strong>
+                <small>Warnings</small>
+            </div>
+            <div class="summary-block clickable" ng-click="setFilter('pointer')">
+                <strong class="pointer">{{hintCount}}</strong>
+                <small>Hints</small>
+            </div>
+            <div class="summary-block clickable" ng-click="setFilter('information')">
+                <strong class="info">{{succesCount}}</strong>
+                <small>Passed checks</small>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <accordion result="analyzerResults" ng-repeat="analyzerResults in analyzeResults.AnalyzerResults">
+                
+            </accordion>
+        </div>
+    </div>
+</div>
