@@ -21,3 +21,11 @@ assets/
 dist/
 node_modules/
 tmp/
+
+[Dd]ebug/
+[Bb]uild/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+[Pp]ackages/
+VersionInfo.cs

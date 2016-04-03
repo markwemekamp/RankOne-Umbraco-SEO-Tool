@@ -25,7 +25,13 @@ module.exports = function(grunt) {
         src: '*.dll',
         dest: '<%= dest %>/bin/',
         expand: true
-      }
+      },
+	  plugin:{
+		cwd: 'src/RankOne.SEO.Tool/Web/UI/App_Plugins/RankOne/',
+        src: ["*.*", "**/*.*"],
+        dest: '<%= basePath %>',
+        expand: true	
+	  }
     },
 
     msbuild: {
@@ -49,5 +55,5 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['msbuild:dist', 'copy:dll']);
+  grunt.registerTask('default', ['msbuild:dist', 'copy:dll', 'copy:plugin']);
 };
