@@ -26,6 +26,12 @@ module.exports = function(grunt) {
         dest: '<%= dest %>/bin/',
         expand: true
       },
+	  debug: {
+        cwd: 'src/RankOne.SEO.Tool/bin/Debug/',
+        src: ['*.dll', '*.pdb'],
+        dest: '<%= dest %>/bin/',
+        expand: true
+      },
 	  plugin:{
 		cwd: 'src/RankOne.SEO.Tool/Web/UI/App_Plugins/RankOne/',
         src: ["*.*", "**/*.*"],
@@ -51,9 +57,17 @@ module.exports = function(grunt) {
           projectConfiguration: 'Release',
           targets: ['Clean', 'Rebuild'],
         }
+      },
+      dev: {
+        src: ['src/RankOne.SEO.Tool/RankOne.csproj'],
+        options: {
+          projectConfiguration: 'Debug',
+          targets: ['Clean', 'Rebuild'],
+        }
       }
     }
   });
 
   grunt.registerTask('default', ['msbuild:dist', 'copy:dll', 'copy:plugin']);
+  grunt.registerTask('develop', ['msbuild:dev', 'copy:debug', 'copy:plugin']);
 };

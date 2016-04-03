@@ -47,12 +47,12 @@ namespace RankOne.Business.Analyzers
             if (encoding == "gzip")
             {
                 gzipResultRule.Code = "gzipanalyzer_gzip_enabled";
-                    gzipResultRule.Type = ResultType.Succes;
+                gzipResultRule.Type = ResultType.Succes;
             }
             else
             {
                 gzipResultRule.Code = "gzipanalyzer_gzip_disabled";
-                gzipResultRule.Type = ResultType.Warning;
+                gzipResultRule.Type = ResultType.Error;
             }
             gzipAnalysis.ResultRules.Add(gzipResultRule);
             analysis.Results.Add(gzipAnalysis);
@@ -84,7 +84,7 @@ namespace RankOne.Business.Analyzers
 
             var cssMinifationAnalyzer = new CssMinificationAnalyzer();
             analysis.Results.Add(cssMinifationAnalyzer.Analyse(_htmlResult.Document));
-            
+
 
             return analysis;
         }
