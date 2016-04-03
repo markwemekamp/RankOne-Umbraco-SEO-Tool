@@ -12,6 +12,7 @@ _ReSharper.*
 Thumbs.db
 .DS_Store
 *.log
+applicationhost.config
 
 artifacts/
 src/packages/*/**

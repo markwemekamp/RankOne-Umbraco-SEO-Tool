@@ -23,7 +23,7 @@
 
                 $http({
                     method: 'GET',
-                    url: '/umbraco/backoffice/api/Seo/AnalyzeUrl?url=' + url
+                    url: '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?url=' + url
                 }).then(function successCallback(response) {
                     $scope.analyzeResults = response.data;
 

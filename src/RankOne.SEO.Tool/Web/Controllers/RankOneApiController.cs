@@ -3,11 +3,12 @@ using RankOne.Business.Models;
 using RankOne.Business.Services;
 using Umbraco.Web.Editors;
 using Umbraco.Web.Mvc;
+using Umbraco.Web.WebApi;
 
 namespace RankOne.Web.Controllers
 {
-	[PluginController("RankOne")]
-    public class RankOneApiController : UmbracoAuthorizedJsonController
+	//[PluginController("RankOne")]
+    public class RankOneApiController : UmbracoAuthorizedApiController
     {
         [HttpGet]
         public PageAnalysis AnalyzeUrl(string url)
