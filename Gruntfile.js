@@ -40,6 +40,12 @@ module.exports = function(grunt) {
 	  }
     },
 
+	touch: {
+      webconfig: {
+        src: ['<%= grunt.option("target") %>\\Web.config']
+      }
+    },
+	
     msbuild: {
       options: {
         stdout: true,
