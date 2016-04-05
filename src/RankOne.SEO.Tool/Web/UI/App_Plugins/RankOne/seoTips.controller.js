@@ -4,21 +4,16 @@
     function rankOne($scope, $http, $location, editorState, scoreService, resultService) {
 
         $scope.analyzeResults = null;
-        $scope.loading = true;
-        
 
         if (!editorState.current.template) {
-            // geen template gekoppeld
+            $scope.error = "This item does not have a template";
         } else {
             var url = editorState.current.urls[0];
 
             if (url == "This item is not published") {
-                // item niet gepublished
-
-                // TODO preview fallback
+                $scope.error = "This item is not published";
             } else {
-                // validatie van url
-
+                $scope.loading = true;
                 url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + url;
 
                 $http({

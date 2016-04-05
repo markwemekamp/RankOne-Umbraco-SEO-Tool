@@ -4,7 +4,11 @@
         <img class="loader-icon spinning-cog" src="/App_Plugins/RankOne/cog.svg">
     </div>
 
-    <div ng-show="!loading">
+    <div ng-show="error">
+        {{error}}
+    </div>
+
+    <div ng-show="!loading && !error">
         <h1>
             <localize key="dashboard_title"></localize>
         </h1>
@@ -33,7 +37,7 @@
 
         <div class="accordion">
             <accordion result="analyzerResults" ng-repeat="analyzerResults in analyzeResults.AnalyzerResults">
-                
+
             </accordion>
         </div>
     </div>
