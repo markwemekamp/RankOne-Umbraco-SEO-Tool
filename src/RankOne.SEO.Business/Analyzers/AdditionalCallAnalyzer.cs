@@ -1,16 +1,20 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
 using RankOne.Business.Models;
-using SEO.Umbraco.Extensions.Analyzers;
 
 namespace RankOne.Business.Analyzers
 {
     public class AdditionalCallAnalyzer : BaseAnalyzer
     {
+        public AdditionalCallAnalyzer()
+        {
+            Alias = "additionalcallanalyzer";
+        }
+
         public override AnalyzeResult Analyse(XDocument document)
         {
             var result = new AnalyzeResult();
-            result.Title = "additionalcallanalyzer_title";
+            result.Title = TitleTag;
 
             var cssFiles = HtmlHelper.GetElementsWithAttribute(document, "link", "href").
                 Where(x => x.Attributes().Any(y => y.Name == "rel" && y.Value == "stylesheet"));
@@ -24,17 +28,17 @@ namespace RankOne.Business.Analyzers
 
             if (total > 30)
             {
-                resultRule.Code = "additionalcallanalyzer_more_then_30";
+                resultRule.Code = GetTag("more than 30 calls");
                 resultRule.Type = ResultType.Warning;
             }
             else if(total > 15)
             {
-                resultRule.Code = "additionalcallanalyzer_more_then_15";
+                resultRule.Code = GetTag("more than 15 calls");
                 resultRule.Type = ResultType.Hint;
             }
             else
             {
-                resultRule.Code = "additionalcallanalyzer_less_then_15";
+                resultRule.Code = GetTag("less than 15 calls");
                 resultRule.Type = ResultType.Succes;
             }
 

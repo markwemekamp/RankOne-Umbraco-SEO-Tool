@@ -1,17 +1,32 @@
 ﻿using System.Xml.Linq;
-using RankOne.Business;
 using RankOne.Business.Models;
-using SEO.Umbraco.Extensions.Models;
+using RankOne.Business.Interfaces;
 
-namespace SEO.Umbraco.Extensions.Analyzers
+namespace RankOne.Business.Analyzers
 {
-    public abstract class BaseAnalyzer
+    public abstract class BaseAnalyzer : IAnalyzer
     {
         protected HtmlHelper HtmlHelper;
 
         protected BaseAnalyzer()
         {
             HtmlHelper = new HtmlHelper();
+        }
+
+        public string Alias { get; set; }
+
+        public string TitleTag
+        {
+            get
+            {
+                return string.Format("{0}_title", Alias);
+            }
+        }
+
+        public string GetTag(string text)
+        {
+            var code = text.ToLower().Trim().Replace(" ", "_");
+            return string.Format("{0}_{1}", Alias, code);
         }
 
         public abstract AnalyzeResult Analyse(XDocument document);

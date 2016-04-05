@@ -259,16 +259,17 @@
     <Compile Include="Analyzers\DeprecatedTagAnalyzer.cs" />
     <Compile Include="Analyzers\AdditionalCallAnalyzer.cs" />
     <Compile Include="Analyzers\KeywordMetaDescriptionAnalyzer.cs" />
-    <Compile Include="Analyzers\SpeedAnalyzer.cs" />
-    <Compile Include="Analyzers\KeywordOccurenceAnalyzer.cs" />
-    <Compile Include="Analyzers\KeywordAnalyzer.cs" />
+    <Compile Include="Summaries\SpeedSummary.cs" />
+    <Compile Include="Services\KeywordOccurenceService.cs" />
+    <Compile Include="Summaries\KeywordSummary.cs" />
     <Compile Include="Analyzers\MetaDescriptionAnalyzer.cs" />
     <Compile Include="Analyzers\ImageTagAnalyzer.cs" />
     <Compile Include="Analyzers\HeadingAnalyzer.cs" />
     <Compile Include="Analyzers\KeywordTitleAnalyzer.cs" />
     <Compile Include="Analyzers\TitleAnalyzer.cs" />
     <Compile Include="HtmlHelper.cs" />
-    <Compile Include="Analyzers\HtmlAnalyzer.cs" />
+    <Compile Include="Summaries\HtmlSummary.cs" />
+    <Compile Include="Interfaces\IAnalyzer.cs" />
     <Compile Include="Models\AnalysisInformation.cs" />
     <Compile Include="Models\AnalyzerResult.cs" />
     <Compile Include="Models\ResultRule.cs" />
@@ -282,7 +283,7 @@
     <Compile Include="SearchResultPreviewHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AnalyzeService.cs" />
-    <Compile Include="Services\KeywordOccurenceService.cs" />
+    <Compile Include="Analyzers\KeywordOccurenceAnalyzer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

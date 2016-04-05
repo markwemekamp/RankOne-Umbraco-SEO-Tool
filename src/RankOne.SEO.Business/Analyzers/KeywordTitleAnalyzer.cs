@@ -2,26 +2,30 @@
 using System.Linq;
 using System.Xml.Linq;
 using RankOne.Business.Models;
-using SEO.Umbraco.Extensions.Analyzers;
 
 namespace RankOne.Business.Analyzers
 {
     public class KeywordTitleAnalyzer : BaseAnalyzer
     {
+        public KeywordTitleAnalyzer()
+        {
+            Alias = "keywordtitleanalyzer";
+        }
+
         public AnalyzeResult Analyse(XDocument document, string keyword)
         {
             var result = new AnalyzeResult();
-            result.Title = "keywordtitleanalyzer_title";
+            result.Title = TitleTag;
 
             var titleTags = HtmlHelper.GetElements(document, "title");
 
             if (!titleTags.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = "keywordtitleanalyzer_no_title_tag", Type = ResultType.Warning });
+                result.ResultRules.Add(new ResultRule { Code = GetTag("no title tag"), Type = ResultType.Warning });
             }
             else if (titleTags.Count() > 1)
             {
-                result.ResultRules.Add(new ResultRule { Code = "keywordtitleanalyzer_multiple_title_tags", Type = ResultType.Warning });
+                result.ResultRules.Add(new ResultRule { Code = GetTag("multiple title tags"), Type = ResultType.Warning });
             }
             else
             {
@@ -29,7 +33,7 @@ namespace RankOne.Business.Analyzers
                 {
                     result.ResultRules.Add(new ResultRule
                     {
-                        Code = "keywordtitleanalyzer_title_contains_keyword",
+                        Code = GetTag("title contains keyword"),
                         Type = ResultType.Succes
                     });
                 }
@@ -37,7 +41,7 @@ namespace RankOne.Business.Analyzers
                 {
                     result.ResultRules.Add(new ResultRule
                     {
-                        Code = "keywordtitleanalyzer_title_doesnt_contain_keyword",
+                        Code = GetTag("title doesnt contain keyword"),
                         Type = ResultType.Hint
                     });
                 }

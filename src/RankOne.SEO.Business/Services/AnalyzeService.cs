@@ -5,12 +5,13 @@ using System.Xml.Linq;
 using HtmlParserSharp;
 using RankOne.Business.Analyzers;
 using RankOne.Business.Models;
+using RankOne.Business.Summaries;
 
 namespace RankOne.Business.Services
 {
     public class AnalyzeService
     {
-        private SimpleHtmlParser _htmlParser;
+        private readonly SimpleHtmlParser _htmlParser;
 
         public AnalyzeService()
         {
@@ -28,21 +29,21 @@ namespace RankOne.Business.Services
             {
                 webpage.HtmlResult = GetHtml(url);
 
-                var htmlAnalyzer = new HtmlAnalyzer(webpage.HtmlResult);
+                var htmlAnalyzer = new HtmlSummary(webpage.HtmlResult);
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
                     Title = "htmlanalyzer_title",
                     Analysis = htmlAnalyzer.GetAnalysis()
                 });
 
-                var keywordAnalyzer = new KeywordAnalyzer(webpage.HtmlResult);
+                var keywordAnalyzer = new KeywordSummary(webpage.HtmlResult);
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
                     Title = "keywordanalyzer_title",
                     Analysis = keywordAnalyzer.GetAnalysis()
                 });
 
-                var speedAnalyzer = new SpeedAnalyzer(webpage.HtmlResult);
+                var speedAnalyzer = new SpeedSummary(webpage.HtmlResult);
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
                     Title = "speedanalyzer_title",
@@ -58,7 +59,7 @@ namespace RankOne.Business.Services
 
         private HtmlResult GetHtml(string url)
         {
-            Stopwatch stopwatch = new Stopwatch();
+            var stopwatch = new Stopwatch();
 
             stopwatch.Start();
 

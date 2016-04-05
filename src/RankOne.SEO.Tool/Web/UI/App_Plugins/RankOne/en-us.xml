@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <language alias="en_us" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
   <creator>
-    <name>The Umbraco community</name>
-    <link>http://mydomain.com</link>
+    <name>Mark Wemekamp</name>
+    <link>https://github.com/markwemekamp/</link>
   </creator>
   <area alias="dashboard">
     <key alias="title">SEO Information</key>
@@ -26,8 +26,8 @@
     <key alias="no_title_value">Title tag is empty</key>
     <key alias="title_too_long">Title is longer than 60 characters</key>
     <key alias="title_too_short">Title is too short, the ideal title length is between 40 and 60 characters.</key>
-    <key alias="title_less_than_40">Title is less than 40 characters, the ideal title length is between 40 and 60 characters.</key>
-    <key alias="title_more_than_40_less_than_60">The title has the ideal length, which is between 40 and 60 characters</key>
+    <key alias="title_less_than_40_characters">Title is less than 40 characters, the ideal title length is between 40 and 60 characters.</key>
+    <key alias="title_more_than_40_characters_less_than_60_characters">The title has the ideal length, which is between 40 and 60 characters</key>
 
   </area>
 
@@ -35,15 +35,18 @@
     <key alias="title">Meta description</key>
     <key alias="no_description_value">The metadiscription tag content is empty</key>
     <key alias="description_too_short">Description is less than 50 characters, the ideal title length is between 50 and 160 characters.</key>
+    <key alias="description_too_long">Description is longer than 160 characters, the ideal title length is between 50 and 160 characters.</key>
     <key alias="description_more_than_50_less_than_160">The meta description has the ideal length, which is between 50 and 160 characters</key>
   </area>
 
   <area alias="headinganalyzer">
     <key alias="title">Headers</key>
+    <key alias="multiple_h1_tags">The page contains multiple h1 tags</key>
   </area>
 
   <area alias="deprecatedtaganalyzer">
     <key alias="title">Deprecated tags</key>
+    <key alias="no_deprecated_tags_found">The page contains no deprecated html tags</key>
   </area>
 
   <area alias="imagetaganalyzer">
@@ -62,6 +65,7 @@
       <strong>3.</strong> %4% (%5% times)<br/>
     ]]>
     </key>
+    <key alias="meta_description_contains_keyword">The meta description element contains the keyword(s)</key>
   </area>
 
   <area alias="serverresponseanalyzer">
@@ -74,6 +78,7 @@
   </area>
 
   <area alias="htmlsizeanalyzer">
+    <key alias="title">Html size analyzer</key>
     <key alias="html_size_small">
       <![CDATA[
       Html size %0%
@@ -99,6 +104,11 @@
   <area alias="gzipanalyzer">
     <key alias="title">Gzip analyzer</key>
     <key alias="gzip_disabled">Gzip is not enabled</key>
+  </area>
+
+  <area alias="additionalcallanalyzer">
+    <key alias="title">Additional call analyzer</key>
+    <key alias="less_than_15_calls">Less then 15 calls have been made to resources</key>
   </area>
 
 </language>

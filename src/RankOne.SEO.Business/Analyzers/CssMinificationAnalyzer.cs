@@ -1,16 +1,21 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
+using RankOne.Business.Interfaces;
 using RankOne.Business.Models;
-using SEO.Umbraco.Extensions.Analyzers;
 
 namespace RankOne.Business.Analyzers
 {
     public class CssMinificationAnalyzer : BaseAnalyzer
     {
+        public CssMinificationAnalyzer()
+        {
+            Alias = "cssminificationanalyzer";
+        }
+
         public override AnalyzeResult Analyse(XDocument document)
         {
             var result = new AnalyzeResult();
-            result.Title = "cssminificationanalyzer_title";
+            result.Title = TitleTag;
 
             var domain = "http://www.novaware.nl";
 

@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+using RankOne.Business.Models;
 
 namespace RankOne.Business.Analyzers
 {
-    public class KeywordOccurenceService
+    public class KeywordOccurenceAnalyzer : BaseAnalyzer
     {
-        public IEnumerable<KeyValuePair<string, int>> GetKeywords(XDocument document, int numberOfWordsToReturn = 10, int minimumWordLength = 4)
+        public KeywordOccurenceAnalyzer()
         {
+            Alias = "keywordanalyzer";
+        }
+
+        public override AnalyzeResult Analyse(XDocument document)
+        {
+            const int minimumWordLength = 4;
+
+            var result = new AnalyzeResult();
+            result.Title = TitleTag;
+
             var occurences = new Dictionary<string, int>();
 
             var text = document.DescendantNodes().Where(x => x.NodeType == XmlNodeType.Text);
@@ -34,7 +45,7 @@ namespace RankOne.Business.Analyzers
                 }
             }
 
-            return occurences.OrderByDescending(x => x.Value).Take(numberOfWordsToReturn);
+            return result;
         }
     }
 }

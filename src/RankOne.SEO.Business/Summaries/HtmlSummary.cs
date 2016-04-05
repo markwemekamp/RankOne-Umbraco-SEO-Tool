@@ -1,13 +1,13 @@
-﻿using RankOne.Business.Models;
-using SEO.Umbraco.Extensions.Analyzers;
+﻿using RankOne.Business.Analyzers;
+using RankOne.Business.Models;
 
-namespace RankOne.Business.Analyzers
+namespace RankOne.Business.Summaries
 {
-    public class HtmlAnalyzer
+    public class HtmlSummary
     {
         private readonly HtmlResult _htmlResult;
 
-        public HtmlAnalyzer(HtmlResult htmlResult)
+        public HtmlSummary(HtmlResult htmlResult)
         {
             _htmlResult = htmlResult;
         }

@@ -2,22 +2,26 @@
 using System.Linq;
 using System.Xml.Linq;
 using RankOne.Business.Models;
-using SEO.Umbraco.Extensions.Analyzers;
 
 namespace RankOne.Business.Analyzers
 {
     public class KeywordMetaDescriptionAnalyzer : BaseAnalyzer
     {
+        public KeywordMetaDescriptionAnalyzer()
+        {
+            Alias = "keywordanalyzer";
+        }
+
         public AnalyzeResult Analyse(XDocument document, string keyword)
         {
             var result = new AnalyzeResult();
-            result.Title = "keywordmetadescriptionanalyzer_title";
+            result.Title = TitleTag;
 
             var metaTags = HtmlHelper.GetElements(document, "meta");
 
             if (!metaTags.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = "keywordmetadescriptionanalyzer_no_meta_tags", Type = ResultType.Error });
+                result.ResultRules.Add(new ResultRule { Code = GetTag("no meta tags"), Type = ResultType.Error });
             }
             else
             {
@@ -29,11 +33,11 @@ namespace RankOne.Business.Analyzers
 
                 if (!attributeValues.Any())
                 {
-                    result.ResultRules.Add(new ResultRule { Code = "keywordmetadescriptionanalyzer_no_meta_description_tag", Type = ResultType.Warning });
+                    result.ResultRules.Add(new ResultRule { Code = GetTag("no meta description tag"), Type = ResultType.Warning });
                 }
                 else if (attributeValues.Count() > 1)
                 {
-                    result.ResultRules.Add(new ResultRule { Code = "keywordmetadescriptionanalyzer_multiple_meta_description_tags", Type = ResultType.Warning });
+                    result.ResultRules.Add(new ResultRule { Code = GetTag("multiple meta description tags"), Type = ResultType.Warning });
                 }
                 else
                 {
@@ -46,7 +50,7 @@ namespace RankOne.Business.Analyzers
                         {
                             result.ResultRules.Add(new ResultRule
                             {
-                                Code = "keywordmetadescriptionanalyzer_metadescription_contains_keyword",
+                                Code = GetTag("meta description contains keyword"),
                                 Type = ResultType.Succes
                             });
                         }
@@ -54,7 +58,7 @@ namespace RankOne.Business.Analyzers
                         {
                             result.ResultRules.Add(new ResultRule
                             {
-                                Code = "keywordmetadescriptionanalyzer_metadescription_doesnt_contain_keyword",
+                                Code = GetTag("meta description doesnt contain keyword"),
                                 Type = ResultType.Hint
                             });
                         }
@@ -66,7 +70,7 @@ namespace RankOne.Business.Analyzers
 
         public override AnalyzeResult Analyse(XDocument document)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,13 +1,15 @@
 ﻿using System.Linq;
+using RankOne.Business.Analyzers;
 using RankOne.Business.Models;
+using RankOne.Business.Services;
 
-namespace RankOne.Business.Analyzers
+namespace RankOne.Business.Summaries
 {
-    public class KeywordAnalyzer
+    public class KeywordSummary
     {
         private readonly HtmlResult _htmlResult;
 
-        public KeywordAnalyzer(HtmlResult htmlResult)
+        public KeywordSummary(HtmlResult htmlResult)
         {
             _htmlResult = htmlResult;
         }

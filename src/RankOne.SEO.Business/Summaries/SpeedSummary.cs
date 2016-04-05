@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Net;
 using System.Text;
+using RankOne.Business.Analyzers;
 using RankOne.Business.Models;
 
-namespace RankOne.Business.Analyzers
+namespace RankOne.Business.Summaries
 {
-    public class SpeedAnalyzer
+    public class SpeedSummary
     {
         private readonly HtmlResult _htmlResult;
 
-        public SpeedAnalyzer(HtmlResult htmlResult)
+        public SpeedSummary(HtmlResult htmlResult)
         {
             _htmlResult = htmlResult;
         }
@@ -17,8 +18,6 @@ namespace RankOne.Business.Analyzers
         public Analysis GetAnalysis()
         {
             var analysis = new Analysis();
-
-
 
             var serverResponseAnalysis = new AnalyzeResult();
             serverResponseAnalysis.Title = "serverresponseanalyzer_title";
@@ -56,7 +55,6 @@ namespace RankOne.Business.Analyzers
             }
             gzipAnalysis.ResultRules.Add(gzipResultRule);
             analysis.Results.Add(gzipAnalysis);
-
 
 
             var htmlSizeAnalysis = new AnalyzeResult();
