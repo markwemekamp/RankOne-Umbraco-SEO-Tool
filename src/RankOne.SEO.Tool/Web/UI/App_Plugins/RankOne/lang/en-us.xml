@@ -14,6 +14,15 @@
   </area>
   <area alias="keywordanalyzer">
     <key alias="title">Keyword analyzer</key>
+    <key alias="top_words">
+      <![CDATA[
+      There is likely no optimal keyword density (search engine algorithms have evolved beyond keyword density metrics as a significant ranking factor). It can be useful, however, to note which keywords appear most often on your page and if they reflect the intended topic of your page. More importantly, the keywords on your page should appear within natural sounding and grammatically correct copy.<br/><br/>
+      <strong>Top 3 keywords for this page:</strong><br/>
+      <strong>1.</strong> %0% (%1% times)<br/>
+      <strong>2.</strong> %2% (%3% times)<br/>
+      <strong>3.</strong> %4% (%5% times)<br/>
+    ]]>
+    </key>
   </area>
   <area alias="speedanalyzer">
     <key alias="title">Page speed analyzer</key>
@@ -22,7 +31,8 @@
 
   <area alias="titleanalyzer">
     <key alias="title">Page title</key>
-
+    <key alias="no_title_tag">The page doesn't contain a title tag</key>
+    <key alias="multiple_title_tags">The page contains title tags</key>
     <key alias="no_title_value">Title tag is empty</key>
     <key alias="title_too_long">Title is longer than 60 characters</key>
     <key alias="title_too_short">Title is too short, the ideal title length is between 40 and 60 characters.</key>
@@ -33,6 +43,9 @@
 
   <area alias="metadescriptionanalyzer">
     <key alias="title">Meta description</key>
+    <key alias="no_meta_tags">The page doesnt contain any meta tags</key>
+    <key alias="no_meta_description_tag">The page doesnt contain a meta description tag</key>
+    <key alias="no_meta_description_tag">The page contains multiple meta description tags</key>
     <key alias="no_description_value">The metadiscription tag content is empty</key>
     <key alias="description_too_short">Description is less than 50 characters, the ideal title length is between 50 and 160 characters.</key>
     <key alias="description_too_long">Description is longer than 160 characters, the ideal title length is between 50 and 160 characters.</key>
@@ -41,31 +54,31 @@
 
   <area alias="headinganalyzer">
     <key alias="title">Headers</key>
+    <key alias="no_h1_tag">The page doesn't contain a h1 tag</key>
     <key alias="multiple_h1_tags">The page contains multiple h1 tags</key>
+    <key alias="one_h1_tags">Perfect! The page contains one h1 tags</key>
   </area>
 
   <area alias="deprecatedtaganalyzer">
     <key alias="title">Deprecated tags</key>
     <key alias="no_deprecated_tags_found">The page contains no deprecated html tags</key>
+    <key alias="acronym_tag_found">The page contains an &lt;acronym&gt; tag, this is considered a deprecated html tag</key>
+    <key alias="acronym_tag_found">The page contains an &lt;applet&gt; tag, this is considered a deprecated html tag</key>
+    <key alias="acronym_tag_found">The page contains an &lt;basefont&gt; tag, this is considered a deprecated html tag</key>
+    <key alias="acronym_tag_found">The page contains an &lt;big&gt; tag, this is considered a deprecated html tag</key>
+    <key alias="acronym_tag_found">The page contains an &lt;center&gt; tag, this is considered a deprecated html tag</key>
+    <key alias="acronym_tag_found">The page contains an &lt;dir&gt; tag, this is considered a deprecated html tag</key>
+    <key alias="acronym_tag_found">The page contains an &lt;font&gt; tag, this is considered a deprecated html tag</key>
+    <key alias="acronym_tag_found">The page contains an &lt;frame&gt; tag, this is considered a deprecated html tag</key>
+    <key alias="acronym_tag_found">The page contains an &lt;strike&gt; tag, this is considered a deprecated html tag</key>
+    <key alias="acronym_tag_found">The page contains an &lt;tt&gt; tag, this is considered a deprecated html tag</key>
   </area>
 
   <area alias="imagetaganalyzer">
     <key alias="title">Image tags</key>
     <key alias="missing_alt_tags">Not all images have an alternative text</key>
     <key alias="missing_title_tags">Not all images have a title text</key>
-  </area>
-
-  <area alias="keywordanalyzer">
-    <key alias="top_words">
-      <![CDATA[
-      There is likely no optimal keyword density (search engine algorithms have evolved beyond keyword density metrics as a significant ranking factor). It can be useful, however, to note which keywords appear most often on your page and if they reflect the intended topic of your page. More importantly, the keywords on your page should appear within natural sounding and grammatically correct copy.<br/><br/>
-      <strong>Top 3 keywords for this page:</strong><br/>
-      <strong>1.</strong> %0% (%1% times)<br/>
-      <strong>2.</strong> %2% (%3% times)<br/>
-      <strong>3.</strong> %4% (%5% times)<br/>
-    ]]>
-    </key>
-    <key alias="meta_description_contains_keyword">The meta description element contains the keyword(s)</key>
+    <key alias="alt_and_title_tags_present">Perfect! All the image tags contain an alternative and title text</key>
   </area>
 
   <area alias="serverresponseanalyzer">

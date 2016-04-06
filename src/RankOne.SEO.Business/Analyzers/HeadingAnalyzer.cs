@@ -28,7 +28,7 @@ namespace RankOne.Business.Analyzers
             }
             else
             {
-                var resultRule = new ResultRule {Code = GetTag("multiple one h1 tag"), Type = ResultType.Succes};
+                var resultRule = new ResultRule {Code = GetTag("one h1 tag"), Type = ResultType.Succes};
                 // ReSharper disable once PossibleNullReferenceException
                 resultRule.Tokens.Add(h1Tags.FirstOrDefault().Value);
                 result.ResultRules.Add(resultRule);
