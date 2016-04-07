@@ -240,9 +240,9 @@
     <Content Include="Web\UI\App_Plugins\RankOne\circle.css" />
     <Content Include="Web\UI\App_Plugins\RankOne\circle.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\circle.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\cog-example.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\cog.css" />
-    <Content Include="Web\UI\App_Plugins\RankOne\cog.svg" />
+    <Content Include="Web\UI\App_Plugins\RankOne\loader.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\loader.css" />
+    <Content Include="Web\UI\App_Plugins\RankOne\loader.svg" />
     <Content Include="Web\UI\App_Plugins\RankOne\icon.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\icon.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\information.directive.html" />
