@@ -21,12 +21,12 @@
 		'~/App_Plugins/RankOne/section.directive.js',
 		'~/App_Plugins/RankOne/icon.directive.js',
 		'~/App_Plugins/RankOne/badge.directive.js',
-		'~/App_Plugins/RankOne/cog-example.js'
+		'~/App_Plugins/RankOne/loader.js'
     ],
 	css : [
 		'~/App_Plugins/RankOne/result.css',
 		'~/App_Plugins/RankOne/circle.css',
-		'~/App_Plugins/RankOne/cog.css',
+		'~/App_Plugins/RankOne/loader.css',
 		'~/App_Plugins/RankOne/section.css'
 	]
 }
