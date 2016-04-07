@@ -27,7 +27,7 @@
   <area alias="speedanalyzer">
     <key alias="title">Page speed analyzer</key>
   </area>
-  
+
 
   <area alias="titleanalyzer">
     <key alias="title">Page title</key>
@@ -116,11 +116,14 @@
 
   <area alias="gzipanalyzer">
     <key alias="title">Gzip analyzer</key>
+    <key alias="gzip_enabled">Gzip is enabled</key>
     <key alias="gzip_disabled">Gzip is not enabled</key>
   </area>
 
   <area alias="additionalcallanalyzer">
     <key alias="title">Additional call analyzer</key>
+    <key alias="more_than_30_calls">More then 30 calls have been made to resources. Try bundling javascript and css files.</key>
+    <key alias="more_than_15_calls">More then 15 calls have been made to resources. Try bundling javascript and css files.</key>
     <key alias="less_than_15_calls">Less then 15 calls have been made to resources</key>
   </area>
 

@@ -21,7 +21,7 @@ namespace RankOne.Business.Summaries
 
             var serverResponseAnalysis = new AnalyzeResult();
             serverResponseAnalysis.Title = "serverresponseanalyzer_title";
-            var serverResponseAnalysisResultRule = new ResultRule { Code = "serverresponseanalyzer_responsetime", Type = ResultType.Succes };
+            var serverResponseAnalysisResultRule = new ResultRule { Code = "serverresponseanalyzer_responsetime", Type = _htmlResult.ServerResponseTime > 3 ? ResultType.Warning : ResultType.Succes };
             serverResponseAnalysisResultRule.Tokens.Add(_htmlResult.ServerResponseTime.ToString());
             serverResponseAnalysis.ResultRules.Add(serverResponseAnalysisResultRule);
             analysis.Results.Add(serverResponseAnalysis);
@@ -80,8 +80,8 @@ namespace RankOne.Business.Summaries
             var externalCallAnalyzer = new AdditionalCallAnalyzer();
             analysis.Results.Add(externalCallAnalyzer.Analyse(_htmlResult.Document));
 
-            var cssMinifationAnalyzer = new CssMinificationAnalyzer();
-            analysis.Results.Add(cssMinifationAnalyzer.Analyse(_htmlResult.Document));
+            //var cssMinifationAnalyzer = new CssMinificationAnalyzer();
+            //analysis.Results.Add(cssMinifationAnalyzer.Analyse(_htmlResult.Document));
 
 
             return analysis;
