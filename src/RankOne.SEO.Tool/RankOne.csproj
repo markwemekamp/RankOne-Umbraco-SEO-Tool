@@ -234,31 +234,30 @@
     <Compile Include="Web\Controllers\RankOneApiController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web\UI\App_Plugins\RankOne\badge.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\badge.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\checks.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\circle.css" />
-    <Content Include="Web\UI\App_Plugins\RankOne\circle.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\circle.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\css\circle.css" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\loader.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\loader.css" />
+    <Content Include="Web\UI\App_Plugins\RankOne\css\loader.css" />
     <Content Include="Web\UI\App_Plugins\RankOne\loader.svg" />
-    <Content Include="Web\UI\App_Plugins\RankOne\icon.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\icon.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\information.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\information.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\icon\icon.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\icon\icon.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\information\information.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\information\information.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\lang\en-us.xml" />
     <Content Include="Web\UI\App_Plugins\RankOne\RankOne.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\result.css" />
-    <Content Include="Web\UI\App_Plugins\RankOne\result.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\result.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\result.service.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\resultline.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\resultline.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\score.service.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\section.css" />
-    <Content Include="Web\UI\App_Plugins\RankOne\section.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\section.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\css\result.css" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\services\result.service.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\services\score.service.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\css\section.css" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\accordion\section.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\accordion\section.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\seoTips.controller.js" />
   </ItemGroup>
   <ItemGroup>
