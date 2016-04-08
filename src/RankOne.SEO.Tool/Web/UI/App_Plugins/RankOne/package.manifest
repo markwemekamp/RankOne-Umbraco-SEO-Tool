@@ -12,21 +12,21 @@
     ],
     javascript: [
 		'~/App_Plugins/RankOne/seoTips.controller.js',
-		'~/App_Plugins/RankOne/result.service.js',
-		'~/App_Plugins/RankOne/score.service.js',
-		'~/App_Plugins/RankOne/circle.directive.js',
-		'~/App_Plugins/RankOne/result.directive.js',
-		'~/App_Plugins/RankOne/information.directive.js',
-		'~/App_Plugins/RankOne/resultline.directive.js',
-		'~/App_Plugins/RankOne/section.directive.js',
-		'~/App_Plugins/RankOne/icon.directive.js',
-		'~/App_Plugins/RankOne/badge.directive.js',
+		'~/App_Plugins/RankOne/services/result.service.js',
+		'~/App_Plugins/RankOne/services/score.service.js',
+		'~/App_Plugins/RankOne/directives/circle/circle.directive.js',
+		'~/App_Plugins/RankOne/directives/result/result.directive.js',
+		'~/App_Plugins/RankOne/directives/information/information.directive.js',
+		'~/App_Plugins/RankOne/directives/resultline/resultline.directive.js',
+		'~/App_Plugins/RankOne/directives/accordion/section.directive.js',
+		'~/App_Plugins/RankOne/directives/icon/icon.directive.js',
+		'~/App_Plugins/RankOne/directives/badge/badge.directive.js',
 		'~/App_Plugins/RankOne/loader.js'
     ],
 	css : [
-		'~/App_Plugins/RankOne/result.css',
-		'~/App_Plugins/RankOne/circle.css',
-		'~/App_Plugins/RankOne/loader.css',
-		'~/App_Plugins/RankOne/section.css'
+		'~/App_Plugins/RankOne/css/result.css',
+		'~/App_Plugins/RankOne/css/circle.css',
+		'~/App_Plugins/RankOne/css/loader.css',
+		'~/App_Plugins/RankOne/css/section.css'
 	]
 }
