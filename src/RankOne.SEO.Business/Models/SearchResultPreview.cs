@@ -1,4 +1,4 @@
-﻿namespace SEO.Umbraco.Extensions.Models
+﻿namespace RankOne.Business.Models
 {
     public class SearchResultPreview
     {

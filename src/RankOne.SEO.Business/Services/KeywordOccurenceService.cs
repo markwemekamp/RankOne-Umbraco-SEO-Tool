@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using HtmlAgilityPack;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Services

@@ -1,9 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Net;
 using System.Text;
-using System.Xml.Linq;
 using HtmlAgilityPack;
-using RankOne.Business.Analyzers;
 using RankOne.Business.Models;
 using RankOne.Business.Summaries;
 

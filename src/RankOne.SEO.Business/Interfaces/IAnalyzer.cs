@@ -1,5 +1,4 @@
-﻿using System.Xml.Linq;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Interfaces
