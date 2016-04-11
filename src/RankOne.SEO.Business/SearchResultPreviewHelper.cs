@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
+using HtmlAgilityPack;
 using RankOne.Business;
 using SEO.Umbraco.Extensions.Models;
 
@@ -14,7 +15,7 @@ namespace SEO.Umbraco.Extensions
             _htmlHelper = new HtmlHelper();
         }
 
-        public SearchResultPreview GetSearchResultPreview(string url, XDocument document)
+        public SearchResultPreview GetSearchResultPreview(string url, HtmlNode document)
         {
             var searchResultPreview = new SearchResultPreview {Url = url};
 
@@ -22,7 +23,7 @@ namespace SEO.Umbraco.Extensions
             var titleTags = _htmlHelper.GetElements(document, "title");
             if (titleTags.Any())
             {
-                searchResultPreview.Title = titleTags.First().Value;
+                searchResultPreview.Title = titleTags.First().InnerText;
             }
 
 

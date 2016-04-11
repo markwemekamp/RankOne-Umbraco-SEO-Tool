@@ -6,7 +6,7 @@
         scope: {
             result: '='
         },
-        link: function (scope, element, attrs, controller) {
+        link: function (scope) {
             if (scope.result.errorCount > 0) {
                 scope.cssClass = 'error-badge';
                 scope.number = scope.result.errorCount;

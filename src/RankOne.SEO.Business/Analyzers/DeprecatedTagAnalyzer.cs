@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
+using HtmlAgilityPack;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Analyzers
@@ -11,7 +12,7 @@ namespace RankOne.Business.Analyzers
             Alias = "deprecatedtaganalyzer";
         }
 
-        public override AnalyzeResult Analyse(XDocument document)
+        public override AnalyzeResult Analyse(HtmlNode document)
         {
             var result = new AnalyzeResult();
             result.Title = TitleTag;
@@ -37,7 +38,7 @@ namespace RankOne.Business.Analyzers
             return result;
         }
 
-        private void CheckTag(XDocument document, string tagname, AnalyzeResult result)
+        private void CheckTag(HtmlNode document, string tagname, AnalyzeResult result)
         {
             var acronymTags = HtmlHelper.GetElements(document, tagname);
 

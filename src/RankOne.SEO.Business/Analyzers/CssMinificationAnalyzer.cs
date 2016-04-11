@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
+using HtmlAgilityPack;
 using RankOne.Business.Interfaces;
 using RankOne.Business.Models;
 
@@ -12,7 +13,7 @@ namespace RankOne.Business.Analyzers
             Alias = "cssminificationanalyzer";
         }
 
-        public override AnalyzeResult Analyse(XDocument document)
+        public override AnalyzeResult Analyse(HtmlNode document)
         {
             var result = new AnalyzeResult();
             result.Title = TitleTag;
@@ -21,8 +22,8 @@ namespace RankOne.Business.Analyzers
 
             var localCssFiles = HtmlHelper.GetElementsWithAttribute(document, "link", "href").
                 Where(x => 
-                        x.Attributes().Any(y => y.Name == "rel" && y.Value == "stylesheet") &&
-                        x.Attributes().Any(y => y.Name == "href" && (y.Value.StartsWith("/")
+                        x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet") &&
+                        x.Attributes.Any(y => y.Name == "href" && (y.Value.StartsWith("/")
                             || y.Value.StartsWith(domain)
                         ))
                 );

@@ -7,7 +7,7 @@
         scope: {
             result: '='
         },
-        link: function (scope, element, attrs, controller) {
+        link: function (scope) {
             scope.sortOrder = ['-errorCount', '-warningCount', '-hintCount'];
         }
     }

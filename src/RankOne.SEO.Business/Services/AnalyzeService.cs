@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text;
 using System.Xml.Linq;
-using HtmlParserSharp;
+using HtmlAgilityPack;
 using RankOne.Business.Analyzers;
 using RankOne.Business.Models;
 using RankOne.Business.Summaries;
@@ -11,11 +11,11 @@ namespace RankOne.Business.Services
 {
     public class AnalyzeService
     {
-        private readonly SimpleHtmlParser _htmlParser;
+        private readonly HtmlDocument _htmlParser;
 
         public AnalyzeService()
         {
-            _htmlParser = new SimpleHtmlParser();
+            _htmlParser = new HtmlDocument();
         }
 
         public PageAnalysis AnalyzeWebPage(string url)
@@ -67,8 +67,8 @@ namespace RankOne.Business.Services
 
             stopwatch.Stop();
 
-            var xmlDocument = _htmlParser.ParseString(html);
-            var xDocument = XDocument.Parse(xmlDocument.OuterXml);
+            _htmlParser.LoadHtml(html);
+            var xDocument = _htmlParser.DocumentNode;
 
             return new HtmlResult
             {

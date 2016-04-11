@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
+using HtmlAgilityPack;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Analyzers
@@ -12,7 +13,7 @@ namespace RankOne.Business.Analyzers
             Alias = "keywordanalyzer";
         }
 
-        public AnalyzeResult Analyse(XDocument document, string keyword)
+        public AnalyzeResult Analyse(HtmlNode document, string keyword)
         {
             var result = new AnalyzeResult();
             result.Title = TitleTag;
@@ -68,7 +69,7 @@ namespace RankOne.Business.Analyzers
             return result;
         }
 
-        public override AnalyzeResult Analyse(XDocument document)
+        public override AnalyzeResult Analyse(HtmlNode document)
         {
             throw new NotImplementedException();
         }

@@ -18,7 +18,7 @@
 		'~/App_Plugins/RankOne/directives/result/result.directive.js',
 		'~/App_Plugins/RankOne/directives/information/information.directive.js',
 		'~/App_Plugins/RankOne/directives/resultline/resultline.directive.js',
-		'~/App_Plugins/RankOne/directives/accordion/section.directive.js',
+		'~/App_Plugins/RankOne/directives/accordion/accordion.directive.js',
 		'~/App_Plugins/RankOne/directives/icon/icon.directive.js',
 		'~/App_Plugins/RankOne/directives/badge/badge.directive.js',
 		'~/App_Plugins/RankOne/loader.js'
@@ -27,6 +27,6 @@
 		'~/App_Plugins/RankOne/css/result.css',
 		'~/App_Plugins/RankOne/css/circle.css',
 		'~/App_Plugins/RankOne/css/loader.css',
-		'~/App_Plugins/RankOne/css/section.css'
+		'~/App_Plugins/RankOne/css/accordion.css'
 	]
 }

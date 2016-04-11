@@ -14,7 +14,9 @@ namespace RankOne.Web.Controllers
         public PageAnalysis AnalyzeUrl(string url)
         {
             var analyzeService = new AnalyzeService();
-            return analyzeService.AnalyzeWebPage(url);
+            var result =  analyzeService.AnalyzeWebPage(url);
+            result.HtmlResult.Document = null; 
+            return result;
         }
     }
 }

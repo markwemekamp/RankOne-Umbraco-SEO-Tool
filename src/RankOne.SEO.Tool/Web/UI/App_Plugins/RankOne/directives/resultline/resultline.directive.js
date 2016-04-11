@@ -6,7 +6,7 @@
         scope: {
             resultline: '='
         },
-        link: function (scope, element, attrs, controller) {
+        link: function (scope) {
             scope.text = localizationService.localize(scope.resultline.Code, scope.resultline.Tokens);
         }
     }

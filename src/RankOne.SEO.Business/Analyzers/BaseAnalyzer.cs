@@ -1,4 +1,4 @@
-﻿using System.Xml.Linq;
+﻿using HtmlAgilityPack;
 using RankOne.Business.Models;
 using RankOne.Business.Interfaces;
 
@@ -29,6 +29,6 @@ namespace RankOne.Business.Analyzers
             return string.Format("{0}_{1}", Alias, code);
         }
 
-        public abstract AnalyzeResult Analyse(XDocument document);
+        public abstract AnalyzeResult Analyse(HtmlNode document);
     }
 }

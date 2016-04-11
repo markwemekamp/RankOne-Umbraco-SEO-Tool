@@ -1,30 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
+using HtmlAgilityPack;
 
 namespace RankOne.Business
 {
     public class HtmlHelper
     {
-        public IEnumerable<XElement> GetElements(XDocument document, string elementName)
+        public IEnumerable<HtmlNode> GetElements(HtmlNode document, string elementName)
         {
-            return GetElements(document.Root, elementName);
+            return document.DescendantsAndSelf()
+                   .Where(d => d.Name == elementName);
         }
 
-        public IEnumerable<XElement> GetElements(XElement element, string elementName)
+        public IEnumerable<HtmlNode> GetElementsWithAttribute(HtmlNode document, string elementName, string attribute)
         {
-            return element.DescendantsAndSelf().Elements()
-                   .Where(d => d.Name.LocalName == elementName);
+            return GetElements(document, elementName).Where(d => d.HasAttributes && d.Attributes.Any(x => x.Name == attribute));
         }
 
-        public IEnumerable<XElement> GetElementsWithAttribute(XDocument document, string elementName, string attribute)
+        public HtmlAttribute GetAttribute(HtmlNode element, string name)
         {
-            return GetElements(document, elementName).Where(d => d.HasAttributes && d.Attributes().Any(x => x.Name == attribute));
-        }
-
-        public XAttribute GetAttribute(XElement element, string name)
-        {
-            return element.Attributes().FirstOrDefault(x => x.Name.LocalName == name);
+            return element.Attributes.FirstOrDefault(x => x.Name == name);
         }
     }
 }

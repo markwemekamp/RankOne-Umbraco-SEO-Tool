@@ -6,7 +6,7 @@
         scope: {
             mode: '='
         },
-        link: function (scope, element, attrs, controller) {
+        link: function (scope) {
             
             if (scope.mode == "succes") {
                 scope.icon = "check info";

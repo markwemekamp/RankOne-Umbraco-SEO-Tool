@@ -69,9 +69,9 @@
       <HintPath>..\packages\UmbracoCms.Core.7.1.4\lib\Examine.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -230,7 +230,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
-    <Compile Include="PropertyEditors\NestedContentPropertyEditor.cs" />
     <Compile Include="Web\Controllers\RankOneApiController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -255,9 +254,9 @@
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\score.service.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\css\section.css" />
-    <Content Include="Web\UI\App_Plugins\RankOne\directives\accordion\section.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\directives\accordion\section.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\css\accordion.css" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\accordion\accordion.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\accordion\accordion.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\seoTips.controller.js" />
   </ItemGroup>
   <ItemGroup>
@@ -274,10 +273,6 @@
     <ProjectReference Include="..\RankOne.SEO.Business\RankOne.Business.csproj">
       <Project>{f1c0ebf4-5cfe-4cfd-ac78-56e4d7315971}</Project>
       <Name>RankOne.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RankOne.SEO.HtmlParserSharp\RankOne.HtmlParser.csproj">
-      <Project>{fd150915-d34f-436a-92c1-80aa505da754}</Project>
-      <Name>RankOne.HtmlParser</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

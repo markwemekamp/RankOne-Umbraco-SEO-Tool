@@ -20,7 +20,7 @@ namespace RankOne.Business.Summaries
 
             var keywordOccurenceService = new KeywordOccurenceService();
 
-            var keywords = keywordOccurenceService.GetKeywords(_htmlResult.Document);
+            var keywords = keywordOccurenceService.GetKeywords(_htmlResult);
 
             var information = new AnalysisInformation {Code = "keywordanalyzer_top_words"};
             foreach (var word in keywords)

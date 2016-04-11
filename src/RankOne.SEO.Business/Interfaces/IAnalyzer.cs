@@ -1,10 +1,11 @@
 ﻿using System.Xml.Linq;
+using HtmlAgilityPack;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Interfaces
 {
     public interface IAnalyzer
     {
-        AnalyzeResult Analyse(XDocument document);
+        AnalyzeResult Analyse(HtmlNode document);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
+using HtmlAgilityPack;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Analyzers
@@ -11,7 +12,7 @@ namespace RankOne.Business.Analyzers
             Alias = "headinganalyzer";
         }
 
-        public override AnalyzeResult Analyse(XDocument document)
+        public override AnalyzeResult Analyse(HtmlNode document)
         {
             var result = new AnalyzeResult();
             result.Title = TitleTag;
@@ -30,7 +31,7 @@ namespace RankOne.Business.Analyzers
             {
                 var resultRule = new ResultRule {Code = GetTag("one h1 tag"), Type = ResultType.Succes};
                 // ReSharper disable once PossibleNullReferenceException
-                resultRule.Tokens.Add(h1Tags.FirstOrDefault().Value);
+                resultRule.Tokens.Add(h1Tags.FirstOrDefault().InnerText);
                 result.ResultRules.Add(resultRule);
             }
             return result;

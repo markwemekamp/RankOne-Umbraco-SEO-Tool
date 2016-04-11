@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using System.Xml.Linq;
+using HtmlAgilityPack;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Analyzers
@@ -11,13 +11,13 @@ namespace RankOne.Business.Analyzers
             Alias = "additionalcallanalyzer";
         }
 
-        public override AnalyzeResult Analyse(XDocument document)
+        public override AnalyzeResult Analyse(HtmlNode document)
         {
             var result = new AnalyzeResult();
             result.Title = TitleTag;
 
             var cssFiles = HtmlHelper.GetElementsWithAttribute(document, "link", "href").
-                Where(x => x.Attributes().Any(y => y.Name == "rel" && y.Value == "stylesheet"));
+                Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));
             var scriptFiles = HtmlHelper.GetElementsWithAttribute(document, "script", "src");
             var images = HtmlHelper.GetElementsWithAttribute(document, "img", "src");
             var objects = HtmlHelper.GetElementsWithAttribute(document, "object ", "data");

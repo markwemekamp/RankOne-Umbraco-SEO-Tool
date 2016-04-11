@@ -6,9 +6,6 @@
         scope: {
             progress: '=',
             mode: '@mode'
-        },
-        link: function (scope, element, attrs, controller) {
-
         }
     }
 });
