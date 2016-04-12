@@ -2,7 +2,7 @@
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: '/App_Plugins/RankOne/circle.directive.html',
+        templateUrl: '/App_Plugins/RankOne/directives/circle/circle.directive.html',
         scope: {
             progress: '=',
             mode: '@mode'

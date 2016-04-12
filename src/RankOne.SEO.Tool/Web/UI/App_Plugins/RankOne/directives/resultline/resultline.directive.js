@@ -2,7 +2,7 @@
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: '/App_Plugins/RankOne/resultline.directive.html',
+        templateUrl: '/App_Plugins/RankOne/directives/resultline/resultline.directive.html',
         scope: {
             resultline: '='
         },

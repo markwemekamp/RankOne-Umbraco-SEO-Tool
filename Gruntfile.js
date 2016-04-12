@@ -18,6 +18,17 @@ module.exports = function(grunt) {
         tasks: ['copy:dll']
       }
     },
+	
+	less: {
+      dist: {
+        options: {
+          paths: ["src/RankOne.SEO.Tool/less"],
+        },
+        files: {
+          '<%= basePath %>/css/styles.css': 'src/RankOne.SEO.Tool/less/styles.less',
+        }
+      }
+    },
 
     copy: {
       dll: {
@@ -74,6 +85,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['msbuild:dist', 'copy:dll', 'copy:plugin']);
-  grunt.registerTask('develop', ['msbuild:dev', 'copy:debug', 'copy:plugin']);
+  grunt.registerTask('default', ['msbuild:dist', 'less', 'copy:dll', 'copy:plugin']);
+  grunt.registerTask('develop', ['msbuild:dev', 'less', 'copy:debug', 'copy:plugin']);
 };

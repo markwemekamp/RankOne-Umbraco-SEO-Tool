@@ -24,9 +24,6 @@
 		'~/App_Plugins/RankOne/loader.js'
     ],
 	css : [
-		'~/App_Plugins/RankOne/css/result.css',
-		'~/App_Plugins/RankOne/css/circle.css',
-		'~/App_Plugins/RankOne/css/loader.css',
-		'~/App_Plugins/RankOne/css/accordion.css'
+		'~/App_Plugins/RankOne/css/styles.css'
 	]
 }

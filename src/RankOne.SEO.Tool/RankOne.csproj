@@ -264,11 +264,16 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="less\accordion.less" />
+    <None Include="less\circle.less" />
+    <None Include="less\colors.less" />
+    <None Include="less\information.less" />
+    <None Include="less\badges.less" />
+    <None Include="less\loader.less" />
+    <None Include="less\result.less" />
     <None Include="Web\UI\App_Plugins\RankOne\package.manifest" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\RankOne.SEO.Business\RankOne.Business.csproj">
       <Project>{f1c0ebf4-5cfe-4cfd-ac78-56e4d7315971}</Project>

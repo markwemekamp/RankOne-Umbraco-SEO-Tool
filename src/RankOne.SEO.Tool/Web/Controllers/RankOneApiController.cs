@@ -1,8 +1,6 @@
 ﻿using System.Web.Http;
 using RankOne.Business.Models;
 using RankOne.Business.Services;
-using Umbraco.Web.Editors;
-using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 
 namespace RankOne.Web.Controllers

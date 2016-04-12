@@ -2,7 +2,7 @@
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: '/App_Plugins/RankOne/section.directive.html',
+        templateUrl: '/App_Plugins/RankOne/directives/accordion/accordion.directive.html',
         transclude: true,
         scope: {
             result: '='

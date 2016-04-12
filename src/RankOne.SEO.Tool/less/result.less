@@ -1,17 +1,17 @@
 ﻿.error {
-    color: #dd2222;
+    color: @error;
 }
 
 .warning {
-    color: #dd9d22;
+    color: @warning;
 }
 
 .pointer {
-    color: #04bfbf;
+    color: @hint;
 }
 
 .info {
-    color: #4db53c;
+    color: @succes;
 }
 
 .summary {
@@ -22,7 +22,7 @@
 .result {
     padding-bottom: 10px;
     margin-bottom: 10px !important;
-    border-bottom: 1px solid #f8f8f8;
+    border-bottom: 1px solid @border;
     width: 50%;
     height: 150px;
     float: left;
@@ -38,36 +38,32 @@
     margin-right: 10px;
 }
 
-.clickable, .clickable > .c100{
+.clickable, .clickable > .c100 {
     cursor: pointer !important;
 }
 
 .summary {
     position: relative;
-        padding-bottom: 10px;
+    padding-bottom: 10px;
     margin-bottom: 20px !important;
-    border-bottom: 1px solid #f8f8f8;
+    border-bottom: 1px solid @border;
 }
 
 .summary-block {
     float: left;
     width: 25%;
     display: block;
-        text-align: center;
+    text-align: center;
     display: block;
     padding: 30px 0;
 }
 
-.summary-block strong{
+.summary-block strong {
     font-size: 48px;
     margin-bottom: 10px;
 }
-    .summary-block small {
-        display: block;
-        font-size: 16px;
-    }
 
-
-
-
-
+.summary-block small {
+    display: block;
+    font-size: 16px;
+}
