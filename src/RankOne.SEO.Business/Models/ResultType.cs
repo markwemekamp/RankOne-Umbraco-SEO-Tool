@@ -5,6 +5,6 @@
         public const string Error = "error";
         public const string Warning = "warning";
         public const string Hint = "hint";
-        public const string Succes = "succes";
+        public const string Success = "success";
     }
 }

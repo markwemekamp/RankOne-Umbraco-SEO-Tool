@@ -8,7 +8,7 @@
         },
         link: function (scope) {
             
-            if (scope.mode == "succes") {
+            if (scope.mode == "success") {
                 scope.icon = "check info";
             }
 

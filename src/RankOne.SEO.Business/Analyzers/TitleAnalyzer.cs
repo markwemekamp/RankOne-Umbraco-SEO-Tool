@@ -58,7 +58,7 @@ namespace RankOne.Business.Analyzers
 
                         if (titleValue.Length <= 60 && titleValue.Length >= 40)
                         {
-                            result.ResultRules.Add(new ResultRule { Code = GetTag("title more than 40 less than 60 characters"), Type = ResultType.Succes });
+                            result.ResultRules.Add(new ResultRule { Code = GetTag("title more than 40 less than 60 characters"), Type = ResultType.Success });
                         }
                     }
                 }

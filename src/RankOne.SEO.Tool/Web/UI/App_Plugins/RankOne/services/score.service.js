@@ -55,10 +55,10 @@
                 return combinedCount;
             }
 
-            this.getTotalSuccesCount = function (results) {
+            this.getTotalSuccessCount = function (results) {
                 var combinedCount = 0;
                 angular.forEach(results, function (result) {
-                    combinedCount += result.succesCount;
+                    combinedCount += result.successCount;
                 });
                 return combinedCount;
             }

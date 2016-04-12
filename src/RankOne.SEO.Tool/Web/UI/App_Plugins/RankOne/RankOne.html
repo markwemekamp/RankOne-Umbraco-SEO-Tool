@@ -25,19 +25,18 @@
                 <strong class="warning">{{warningCount}}</strong>
                 <small>Warnings</small>
             </div>
-            <div class="summary-block clickable" ng-click="setFilter('pointer')">
+            <div class="summary-block clickable" ng-click="setFilter('hint')">
                 <strong class="pointer">{{hintCount}}</strong>
                 <small>Hints</small>
             </div>
-            <div class="summary-block clickable" ng-click="setFilter('information')">
-                <strong class="info">{{succesCount}}</strong>
+            <div class="summary-block clickable" ng-click="setFilter('success')">
+                <strong class="info">{{successCount}}</strong>
                 <small>Passed checks</small>
             </div>
         </div>
 
         <div class="accordion">
-            <accordion result="analyzerResults" ng-repeat="analyzerResults in analyzeResults.AnalyzerResults">
-
+            <accordion result="analyzerResults" filter="filter" ng-repeat="analyzerResults in analyzeResults.AnalyzerResults">
             </accordion>
         </div>
     </div>

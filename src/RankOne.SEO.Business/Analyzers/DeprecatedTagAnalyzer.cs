@@ -31,7 +31,7 @@ namespace RankOne.Business.Analyzers
 
             if (!result.ResultRules.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = GetTag("no deprecated tags found"), Type = ResultType.Succes});
+                result.ResultRules.Add(new ResultRule { Code = GetTag("no deprecated tags found"), Type = ResultType.Success});
             }
 
             return result;

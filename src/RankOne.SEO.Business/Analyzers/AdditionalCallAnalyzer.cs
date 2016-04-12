@@ -39,7 +39,7 @@ namespace RankOne.Business.Analyzers
             else
             {
                 resultRule.Code = GetTag("less than 15 calls");
-                resultRule.Type = ResultType.Succes;
+                resultRule.Type = ResultType.Success;
             }
 
             resultRule.Tokens.Add(cssFiles.Count().ToString());

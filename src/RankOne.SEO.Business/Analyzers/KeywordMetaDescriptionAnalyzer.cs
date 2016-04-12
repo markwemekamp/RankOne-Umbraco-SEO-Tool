@@ -51,7 +51,7 @@ namespace RankOne.Business.Analyzers
                             result.ResultRules.Add(new ResultRule
                             {
                                 Code = GetTag("meta description contains keyword"),
-                                Type = ResultType.Succes
+                                Type = ResultType.Success
                             });
                         }
                         else

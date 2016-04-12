@@ -34,7 +34,7 @@ namespace RankOne.Business.Analyzers
                     result.ResultRules.Add(new ResultRule
                     {
                         Code = GetTag("title contains keyword"),
-                        Type = ResultType.Succes
+                        Type = ResultType.Success
                     });
                 }
                 else

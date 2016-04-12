@@ -65,7 +65,7 @@ namespace RankOne.Business.Analyzers
 
                             if (descriptionValue.Length <= 160 && descriptionValue.Length >= 50)
                             {
-                                result.ResultRules.Add(new ResultRule { Code = GetTag("description more than 50 less than 160"), Type = ResultType.Succes });
+                                result.ResultRules.Add(new ResultRule { Code = GetTag("description more than 50 less than 160"), Type = ResultType.Success });
                             }
                         }
                     }

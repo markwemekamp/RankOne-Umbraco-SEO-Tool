@@ -10,7 +10,7 @@
                 result.errorCount = countRulesForType(result, 'error');
                 result.warningCount = countRulesForType(result, 'warning');
                 result.hintCount = countRulesForType(result, 'hint');
-                result.succesCount = countRulesForType(result, 'succes');
+                result.successCount = countRulesForType(result, 'success');
             }
 
             this.SetMetadata = function (analyzeResult) {
@@ -19,14 +19,14 @@
                     analyzerResult.errorCount = 0;
                     analyzerResult.warningCount = 0;
                     analyzerResult.hintCount = 0;
-                    analyzerResult.succesCount = 0;
+                    analyzerResult.successCount = 0;
 
                     angular.forEach(analyzerResult.Analysis.Results, function (result) {
                         SetMetadataForResult(result);
                         analyzerResult.errorCount += result.errorCount;
                         analyzerResult.warningCount += result.warningCount;
                         analyzerResult.hintCount += result.hintCount;
-                        analyzerResult.succesCount += result.succesCount;
+                        analyzerResult.successCount += result.successCount;
                         results.push(result);
                     });
                 });

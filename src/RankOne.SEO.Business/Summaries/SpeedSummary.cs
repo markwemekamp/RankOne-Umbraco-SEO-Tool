@@ -21,7 +21,7 @@ namespace RankOne.Business.Summaries
 
             var serverResponseAnalysis = new AnalyzeResult();
             serverResponseAnalysis.Title = "serverresponseanalyzer_title";
-            var serverResponseAnalysisResultRule = new ResultRule { Code = "serverresponseanalyzer_responsetime", Type = _htmlResult.ServerResponseTime > 3 ? ResultType.Warning : ResultType.Succes };
+            var serverResponseAnalysisResultRule = new ResultRule { Code = "serverresponseanalyzer_responsetime", Type = _htmlResult.ServerResponseTime > 3 ? ResultType.Warning : ResultType.Success };
             serverResponseAnalysisResultRule.Tokens.Add(_htmlResult.ServerResponseTime.ToString());
             serverResponseAnalysis.ResultRules.Add(serverResponseAnalysisResultRule);
             analysis.Results.Add(serverResponseAnalysis);
@@ -46,7 +46,7 @@ namespace RankOne.Business.Summaries
             if (encoding == "gzip")
             {
                 gzipResultRule.Code = "gzipanalyzer_gzip_enabled";
-                gzipResultRule.Type = ResultType.Succes;
+                gzipResultRule.Type = ResultType.Success;
             }
             else
             {
@@ -64,7 +64,7 @@ namespace RankOne.Business.Summaries
             if (byteCount < (33 * 1024))
             {
                 htmlSizeResultRule.Code = "htmlsizeanalyzer_html_size_small";
-                htmlSizeResultRule.Type = ResultType.Succes;
+                htmlSizeResultRule.Type = ResultType.Success;
             }
             else
             {

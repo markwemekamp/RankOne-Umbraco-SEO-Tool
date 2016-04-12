@@ -35,7 +35,7 @@ namespace RankOne.Business.Analyzers
 
             if (imageTagCount == imagesWithAltTagCount && imageTagCount > imagesWithTitleTagCount)
             {
-                result.ResultRules.Add(new ResultRule { Code = GetTag("alt and title tags present"), Type = ResultType.Succes });
+                result.ResultRules.Add(new ResultRule { Code = GetTag("alt and title tags present"), Type = ResultType.Success });
             }
 
             return result;

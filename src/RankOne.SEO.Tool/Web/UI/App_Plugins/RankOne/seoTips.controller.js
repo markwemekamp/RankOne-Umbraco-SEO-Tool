@@ -4,6 +4,7 @@
     function rankOne($scope, $http, $location, editorState, scoreService, resultService) {
 
         $scope.analyzeResults = null;
+        $scope.filter = null;
 
         if (!editorState.current.template) {
             $scope.error = "This item does not have a template";
@@ -28,7 +29,7 @@
                     $scope.errorCount = scoreService.getTotalErrorCount(results);
                     $scope.warningCount = scoreService.getTotalWarningCount(results);
                     $scope.hintCount = scoreService.getTotalHintCount(results);
-                    $scope.succesCount = scoreService.getTotalSuccesCount(results);
+                    $scope.successCount = scoreService.getTotalSuccessCount(results);
 
                     $scope.loading = false;
 
@@ -38,6 +39,9 @@
             }
         }
 
+        $scope.setFilter = function (filter) {
+            $scope.filter = filter;
+        };
     };
 
     // Register the controller

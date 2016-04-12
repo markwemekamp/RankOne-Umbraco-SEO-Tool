@@ -235,11 +235,9 @@
   <ItemGroup>
     <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\css\circle.css" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\loader.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\css\loader.css" />
     <Content Include="Web\UI\App_Plugins\RankOne\loader.svg" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\icon\icon.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\icon\icon.directive.js" />
@@ -247,20 +245,19 @@
     <Content Include="Web\UI\App_Plugins\RankOne\directives\information\information.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\lang\en-us.xml" />
     <Content Include="Web\UI\App_Plugins\RankOne\RankOne.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\css\result.css" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\result.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\score.service.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\css\accordion.css" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\accordion\accordion.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\accordion\accordion.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\seoTips.controller.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="less\styles.less" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
