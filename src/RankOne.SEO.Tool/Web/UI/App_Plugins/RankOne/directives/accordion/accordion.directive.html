@@ -6,9 +6,14 @@
     <section ng-show="expanded">
         <information information="information" ng-repeat="information in result.Analysis.Information"></information>
         <div class="columns">
-            <result result="analyzeResult" ng-repeat="analyzeResult in filteredResults=(result.Analysis.Results | orderBy:sortOrder)"></result>
+            <div class="column">
+                <result result="analyzeResult" ng-repeat="analyzeResult in column1"></result>
+            </div>
+            <div class="column">
+                <result result="analyzeResult" ng-repeat="analyzeResult in column2"></result>
+            </div>
         </div>
-        <p ng-show="!filteredResults.length">
+        <p ng-show="!result.Analysis.Results.length">
             <localize key="dashboard_no_results"></localize>
         </p>
     </section>
