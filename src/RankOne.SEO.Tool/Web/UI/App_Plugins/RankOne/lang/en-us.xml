@@ -111,7 +111,7 @@
 
   <area alias="keywordmetadescriptionanalyzer">
     <key alias="title">Meta description analyzer</key>
-    <key alias="metadescription_contains_keyword">Metadescription contains the keyword(s)</key>
+    <key alias="meta_description_contains_keyword">Metadescription contains the keyword(s)</key>
   </area>
 
   <area alias="gzipanalyzer">

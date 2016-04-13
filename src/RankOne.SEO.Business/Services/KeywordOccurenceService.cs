@@ -11,9 +11,9 @@ namespace RankOne.Business.Services
         {
             var occurences = new Dictionary<string, int>();
 
-            var text = result.Document.Descendants();
+            var rules = result.Document.SelectNodes("//text()");
 
-            foreach (var rule in text)
+            foreach (var rule in rules)
             {
                 var xtext = rule.InnerText;
 
@@ -21,14 +21,17 @@ namespace RankOne.Business.Services
 
                 foreach (var word in ruleWords)
                 {
-                    var lowerWord = word.ToLower().Trim();
-                    if (occurences.ContainsKey(lowerWord))
+                    var lowerWord = word.ToLower();
+                    if (!string.IsNullOrWhiteSpace(lowerWord))
                     {
-                        occurences[lowerWord]++;
-                    }
-                    else
-                    {
-                        occurences.Add(lowerWord, 1);
+                        if (occurences.ContainsKey(lowerWord))
+                        {
+                            occurences[lowerWord]++;
+                        }
+                        else
+                        {
+                            occurences.Add(lowerWord, 1);
+                        }
                     }
                 }
             }
