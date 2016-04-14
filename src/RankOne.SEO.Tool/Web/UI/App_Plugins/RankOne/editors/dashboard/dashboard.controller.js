@@ -45,6 +45,6 @@
     };
 
     // Register the controller
-    angular.module("umbraco").controller('rankOne', rankOne);
+    angular.module("umbraco").controller('rankOneDashboard', rankOne);
 
 })();

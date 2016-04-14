@@ -1,0 +1,14 @@
+﻿<div id="rankOne" ng-controller="rankOneSummary">
+
+    <div ng-show="loading">
+        <localize key="loading"></localize>
+    </div>
+
+    <div ng-show="error">
+        {{error}}
+    </div>
+
+    <div ng-show="!loading && !error">
+        test
+    </div>
+</div>

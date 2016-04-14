@@ -1,17 +1,25 @@
 ﻿{
     propertyEditors: [
         {
-            alias: "RankOne",
-            name: "Rank One - Seo Analyzer",
+            alias: "RankOneDashboard",
+            name: "Rank One - Dashboard",
             icon: "icon-code",
             editor: {
-                view: "~/App_Plugins/RankOne/RankOne.html",
+                view: "~/App_Plugins/RankOne/editors/dashboard/dashboard.html",
 				hideLabel: true
+            }
+        },
+		{
+            alias: "RankOneSummary",
+            name: "Rank One - Summary",
+            icon: "icon-code",
+            editor: {
+                view: "~/App_Plugins/RankOne/editors/summary/summary.html"
             }
         }
     ],
     javascript: [
-		'~/App_Plugins/RankOne/seoTips.controller.js',
+		'~/App_Plugins/RankOne/editors/dashboard/dashboard.controller.js',
 		'~/App_Plugins/RankOne/services/result.service.js',
 		'~/App_Plugins/RankOne/services/score.service.js',
 		'~/App_Plugins/RankOne/directives/circle/circle.directive.js',
