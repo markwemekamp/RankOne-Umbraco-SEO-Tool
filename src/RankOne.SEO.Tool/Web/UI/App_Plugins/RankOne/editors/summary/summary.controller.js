@@ -5,6 +5,8 @@
 
         $scope.analyzeResults = null;
         $scope.filter = null;
+        $scope.sortOrder = ['-errorCount', '-warningCount', '-hintCount'];
+
 
         if (!editorState.current.template) {
             $scope.error = "This item does not have a template";

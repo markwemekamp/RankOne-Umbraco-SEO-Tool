@@ -9,7 +9,7 @@ namespace RankOne.Business.Analyzers
     {
         public KeywordMetaDescriptionAnalyzer()
         {
-            Alias = "keywordanalyzer";
+            Alias = "keywordmetadescriptionanalyzer";
         }
 
         public AnalyzeResult Analyse(HtmlNode document, string keyword)

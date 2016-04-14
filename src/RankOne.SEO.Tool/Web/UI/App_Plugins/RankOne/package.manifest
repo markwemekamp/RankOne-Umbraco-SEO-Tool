@@ -20,6 +20,7 @@
     ],
     javascript: [
 		'~/App_Plugins/RankOne/editors/dashboard/dashboard.controller.js',
+		'~/App_Plugins/RankOne/editors/summary/summary.controller.js',
 		'~/App_Plugins/RankOne/services/result.service.js',
 		'~/App_Plugins/RankOne/services/score.service.js',
 		'~/App_Plugins/RankOne/directives/circle/circle.directive.js',

@@ -1,7 +1,7 @@
 ﻿<div id="rankOne" ng-controller="rankOneSummary">
 
     <div ng-show="loading">
-        <localize key="loading"></localize>
+        <localize key="summary_loading"></localize>
     </div>
 
     <div ng-show="error">
@@ -9,6 +9,11 @@
     </div>
 
     <div ng-show="!loading && !error">
-        test
+        <div ng-repeat="analyzerResult in analyzeResults.AnalyzerResults">
+            <div ng-repeat="result in analyzerResult.Analysis.Results">
+                <strong><localize key="{{result.Title}}"></localize></strong>
+                <resultline resultline="resultLine" ng-repeat="resultLine in result.ResultRules | orderBy:sortOrder"></resultline>
+            </div>
+        </div>
     </div>
 </div>

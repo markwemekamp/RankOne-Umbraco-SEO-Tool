@@ -9,6 +9,10 @@
     <key alias="no_results">No results</key>
   </area>
 
+  <area alias="summary">
+    <key alias="loading">Loading...</key>
+  </area>
+
   <area alias="htmlanalyzer">
     <key alias="title">Html analyzer</key>
   </area>
