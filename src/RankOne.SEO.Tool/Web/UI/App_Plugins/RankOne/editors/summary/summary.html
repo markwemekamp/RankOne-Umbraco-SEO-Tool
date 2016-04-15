@@ -10,6 +10,7 @@
 
     <div ng-show="!loading && !error">
         <div ng-repeat="analyzerResult in analyzeResults.AnalyzerResults">
+            <h4><localize key="{{analyzerResult.Title}}"></localize></h4>
             <div ng-repeat="result in analyzerResult.Analysis.Results">
                 <strong><localize key="{{result.Title}}"></localize></strong>
                 <resultline resultline="resultLine" ng-repeat="resultLine in result.ResultRules | orderBy:sortOrder"></resultline>
