@@ -1,7 +1,3 @@
-<ul class="unstyled" ng-controller="typeSelectorController">
-    <li ng-repeat="prevalue in model.value">
-        <label class="checkbox">
-            <input type="checkbox" ng-model="prevalue.checked" value="{{prevalue.name}}"/> {{prevalue.name}}
-        </label>
-    </li>
-</ul>
+<div ng-controller="typeSelectorController">
+    <checkboxlist prevalues="prevalues" model="model.value"></checkboxlist>
+</div>

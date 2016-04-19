@@ -36,6 +36,7 @@
 		'~/App_Plugins/RankOne/services/result.service.js',
 		'~/App_Plugins/RankOne/services/score.service.js',
 		'~/App_Plugins/RankOne/directives/circle/circle.directive.js',
+		'~/App_Plugins/RankOne/directives/checkboxlist/checkboxlist.directive.js',
 		'~/App_Plugins/RankOne/directives/result/result.directive.js',
 		'~/App_Plugins/RankOne/directives/information/information.directive.js',
 		'~/App_Plugins/RankOne/directives/resultline/resultline.directive.js',
