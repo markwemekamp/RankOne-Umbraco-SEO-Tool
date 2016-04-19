@@ -1,12 +1,11 @@
 ﻿(function () {
 
     // Controller
-    function rankOne($scope, $http, $location, editorState, scoreService, resultService) {
+    function rankOne($scope, $http, $location, editorState, resultService) {
 
         $scope.analyzeResults = null;
         $scope.filter = null;
         $scope.sortOrder = ['-errorCount', '-warningCount', '-hintCount'];
-
 
         if (!editorState.current.template) {
             $scope.error = "This item does not have a template";
@@ -24,26 +23,14 @@
                     url: '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?url=' + url
                 }).then(function successCallback(response) {
                     $scope.analyzeResults = response.data;
-
-                    var results = resultService.SetMetadata($scope.analyzeResults);
-
-                    $scope.overallScore = scoreService.getOverallScore(results);
-                    $scope.errorCount = scoreService.getTotalErrorCount(results);
-                    $scope.warningCount = scoreService.getTotalWarningCount(results);
-                    $scope.hintCount = scoreService.getTotalHintCount(results);
-                    $scope.successCount = scoreService.getTotalSuccessCount(results);
-
+                    resultService.SetMetadata($scope.analyzeResults);
                     $scope.loading = false;
-
+                    console.log($scope.model);
                 }, function errorCallback(response) {
                     console.log(response);
                 });
             }
         }
-
-        $scope.setFilter = function (filter) {
-            $scope.filter = filter;
-        };
     };
 
     // Register the controller

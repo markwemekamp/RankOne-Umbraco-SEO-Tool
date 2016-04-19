@@ -239,6 +239,7 @@
     <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\summary\summary.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\summary\summary.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\filters\typeFilter.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\loader.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\loader.svg" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\icon\icon.directive.html" />
@@ -249,6 +250,8 @@
     <Content Include="Web\UI\App_Plugins\RankOne\editors\dashboard\dashboard.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\result.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.js" />

@@ -15,12 +15,24 @@
             icon: "icon-code",
             editor: {
                 view: "~/App_Plugins/RankOne/editors/summary/summary.html"
-            }
+            },
+			prevalues: {
+				fields:[
+					{
+					   label: "Show result types",
+					   description: "Which results should be shown?",
+					   key: "typeSelection",
+					   view: '~/App_Plugins/RankOne/prevalue-editors/typeSelector.html'
+					}            
+				]
+			}
         }
     ],
     javascript: [
 		'~/App_Plugins/RankOne/editors/dashboard/dashboard.controller.js',
+		'~/App_Plugins/RankOne/prevalue-editors/typeSelector.controller.js',
 		'~/App_Plugins/RankOne/editors/summary/summary.controller.js',
+		'~/App_Plugins/RankOne/filters/typeFilter.js',
 		'~/App_Plugins/RankOne/services/result.service.js',
 		'~/App_Plugins/RankOne/services/score.service.js',
 		'~/App_Plugins/RankOne/directives/circle/circle.directive.js',

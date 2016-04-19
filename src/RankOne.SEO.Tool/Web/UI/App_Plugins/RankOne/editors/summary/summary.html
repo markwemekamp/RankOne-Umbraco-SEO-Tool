@@ -9,11 +9,11 @@
     </div>
 
     <div ng-show="!loading && !error">
-        <div ng-repeat="analyzerResult in analyzeResults.AnalyzerResults">
+        <div ng-repeat="analyzerResult in analyzeResults.AnalyzerResults | typeFilter:model.config.typeSelection">
             <h4><localize key="{{analyzerResult.Title}}"></localize></h4>
-            <div ng-repeat="result in analyzerResult.Analysis.Results">
+            <div ng-repeat="result in analyzerResult.Analysis.Results | typeFilter:model.config.typeSelection">
                 <strong><localize key="{{result.Title}}"></localize></strong>
-                <resultline resultline="resultLine" ng-repeat="resultLine in result.ResultRules | orderBy:sortOrder"></resultline>
+                <resultline resultline="resultLine" ng-repeat="resultLine in result.ResultRules | typeFilter:model.config.typeSelection | orderBy:sortOrder"></resultline>
             </div>
         </div>
     </div>
