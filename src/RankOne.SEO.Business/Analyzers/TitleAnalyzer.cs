@@ -15,7 +15,6 @@ namespace RankOne.Business.Analyzers
         {
             var result = new AnalyzeResult();
             result.Alias = Alias;
-            result.Title = TitleTag;
 
             var headTag = HtmlHelper.GetElements(document, "head");
             var titleTags = HtmlHelper.GetElements(headTag.First(), "title");

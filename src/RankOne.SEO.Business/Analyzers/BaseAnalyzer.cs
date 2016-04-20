@@ -15,14 +15,6 @@ namespace RankOne.Business.Analyzers
 
         public string Alias { get; set; }
 
-        public string TitleTag
-        {
-            get
-            {
-                return string.Format("{0}_title", Alias);
-            }
-        }
-
         public string GetTag(string text)
         {
             var code = text.ToLower().Trim().Replace(" ", "_");

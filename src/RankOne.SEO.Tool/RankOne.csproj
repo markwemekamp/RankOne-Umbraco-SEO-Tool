@@ -241,6 +241,7 @@
     <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\summary\summary.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\summary\summary.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\filters\analyzerFilter.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\filters\typeFilter.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\loader.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\loader.svg" />

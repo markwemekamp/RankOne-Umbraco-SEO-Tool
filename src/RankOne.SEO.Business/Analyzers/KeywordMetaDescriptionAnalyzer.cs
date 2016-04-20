@@ -16,7 +16,6 @@ namespace RankOne.Business.Analyzers
         {
             var result = new AnalyzeResult();
             result.Alias = Alias;
-            result.Title = TitleTag;
 
             var metaTags = HtmlHelper.GetElements(document, "meta");
 

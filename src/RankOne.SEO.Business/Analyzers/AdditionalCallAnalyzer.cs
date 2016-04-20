@@ -15,7 +15,6 @@ namespace RankOne.Business.Analyzers
         {
             var result = new AnalyzeResult();
             result.Alias = Alias;
-            result.Title = TitleTag;
 
             var cssFiles = HtmlHelper.GetElementsWithAttribute(document, "link", "href").
                 Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));

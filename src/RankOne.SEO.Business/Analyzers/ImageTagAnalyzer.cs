@@ -15,7 +15,6 @@ namespace RankOne.Business.Analyzers
         {
             var result = new AnalyzeResult();
             result.Alias = Alias;
-            result.Title = TitleTag;
 
             var imageTags = HtmlHelper.GetElements(document, "img");
             var imageTagCount = imageTags.Count();

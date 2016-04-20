@@ -10,7 +10,6 @@ namespace RankOne.Business.Models
         }
 
         public string Alias { get; set; }
-        public string Title { get; set; }
         public List<ResultRule> ResultRules { get; set; }
     }
 }
