@@ -4,7 +4,7 @@
         replace: true,
         templateUrl: '/App_Plugins/RankOne/directives/checkboxlist/checkboxlist.directive.html',
         scope: {
-            prevalues: '=',
+            types: '=',
             model: '='
         },
         link: function(scope) {
@@ -13,7 +13,7 @@
             }
 
             if (scope.model.length == 0) {
-                angular.forEach(scope.prevalues, function(prevalue) {
+                angular.forEach(scope.types, function(prevalue) {
                     scope.model.push(
                         {
                             name: prevalue,

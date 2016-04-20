@@ -22,17 +22,25 @@
 					   label: "Show result types",
 					   description: "Which results should be shown?",
 					   key: "typeSelection",
-					   view: '~/App_Plugins/RankOne/prevalue-editors/typeSelector.html'
-					}            
+					   view: '~/App_Plugins/RankOne/prevalue-editors/typeSelector/typeSelector.html'
+					},
+					{
+					   label: "Show analyzer types",
+					   description: "Which analyzers should be shown?",
+					   key: "analyzerSelection",
+					   view: '~/App_Plugins/RankOne/prevalue-editors/analyzerSelector/analyzerSelector.html'
+					}          
 				]
 			}
         }
     ],
     javascript: [
 		'~/App_Plugins/RankOne/editors/dashboard/dashboard.controller.js',
-		'~/App_Plugins/RankOne/prevalue-editors/typeSelector.controller.js',
+		'~/App_Plugins/RankOne/prevalue-editors/typeSelector/typeSelector.controller.js',
+		'~/App_Plugins/RankOne/prevalue-editors/analyzerSelector/analyzerSelector.controller.js',
 		'~/App_Plugins/RankOne/editors/summary/summary.controller.js',
 		'~/App_Plugins/RankOne/filters/typeFilter.js',
+		'~/App_Plugins/RankOne/filters/analyzerFilter.js',
 		'~/App_Plugins/RankOne/services/result.service.js',
 		'~/App_Plugins/RankOne/services/score.service.js',
 		'~/App_Plugins/RankOne/directives/circle/circle.directive.js',

@@ -3,7 +3,7 @@
     // Controller
     function typeSelectorController($scope) {
 
-        $scope.prevalues = ["Error", "Warning", "Hint", "Success"];
+        $scope.types = ["Error", "Warning", "Hint", "Success"];
     };
 
     // Register the controller

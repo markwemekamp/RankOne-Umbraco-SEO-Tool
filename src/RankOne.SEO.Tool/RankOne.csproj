@@ -235,6 +235,8 @@
   <ItemGroup>
     <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\checkboxlist\checkboxlist.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\checkboxlist\checkboxlist.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\summary\summary.controller.js" />
@@ -250,8 +252,10 @@
     <Content Include="Web\UI\App_Plugins\RankOne\editors\dashboard\dashboard.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector.controller.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\analyzerSelector\analyzerSelector.controller.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\analyzerSelector\analyzerSelector.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\result.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.js" />
@@ -262,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="less\settings.less" />
     <None Include="less\styles.less" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

@@ -90,5 +90,5 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', ['clean', 'msbuild:dist', 'less', 'copy:dll', 'copy:plugin']);
-    grunt.registerTask('develop', ['clean', 'msbuild:dev', 'less', 'copy:debug', 'copy:plugin']);
+    grunt.registerTask('develop', ['clean', 'msbuild:dev', 'less', 'copy:debug', 'copy:plugin', 'touch']);
 };

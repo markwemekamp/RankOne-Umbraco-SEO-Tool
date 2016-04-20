@@ -3,8 +3,6 @@
     // Controller
     function rankOne($scope, $http, $location, editorState, resultService) {
 
-        $scope.analyzeResults = null;
-        $scope.filter = null;
         $scope.sortOrder = ['-errorCount', '-warningCount', '-hintCount'];
 
         if (!editorState.current.template) {

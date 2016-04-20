@@ -14,6 +14,7 @@ namespace RankOne.Business.Analyzers
         public override AnalyzeResult Analyse(HtmlNode document)
         {
             var result = new AnalyzeResult();
+            result.Alias = Alias;
             result.Title = TitleTag;
 
             var metaTags = HtmlHelper.GetElements(document, "meta");

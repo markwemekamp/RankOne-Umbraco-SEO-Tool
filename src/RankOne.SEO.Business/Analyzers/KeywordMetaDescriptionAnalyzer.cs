@@ -15,6 +15,7 @@ namespace RankOne.Business.Analyzers
         public AnalyzeResult Analyse(HtmlNode document, string keyword)
         {
             var result = new AnalyzeResult();
+            result.Alias = Alias;
             result.Title = TitleTag;
 
             var metaTags = HtmlHelper.GetElements(document, "meta");
