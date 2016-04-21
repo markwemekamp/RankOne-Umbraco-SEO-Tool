@@ -9,8 +9,10 @@ namespace RankOne.Business.Analyzers
     {
         public AnalyzeResult Analyse(HtmlNode document, string keyword)
         {
-            var result = new AnalyzeResult();
-            result.Alias = "keywordmetadescriptionanalyzer";
+            var result = new AnalyzeResult
+            {
+                Alias = "keywordmetadescriptionanalyzer"
+            };
 
             var metaTags = HtmlHelper.GetElements(document, "meta");
 

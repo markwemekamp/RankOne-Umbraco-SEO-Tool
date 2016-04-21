@@ -8,8 +8,10 @@ namespace RankOne.Business.Analyzers
     {
         public override AnalyzeResult Analyse(HtmlNode document)
         {
-            var result = new AnalyzeResult();
-            result.Alias = "cssminificationanalyzer";
+            var result = new AnalyzeResult
+            {
+                Alias = "cssminificationanalyzer"
+            };
 
             var domain = "http://www.novaware.nl";
 

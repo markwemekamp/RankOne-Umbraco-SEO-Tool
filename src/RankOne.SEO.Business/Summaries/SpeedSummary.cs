@@ -19,8 +19,10 @@ namespace RankOne.Business.Summaries
         {
             var analysis = new Analysis();
 
-            var serverResponseAnalysis = new AnalyzeResult();
-            serverResponseAnalysis.Alias = "serverresponseanalyzer";
+            var serverResponseAnalysis = new AnalyzeResult
+            {
+                Alias = "serverresponseanalyzer"
+            };
             var serverResponseAnalysisResultRule = new ResultRule { Code = "serverresponseanalyzer_responsetime", Type = _htmlResult.ServerResponseTime > 3 ? ResultType.Warning : ResultType.Success };
             serverResponseAnalysisResultRule.Tokens.Add(_htmlResult.ServerResponseTime.ToString());
             serverResponseAnalysis.ResultRules.Add(serverResponseAnalysisResultRule);
@@ -40,8 +42,10 @@ namespace RankOne.Business.Summaries
             }
 
 
-            var gzipAnalysis = new AnalyzeResult();
-            gzipAnalysis.Alias = "gzipanalyzer";
+            var gzipAnalysis = new AnalyzeResult
+            {
+                Alias = "gzipanalyzer"
+            };
             var gzipResultRule = new ResultRule();
             if (encoding == "gzip")
             {
@@ -57,8 +61,10 @@ namespace RankOne.Business.Summaries
             analysis.Results.Add(gzipAnalysis);
 
 
-            var htmlSizeAnalysis = new AnalyzeResult();
-            htmlSizeAnalysis.Alias = "htmlsizeanalyzer";
+            var htmlSizeAnalysis = new AnalyzeResult
+            {
+                Alias = "htmlsizeanalyzer"
+            };
             var byteCount = Encoding.Unicode.GetByteCount(_htmlResult.Html);
             var htmlSizeResultRule = new ResultRule();
             if (byteCount < (33 * 1024))

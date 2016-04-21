@@ -8,8 +8,10 @@ namespace RankOne.Business.Analyzers
     {
         public override AnalyzeResult Analyse(HtmlNode document)
         {
-            var result = new AnalyzeResult();
-            result.Alias = "metadescriptionanalyzer";
+            var result = new AnalyzeResult
+            {
+                Alias = "metadescriptionanalyzer"
+            };
 
             var metaTags = HtmlHelper.GetElements(document, "meta");
 

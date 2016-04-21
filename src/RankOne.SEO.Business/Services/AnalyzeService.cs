@@ -31,7 +31,6 @@ namespace RankOne.Business.Services
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
                     Alias = "htmlanalyzer",
-                    Title = "htmlanalyzer_title",
                     Analysis = htmlAnalyzer.GetAnalysis()
                 });
 
@@ -39,7 +38,6 @@ namespace RankOne.Business.Services
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
                     Alias = "keywordanalyzer",
-                    Title = "keywordanalyzer_title",
                     Analysis = keywordAnalyzer.GetAnalysis()
                 });
 
@@ -47,7 +45,6 @@ namespace RankOne.Business.Services
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
                     Alias = "speedanalyzer",
-                    Title = "speedanalyzer_title",
                     Analysis = speedAnalyzer.GetAnalysis()
                 });
             }

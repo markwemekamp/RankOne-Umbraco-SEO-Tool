@@ -8,8 +8,10 @@ namespace RankOne.Business.Analyzers
     {
         public override AnalyzeResult Analyse(HtmlNode document)
         {
-            var result = new AnalyzeResult();
-            result.Alias = "headinganalyzer";
+            var result = new AnalyzeResult
+            {
+                Alias = "headinganalyzer"
+            };
 
             var h1Tags = HtmlHelper.GetElements(document, "h1");
 

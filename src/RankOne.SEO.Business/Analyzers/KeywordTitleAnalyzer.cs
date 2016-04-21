@@ -9,8 +9,10 @@ namespace RankOne.Business.Analyzers
     {
         public AnalyzeResult Analyse(HtmlNode document, string keyword)
         {
-            var result = new AnalyzeResult();
-            result.Alias = "keywordtitleanalyzer";
+            var result = new AnalyzeResult
+            {
+                Alias = "keywordtitleanalyzer"
+            };
 
             var titleTags = HtmlHelper.GetElements(document, "title");
 

@@ -8,8 +8,10 @@ namespace RankOne.Business.Analyzers
     {
         public override AnalyzeResult Analyse(HtmlNode document)
         {
-            var result = new AnalyzeResult();
-            result.Alias = "additionalcallanalyzer";
+            var result = new AnalyzeResult
+            {
+                Alias = "additionalcallanalyzer"
+            };
 
             var cssFiles = HtmlHelper.GetElementsWithAttribute(document, "link", "href").
                 Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));

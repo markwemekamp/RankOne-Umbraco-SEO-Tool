@@ -8,8 +8,10 @@ namespace RankOne.Business.Analyzers
     {
         public override AnalyzeResult Analyse(HtmlNode document)
         {
-            var result = new AnalyzeResult();
-            result.Alias = "imagetaganalyzer";
+            var result = new AnalyzeResult
+            {
+                Alias = "imagetaganalyzer"
+            };
 
             var imageTags = HtmlHelper.GetElements(document, "img");
             var imageTagCount = imageTags.Count();
