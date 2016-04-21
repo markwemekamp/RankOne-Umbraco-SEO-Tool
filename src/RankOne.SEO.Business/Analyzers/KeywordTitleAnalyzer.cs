@@ -7,25 +7,20 @@ namespace RankOne.Business.Analyzers
 {
     public class KeywordTitleAnalyzer : BaseAnalyzer
     {
-        public KeywordTitleAnalyzer()
-        {
-            Alias = "keywordtitleanalyzer";
-        }
-
         public AnalyzeResult Analyse(HtmlNode document, string keyword)
         {
             var result = new AnalyzeResult();
-            result.Alias = Alias;
+            result.Alias = "keywordtitleanalyzer";
 
             var titleTags = HtmlHelper.GetElements(document, "title");
 
             if (!titleTags.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = GetTag("no title tag"), Type = ResultType.Warning });
+                result.ResultRules.Add(new ResultRule { Code = "keywordtitleanalyzer_no_title_tag", Type = ResultType.Warning });
             }
             else if (titleTags.Count() > 1)
             {
-                result.ResultRules.Add(new ResultRule { Code = GetTag("multiple title tags"), Type = ResultType.Warning });
+                result.ResultRules.Add(new ResultRule { Code = "keywordtitleanalyzer_multiple_title_tags", Type = ResultType.Warning });
             }
             else
             {
@@ -33,7 +28,7 @@ namespace RankOne.Business.Analyzers
                 {
                     result.ResultRules.Add(new ResultRule
                     {
-                        Code = GetTag("title contains keyword"),
+                        Code = "keywordtitleanalyzer_title_contains_keyword",
                         Type = ResultType.Success
                     });
                 }
@@ -41,7 +36,7 @@ namespace RankOne.Business.Analyzers
                 {
                     result.ResultRules.Add(new ResultRule
                     {
-                        Code = GetTag("title doesnt contain keyword"),
+                        Code = "keywordtitleanalyzer_title_doesnt_contain_keyword",
                         Type = ResultType.Hint
                     });
                 }

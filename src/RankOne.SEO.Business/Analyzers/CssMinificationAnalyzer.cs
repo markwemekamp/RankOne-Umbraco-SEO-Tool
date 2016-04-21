@@ -6,15 +6,10 @@ namespace RankOne.Business.Analyzers
 {
     public class CssMinificationAnalyzer : BaseAnalyzer
     {
-        public CssMinificationAnalyzer()
-        {
-            Alias = "cssminificationanalyzer";
-        }
-
         public override AnalyzeResult Analyse(HtmlNode document)
         {
             var result = new AnalyzeResult();
-            result.Alias = Alias;
+            result.Alias = "cssminificationanalyzer";
 
             var domain = "http://www.novaware.nl";
 

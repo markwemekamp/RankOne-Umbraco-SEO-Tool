@@ -35,6 +35,13 @@
 
   <area alias="titleanalyzer">
     <key alias="title">Page title</key>
+    <key alias="guidelines">
+      <![CDATA[
+      Choose a title that effectively communicates the topic of the page's content.<br/>
+      Each of your pages should ideally have a unique title tag, which helps Google know how the page is distinct from the others on your site.<br/>
+      Titles can be both short and informative. If the title is too long, search engines will show only a portion of it in the search result.
+      ]]>
+    </key>
     <key alias="no_title_tag">The page doesn't contain a title tag</key>
     <key alias="multiple_title_tags">The page contains title tags</key>
     <key alias="no_title_value">Title tag is empty</key>
@@ -47,6 +54,12 @@
 
   <area alias="metadescriptionanalyzer">
     <key alias="title">Meta description</key>
+    <key alias="guidelines">
+      <![CDATA[
+      Write a description that would both inform and interest users if they saw your description meta tag as a snippet in a search result.<br/>
+      Having a different description meta tag for each page helps both users and Google, especially in searches where users may bring up multiple pages on your domain.<br/>
+      ]]>
+    </key>
     <key alias="no_meta_tags">The page doesnt contain any meta tags</key>
     <key alias="no_meta_description_tag">The page doesnt contain a meta description tag</key>
     <key alias="no_meta_description_tag">The page contains multiple meta description tags</key>

@@ -13,14 +13,6 @@ namespace RankOne.Business.Analyzers
             HtmlHelper = new HtmlHelper();
         }
 
-        public string Alias { get; set; }
-
-        public string GetTag(string text)
-        {
-            var code = text.ToLower().Trim().Replace(" ", "_");
-            return string.Format("{0}_{1}", Alias, code);
-        }
-
         public abstract AnalyzeResult Analyse(HtmlNode document);
     }
 }

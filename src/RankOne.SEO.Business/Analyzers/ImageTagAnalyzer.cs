@@ -6,15 +6,10 @@ namespace RankOne.Business.Analyzers
 {
     public class ImageTagAnalyzer : BaseAnalyzer
     {
-        public ImageTagAnalyzer()
-        {
-            Alias = "imagetaganalyzer";
-        }
-
         public override AnalyzeResult Analyse(HtmlNode document)
         {
             var result = new AnalyzeResult();
-            result.Alias = Alias;
+            result.Alias = "imagetaganalyzer";
 
             var imageTags = HtmlHelper.GetElements(document, "img");
             var imageTagCount = imageTags.Count();
@@ -23,19 +18,19 @@ namespace RankOne.Business.Analyzers
 
             if (imageTagCount > imagesWithAltTagCount)
             {
-                result.ResultRules.Add(new ResultRule { Code = GetTag("missing alt tags"), Type = ResultType.Warning });
+                result.ResultRules.Add(new ResultRule { Code = "imagetaganalyzer_missing_alt_tags", Type = ResultType.Warning });
             }
 
             var imagesWithTitleTagCount = imageTags.Count(x => HtmlHelper.GetAttribute(x, "title") != null && !string.IsNullOrWhiteSpace(HtmlHelper.GetAttribute(x, "title").Value));
 
             if (imageTagCount > imagesWithTitleTagCount)
             {
-                result.ResultRules.Add(new ResultRule { Code = GetTag("missing title tags"), Type = ResultType.Hint });
+                result.ResultRules.Add(new ResultRule { Code = "imagetaganalyzer_missing_title_tags", Type = ResultType.Hint });
             }
 
             if (imageTagCount == imagesWithAltTagCount && imageTagCount > imagesWithTitleTagCount)
             {
-                result.ResultRules.Add(new ResultRule { Code = GetTag("alt and title tags present"), Type = ResultType.Success });
+                result.ResultRules.Add(new ResultRule { Code = "imagetaganalyzer_alt_and_title_tags_present", Type = ResultType.Success });
             }
 
             return result;

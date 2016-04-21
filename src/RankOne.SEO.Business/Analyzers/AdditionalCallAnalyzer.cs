@@ -6,15 +6,10 @@ namespace RankOne.Business.Analyzers
 {
     public class AdditionalCallAnalyzer : BaseAnalyzer
     {
-        public AdditionalCallAnalyzer()
-        {
-            Alias = "additionalcallanalyzer";
-        }
-
         public override AnalyzeResult Analyse(HtmlNode document)
         {
             var result = new AnalyzeResult();
-            result.Alias = Alias;
+            result.Alias = "additionalcallanalyzer";
 
             var cssFiles = HtmlHelper.GetElementsWithAttribute(document, "link", "href").
                 Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));
@@ -28,17 +23,17 @@ namespace RankOne.Business.Analyzers
 
             if (total > 30)
             {
-                resultRule.Code = GetTag("more than 30 calls");
+                resultRule.Code = "additionalcallanalyzer_more_than_30_calls";
                 resultRule.Type = ResultType.Warning;
             }
             else if(total > 15)
             {
-                resultRule.Code = GetTag("more than 15 calls");
+                resultRule.Code = "additionalcallanalyzer_more_than_15_calls";
                 resultRule.Type = ResultType.Hint;
             }
             else
             {
-                resultRule.Code = GetTag("less than 15 calls");
+                resultRule.Code = "additionalcallanalyzer_less_than_15_calls";
                 resultRule.Type = ResultType.Success;
             }
 

@@ -6,15 +6,10 @@ namespace RankOne.Business.Analyzers
 {
     public class DeprecatedTagAnalyzer : BaseAnalyzer
     {
-        public DeprecatedTagAnalyzer()
-        {
-            Alias = "deprecatedtaganalyzer";
-        }
-
         public override AnalyzeResult Analyse(HtmlNode document)
         {
             var result = new AnalyzeResult();
-            result.Alias = Alias;
+            result.Alias = "deprecatedtaganalyzer";
 
             CheckTag(document, "acronym", result);
             CheckTag(document, "applet", result);
@@ -31,7 +26,7 @@ namespace RankOne.Business.Analyzers
 
             if (!result.ResultRules.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = GetTag("no deprecated tags found"), Type = ResultType.Success});
+                result.ResultRules.Add(new ResultRule { Code = "deprecatedtaganalyzer_no_deprecated_tags_found", Type = ResultType.Success});
             }
 
             return result;
@@ -43,7 +38,7 @@ namespace RankOne.Business.Analyzers
 
             if (acronymTags.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = GetTag(string.Format("{0}_tag_found", tagname)), Type = ResultType.Warning});
+                result.ResultRules.Add(new ResultRule { Code = string.Format("deprecatedtaganalyzer_{0}_tag_found", tagname), Type = ResultType.Warning});
             }
         }
     }
