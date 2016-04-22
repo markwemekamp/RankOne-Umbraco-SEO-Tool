@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using RankOne.Business.Models;
 using RankOne.Business.Interfaces;
+using Umbraco.Web.Media.EmbedProviders.Settings;
 
 namespace RankOne.Business.Analyzers
 {
@@ -13,6 +14,6 @@ namespace RankOne.Business.Analyzers
             HtmlHelper = new HtmlHelper();
         }
 
-        public abstract AnalyzeResult Analyse(HtmlNode document);
+        public abstract AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues);
     }
 }

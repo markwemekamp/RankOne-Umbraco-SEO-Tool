@@ -7,7 +7,7 @@ namespace RankOne.Business.Analyzers
 {
     public class KeywordMetaDescriptionAnalyzer : BaseAnalyzer
     {
-        public AnalyzeResult Analyse(HtmlNode document, string keyword)
+        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
         {
             var result = new AnalyzeResult
             {
@@ -15,6 +15,7 @@ namespace RankOne.Business.Analyzers
             };
 
             var metaTags = HtmlHelper.GetElements(document, "meta");
+            var keyword = additionalValues[0].ToString();
 
             if (!metaTags.Any())
             {
@@ -63,11 +64,6 @@ namespace RankOne.Business.Analyzers
                 }
             }
             return result;
-        }
-
-        public override AnalyzeResult Analyse(HtmlNode document)
-        {
-            throw new NotImplementedException();
         }
     }
 }

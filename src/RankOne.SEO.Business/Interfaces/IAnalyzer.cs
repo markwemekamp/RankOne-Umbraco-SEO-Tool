@@ -5,6 +5,6 @@ namespace RankOne.Business.Interfaces
 {
     public interface IAnalyzer
     {
-        AnalyzeResult Analyse(HtmlNode document);
+        AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues);
     }
 }

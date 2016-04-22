@@ -7,7 +7,7 @@ namespace RankOne.Business.Analyzers
 {
     public class KeywordTitleAnalyzer : BaseAnalyzer
     {
-        public AnalyzeResult Analyse(HtmlNode document, string keyword)
+        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
         {
             var result = new AnalyzeResult
             {
@@ -15,14 +15,23 @@ namespace RankOne.Business.Analyzers
             };
 
             var titleTags = HtmlHelper.GetElements(document, "title");
+            var keyword = additionalValues[0].ToString();
 
             if (!titleTags.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = "keywordtitleanalyzer_no_title_tag", Type = ResultType.Warning });
+                result.ResultRules.Add(new ResultRule
+                {
+                    Code = "keywordtitleanalyzer_no_title_tag",
+                    Type = ResultType.Warning
+                });
             }
             else if (titleTags.Count() > 1)
             {
-                result.ResultRules.Add(new ResultRule { Code = "keywordtitleanalyzer_multiple_title_tags", Type = ResultType.Warning });
+                result.ResultRules.Add(new ResultRule
+                {
+                    Code = "keywordtitleanalyzer_multiple_title_tags",
+                    Type = ResultType.Warning
+                });
             }
             else
             {
@@ -43,13 +52,8 @@ namespace RankOne.Business.Analyzers
                     });
                 }
             }
-          
-            return result;
-        }
 
-        public override AnalyzeResult Analyse(HtmlNode document)
-        {
-            throw new System.NotImplementedException();
+            return result;
         }
     }
 }

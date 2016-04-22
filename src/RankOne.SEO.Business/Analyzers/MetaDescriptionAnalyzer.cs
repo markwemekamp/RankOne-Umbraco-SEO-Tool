@@ -6,7 +6,7 @@ namespace RankOne.Business.Analyzers
 {
     public class MetaDescriptionAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document)
+        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
         {
             var result = new AnalyzeResult
             {
