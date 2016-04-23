@@ -11,5 +11,10 @@ namespace RankOne.Business.Models
 
         public string Alias { get; set; }
         public List<ResultRule> ResultRules { get; set; }
+
+        public void AddResultRule(string code, string type)
+        {
+            ResultRules.Add(new ResultRule { Code = code, Type = type });
+        }
     }
 }

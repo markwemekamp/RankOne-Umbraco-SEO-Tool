@@ -259,6 +259,9 @@
     <Compile Include="Analyzers\DeprecatedTagAnalyzer.cs" />
     <Compile Include="Analyzers\AdditionalCallAnalyzer.cs" />
     <Compile Include="Analyzers\KeywordMetaDescriptionAnalyzer.cs" />
+    <Compile Include="Analyzers\Speed\GZipAnalyzer.cs" />
+    <Compile Include="Analyzers\Speed\HtmlSizeAnalyzer.cs" />
+    <Compile Include="Analyzers\Speed\ServerResponseAnalyzer.cs" />
     <Compile Include="Summaries\SpeedSummary.cs" />
     <Compile Include="Services\KeywordOccurenceService.cs" />
     <Compile Include="Summaries\KeywordSummary.cs" />

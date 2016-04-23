@@ -2,6 +2,7 @@
 using System.Net;
 using System.Text;
 using RankOne.Business.Analyzers;
+using RankOne.Business.Analyzers.Speed;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Summaries
@@ -19,68 +20,14 @@ namespace RankOne.Business.Summaries
         {
             var analysis = new Analysis();
 
-            var serverResponseAnalysis = new AnalyzeResult
-            {
-                Alias = "serverresponseanalyzer"
-            };
-            var serverResponseAnalysisResultRule = new ResultRule { Code = "serverresponseanalyzer_responsetime", Type = _htmlResult.ServerResponseTime > 3 ? ResultType.Warning : ResultType.Success };
-            serverResponseAnalysisResultRule.Tokens.Add(_htmlResult.ServerResponseTime.ToString());
-            serverResponseAnalysis.ResultRules.Add(serverResponseAnalysisResultRule);
-            analysis.Results.Add(serverResponseAnalysis);
+            var serverResponseAnalyzer = new ServerResponseAnalyzer();
+            analysis.Results.Add(serverResponseAnalyzer.Analyse(_htmlResult.Document, _htmlResult.ServerResponseTime));
 
+            var gzipAnalyzer = new GZipAnalyzer();
+            analysis.Results.Add(gzipAnalyzer.Analyse(_htmlResult.Document, _htmlResult.Url));
 
-            string encoding = null;
-            var request = (HttpWebRequest)WebRequest.Create(_htmlResult.Url);
-            request.Method = "GET";
-            request.Headers.Add("Accept-Encoding", "gzip,deflate");
-            using (var response = request.GetResponse() as HttpWebResponse)
-            {
-                if (response != null)
-                {
-                    encoding = response.ContentEncoding;
-                }
-            }
-
-
-            var gzipAnalysis = new AnalyzeResult
-            {
-                Alias = "gzipanalyzer"
-            };
-            var gzipResultRule = new ResultRule();
-            if (encoding == "gzip")
-            {
-                gzipResultRule.Code = "gzipanalyzer_gzip_enabled";
-                gzipResultRule.Type = ResultType.Success;
-            }
-            else
-            {
-                gzipResultRule.Code = "gzipanalyzer_gzip_disabled";
-                gzipResultRule.Type = ResultType.Error;
-            }
-            gzipAnalysis.ResultRules.Add(gzipResultRule);
-            analysis.Results.Add(gzipAnalysis);
-
-
-            var htmlSizeAnalysis = new AnalyzeResult
-            {
-                Alias = "htmlsizeanalyzer"
-            };
-            var byteCount = Encoding.Unicode.GetByteCount(_htmlResult.Html);
-            var htmlSizeResultRule = new ResultRule();
-            if (byteCount < (33 * 1024))
-            {
-                htmlSizeResultRule.Code = "htmlsizeanalyzer_html_size_small";
-                htmlSizeResultRule.Type = ResultType.Success;
-            }
-            else
-            {
-                htmlSizeResultRule.Code = "htmlsizeanalyzer_html_size_too_large";
-                htmlSizeResultRule.Type = ResultType.Warning;
-            }
-            htmlSizeResultRule.Tokens.Add(SizeSuffix(byteCount));
-            htmlSizeAnalysis.ResultRules.Add(htmlSizeResultRule);
-
-            analysis.Results.Add(htmlSizeAnalysis);
+            var htmlSizeAnalyzer = new HtmlSizeAnalyzer();
+            analysis.Results.Add(htmlSizeAnalyzer.Analyse(_htmlResult.Document));
 
 
             var externalCallAnalyzer = new AdditionalCallAnalyzer();
@@ -89,22 +36,7 @@ namespace RankOne.Business.Summaries
             //var cssMinifationAnalyzer = new CssMinificationAnalyzer();
             //analysis.Results.Add(cssMinifationAnalyzer.Analyse(_htmlResult.Document));
 
-
             return analysis;
         }
-
-        static readonly string[] SizeSuffixes =
-                   { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
-        static string SizeSuffix(int value)
-        {
-            if (value < 0) { return "-" + SizeSuffix(-value); }
-            if (value == 0) { return "0.0 bytes"; }
-
-            var mag = (int)Math.Log(value, 1024);
-            var adjustedSize = (decimal)value / (1L << (mag * 10));
-
-            return string.Format("{0:n1} {1}", adjustedSize, SizeSuffixes[mag]);
-        }
     }
-
 }
