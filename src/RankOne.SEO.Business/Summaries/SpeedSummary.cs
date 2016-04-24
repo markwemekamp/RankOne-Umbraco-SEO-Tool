@@ -29,7 +29,6 @@ namespace RankOne.Business.Summaries
             var htmlSizeAnalyzer = new HtmlSizeAnalyzer();
             analysis.Results.Add(htmlSizeAnalyzer.Analyse(_htmlResult.Document));
 
-
             var externalCallAnalyzer = new AdditionalCallAnalyzer();
             analysis.Results.Add(externalCallAnalyzer.Analyse(_htmlResult.Document));
 

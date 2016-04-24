@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using RankOne.Business.Analyzers;
+using RankOne.Business.Analyzers.Keywords;
 using RankOne.Business.Models;
 using RankOne.Business.Services;
 

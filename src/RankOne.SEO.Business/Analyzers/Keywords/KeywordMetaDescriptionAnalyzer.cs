@@ -3,7 +3,7 @@ using System.Linq;
 using HtmlAgilityPack;
 using RankOne.Business.Models;
 
-namespace RankOne.Business.Analyzers
+namespace RankOne.Business.Analyzers.Keywords
 {
     public class KeywordMetaDescriptionAnalyzer : BaseAnalyzer
     {

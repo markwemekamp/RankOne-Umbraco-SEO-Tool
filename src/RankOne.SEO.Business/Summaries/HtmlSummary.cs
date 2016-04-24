@@ -1,4 +1,5 @@
 ﻿using RankOne.Business.Analyzers;
+using RankOne.Business.Analyzers.Html;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Summaries

@@ -254,22 +254,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analyzers\CssMinificationAnalyzer.cs" />
+    <Compile Include="Analyzers\Keywords\KeywordTitleAnalyzer.cs" />
+    <Compile Include="Analyzers\Speed\CssMinificationAnalyzer.cs" />
     <Compile Include="Analyzers\BaseAnalyzer.cs" />
-    <Compile Include="Analyzers\DeprecatedTagAnalyzer.cs" />
-    <Compile Include="Analyzers\AdditionalCallAnalyzer.cs" />
-    <Compile Include="Analyzers\KeywordMetaDescriptionAnalyzer.cs" />
+    <Compile Include="Analyzers\Html\DeprecatedTagAnalyzer.cs" />
+    <Compile Include="Analyzers\Speed\AdditionalCallAnalyzer.cs" />
+    <Compile Include="Analyzers\Keywords\KeywordMetaDescriptionAnalyzer.cs" />
     <Compile Include="Analyzers\Speed\GZipAnalyzer.cs" />
     <Compile Include="Analyzers\Speed\HtmlSizeAnalyzer.cs" />
     <Compile Include="Analyzers\Speed\ServerResponseAnalyzer.cs" />
+    <Compile Include="Analyzers\TitleAnalyzer.cs" />
     <Compile Include="Summaries\SpeedSummary.cs" />
     <Compile Include="Services\KeywordOccurenceService.cs" />
     <Compile Include="Summaries\KeywordSummary.cs" />
-    <Compile Include="Analyzers\MetaDescriptionAnalyzer.cs" />
-    <Compile Include="Analyzers\ImageTagAnalyzer.cs" />
-    <Compile Include="Analyzers\HeadingAnalyzer.cs" />
-    <Compile Include="Analyzers\KeywordTitleAnalyzer.cs" />
-    <Compile Include="Analyzers\TitleAnalyzer.cs" />
+    <Compile Include="Analyzers\Html\MetaDescriptionAnalyzer.cs" />
+    <Compile Include="Analyzers\Html\ImageTagAnalyzer.cs" />
+    <Compile Include="Analyzers\Html\HeadingAnalyzer.cs" />
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="Summaries\HtmlSummary.cs" />
     <Compile Include="Interfaces\IAnalyzer.cs" />
