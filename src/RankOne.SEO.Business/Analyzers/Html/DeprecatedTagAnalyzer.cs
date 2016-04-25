@@ -28,7 +28,7 @@ namespace RankOne.Business.Analyzers.Html
 
             if (!result.ResultRules.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = "deprecatedtaganalyzer_no_deprecated_tags_found", Type = ResultType.Success});
+                result.AddResultRule("deprecatedtaganalyzer_no_deprecated_tags_found", ResultType.Success);
             }
 
             return result;
@@ -40,7 +40,7 @@ namespace RankOne.Business.Analyzers.Html
 
             if (acronymTags.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = string.Format("deprecatedtaganalyzer_{0}_tag_found", tagname), Type = ResultType.Warning});
+                result.AddResultRule(string.Format("deprecatedtaganalyzer_{0}_tag_found", tagname), ResultType.Warning);
             }
         }
     }

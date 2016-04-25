@@ -19,37 +19,22 @@ namespace RankOne.Business.Analyzers.Keywords
 
             if (!titleTags.Any())
             {
-                result.ResultRules.Add(new ResultRule
-                {
-                    Code = "keywordtitleanalyzer_no_title_tag",
-                    Type = ResultType.Warning
-                });
+                result.AddResultRule("keywordtitleanalyzer_no_title_tag", ResultType.Warning);
+
             }
             else if (titleTags.Count() > 1)
             {
-                result.ResultRules.Add(new ResultRule
-                {
-                    Code = "keywordtitleanalyzer_multiple_title_tags",
-                    Type = ResultType.Warning
-                });
+                result.AddResultRule("keywordtitleanalyzer_multiple_title_tags", ResultType.Warning);
             }
             else
             {
                 if (titleTags.First().InnerText.IndexOf(keyword, StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
-                    result.ResultRules.Add(new ResultRule
-                    {
-                        Code = "keywordtitleanalyzer_title_contains_keyword",
-                        Type = ResultType.Success
-                    });
+                    result.AddResultRule("keywordtitleanalyzer_title_contains_keyword", ResultType.Success);
                 }
                 else
                 {
-                    result.ResultRules.Add(new ResultRule
-                    {
-                        Code = "keywordtitleanalyzer_title_doesnt_contain_keyword",
-                        Type = ResultType.Hint
-                    });
+                    result.AddResultRule("keywordtitleanalyzer_title_doesnt_contain_keyword", ResultType.Hint);
                 }
             }
 

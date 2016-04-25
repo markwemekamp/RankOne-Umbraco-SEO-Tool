@@ -17,23 +17,23 @@ namespace RankOne.Business.Analyzers.Html
 
             if (!metaTags.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = "metadescriptionanalyzer_no_meta_tags", Type = ResultType.Error});
+                result.AddResultRule("metadescriptionanalyzer_no_meta_tags", ResultType.Error);
             }
             else
             {
                 var attributeValues = from metaTag in metaTags
-                                        let attribute = HtmlHelper.GetAttribute(metaTag, "name")
-                                        where attribute != null
-                                        where attribute.Value == "description"
-                                        select HtmlHelper.GetAttribute(metaTag, "content");
+                                      let attribute = HtmlHelper.GetAttribute(metaTag, "name")
+                                      where attribute != null
+                                      where attribute.Value == "description"
+                                      select HtmlHelper.GetAttribute(metaTag, "content");
 
                 if (!attributeValues.Any())
                 {
-                    result.ResultRules.Add(new ResultRule { Code = "metadescriptionanalyzer_no_meta_description_tag", Type = ResultType.Error });
+                    result.AddResultRule("metadescriptionanalyzer_no_meta_description_tag", ResultType.Error);
                 }
                 else if (attributeValues.Count() > 1)
                 {
-                    result.ResultRules.Add(new ResultRule { Code = "metadescriptionanalyzer_multiple_meta_description_tags", Type = ResultType.Error });
+                    result.AddResultRule("metadescriptionanalyzer_multiple_meta_description_tags", ResultType.Error);
                 }
                 else
                 {
@@ -44,7 +44,7 @@ namespace RankOne.Business.Analyzers.Html
 
                         if (string.IsNullOrWhiteSpace(descriptionValue))
                         {
-                            result.ResultRules.Add(new ResultRule { Code = "metadescriptionanalyzer_no_description_value", Type = ResultType.Error });
+                            result.AddResultRule("metadescriptionanalyzer_no_description_value", ResultType.Error);
                         }
                         else
                         {
@@ -52,17 +52,17 @@ namespace RankOne.Business.Analyzers.Html
 
                             if (descriptionValue.Length > 160)
                             {
-                                result.ResultRules.Add(new ResultRule { Code = "metadescriptionanalyzer_description_too_long", Type = ResultType.Warning });
+                                result.AddResultRule("metadescriptionanalyzer_description_too_long", ResultType.Warning);
                             }
 
                             if (descriptionValue.Length < 50)
                             {
-                                result.ResultRules.Add(new ResultRule { Code = "metadescriptionanalyzer_description_too_short", Type = ResultType.Warning });
+                                result.AddResultRule("metadescriptionanalyzer_description_too_short", ResultType.Warning);
                             }
 
                             if (descriptionValue.Length <= 160 && descriptionValue.Length >= 50)
                             {
-                                result.ResultRules.Add(new ResultRule { Code = "metadescriptionanalyzer_description_more_than_50_less_than_160", Type = ResultType.Success });
+                                result.AddResultRule("metadescriptionanalyzer_description_more_than_50_less_than_160", ResultType.Success);
                             }
                         }
                     }

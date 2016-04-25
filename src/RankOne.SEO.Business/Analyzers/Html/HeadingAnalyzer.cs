@@ -17,11 +17,11 @@ namespace RankOne.Business.Analyzers.Html
 
             if (!h1Tags.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = "headinganalyzer_no_h1_tag", Type = ResultType.Warning });
+                result.AddResultRule("headinganalyzer_no_h1_tag", ResultType.Warning);
             }
             else if (h1Tags.Count() > 1)
             {
-                result.ResultRules.Add(new ResultRule { Code = "headinganalyzer_multiple_h1_tags", Type = ResultType.Warning });
+                result.AddResultRule("headinganalyzer_multiple_h1_tags", ResultType.Warning);
             }
             else
             {

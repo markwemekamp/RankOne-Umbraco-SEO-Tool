@@ -21,25 +21,20 @@ namespace RankOne.Business.Analyzers.Speed
                 }
             }
 
-
-            var gzipAnalysis = new AnalyzeResult
+            var result = new AnalyzeResult
             {
                 Alias = "gzipanalyzer"
             };
-            var gzipResultRule = new ResultRule();
             if (encoding == "gzip")
             {
-                gzipResultRule.Code = "gzipanalyzer_gzip_enabled";
-                gzipResultRule.Type = ResultType.Success;
+                result.AddResultRule("gzipanalyzer_gzip_enabled", ResultType.Success);
             }
             else
             {
-                gzipResultRule.Code = "gzipanalyzer_gzip_disabled";
-                gzipResultRule.Type = ResultType.Error;
+                result.AddResultRule("gzipanalyzer_gzip_disabled", ResultType.Warning);
             }
-            gzipAnalysis.ResultRules.Add(gzipResultRule);
 
-            return gzipAnalysis;
+            return result;
         }
     }
 }

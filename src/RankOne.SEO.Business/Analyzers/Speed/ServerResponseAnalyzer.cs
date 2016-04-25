@@ -1,5 +1,4 @@
-﻿using System;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Analyzers.Speed
@@ -20,7 +19,5 @@ namespace RankOne.Business.Analyzers.Speed
 
             return serverResponseAnalysis;
         }
-
-
     }
 }

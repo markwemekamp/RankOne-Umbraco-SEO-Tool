@@ -19,7 +19,7 @@ namespace RankOne.Business.Analyzers.Keywords
 
             if (!metaTags.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = "keywordmetadescriptionanalyzer_no_meta_tags", Type = ResultType.Error });
+                result.AddResultRule("keywordmetadescriptionanalyzer_no_meta_tags", ResultType.Error);
             }
             else
             {
@@ -31,11 +31,11 @@ namespace RankOne.Business.Analyzers.Keywords
 
                 if (!attributeValues.Any())
                 {
-                    result.ResultRules.Add(new ResultRule { Code = "keywordmetadescriptionanalyzer_no_meta_description_tag", Type = ResultType.Warning });
+                    result.AddResultRule("keywordmetadescriptionanalyzer_no_meta_description_tag", ResultType.Warning);
                 }
                 else if (attributeValues.Count() > 1)
                 {
-                    result.ResultRules.Add(new ResultRule { Code = "keywordmetadescriptionanalyzer_multiple_meta_description_tags", Type = ResultType.Warning });
+                    result.AddResultRule("keywordmetadescriptionanalyzer_multiple_meta_description_tags", ResultType.Warning);
                 }
                 else
                 {
@@ -46,19 +46,11 @@ namespace RankOne.Business.Analyzers.Keywords
 
                         if (descriptionValue.IndexOf(keyword, StringComparison.InvariantCultureIgnoreCase) >= 0)
                         {
-                            result.ResultRules.Add(new ResultRule
-                            {
-                                Code = "keywordmetadescriptionanalyzer_meta_description_contains_keyword",
-                                Type = ResultType.Success
-                            });
+                            result.AddResultRule("keywordmetadescriptionanalyzer_meta_description_contains_keyword", ResultType.Success);
                         }
                         else
                         {
-                            result.ResultRules.Add(new ResultRule
-                            {
-                                Code = "keywordmetadescriptionanalyzer_meta_description_doesnt_contain_keyword",
-                                Type = ResultType.Hint
-                            });
+                            result.AddResultRule("keywordmetadescriptionanalyzer_meta_description_doesnt_contain_keyword", ResultType.Hint);
                         }
                     }
                 }
