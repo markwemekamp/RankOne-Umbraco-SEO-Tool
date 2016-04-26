@@ -263,7 +263,7 @@
     <Compile Include="Analyzers\Speed\GZipAnalyzer.cs" />
     <Compile Include="Analyzers\Speed\HtmlSizeAnalyzer.cs" />
     <Compile Include="Analyzers\Speed\ServerResponseAnalyzer.cs" />
-    <Compile Include="Analyzers\TitleAnalyzer.cs" />
+    <Compile Include="Analyzers\Html\TitleAnalyzer.cs" />
     <Compile Include="Summaries\SpeedSummary.cs" />
     <Compile Include="Services\KeywordOccurenceService.cs" />
     <Compile Include="Summaries\KeywordSummary.cs" />

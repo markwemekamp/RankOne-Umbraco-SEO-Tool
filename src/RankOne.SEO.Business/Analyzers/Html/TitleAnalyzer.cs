@@ -2,7 +2,7 @@
 using HtmlAgilityPack;
 using RankOne.Business.Models;
 
-namespace RankOne.Business.Analyzers
+namespace RankOne.Business.Analyzers.Html
 {
     public class TitleAnalyzer : BaseAnalyzer
     {
@@ -18,11 +18,11 @@ namespace RankOne.Business.Analyzers
 
             if (!titleTags.Any())
             {
-                result.ResultRules.Add(new ResultRule { Code = "titleanalyzer_no_title_tag", Type = ResultType.Error });
+                result.AddResultRule("titleanalyzer_no_title_tag", ResultType.Error);
             }
             else if (titleTags.Count() > 1)
             {
-                result.ResultRules.Add(new ResultRule { Code = "titleanalyzer_multiple_title_tags", Type = ResultType.Error });
+                result.AddResultRule("titleanalyzer_multiple_title_tags", ResultType.Error);
             }
             else
             {
@@ -33,7 +33,7 @@ namespace RankOne.Business.Analyzers
 
                     if (string.IsNullOrWhiteSpace(titleValue))
                     {
-                        result.ResultRules.Add(new ResultRule { Code = "titleanalyzer_no_title_value", Type = ResultType.Error });
+                        result.AddResultRule("titleanalyzer_no_title_value", ResultType.Error);
                     }
                     else
                     {
@@ -41,21 +41,21 @@ namespace RankOne.Business.Analyzers
 
                         if (titleValue.Length > 60)
                         {
-                            result.ResultRules.Add(new ResultRule { Code = "titleanalyzer_title_too_long", Type = ResultType.Warning});
+                            result.AddResultRule("titleanalyzer_title_too_long", ResultType.Warning);
                         }
 
                         if (titleValue.Length < 10)
                         {
-                            result.ResultRules.Add(new ResultRule { Code = "titleanalyzer_title_too_short", Type = ResultType.Warning });
+                            result.AddResultRule("titleanalyzer_title_too_short", ResultType.Warning);
                         }
                         else if (titleValue.Length < 40)
                         {
-                            result.ResultRules.Add(new ResultRule { Code = "titleanalyzer_title_less_than_40_characters", Type = ResultType.Warning });
+                            result.AddResultRule("titleanalyzer_title_less_than_40_characters", ResultType.Warning);
                         }
 
                         if (titleValue.Length <= 60 && titleValue.Length >= 40)
                         {
-                            result.ResultRules.Add(new ResultRule { Code = "titleanalyzer_title_more_than_40_less_than_60_characters", Type = ResultType.Success });
+                            result.AddResultRule("titleanalyzer_title_more_than_40_less_than_60_characters", ResultType.Success);
                         }
                     }
                 }
