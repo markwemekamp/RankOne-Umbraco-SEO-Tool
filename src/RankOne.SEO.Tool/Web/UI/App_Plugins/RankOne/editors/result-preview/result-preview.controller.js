@@ -3,8 +3,6 @@
     // Controller
     function rankOne($scope, $http, editorState, urlService) {
 
-        $scope.showGoogleInterface = true;
-
         if (!editorState.current.template) {
             $scope.error = "This item does not have a template";
         } else {

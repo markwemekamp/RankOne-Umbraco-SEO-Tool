@@ -1,12 +1,12 @@
 ﻿/* SCREEN */
-.result-preview {
+.google-result-preview {
     color: #333;
     background: white;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 100%;
 }
 
-.result-preview {
+.google-result-preview {
     ul {
         list-style: none;
         margin: 0;
@@ -19,7 +19,7 @@
         font-size: 1em;
     }
 
-    .gTitle {
+    .title {
         color: #1a0dab;
         font-size: medium;
         font-weight: normal;
@@ -28,7 +28,7 @@
         margin: 0;
     }
 
-    .gUrl {
+    .url {
         color: #006621;
         font-style: normal;
         font-family: arial,sans-serif;
@@ -37,7 +37,7 @@
         margin: 0;
     }
 
-    .gDesc {
+    .description {
         color: #545454;
         font-family: arial,sans-serif;
         font-size: small;
@@ -65,8 +65,6 @@
         display: inline-block;
         background: white;
         position: relative;
-        /*top: 14px;*/
-        /*left: 130px;*/
         overflow: hidden;
     }
 
@@ -102,7 +100,6 @@
         width: 100%;
         float: left;
         height: 51px;
-        float: left;
         border-bottom: 1px solid #ddd;
         margin-bottom: 20px;
     }
@@ -173,50 +170,7 @@
         color: white;
         text-align: center;
     }
-    /* TRUNCATE TEXT */
-    .clamped {
-        line-height: 1.5;
-        overflow: hidden;
-        position: relative;
-    }
 
-    .clamped-2 {
-        /* Clamp to 2 lines, ie line-height x 2: */
-        max-height: 3em;
-    }
-
-    .ellipsis {
-        background: #fff;
-        bottom: 0;
-        position: absolute;
-        right: 0;
-    }
-
-    .fill {
-        background: #fff;
-        height: 100%;
-        position: absolute;
-        width: 100%;
-    }
-
-    .truncate {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    #title {
-        /*width:89%;*/
-        width: 72%;
-    }
-
-    #url {
-        width: 88%;
-    }
-
-    .rolled {
-        display: none;
-    }
 
     .result-preview.hideMe {
         display: none;
@@ -235,11 +189,9 @@
         display: inline-block;
     }
 
-    .serps-wrapper {
+    .wrapper {
         position: relative;
         max-width: 800px;
-        /*max-width: 512px;*/
-        /*margin: 0 auto;*/
         margin: 0;
         padding: 0;
         border: 0;
@@ -250,7 +202,6 @@
         background: white;
         display: block;
         border: 1px solid #888;
-        padding-bottom: 10px;
     }
 
     .google-top {
@@ -290,9 +241,7 @@
     }
 
     .results {
-        float: left;
         margin: 10px 2% 10px 2%;
         max-width: 512px;
-        clear: both;
     }
 }

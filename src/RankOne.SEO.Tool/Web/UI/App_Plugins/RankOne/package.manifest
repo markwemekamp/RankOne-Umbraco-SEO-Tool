@@ -39,7 +39,17 @@
             icon: "icon-code",
             editor: {
                 view: "~/App_Plugins/RankOne/editors/result-preview/result-preview.html"
-            }
+            },
+			prevalues: {
+				fields:[
+					{
+					   label: "Show google interface",
+					   description: "Shows a fake google searchbar and menu",
+					   key: "showGoogleInterface",
+					   view: 'boolean'
+					}        
+				]
+			}
         }
     ],
     javascript: [
