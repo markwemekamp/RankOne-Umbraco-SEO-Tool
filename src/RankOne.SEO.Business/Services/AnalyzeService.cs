@@ -66,7 +66,6 @@ namespace RankOne.Business.Services
             stopwatch.Stop();
 
             _htmlParser.LoadHtml(html);
-            var xDocument = _htmlParser.DocumentNode;
 
             return new HtmlResult
             {
@@ -74,8 +73,8 @@ namespace RankOne.Business.Services
                 Html = html,
                 Size = Encoding.ASCII.GetByteCount(html),
                 ServerResponseTime = stopwatch.ElapsedMilliseconds,
-                Document = xDocument
-            };
+                Document = _htmlParser.DocumentNode
+        };
         }
     }
 }

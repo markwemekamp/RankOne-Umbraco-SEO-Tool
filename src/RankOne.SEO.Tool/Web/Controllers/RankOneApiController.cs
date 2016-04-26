@@ -16,5 +16,13 @@ namespace RankOne.Web.Controllers
             result.HtmlResult.Document = null; 
             return result;
         }
+
+        [HttpGet]
+        public PageInformation GetPageInformation(string url)
+        {
+            var pageInformationService = new PageInformationService();
+            var result = pageInformationService.GetpageInformation(url);
+            return result;
+        } 
     }
 }

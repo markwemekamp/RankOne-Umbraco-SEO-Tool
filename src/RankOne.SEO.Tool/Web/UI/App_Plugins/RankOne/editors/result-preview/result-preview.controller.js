@@ -1,9 +1,9 @@
 ﻿(function () {
 
     // Controller
-    function rankOne($scope, $http, editorState, resultService, urlService) {
+    function rankOne($scope, $http, editorState, urlService) {
 
-        $scope.sortOrder = ['-errorCount', '-warningCount', '-hintCount'];
+        $scope.showGoogleInterface = true;
 
         if (!editorState.current.template) {
             $scope.error = "This item does not have a template";
@@ -18,10 +18,10 @@
 
                 $http({
                     method: 'GET',
-                    url: '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?url=' + url
+                    url: '/umbraco/backoffice/api/RankOneApi/GetPageInformation?url=' + url
                 }).then(function successCallback(response) {
-                    $scope.analyzeResults = response.data;
-                    resultService.SetMetadata($scope.analyzeResults);
+                    
+                    $scope.result = response.data;
                     $scope.loading = false;
                 }, function errorCallback(response) {
                     console.log(response);
@@ -31,6 +31,6 @@
     };
 
     // Register the controller
-    angular.module("umbraco").controller('rankOneSummary', rankOne);
+    angular.module("umbraco").controller('rankOneResultPreview', rankOne);
 
 })();

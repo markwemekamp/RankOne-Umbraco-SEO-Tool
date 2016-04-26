@@ -32,10 +32,19 @@
 					}          
 				]
 			}
+        }		,
+		{
+            alias: "RankOneResultPreview",
+            name: "Rank One - Result Preview",
+            icon: "icon-code",
+            editor: {
+                view: "~/App_Plugins/RankOne/editors/result-preview/result-preview.html"
+            }
         }
     ],
     javascript: [
 		'~/App_Plugins/RankOne/editors/dashboard/dashboard.controller.js',
+		'~/App_Plugins/RankOne/editors/result-preview/result-preview.controller.js',
 		'~/App_Plugins/RankOne/prevalue-editors/typeSelector/typeSelector.controller.js',
 		'~/App_Plugins/RankOne/prevalue-editors/analyzerSelector/analyzerSelector.controller.js',
 		'~/App_Plugins/RankOne/editors/summary/summary.controller.js',
@@ -43,6 +52,7 @@
 		'~/App_Plugins/RankOne/filters/analyzerFilter.js',
 		'~/App_Plugins/RankOne/services/result.service.js',
 		'~/App_Plugins/RankOne/services/score.service.js',
+		'~/App_Plugins/RankOne/services/url.service.js',
 		'~/App_Plugins/RankOne/directives/circle/circle.directive.js',
 		'~/App_Plugins/RankOne/directives/checkboxlist/checkboxlist.directive.js',
 		'~/App_Plugins/RankOne/directives/result/result.directive.js',

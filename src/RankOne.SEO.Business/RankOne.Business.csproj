@@ -254,6 +254,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analyzers\Html\MetaKeywordAnalyzer.cs" />
     <Compile Include="Analyzers\Keywords\KeywordTitleAnalyzer.cs" />
     <Compile Include="Analyzers\Speed\CssMinificationAnalyzer.cs" />
     <Compile Include="Analyzers\BaseAnalyzer.cs" />
@@ -264,6 +265,8 @@
     <Compile Include="Analyzers\Speed\HtmlSizeAnalyzer.cs" />
     <Compile Include="Analyzers\Speed\ServerResponseAnalyzer.cs" />
     <Compile Include="Analyzers\Html\TitleAnalyzer.cs" />
+    <Compile Include="Models\PageInformation.cs" />
+    <Compile Include="Services\PageInformationService.cs" />
     <Compile Include="Summaries\SpeedSummary.cs" />
     <Compile Include="Services\KeywordOccurenceService.cs" />
     <Compile Include="Summaries\KeywordSummary.cs" />

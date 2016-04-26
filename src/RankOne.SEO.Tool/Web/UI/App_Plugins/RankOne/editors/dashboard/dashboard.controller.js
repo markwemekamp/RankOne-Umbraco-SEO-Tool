@@ -1,7 +1,7 @@
 ﻿(function () {
 
     // Controller
-    function rankOne($scope, $http, $location, editorState, scoreService, resultService) {
+    function rankOne($scope, $http, editorState, scoreService, resultService, urlService) {
 
         $scope.analyzeResults = null;
         $scope.filter = null;
@@ -9,13 +9,13 @@
         if (!editorState.current.template) {
             $scope.error = "This item does not have a template";
         } else {
-            var url = editorState.current.urls[0];
+            var relativeUrl = editorState.current.urls[0];
 
-            if (url == "This item is not published") {
+            if (relativeUrl == "This item is not published") {
                 $scope.error = "This item is not published";
             } else {
                 $scope.loading = true;
-                url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + url;
+                var url = urlService.GetUrl(relativeUrl);
 
                 $http({
                     method: 'GET',
