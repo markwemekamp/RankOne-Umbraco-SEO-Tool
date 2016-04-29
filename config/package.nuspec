@@ -11,6 +11,7 @@
         <tags>umbraco, seo</tags>
         <licenseUrl><%= licenseUrl %></licenseUrl>
         <dependencies>
+            <dependency id="Umbraco.Core" version="7.0" />
         </dependencies>
     </metadata>
 </package>
