@@ -11,7 +11,6 @@
         <tags>umbraco, seo</tags>
         <licenseUrl><%= licenseUrl %></licenseUrl>
         <dependencies>
-            <dependency id="RankOne.Binaries" version="<%= version %>" />
         </dependencies>
     </metadata>
 </package>
