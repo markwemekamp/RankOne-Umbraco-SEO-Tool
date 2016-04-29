@@ -1,6 +1,11 @@
 # RankOne
 
-RankOne is a SEO analyzation tool that helps your content editors optimize their content according to the latest SEO standards.
+RankOne is a collection of SEO tools for Umbraco that aim to optimize your content according to the latest SEO standards.
+
+RankOne currently contains 3 different property editors for Umbraco:
+- Dashboard: Score based list of seo improvements
+- Summary: A list of seo improvements
+- Result preview: A google search result preview
 
 ### Install Dependencies ###
 *Requires Node.js to be installed and in your system path*

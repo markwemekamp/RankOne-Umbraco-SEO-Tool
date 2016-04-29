@@ -4,6 +4,13 @@
     <name>Mark Wemekamp</name>
     <link>https://github.com/markwemekamp/</link>
   </creator>
+  
+  <area alias="error">
+    <key alias="no_template">This item does not have a template</key>
+    <key alias="not_published">This item is not published</key>
+  </area>
+  
+  
   <area alias="dashboard">
     <key alias="title">SEO Information</key>
     <key alias="no_results">No results</key>

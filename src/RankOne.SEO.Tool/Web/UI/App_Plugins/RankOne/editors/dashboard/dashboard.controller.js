@@ -1,18 +1,18 @@
 ﻿(function () {
 
     // Controller
-    function rankOne($scope, $http, editorState, scoreService, resultService, urlService) {
+    function rankOne($scope, $http, editorState, scoreService, resultService, urlService, localizationService) {
 
         $scope.analyzeResults = null;
         $scope.filter = null;
 
         if (!editorState.current.template) {
-            $scope.error = "This item does not have a template";
+            $scope.error = localizationService.localize("error_no_template");
         } else {
             var relativeUrl = editorState.current.urls[0];
 
             if (relativeUrl == "This item is not published") {
-                $scope.error = "This item is not published";
+                $scope.error = localizationService.localize("error_not_published");
             } else {
                 $scope.loading = true;
                 var url = urlService.GetUrl(relativeUrl);
