@@ -31,3 +31,5 @@ tmp/
 [Oo]bj/
 [Pp]ackages/
 VersionInfo.cs
+*.nupkg
+*.zip

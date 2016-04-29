@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     var path = require('path');
 
@@ -20,8 +20,9 @@ module.exports = function (grunt) {
         },
 
         clean: {
-			build: '<%= grunt.config("basePath").substring(0, 4) == "dist" ? "dist/**/*" : "null" %>',
-		},
+            build: '<%= grunt.config("basePath").substring(0, 4) == "dist" ? "dist/**/*" : "null" %>',
+            tmp: ['tmp']
+        },
 
         less: {
             dist: {
@@ -51,6 +52,25 @@ module.exports = function (grunt) {
                 cwd: 'src/RankOne.SEO.Tool/Web/UI/App_Plugins/RankOne/',
                 src: ["*.*", "**/*.*"],
                 dest: '<%= basePath %>',
+                expand: true
+            },
+            nuget: {
+                files: [{
+                    cwd: '<%= dest %>',
+                    src: ['**/*', '!bin', '!bin/*'],
+                    dest: 'tmp/nuget/content',
+                    expand: true
+                }, {
+                    cwd: '<%= dest %>/bin',
+                    src: ['*.dll'],
+                    dest: 'tmp/nuget_binaries/lib/net40',
+                    expand: true
+                }]
+            },
+            umbraco: {
+                cwd: '<%= dest %>',
+                src: '**/*',
+                dest: 'tmp/umbraco',
                 expand: true
             }
         },
@@ -86,9 +106,74 @@ module.exports = function (grunt) {
                     targets: ['Clean', 'Rebuild'],
                 }
             }
+        },
+
+        nugetpack: {
+            dist: {
+                src: 'tmp/nuget/package.nuspec',
+                dest: 'pkg'
+            },
+            dist_binaries: {
+                src: 'tmp/nuget_binaries/package_binaries.nuspec',
+                dest: 'pkg'
+            }
+        },
+
+        template: {
+            'nuspec': {
+                'options': {
+                    'data': {
+                        name: '<%= pkgMeta.name %>',
+                        version: '<%= pkgMeta.version %>',
+                        url: '<%= pkgMeta.url %>',
+                        license: '<%= pkgMeta.license %>',
+                        licenseUrl: '<%= pkgMeta.licenseUrl %>',
+                        author: '<%= pkgMeta.author %>',
+                        authorUrl: '<%= pkgMeta.authorUrl %>'
+                    }
+                },
+                'files': {
+                    'tmp/nuget/package.nuspec': ['config/package.nuspec']
+                }
+            },
+            'nuspec_binaries': {
+                'options': {
+                    'data': {
+                        name: '<%= pkgMeta.name %>.Binaries',
+                        version: '<%= pkgMeta.version %>',
+                        url: '<%= pkgMeta.url %>',
+                        license: '<%= pkgMeta.license %>',
+                        licenseUrl: '<%= pkgMeta.licenseUrl %>',
+                        author: '<%= pkgMeta.author %>',
+                        authorUrl: '<%= pkgMeta.authorUrl %>'
+                    }
+                },
+                'files': {
+                    'tmp/nuget_binaries/package_binaries.nuspec': ['config/package_binaries.nuspec']
+                }
+            }
+        },
+
+        umbracoPackage: {
+            dist: {
+                src: 'tmp/umbraco',
+                dest: 'pkg',
+                options: {
+                    name: "<%= pkgMeta.name %>",
+                    version: '<%= pkgMeta.version %>',
+                    url: '<%= pkgMeta.url %>',
+                    license: '<%= pkgMeta.license %>',
+                    licenseUrl: '<%= pkgMeta.licenseUrl %>',
+                    author: '<%= pkgMeta.author %>',
+                    authorUrl: '<%= pkgMeta.authorUrl %>',
+                    readme: '<%= grunt.file.read("config/readme.txt") %>'
+                }
+            }
         }
     });
 
     grunt.registerTask('default', ['clean', 'msbuild:dist', 'less', 'copy:dll', 'copy:plugin']);
     grunt.registerTask('develop', ['clean', 'msbuild:dev', 'less', 'copy:debug', 'copy:plugin', 'touch']);
+    grunt.registerTask('nuget', ['copy:nuget', 'template:nuspec', 'template:nuspec_binaries', 'nugetpack']);
+    grunt.registerTask('package', ['clean:tmp', 'default', 'nuget', 'copy:umbraco', 'umbracoPackage', 'clean:tmp']);
 };
