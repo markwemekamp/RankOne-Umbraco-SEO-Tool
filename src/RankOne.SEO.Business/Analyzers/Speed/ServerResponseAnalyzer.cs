@@ -13,7 +13,11 @@ namespace RankOne.Business.Analyzers.Speed
             {
                 Alias = "serverresponseanalyzer"
             };
-            var serverResponseAnalysisResultRule = new ResultRule { Code = "serverresponseanalyzer_responsetime", Type = serverResponseTime > 3 ? ResultType.Warning : ResultType.Success };
+            var serverResponseAnalysisResultRule = new ResultRule
+            {
+                Code = "serverresponseanalyzer_responsetime",
+                Type = serverResponseTime > 3000 ? ResultType.Warning : ResultType.Success
+            };
             serverResponseAnalysisResultRule.Tokens.Add(serverResponseTime.ToString());
             serverResponseAnalysis.ResultRules.Add(serverResponseAnalysisResultRule);
 

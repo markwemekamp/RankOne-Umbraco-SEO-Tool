@@ -151,4 +151,11 @@
     <key alias="less_than_15_calls">Less then 15 calls have been made to resources</key>
   </area>
 
+
+  <area alias="cssminificationanalyzer">
+    <key alias="title">CSS Minification analyzer</key>
+    <key alias="file_not_minified">The file %0% doesn't seem to be minified</key>
+    <key alias="all_minified">All local css files seem to be minified</key>
+  </area>
+
 </language>

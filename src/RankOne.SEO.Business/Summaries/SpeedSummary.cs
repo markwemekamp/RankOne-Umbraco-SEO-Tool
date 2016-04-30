@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Text;
-using RankOne.Business.Analyzers;
 using RankOne.Business.Analyzers.Speed;
 using RankOne.Business.Models;
 
@@ -32,8 +29,10 @@ namespace RankOne.Business.Summaries
             var externalCallAnalyzer = new AdditionalCallAnalyzer();
             analysis.Results.Add(externalCallAnalyzer.Analyse(_htmlResult.Document));
 
-            //var cssMinifationAnalyzer = new CssMinificationAnalyzer();
-            //analysis.Results.Add(cssMinifationAnalyzer.Analyse(_htmlResult.Document));
+            var url = new Uri(_htmlResult.Url);
+
+            var cssMinifationAnalyzer = new CssMinificationAnalyzer();
+            analysis.Results.Add(cssMinifationAnalyzer.Analyse(_htmlResult.Document, url));
 
             return analysis;
         }

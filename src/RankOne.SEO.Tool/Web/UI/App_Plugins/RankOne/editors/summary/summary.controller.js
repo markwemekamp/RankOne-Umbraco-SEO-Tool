@@ -28,7 +28,7 @@
                         resultService.SetMetadata($scope.analyzeResults);
                         $scope.loading = false;
                     }, function errorCallback(response) {
-                        $scope.error = response;
+                        $scope.error = response.data.Message;
                         $scope.loading = false;
                     });
                 }
