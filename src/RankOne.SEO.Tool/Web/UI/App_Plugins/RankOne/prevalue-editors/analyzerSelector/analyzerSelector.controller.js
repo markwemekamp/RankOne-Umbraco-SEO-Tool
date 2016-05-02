@@ -9,6 +9,7 @@
             analyzers: [
                 'titleanalyzer',
                 'metadescriptionanalyzer',
+                'metakeywordanalyzer',
                 'imagetaganalyzer',
                 'deprecatedtaganalyzer',
                 'headinganalyzer'
@@ -27,33 +28,52 @@
                 'serverresponseanalyzer',
                 'gzipanalyzer',
                 'htmlsizeanalyzer',
-                'additionalcallanalyzer'
+                'additionalcallanalyzer',
+                'cssminificationanalyzer'
             ]
-        },
+        }
         ];
 
+        var firstTime = false;
         if (!$scope.model.value) {
             $scope.model.value = [];
+            firstTime = true;
         }
 
-        if ($scope.model.value.length == 0) {
-            angular.forEach($scope.analyzerSummaries, function (analyzerSummary) {
-                var analyzerSummaryObject = {
+        angular.forEach($scope.analyzerSummaries, function (analyzerSummary) {
+
+            var analyzerSummaryObject = _.findWhere($scope.model.value, { name: analyzerSummary.name });
+
+            if (!analyzerSummaryObject) {
+                analyzerSummaryObject = {
                     name: analyzerSummary.name,
-                    analyzers: [],
-                    checked: true
+                    checked: firstTime
                 };
 
                 angular.forEach(analyzerSummary.analyzers, function (analyzer) {
-                    analyzerSummaryObject.analyzers.push({
+                    var analyzerObject = {
                         name: analyzer,
-                        checked: true
-                    });
+                        checked: firstTime
+                    };
+                    analyzerSummaryObject.analyzers.push(analyzerObject);
                 });
 
                 $scope.model.value.push(analyzerSummaryObject);
-            });
-        }
+            } else {
+                angular.forEach(analyzerSummary.analyzers, function (analyzer) {
+
+                    var analyzerObject = _.findWhere(analyzerSummaryObject.analyzers, { name: analyzer });
+
+                    if (!analyzerObject) {
+                        analyzerObject = {
+                            name: analyzer,
+                            checked: firstTime
+                        }
+                        analyzerSummaryObject.analyzers.push(analyzerObject);
+                    }
+                });
+            }
+        });
     };
 
     // Register the controller

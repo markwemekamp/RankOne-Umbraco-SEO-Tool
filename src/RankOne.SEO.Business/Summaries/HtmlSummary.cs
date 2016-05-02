@@ -23,6 +23,9 @@ namespace RankOne.Business.Summaries
             var metaDescriptionAnalyzer = new MetaDescriptionAnalyzer();
             analysis.Results.Add(metaDescriptionAnalyzer.Analyse(_htmlResult.Document));
 
+            var metaKeywordAnalyzer = new MetaKeywordAnalyzer();
+            analysis.Results.Add(metaKeywordAnalyzer.Analyse(_htmlResult.Document));
+
             var imagesAnalyzer = new ImageTagAnalyzer();
             analysis.Results.Add(imagesAnalyzer.Analyse(_htmlResult.Document));
 

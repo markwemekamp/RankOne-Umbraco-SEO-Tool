@@ -4,13 +4,13 @@
     <name>Mark Wemekamp</name>
     <link>https://github.com/markwemekamp/</link>
   </creator>
-  
+
   <area alias="error">
     <key alias="no_template">This item does not have a template</key>
     <key alias="not_published">This item is not published</key>
   </area>
-  
-  
+
+
   <area alias="dashboard">
     <key alias="title">SEO Information</key>
     <key alias="no_results">No results</key>
@@ -39,7 +39,6 @@
     <key alias="title">Page speed analyzer</key>
   </area>
 
-
   <area alias="titleanalyzer">
     <key alias="title">Page title</key>
     <key alias="guidelines">
@@ -55,7 +54,7 @@
     <key alias="title_too_long">Title is longer than 60 characters</key>
     <key alias="title_too_short">Title is too short, the ideal title length is between 40 and 60 characters.</key>
     <key alias="title_less_than_40_characters">Title is less than 40 characters, the ideal title length is between 40 and 60 characters.</key>
-    <key alias="title_more_than_40_characters_less_than_60_characters">The title has the ideal length, which is between 40 and 60 characters</key>
+    <key alias="title_more_than_40_less_than_60_characters">The title has the ideal length, which is between 40 and 60 characters</key>
 
   </area>
 
@@ -69,18 +68,27 @@
     </key>
     <key alias="no_meta_tags">The page doesnt contain any meta tags</key>
     <key alias="no_meta_description_tag">The page doesnt contain a meta description tag</key>
-    <key alias="no_meta_description_tag">The page contains multiple meta description tags</key>
+    <key alias="multiple_meta_description_tags">The page contains multiple meta description tags</key>
     <key alias="no_description_value">The metadiscription tag content is empty</key>
     <key alias="description_too_short">Description is less than 50 characters, the ideal title length is between 50 and 160 characters.</key>
     <key alias="description_too_long">Description is longer than 160 characters, the ideal title length is between 50 and 160 characters.</key>
     <key alias="description_more_than_50_less_than_160">The meta description has the ideal length, which is between 50 and 160 characters</key>
   </area>
 
+  <area alias="metakeywordanalyzer">
+    <key alias="title">Meta keywords</key>
+    <key alias="no_meta_tags">The page doesnt contain any meta tags</key>
+    <key alias="no_meta_keywords_tag">The page doesnt contain a meta keywords tag</key>
+    <key alias="multiple_meta_keywords_tags">The page contains multiple meta keywords tags</key>
+    <key alias="no_keywords_value">The keywords tag content is empty</key>
+    <key alias="keywords_set">The keywords are set for this page.</key>
+  </area>
+
   <area alias="headinganalyzer">
     <key alias="title">Headers</key>
     <key alias="no_h1_tag">The page doesn't contain a h1 tag</key>
     <key alias="multiple_h1_tags">The page contains multiple h1 tags</key>
-    <key alias="one_h1_tags">Perfect! The page contains one h1 tags</key>
+    <key alias="one_h1_tag">Perfect! The page contains one h1 tags</key>
   </area>
 
   <area alias="deprecatedtaganalyzer">
@@ -135,6 +143,7 @@
 
   <area alias="keywordmetadescriptionanalyzer">
     <key alias="title">Meta description analyzer</key>
+    <key alias="meta_description_doesnt_contain_keyword">Metadescription doesn't contain the keyword(s)</key>
     <key alias="meta_description_contains_keyword">Metadescription contains the keyword(s)</key>
   </area>
 
