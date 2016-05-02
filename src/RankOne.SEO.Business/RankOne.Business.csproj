@@ -256,6 +256,7 @@
   <ItemGroup>
     <Compile Include="Analyzers\Html\MetaKeywordAnalyzer.cs" />
     <Compile Include="Analyzers\Keywords\KeywordTitleAnalyzer.cs" />
+    <Compile Include="Analyzers\Speed\JavascriptMinificationAnalyzer.cs" />
     <Compile Include="Analyzers\Speed\CssMinificationAnalyzer.cs" />
     <Compile Include="Analyzers\BaseAnalyzer.cs" />
     <Compile Include="Analyzers\Html\DeprecatedTagAnalyzer.cs" />

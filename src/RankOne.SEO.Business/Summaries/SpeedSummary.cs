@@ -34,6 +34,9 @@ namespace RankOne.Business.Summaries
             var cssMinifationAnalyzer = new CssMinificationAnalyzer();
             analysis.Results.Add(cssMinifationAnalyzer.Analyse(_htmlResult.Document, url));
 
+            var javascriptMinifationAnalyzer = new JavascriptMinificationAnalyzer();
+            analysis.Results.Add(javascriptMinifationAnalyzer.Analyse(_htmlResult.Document, url));
+
             return analysis;
         }
     }

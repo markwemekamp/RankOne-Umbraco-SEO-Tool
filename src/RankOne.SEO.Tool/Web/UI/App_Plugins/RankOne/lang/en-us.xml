@@ -167,4 +167,10 @@
     <key alias="all_minified">All local css files seem to be minified</key>
   </area>
 
+  <area alias="javascriptminificationanalyzer">
+    <key alias="title">Javascript Minification analyzer</key>
+    <key alias="file_not_minified">The file %0% doesn't seem to be minified</key>
+    <key alias="all_minified">All local javascript files seem to be minified</key>
+  </area>
+
 </language>
