@@ -41,11 +41,11 @@ namespace RankOne.Business.Services
                     Analysis = keywordAnalyzer.GetAnalysis()
                 });
 
-                var speedAnalyzer = new SpeedSummary(webpage.HtmlResult);
+                var performanceAnalyzer = new PerformanceSummary(webpage.HtmlResult);
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
-                    Alias = "speedanalyzer",
-                    Analysis = speedAnalyzer.GetAnalysis()
+                    Alias = "performanceanalyzer",
+                    Analysis = performanceAnalyzer.GetAnalysis()
                 });
             }
             catch (WebException ex)

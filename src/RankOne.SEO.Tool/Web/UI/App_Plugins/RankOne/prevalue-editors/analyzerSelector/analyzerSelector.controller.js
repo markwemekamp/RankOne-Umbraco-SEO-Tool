@@ -23,13 +23,14 @@
             ]
         },
         {
-            name: 'speedanalyzer',
+            name: 'performanceanalyzer',
             analyzers: [
                 'serverresponseanalyzer',
                 'gzipanalyzer',
                 'htmlsizeanalyzer',
                 'additionalcallanalyzer',
-                'cssminificationanalyzer'
+                'cssminificationanalyzer',
+                'javascriptminificationanalyzer'
             ]
         }
         ];
@@ -47,7 +48,8 @@
             if (!analyzerSummaryObject) {
                 analyzerSummaryObject = {
                     name: analyzerSummary.name,
-                    checked: firstTime
+                    checked: firstTime,
+                    analyzers: []
                 };
 
                 angular.forEach(analyzerSummary.analyzers, function (analyzer) {

@@ -35,8 +35,8 @@
     ]]>
     </key>
   </area>
-  <area alias="speedanalyzer">
-    <key alias="title">Page speed analyzer</key>
+  <area alias="performanceanalyzer">
+    <key alias="title">Performance analyzer</key>
   </area>
 
   <area alias="titleanalyzer">

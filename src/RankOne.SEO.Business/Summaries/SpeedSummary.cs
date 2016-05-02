@@ -4,11 +4,11 @@ using RankOne.Business.Models;
 
 namespace RankOne.Business.Summaries
 {
-    public class SpeedSummary
+    public class PerformanceSummary
     {
         private readonly HtmlResult _htmlResult;
 
-        public SpeedSummary(HtmlResult htmlResult)
+        public PerformanceSummary(HtmlResult htmlResult)
         {
             _htmlResult = htmlResult;
         }
