@@ -29,10 +29,10 @@
 					   description: "Which analyzers should be shown?",
 					   key: "analyzerSelection",
 					   view: '~/App_Plugins/RankOne/prevalue-editors/analyzerSelector/analyzerSelector.html'
-					}          
+					}
 				]
 			}
-        }		,
+        },
 		{
             alias: "RankOneResultPreview",
             name: "Rank One - Result Preview",
@@ -47,7 +47,7 @@
 					   description: "Shows a fake google searchbar and menu",
 					   key: "showGoogleInterface",
 					   view: 'boolean'
-					}        
+					}
 				]
 			}
         }
@@ -70,8 +70,7 @@
 		'~/App_Plugins/RankOne/directives/resultline/resultline.directive.js',
 		'~/App_Plugins/RankOne/directives/accordion/accordion.directive.js',
 		'~/App_Plugins/RankOne/directives/icon/icon.directive.js',
-		'~/App_Plugins/RankOne/directives/badge/badge.directive.js',
-		'~/App_Plugins/RankOne/loader.js'
+		'~/App_Plugins/RankOne/directives/badge/badge.directive.js'
     ],
 	css : [
 		'~/App_Plugins/RankOne/css/styles.css'
