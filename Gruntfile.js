@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         pkgMeta: grunt.file.readJSON('config/meta.json'),
         dest: grunt.option('target') || 'dist',
-        basePath: path.join('<%= dest %>', 'App_Plugins', '<%= pkgMeta.name %>'),
+        basePath: path.join('<%= dest %>', 'App_Plugins', '<%= pkgMeta.directory %>'),
 
         watch: {
             options: {
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
         copy: {
             dll: {
                 cwd: 'src/RankOne.SEO.Tool/bin/Release/',
-                src: '*.dll',
+                src: ['*.dll', '!HtmlAgilityPack.dll'],
                 dest: '<%= dest %>/bin/',
                 expand: true
             },
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
                     expand: true
                 }, {
                     cwd: '<%= dest %>/bin',
-                    src: ['*.dll'],
+                    src: ['*.dll', '!HtmlAgilityPack.dll'],
                     dest: 'tmp/nuget/lib/net40',
                     expand: true
                 }]

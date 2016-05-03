@@ -1,5 +1,6 @@
 {
-	"name": "RankOne",
+	"name": "RankOne - SEO Toolkit",
+	"directory": "RankOne",
 	"version": "0.1",
 	"url": "http://github.com/markwemekamp/RankOne-Umbraco-SEO-Tool",
 	"author": "Mark Wemekamp",
