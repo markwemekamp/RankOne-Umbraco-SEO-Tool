@@ -47,7 +47,8 @@
       Each of your pages should ideally have a unique title tag, which helps Google know how the page is distinct from the others on your site.<br/>
       Titles can be both short and informative. If the title is too long, search engines will show only a portion of it in the search result.
       ]]>
-    </key>
+    </key
+    <key alias="no_head_tag">The page doesn't contain a head tag</key>
     <key alias="no_title_tag">The page doesn't contain a title tag</key>
     <key alias="multiple_title_tags">The page contains title tags</key>
     <key alias="no_title_value">Title tag is empty</key>
@@ -55,7 +56,6 @@
     <key alias="title_too_short">Title is too short, the ideal title length is between 40 and 60 characters.</key>
     <key alias="title_less_than_40_characters">Title is less than 40 characters, the ideal title length is between 40 and 60 characters.</key>
     <key alias="title_more_than_40_less_than_60_characters">The title has the ideal length, which is between 40 and 60 characters</key>
-
   </area>
 
   <area alias="metadescriptionanalyzer">
