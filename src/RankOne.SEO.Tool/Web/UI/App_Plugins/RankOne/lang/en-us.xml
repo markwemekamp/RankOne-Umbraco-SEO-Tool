@@ -8,12 +8,16 @@
   <area alias="error">
     <key alias="no_template">This item does not have a template</key>
     <key alias="not_published">This item is not published</key>
+    <key alias="page_error">The page returned a %0% status</key>
   </area>
-
 
   <area alias="dashboard">
     <key alias="title">SEO Information</key>
     <key alias="no_results">No results</key>
+    <key alias="errors">Errors</key>
+    <key alias="warnings">Warnings</key>
+    <key alias="hints">Hints</key>
+    <key alias="passed_checks">Passed checks</key>
   </area>
 
   <area alias="summary">
@@ -47,7 +51,7 @@
       Each of your pages should ideally have a unique title tag, which helps Google know how the page is distinct from the others on your site.<br/>
       Titles can be both short and informative. If the title is too long, search engines will show only a portion of it in the search result.
       ]]>
-    </key
+    </key>
     <key alias="no_head_tag">The page doesn't contain a head tag</key>
     <key alias="no_title_tag">The page doesn't contain a title tag</key>
     <key alias="multiple_title_tags">The page contains title tags</key>

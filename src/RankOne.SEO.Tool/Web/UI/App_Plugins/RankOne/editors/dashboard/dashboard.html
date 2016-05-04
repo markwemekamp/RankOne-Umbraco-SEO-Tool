@@ -17,19 +17,19 @@
         <div class="summary clearfix">
             <div class="summary-block clickable" ng-click="setFilter('error')">
                 <strong class="error">{{errorCount}}</strong>
-                <small>Errors</small>
+                <small><localize key="dashboard_errors"></localize></small>
             </div>
             <div class="summary-block clickable" ng-click="setFilter('warning')">
                 <strong class="warning">{{warningCount}}</strong>
-                <small>Warnings</small>
+                <small><localize key="dashboard_warnings"></localize></small>
             </div>
             <div class="summary-block clickable" ng-click="setFilter('hint')">
                 <strong class="pointer">{{hintCount}}</strong>
-                <small>Hints</small>
+                <small><localize key="dashboard_hints"></localize></small>
             </div>
             <div class="summary-block clickable" ng-click="setFilter('success')">
                 <strong class="info">{{successCount}}</strong>
-                <small>Passed checks</small>
+                <small><localize key="dashboard_passed_checks"></localize></small>
             </div>
         </div>
 

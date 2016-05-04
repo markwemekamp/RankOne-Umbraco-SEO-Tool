@@ -13,7 +13,10 @@ namespace RankOne.Web.Controllers
         {
             var analyzeService = new AnalyzeService();
             var result =  analyzeService.AnalyzeWebPage(url);
-            result.HtmlResult.Document = null; 
+            if (result.HtmlResult != null)
+            {
+                result.HtmlResult.Document = null;
+            }
             return result;
         }
 

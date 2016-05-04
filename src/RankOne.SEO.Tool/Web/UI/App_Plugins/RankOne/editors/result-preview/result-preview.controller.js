@@ -2,7 +2,7 @@
 
     // Controller
     function rankOne($scope, $http, editorState, urlService, localizationService) {
- 
+
         $scope.load = function () {
             $scope.loading = true;
             if (!editorState.current.template) {
@@ -15,14 +15,21 @@
                     $scope.error = localizationService.localize("error_not_published");
                     $scope.loading = false;
                 } else {
-                    
+
                     var url = urlService.GetUrl(relativeUrl);
 
                     $http({
                         method: 'GET',
                         url: '/umbraco/backoffice/api/RankOneApi/GetPageInformation?url=' + url
                     }).then(function successCallback(response) {
-                        $scope.result = response.data;
+
+                        if (response.data && response.data.Status == 200) {
+                            $scope.result = response.data;
+                            $scope.loading = false;
+                        } else {
+                            $scope.error = localizationService.localize("error_page_error");
+                        }
+
                         $scope.loading = false;
                     }, function errorCallback(response) {
                         $scope.error = response.data.Message;

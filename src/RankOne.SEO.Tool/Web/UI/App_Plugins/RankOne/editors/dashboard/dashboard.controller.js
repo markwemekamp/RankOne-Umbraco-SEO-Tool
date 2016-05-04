@@ -25,15 +25,20 @@
                         method: 'GET',
                         url: '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?url=' + url
                     }).then(function successCallback(response) {
-                        $scope.analyzeResults = response.data;
 
-                        var results = resultService.SetMetadata($scope.analyzeResults);
+                        if (response.data && response.data.Status == 200) {
+                            $scope.analyzeResults = response.data;
 
-                        $scope.overallScore = scoreService.getOverallScore(results);
-                        $scope.errorCount = scoreService.getTotalErrorCount(results);
-                        $scope.warningCount = scoreService.getTotalWarningCount(results);
-                        $scope.hintCount = scoreService.getTotalHintCount(results);
-                        $scope.successCount = scoreService.getTotalSuccessCount(results);
+                            var results = resultService.SetMetadata($scope.analyzeResults);
+
+                            $scope.overallScore = scoreService.getOverallScore(results);
+                            $scope.errorCount = scoreService.getTotalErrorCount(results);
+                            $scope.warningCount = scoreService.getTotalWarningCount(results);
+                            $scope.hintCount = scoreService.getTotalHintCount(results);
+                            $scope.successCount = scoreService.getTotalSuccessCount(results);
+                        } else {
+                            $scope.error = localizationService.localize("error_page_error");
+                        }
 
                         $scope.loading = false;
 
