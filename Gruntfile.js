@@ -35,6 +35,35 @@ module.exports = function(grunt) {
             }
         },
 
+        concat: {
+            dist: {
+                dest: '<%= basePath %>/js/scripts.js',
+                src: 'src/RankOne.SEO.Tool/**/*.js'
+            }
+        },
+
+        ngtemplates: {
+            app: {
+                cwd: 'src/RankOne.SEO.Tool/Web/UI/App_Plugins/RankOne',
+                src: ['**/*.html', '!editors/**.*.html'],
+                dest: '<%= basePath %>/js/templates.js',
+                options: {
+                    prefix: '/App_Plugins/RankOne/',
+                    module: 'umbraco',
+                    htmlmin: {
+                        collapseBooleanAttributes: true,
+                        collapseWhitespace: true,
+                        removeAttributeQuotes: true,
+                        removeComments: true,
+                        removeEmptyAttributes: true,
+                        removeRedundantAttributes: true,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true
+                    }
+                }
+            }
+        },
+
         copy: {
             dll: {
                 cwd: 'src/RankOne.SEO.Tool/bin/Release/',
@@ -50,7 +79,7 @@ module.exports = function(grunt) {
             },
             plugin: {
                 cwd: 'src/RankOne.SEO.Tool/Web/UI/App_Plugins/RankOne/',
-                src: ["*.*", "**/*.*"],
+                src: ['package.manifest', 'lang/*.*', 'editors/**/*.html'],
                 dest: '<%= basePath %>',
                 expand: true
             },
@@ -152,8 +181,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['clean', 'msbuild:dist', 'less', 'copy:dll', 'copy:plugin']);
-    grunt.registerTask('develop', ['clean', 'msbuild:dev', 'less', 'copy:debug', 'copy:plugin', 'touch']);
+    grunt.registerTask('default', ['clean', 'msbuild:dist', 'less', 'ngtemplates', 'concat', 'copy:dll', 'copy:plugin']);
+    grunt.registerTask('develop', ['clean', 'msbuild:dev', 'less', 'ngtemplates', 'concat', 'copy:debug', 'copy:plugin', 'touch']);
     grunt.registerTask('nuget', ['copy:nuget', 'template:nuspec', 'nugetpack']);
     grunt.registerTask('package', ['clean:tmp', 'default', 'nuget', 'copy:umbraco', 'umbracoPackage', 'clean:tmp']);
 };

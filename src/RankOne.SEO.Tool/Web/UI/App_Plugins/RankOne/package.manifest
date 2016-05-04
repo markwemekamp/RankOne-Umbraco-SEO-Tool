@@ -53,24 +53,8 @@
         }
     ],
     javascript: [
-		'~/App_Plugins/RankOne/editors/dashboard/dashboard.controller.js',
-		'~/App_Plugins/RankOne/editors/result-preview/result-preview.controller.js',
-		'~/App_Plugins/RankOne/prevalue-editors/typeSelector/typeSelector.controller.js',
-		'~/App_Plugins/RankOne/prevalue-editors/analyzerSelector/analyzerSelector.controller.js',
-		'~/App_Plugins/RankOne/editors/summary/summary.controller.js',
-		'~/App_Plugins/RankOne/filters/typeFilter.js',
-		'~/App_Plugins/RankOne/filters/analyzerFilter.js',
-		'~/App_Plugins/RankOne/services/result.service.js',
-		'~/App_Plugins/RankOne/services/score.service.js',
-		'~/App_Plugins/RankOne/services/url.service.js',
-		'~/App_Plugins/RankOne/directives/circle/circle.directive.js',
-		'~/App_Plugins/RankOne/directives/checkboxlist/checkboxlist.directive.js',
-		'~/App_Plugins/RankOne/directives/result/result.directive.js',
-		'~/App_Plugins/RankOne/directives/information/information.directive.js',
-		'~/App_Plugins/RankOne/directives/resultline/resultline.directive.js',
-		'~/App_Plugins/RankOne/directives/accordion/accordion.directive.js',
-		'~/App_Plugins/RankOne/directives/icon/icon.directive.js',
-		'~/App_Plugins/RankOne/directives/badge/badge.directive.js'
+		'~/App_Plugins/RankOne/js/templates.js',
+		'~/App_Plugins/RankOne/js/scripts.js'
     ],
 	css : [
 		'~/App_Plugins/RankOne/css/styles.css'
