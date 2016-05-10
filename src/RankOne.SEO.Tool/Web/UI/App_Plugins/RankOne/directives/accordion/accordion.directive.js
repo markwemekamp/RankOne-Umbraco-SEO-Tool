@@ -21,6 +21,7 @@
 
             var orderedItems = $filter('orderBy')(scope.result.Analysis.Results, scope.sortOrder);
 
+            // A not so pretty way to divide the values in 2 columns
             scope.column1 = [];
             scope.column2 = [];
 

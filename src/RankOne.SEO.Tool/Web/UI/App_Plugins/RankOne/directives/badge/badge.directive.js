@@ -16,8 +16,6 @@
             }else if (scope.result.hintCount > 0) {
                 scope.cssClass = 'hint-badge';
                 scope.number = scope.result.hintCount;
-            } else {
-                scope.hidden = true;
             }
         }
     }

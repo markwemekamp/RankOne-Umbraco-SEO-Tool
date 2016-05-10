@@ -5,7 +5,7 @@ using RankOne.Business.Models;
 
 namespace RankOne.Business.Services
 {
-    public class KeywordOccurenceService
+    public class WordOccurenceService
     {
         public IEnumerable<KeyValuePair<string, int>> GetKeywords(HtmlResult result, int numberOfWordsToReturn = 10, int minimumWordLength = 4)
         {

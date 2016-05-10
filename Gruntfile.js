@@ -45,7 +45,7 @@ module.exports = function(grunt) {
         ngtemplates: {
             app: {
                 cwd: 'src/RankOne.SEO.Tool/Web/UI/App_Plugins/RankOne',
-                src: ['**/*.html', '!editors/**.*.html'],
+                src: ['**/*.html', '!editors/**.*.html', '!dialogs/**/*.html'],
                 dest: '<%= basePath %>/js/templates.js',
                 options: {
                     prefix: '/App_Plugins/RankOne/',
@@ -79,7 +79,7 @@ module.exports = function(grunt) {
             },
             plugin: {
                 cwd: 'src/RankOne.SEO.Tool/Web/UI/App_Plugins/RankOne/',
-                src: ['package.manifest', 'lang/*.*', 'editors/**/*.html'],
+                src: ['package.manifest', 'lang/*.*', 'editors/**/*.html', 'dialogs/**/*.html'],
                 dest: '<%= basePath %>',
                 expand: true
             },

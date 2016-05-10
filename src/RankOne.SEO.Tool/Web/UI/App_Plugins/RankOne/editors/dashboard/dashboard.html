@@ -7,9 +7,14 @@
     </div>
 
     <div ng-show="!loading && !error">
+        <span ng-click="openSettings()" class="settings">
+            <i class="icon-settings large"></i>
+        </span>
+
         <h1>
             <localize key="dashboard_title"></localize>
         </h1>
+
         <div ng-click="setFilter('')" class="clickable">
             <circle progress="overallScore"></circle>
         </div>

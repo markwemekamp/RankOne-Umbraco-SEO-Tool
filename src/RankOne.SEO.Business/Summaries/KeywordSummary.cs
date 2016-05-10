@@ -10,6 +10,8 @@ namespace RankOne.Business.Summaries
     {
         private readonly HtmlResult _htmlResult;
 
+        public string FocusKeyword { get; set; }
+
         public KeywordSummary(HtmlResult htmlResult)
         {
             _htmlResult = htmlResult;
@@ -19,28 +21,35 @@ namespace RankOne.Business.Summaries
         {
             var analysis = new Analysis();
 
-            var keywordOccurenceService = new KeywordOccurenceService();
-
-            var keywords = keywordOccurenceService.GetKeywords(_htmlResult);
-
-            var information = new AnalysisInformation {Code = "keywordanalyzer_top_words"};
-            foreach (var word in keywords)
+            if (!string.IsNullOrEmpty(FocusKeyword))
             {
-                information.Tokens.Add(word.Key);
-                information.Tokens.Add(word.Value.ToString());
-            }
+                var wordOccurenceService = new WordOccurenceService();
 
-            analysis.Information.Add(information);
+                var topwords = wordOccurenceService.GetKeywords(_htmlResult);
 
-            if (keywords.Any())
-            {
+                var information = new AnalysisInformation { Code = "keywordanalyzer_top_words" };
+                information.Tokens.Add(FocusKeyword);
+                foreach (var word in topwords)
+                {
+                    information.Tokens.Add(word.Key);
+                    information.Tokens.Add(word.Value.ToString());
+                }
+
+                analysis.Information.Add(information);
+
+
                 var keywordTitleAnalyzer = new KeywordTitleAnalyzer();
-                analysis.Results.Add(keywordTitleAnalyzer.Analyse(_htmlResult.Document, keywords.FirstOrDefault().Key));
+                analysis.Results.Add(keywordTitleAnalyzer.Analyse(_htmlResult.Document, FocusKeyword));
 
                 var keywordMetaDescriptionAnalyzer = new KeywordMetaDescriptionAnalyzer();
-                analysis.Results.Add(keywordMetaDescriptionAnalyzer.Analyse(_htmlResult.Document, keywords.FirstOrDefault().Key));
+                analysis.Results.Add(keywordMetaDescriptionAnalyzer.Analyse(_htmlResult.Document, FocusKeyword));
+
             }
-            
+            else
+            {
+                var information = new AnalysisInformation { Code = "keywordanalyzer_focus_keyword_not_set" };
+                analysis.Information.Add(information);
+            }
 
             return analysis;
         }

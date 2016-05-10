@@ -16,7 +16,7 @@ namespace RankOne.Business.Services
             _htmlParser = new HtmlDocument();
         }
 
-        public PageAnalysis AnalyzeWebPage(string url)
+        public PageAnalysis AnalyzeWebPage(string url, string focusKeyword)
         {
             var webpage = new PageAnalysis
             {
@@ -35,6 +35,7 @@ namespace RankOne.Business.Services
                 });
 
                 var keywordAnalyzer = new KeywordSummary(webpage.HtmlResult);
+                keywordAnalyzer.FocusKeyword = focusKeyword;
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
                     Alias = "keywordanalyzer",

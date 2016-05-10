@@ -1,12 +1,12 @@
 ﻿(function () {
 
     // Controller
-    function rankOne($scope, $http, editorState, scoreService, resultService, urlService, localizationService) {
+    function rankOne($scope, $http, editorState, scoreService, resultService, urlService, localizationService, dialogService, notificationsService) {
 
         $scope.analyzeResults = null;
         $scope.filter = null;
 
-        $scope.load = function() {
+        $scope.load = function () {
             $scope.loading = true;
             if (!editorState.current.template) {
                 $scope.error = localizationService.localize("error_no_template");
@@ -18,12 +18,12 @@
                     $scope.error = localizationService.localize("error_not_published");
                     $scope.loading = false;
                 } else {
-                    
+
                     var url = urlService.GetUrl(relativeUrl);
 
                     $http({
                         method: 'GET',
-                        url: '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?url=' + url
+                        url: '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?url=' + url + '&focusKeyword=' + $scope.model.value.focusKeyword
                     }).then(function successCallback(response) {
 
                         if (response.data && response.data.Status == 200) {
@@ -49,6 +49,19 @@
                 }
             }
         }
+
+        $scope.openSettings = function () {
+            dialogService.open({
+                template: "/App_Plugins/RankOne/dialogs/settings/settings.html",
+                show: true,
+                callback: function () {
+                    notificationsService.warning("Changes pending", "Changes will be saved when the node is saved");
+                },
+                dialogData: {
+                    configuration: $scope.model.value
+                }
+            });
+        };
 
         $scope.setFilter = function (filter) {
             $scope.filter = filter;

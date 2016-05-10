@@ -29,13 +29,21 @@
   </area>
   <area alias="keywordanalyzer">
     <key alias="title">Keyword analyzer</key>
+    <key alias="focus_keyword_not_set">
+      <![CDATA[
+      The focus keyword for this page is not set. You can add a focus keyword by opening the settings dialogs on the top of the screen. 
+    ]]>
+    </key>
     <key alias="top_words">
       <![CDATA[
       There is likely no optimal keyword density (search engine algorithms have evolved beyond keyword density metrics as a significant ranking factor). It can be useful, however, to note which keywords appear most often on your page and if they reflect the intended topic of your page. More importantly, the keywords on your page should appear within natural sounding and grammatically correct copy.<br/><br/>
-      <strong>Top 3 keywords for this page:</strong><br/>
-      <strong>1.</strong> %0% (%1% times)<br/>
-      <strong>2.</strong> %2% (%3% times)<br/>
-      <strong>3.</strong> %4% (%5% times)<br/>
+      
+      The focus keyword for this page: <strong>%0%</strong><br/><br/>
+      
+      <strong>Top 3 words used on this this page:</strong><br/>
+      <strong>1.</strong> %1% (%2% times)<br/>
+      <strong>2.</strong> %3% (%4% times)<br/>
+      <strong>3.</strong> %5% (%6% times)<br/>
     ]]>
     </key>
   </area>
@@ -142,13 +150,14 @@
 
   <area alias="keywordtitleanalyzer">
     <key alias="title">Title analyzer</key>
+    <key alias="title_doesnt_contain_keyword">Title doesn't contain the keyword</key>
     <key alias="title_contains_keyword">Title contains the keyword(s)</key>
   </area>
 
   <area alias="keywordmetadescriptionanalyzer">
     <key alias="title">Meta description analyzer</key>
-    <key alias="meta_description_doesnt_contain_keyword">Metadescription doesn't contain the keyword(s)</key>
-    <key alias="meta_description_contains_keyword">Metadescription contains the keyword(s)</key>
+    <key alias="meta_description_doesnt_contain_keyword">Metadescription doesn't contain the keyword</key>
+    <key alias="meta_description_contains_keyword">Metadescription contains the keyword</key>
   </area>
 
   <area alias="gzipanalyzer">

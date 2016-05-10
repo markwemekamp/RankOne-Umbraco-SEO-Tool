@@ -233,6 +233,8 @@
     <Compile Include="Web\Controllers\RankOneApiController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Web\UI\App_Plugins\RankOne\dialogs\settings\settings.controller.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\dialogs\settings\settings.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\checkboxlist\checkboxlist.directive.html" />
