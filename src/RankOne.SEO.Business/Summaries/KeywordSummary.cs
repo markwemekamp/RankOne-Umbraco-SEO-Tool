@@ -21,7 +21,7 @@ namespace RankOne.Business.Summaries
         {
             var analysis = new Analysis();
 
-            if (!string.IsNullOrEmpty(FocusKeyword))
+            if (!string.IsNullOrEmpty(FocusKeyword) && FocusKeyword != "undefined")
             {
                 var wordOccurenceService = new WordOccurenceService();
 
@@ -43,6 +43,9 @@ namespace RankOne.Business.Summaries
 
                 var keywordMetaDescriptionAnalyzer = new KeywordMetaDescriptionAnalyzer();
                 analysis.Results.Add(keywordMetaDescriptionAnalyzer.Analyse(_htmlResult.Document, FocusKeyword));
+
+                var keywordUrlAnalyzer = new KeywordUrlAnalyzer();
+                analysis.Results.Add(keywordUrlAnalyzer.Analyse(_htmlResult.Document, FocusKeyword, _htmlResult.Url));
 
             }
             else

@@ -31,7 +31,7 @@
     <key alias="title">Keyword analyzer</key>
     <key alias="focus_keyword_not_set">
       <![CDATA[
-      The focus keyword for this page is not set. You can add a focus keyword by opening the settings dialogs on the top of the screen. 
+      The focus keyword for this page is not set. You can add a focus keyword by opening the settings dialog on the top of this screen. 
     ]]>
     </key>
     <key alias="top_words">
@@ -158,6 +158,13 @@
     <key alias="title">Meta description analyzer</key>
     <key alias="meta_description_doesnt_contain_keyword">Metadescription doesn't contain the keyword</key>
     <key alias="meta_description_contains_keyword">Metadescription contains the keyword</key>
+  </area>
+
+  <area alias="keywordurlanalyzer">
+    <key alias="title">Url analyzer</key>
+    <key alias="root_node">Page doens't have a sub url, check passed</key>
+    <key alias="url_contains_keyword">Url contains the keyword</key>
+    <key alias="url_doesnt_contain_keyword">Url doesn't contain the keyword</key>
   </area>
 
   <area alias="gzipanalyzer">

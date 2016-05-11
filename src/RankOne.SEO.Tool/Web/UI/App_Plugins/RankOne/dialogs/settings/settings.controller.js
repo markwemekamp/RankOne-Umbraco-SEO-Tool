@@ -5,7 +5,7 @@
         $scope.loading = false;
 
         $scope.save = function () {
-            $scope.submit();
+            $scope.submit($scope.dialogData.configuration);
         };
     };
 

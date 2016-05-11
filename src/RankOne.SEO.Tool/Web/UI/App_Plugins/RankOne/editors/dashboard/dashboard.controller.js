@@ -54,7 +54,8 @@
             dialogService.open({
                 template: "/App_Plugins/RankOne/dialogs/settings/settings.html",
                 show: true,
-                callback: function () {
+                callback: function (data) {
+                    $scope.model.value = data;
                     notificationsService.warning("Changes pending", "Changes will be saved when the node is saved");
                 },
                 dialogData: {
