@@ -254,8 +254,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analyzers\Html\AnchorTagAnalyzer.cs" />
     <Compile Include="Analyzers\Html\MetaKeywordAnalyzer.cs" />
     <Compile Include="Analyzers\Keywords\KeywordContentAnalyzer.cs" />
+    <Compile Include="Analyzers\Keywords\KeywordHeadingAnalyzer.cs" />
     <Compile Include="Analyzers\Keywords\KeywordUrlAnalyzer.cs" />
     <Compile Include="Analyzers\Keywords\KeywordTitleAnalyzer.cs" />
     <Compile Include="Analyzers\Speed\JavascriptMinificationAnalyzer.cs" />

@@ -124,6 +124,12 @@
     <key alias="missing_title_tags">Not all images have a title text</key>
     <key alias="alt_and_title_tags_present">Perfect! All the image tags contain an alternative and title text</key>
   </area>
+  
+  <area alias="anchorTagAnalyzer">
+    <key alias="title">Anchor tags</key>
+    <key alias="missing_title_tags">Not all Anchors have a title text</key>
+    <key alias="all_title_tags_present">All anchor tags are provided with a title tag</key>
+  </area>
 
   <area alias="serverresponseanalyzer">
     <key alias="title">Server response time analyzer</key>
@@ -172,7 +178,15 @@
     <key alias="no_body_tag">The page contains no body tag</key>
     <key alias="multiple_body_tags">The page contains multiple body tags</key>
     <key alias="content_doesnt_contain_keyword">The content doesn't contain the keyword</key>
-    <key alias="content_contains_keyword">The content contains the keyword <strong>%0%</strong> times</key>
+    <key alias="content_contains_keyword">
+      The content contains the keyword <strong>%0%</strong> times
+    </key>
+  </area>
+
+  <area alias="keywordheadinganalyzer">
+    <key alias="title">Heading keyword analyzer</key>
+    <key alias="keyword_used_in_heading">Keyword is used at least once in a heading (h1, h2, h3, h4)</key>
+    <key alias="keyword_not_used_in_heading">Keyword should be used at least once in a heading (h1, h2, h3, h4)</key>
   </area>
 
 

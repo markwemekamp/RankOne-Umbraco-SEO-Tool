@@ -50,6 +50,11 @@ namespace RankOne.Business.Summaries
                 var keywordContentAnalyzer = new KeywordContentAnalyzer();
                 analysis.Results.Add(keywordContentAnalyzer.Analyse(_htmlResult.Document, FocusKeyword));
 
+                var keywordHeadingAnalyzer = new KeywordHeadingAnalyzer();
+                analysis.Results.Add(keywordHeadingAnalyzer.Analyse(_htmlResult.Document, FocusKeyword));
+
+                
+
             }
             else
             {

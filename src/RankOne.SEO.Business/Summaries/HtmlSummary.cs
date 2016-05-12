@@ -1,5 +1,4 @@
-﻿using RankOne.Business.Analyzers;
-using RankOne.Business.Analyzers.Html;
+﻿using RankOne.Business.Analyzers.Html;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Summaries
@@ -28,6 +27,9 @@ namespace RankOne.Business.Summaries
 
             var imagesAnalyzer = new ImageTagAnalyzer();
             analysis.Results.Add(imagesAnalyzer.Analyse(_htmlResult.Document));
+
+            var anchorAnalyzer = new AnchorTagAnalyzer();
+            analysis.Results.Add(anchorAnalyzer.Analyse(_htmlResult.Document));
 
             var deprecatedTagAnalyzer = new DeprecatedTagAnalyzer();
             analysis.Results.Add(deprecatedTagAnalyzer.Analyse(_htmlResult.Document));
