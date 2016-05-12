@@ -1,0 +1,40 @@
+﻿.status {
+    position: relative;
+    float: left;
+    width: 60px;
+    height: 60px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    color: #FFFFFF;
+    line-height: 60px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.status.error {
+    background-color: @error;
+}
+
+.status.warning {
+    background-color: @warning;
+}
+
+.status.pointer {
+    background-color: @hint;
+}
+
+.status.info {
+    background-color: @success;
+}
+
+.status > i {
+    position: relative;
+}
+
+.status.warning > i {
+    top: -2px;
+}
+

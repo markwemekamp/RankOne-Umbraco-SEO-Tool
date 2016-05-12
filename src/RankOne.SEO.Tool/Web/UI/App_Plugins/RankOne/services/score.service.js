@@ -9,8 +9,8 @@
                     if (result.errorCount > 0) {
                         score = 0;
                     }
-                    score -= result.warningCount * 25;
-                    score -= result.hintCount * 10;
+                    score -= result.warningCount * 50;
+                    score -= result.hintCount * 25;
 
                     if (score < 0) {
                         score = 0;
