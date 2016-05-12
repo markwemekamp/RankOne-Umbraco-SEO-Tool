@@ -149,23 +149,32 @@
   </area>
 
   <area alias="keywordtitleanalyzer">
-    <key alias="title">Title analyzer</key>
+    <key alias="title">Title keyword analyzer</key>
     <key alias="title_doesnt_contain_keyword">Title doesn't contain the keyword</key>
     <key alias="title_contains_keyword">Title contains the keyword(s)</key>
   </area>
 
   <area alias="keywordmetadescriptionanalyzer">
-    <key alias="title">Meta description analyzer</key>
+    <key alias="title">Meta description keyword analyzer</key>
     <key alias="meta_description_doesnt_contain_keyword">Metadescription doesn't contain the keyword</key>
     <key alias="meta_description_contains_keyword">Metadescription contains the keyword</key>
   </area>
 
   <area alias="keywordurlanalyzer">
-    <key alias="title">Url analyzer</key>
+    <key alias="title">Url keyword analyzer</key>
     <key alias="root_node">Page doens't have a sub url, check passed</key>
     <key alias="url_contains_keyword">Url contains the keyword</key>
     <key alias="url_doesnt_contain_keyword">Url doesn't contain the keyword</key>
   </area>
+
+  <area alias="keywordcontentanalyzer">
+    <key alias="title">Content keyword analyzer</key>
+    <key alias="no_body_tag">The page contains no body tag</key>
+    <key alias="multiple_body_tags">The page contains multiple body tags</key>
+    <key alias="content_doesnt_contain_keyword">The content doesn't contain the keyword</key>
+    <key alias="content_contains_keyword">The content contains the keyword <strong>%0%</strong> times</key>
+  </area>
+
 
   <area alias="gzipanalyzer">
     <key alias="title">Gzip analyzer</key>

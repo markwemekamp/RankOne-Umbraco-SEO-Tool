@@ -47,6 +47,9 @@ namespace RankOne.Business.Summaries
                 var keywordUrlAnalyzer = new KeywordUrlAnalyzer();
                 analysis.Results.Add(keywordUrlAnalyzer.Analyse(_htmlResult.Document, FocusKeyword, _htmlResult.Url));
 
+                var keywordContentAnalyzer = new KeywordContentAnalyzer();
+                analysis.Results.Add(keywordContentAnalyzer.Analyse(_htmlResult.Document, FocusKeyword));
+
             }
             else
             {

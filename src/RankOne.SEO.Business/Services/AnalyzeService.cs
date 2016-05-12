@@ -35,7 +35,7 @@ namespace RankOne.Business.Services
                 });
 
                 var keywordAnalyzer = new KeywordSummary(webpage.HtmlResult);
-                keywordAnalyzer.FocusKeyword = focusKeyword;
+                keywordAnalyzer.FocusKeyword = focusKeyword.ToLower();
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
                     Alias = "keywordanalyzer",
