@@ -37,7 +37,7 @@
                             $scope.hintCount = scoreService.getTotalHintCount(results);
                             $scope.successCount = scoreService.getTotalSuccessCount(results);
                         } else {
-                            $scope.error = localizationService.localize("error_page_error");
+                            $scope.error = localizationService.localize("error_page_error", [response.data.Status]);
                         }
 
                         $scope.loading = false;

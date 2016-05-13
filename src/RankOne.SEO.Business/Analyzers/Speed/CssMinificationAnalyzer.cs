@@ -39,21 +39,26 @@ namespace RankOne.Business.Analyzers.Speed
                         fullPath = string.Format("{0}://{1}{2}", url.Scheme, url.Host, fullPath);
                     }
 
-                    var content = webClient.DownloadString(fullPath);
-
-                    var totalCharacters = content.Length;
-                    var lines = content.Count(x => x == '\n');
-
-                    var ratio = totalCharacters / lines;
-
-                    if (ratio < 200)
+                    try
                     {
-                        var resultRule = new ResultRule();
-                        resultRule.Code = "cssminificationanalyzer_file_not_minified";
-                        resultRule.Type = ResultType.Hint;
-                        resultRule.Tokens.Add(address.Value);
-                        result.ResultRules.Add(resultRule);
+                        var content = webClient.DownloadString(fullPath);
+
+                        var totalCharacters = content.Length;
+                        var lines = content.Count(x => x == '\n');
+
+                        var ratio = totalCharacters / lines;
+
+                        if (ratio < 200)
+                        {
+                            var resultRule = new ResultRule();
+                            resultRule.Code = "cssminificationanalyzer_file_not_minified";
+                            resultRule.Type = ResultType.Hint;
+                            resultRule.Tokens.Add(address.Value);
+                            result.ResultRules.Add(resultRule);
+                        }
                     }
+                    catch (Exception)
+                    { }
 
                 }
             }

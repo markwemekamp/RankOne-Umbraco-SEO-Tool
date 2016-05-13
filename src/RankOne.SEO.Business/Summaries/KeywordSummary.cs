@@ -23,6 +23,8 @@ namespace RankOne.Business.Summaries
 
             if (!string.IsNullOrEmpty(FocusKeyword) && FocusKeyword != "undefined")
             {
+                FocusKeyword = FocusKeyword.ToLower();
+
                 var wordOccurenceService = new WordOccurenceService();
 
                 var topwords = wordOccurenceService.GetKeywords(_htmlResult);

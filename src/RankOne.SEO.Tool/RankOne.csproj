@@ -239,6 +239,8 @@
     <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\checkboxlist\checkboxlist.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\checkboxlist\checkboxlist.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\status\status.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\status\status.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\result-preview\result-preview.controller.js" />
@@ -274,6 +276,7 @@
     <None Include="app.config" />
     <None Include="less\google.less" />
     <None Include="less\settings.less" />
+    <None Include="less\status.less" />
     <None Include="less\styles.less" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
