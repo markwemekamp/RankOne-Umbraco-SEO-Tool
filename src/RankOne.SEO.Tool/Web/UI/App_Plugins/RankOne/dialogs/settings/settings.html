@@ -9,9 +9,9 @@
         <div class="umb-panel-body no-header with-footer">
 
             <div class="tab-content umb-control-group">
-                <h1>Page settings</h1>
+                <h1><localize key="settings_title"></localize></h1>
                 <p>
-                    Set specific SEO settings for the current page.
+                    <localize key="settings_description"></localize>
                 </p>
 
                 <div class="umb-loader-wrapper">
@@ -21,7 +21,7 @@
                 <div class="control-group umb-control-group">
                     <div class="umb-el-wrap">
                         <label class="control-label ng-binding">
-                            Focus keyword
+                            <localize key="settings_focus_keyword"></localize>
                         </label>
                         <div class="controls">
                             <div class="umb-property-editor">
@@ -38,11 +38,11 @@
             <div class="umb-el-wrap umb-panel-buttons">
                 <div class="btn-toolbar umb-btn-toolbar pull-right">
                     <a href ng-click="close()" class="btn btn-link">
-                        Cancel
+                        <localize key="settings_cancel"></localize>
                     </a>
 
                     <a href class="btn btn-primary" ng-click="save()">
-                        Save
+                        <localize key="settings_save"></localize>
                     </a>
                 </div>
             </div>

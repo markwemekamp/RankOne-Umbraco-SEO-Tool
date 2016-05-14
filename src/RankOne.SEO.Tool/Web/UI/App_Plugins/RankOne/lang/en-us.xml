@@ -20,6 +20,14 @@
     <key alias="passed_checks">Passed checks</key>
   </area>
 
+  <area alias="settings">
+    <key alias="title">Page settings</key>
+    <key alias="description">Settings for the current page.</key>
+    <key alias="focus_keyword">Focus keyword</key>
+    <key alias="cancel">Cancel</key>
+    <key alias="save">Save</key>
+  </area>
+
   <area alias="summary">
     <key alias="loading">Loading...</key>
   </area>
