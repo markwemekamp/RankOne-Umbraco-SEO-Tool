@@ -8,6 +8,22 @@
         },
         link: function (scope) {
             scope.text = localizationService.localize(scope.resultline.Code, scope.resultline.Tokens);
+
+            if (scope.resultline.Type == "success") {
+                scope.style = "info";
+            }
+
+            if (scope.resultline.Type == "error") {
+                scope.style = "error";
+            }
+
+            if (scope.resultline.Type == "warning") {
+                scope.style = "warning";
+            }
+
+            if (scope.resultline.Type == "hint") {
+                scope.style = "pointer";
+            }
         }
     }
 });
