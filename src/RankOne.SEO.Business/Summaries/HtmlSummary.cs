@@ -34,9 +34,6 @@ namespace RankOne.Business.Summaries
             var deprecatedTagAnalyzer = new DeprecatedTagAnalyzer();
             analysis.Results.Add(deprecatedTagAnalyzer.Analyse(_htmlResult.Document));
 
-            var headerTagAnalyzer = new HeadingAnalyzer();
-            analysis.Results.Add(headerTagAnalyzer.Analyse(_htmlResult.Document));
-
             return analysis;
         }
     }
