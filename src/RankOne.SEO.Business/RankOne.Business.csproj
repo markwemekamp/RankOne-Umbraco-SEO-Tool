@@ -280,7 +280,6 @@
     <Compile Include="Summaries\KeywordSummary.cs" />
     <Compile Include="Analyzers\Html\MetaDescriptionAnalyzer.cs" />
     <Compile Include="Analyzers\Html\ImageTagAnalyzer.cs" />
-    <Compile Include="Analyzers\Html\HeadingAnalyzer.cs" />
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="Summaries\HtmlSummary.cs" />
     <Compile Include="Interfaces\IAnalyzer.cs" />
