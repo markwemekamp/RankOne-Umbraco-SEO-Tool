@@ -113,7 +113,7 @@
 
   <area alias="deprecatedtaganalyzer">
     <key alias="title">Deprecated tags</key>
-    <key alias="no_deprecated_tags_found">The page contains no deprecated html tags</key>
+    <key alias="no_deprecated_tags_found">The page doesn't contain any deprecated html tags</key>
     <key alias="acronym_tag_found">The page contains an &lt;acronym&gt; tag, this is considered a deprecated html tag</key>
     <key alias="acronym_tag_found">The page contains an &lt;applet&gt; tag, this is considered a deprecated html tag</key>
     <key alias="acronym_tag_found">The page contains an &lt;basefont&gt; tag, this is considered a deprecated html tag</key>
