@@ -30,7 +30,7 @@ namespace RankOne.Business.Analyzers.Html
                 result.AddResultRule("imagetaganalyzer_missing_title_tags", ResultType.Hint);
             }
 
-            if (imageTagCount == imagesWithAltTagCount && imageTagCount > imagesWithTitleTagCount)
+            if (imageTagCount == imagesWithAltTagCount && imageTagCount == imagesWithTitleTagCount)
             {
                 result.AddResultRule("imagetaganalyzer_alt_and_title_tags_present", ResultType.Success);
             }

@@ -90,9 +90,9 @@
     <key alias="no_meta_description_tag">The page doesnt contain a meta description tag</key>
     <key alias="multiple_meta_description_tags">The page contains multiple meta description tags</key>
     <key alias="no_description_value">The metadiscription tag content is empty</key>
-    <key alias="description_too_short">Description is less than 50 characters, the ideal title length is between 50 and 160 characters.</key>
-    <key alias="description_too_long">Description is longer than 160 characters, the ideal title length is between 50 and 160 characters.</key>
-    <key alias="description_more_than_50_less_than_160">The meta description has the ideal length, which is between 50 and 160 characters</key>
+    <key alias="description_too_short">Description is shorter than 130 characters, the ideal title length is between 130 and 155 characters</key>
+    <key alias="description_too_long">Description is longer than 160 characters, the ideal title length is between 130 and 155 characters</key>
+    <key alias="metadescriptionanalyzer_description_perfect">The meta description has the ideal length, which is between 130 and 155 characters</key>
   </area>
 
   <area alias="metakeywordanalyzer">

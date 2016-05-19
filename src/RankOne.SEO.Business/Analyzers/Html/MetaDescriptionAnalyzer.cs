@@ -50,7 +50,7 @@ namespace RankOne.Business.Analyzers.Html
                         {
                             descriptionValue = descriptionValue.Trim();
 
-                            if (descriptionValue.Length > 160)
+                            if (descriptionValue.Length > 155)
                             {
                                 result.AddResultRule("metadescriptionanalyzer_description_too_long", ResultType.Warning);
                             }
@@ -60,9 +60,14 @@ namespace RankOne.Business.Analyzers.Html
                                 result.AddResultRule("metadescriptionanalyzer_description_too_short", ResultType.Warning);
                             }
 
-                            if (descriptionValue.Length <= 160 && descriptionValue.Length >= 50)
+                            if (descriptionValue.Length < 130)
                             {
-                                result.AddResultRule("metadescriptionanalyzer_description_more_than_50_less_than_160", ResultType.Success);
+                                result.AddResultRule("metadescriptionanalyzer_description_too_short", ResultType.Hint);
+                            }
+
+                            if (descriptionValue.Length <= 155 && descriptionValue.Length >= 130)
+                            {
+                                result.AddResultRule("metadescriptionanalyzer_description_perfect", ResultType.Success);
                             }
                         }
                     }

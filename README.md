@@ -2,12 +2,21 @@
 
 RankOne is a collection of SEO tools for Umbraco that aim to optimize your content according to the latest SEO standards.
 
-RankOne currently contains 3 different property editors for Umbraco:
-- Dashboard: Score based list of seo improvements
-- Summary: A list of seo improvements
-- Result preview: A google search result preview
+RankOne currently contains 4 different elements for Umbraco:
+- A doctype composition with title, meta description and meta keywords
+- Dashboard property editor: Score based list of seo improvements
+- Summary property editor: A list of seo improvements
+- Result preview property editor: A google search result preview
 
-## How to install ##
+## How to install the fields composition ##
+
+1. Add or update a doctype
+2. On the top right select "Compositions"
+3. Select RankOne - Seo Compositions
+4. A new tab will be added added to your doctype
+5. Now the only thing you'll need to do is output the properties in your template. The alias names are: seoTitle, seoMetaDescription and seoMetaKeywords
+
+## How to install property editors ##
 
 1. Create a package using the grunt package task
 2. Install the package

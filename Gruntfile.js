@@ -175,7 +175,8 @@ module.exports = function(grunt) {
                     licenseUrl: '<%= pkgMeta.licenseUrl %>',
                     author: '<%= pkgMeta.author %>',
                     authorUrl: '<%= pkgMeta.authorUrl %>',
-                    readme: '<%= grunt.file.read("config/readme.txt") %>'
+                    readme: '<%= grunt.file.read("config/readme.txt") %>',
+                    manifest: 'config/package.template.xml'
                 }
             }
         }
