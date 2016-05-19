@@ -241,8 +241,6 @@
     <Content Include="Web\UI\App_Plugins\RankOne\directives\checkboxlist\checkboxlist.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\status\status.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\status\status.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\result-preview\result-preview.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\result-preview\result-preview.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\summary\summary.controller.js" />
@@ -259,6 +257,7 @@
     <Content Include="Web\UI\App_Plugins\RankOne\editors\dashboard\dashboard.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\libraries\jquery.circliful.min.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\analyzerSelector\analyzerSelector.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\analyzerSelector\analyzerSelector.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.html" />
@@ -275,6 +274,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="less\google.less" />
+    <None Include="less\jquery.circliful.less" />
     <None Include="less\settings.less" />
     <None Include="less\status.less" />
     <None Include="less\styles.less" />
