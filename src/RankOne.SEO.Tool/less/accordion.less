@@ -4,9 +4,8 @@
     background: #fff;
     transform: translateZ(0);
     box-shadow: 0 1px 1px rgba(0,0,0,.1);
-}
 
-    .accordion label {
+    label {
         position: relative;
         display: block;
         height: 50px;
@@ -17,25 +16,31 @@
         border-top: 1px solid #ddd;
         background: #fff;
         cursor: pointer;
+        margin: 0px;
     }
 
-        .accordion label[for*='1'] {
-            border: 0;
-        }
+    label[for*='1'] {
+        border: 0;
+    }
 
-        .accordion label:after {
-            content: '\f078';
-            position: absolute;
-            top: 0px;
-            right: 20px;
-            font-family: fontawesome;
-            transform: rotate(90deg);
-            transition: .3s transform;
-        }
+    label:after {
+        content: '\f078';
+        position: absolute;
+        top: 0px;
+        right: 20px;
+        font-family: fontawesome;
+        transform: rotate(90deg);
+        transition: .3s transform;
+    }
 
-        .accordion label.expanded:after {
-            transform: rotate(0deg);
-        }
+    label:hover:after {
+        transform: rotate(0deg);
+    }
+
+    label.expanded:after {
+        transform: rotate(0deg);
+    }
+}
 
 .expander section {
     padding: 0 30px;

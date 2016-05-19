@@ -15,9 +15,7 @@
             <localize key="dashboard_title"></localize>
         </h1>
 
-        <div ng-click="setFilter('')" class="clickable">
-            <circle progress="overallScore"></circle>
-        </div>
+        <div id="score" ng-click="setFilter('')" class="clickable"></div>
 
         <div class="summary clearfix">
             <div class="summary-block clickable" ng-click="setFilter('error')">

@@ -36,11 +36,28 @@
                             $scope.warningCount = scoreService.getTotalWarningCount(results);
                             $scope.hintCount = scoreService.getTotalHintCount(results);
                             $scope.successCount = scoreService.getTotalSuccessCount(results);
+
+                            $scope.loading = false;
+
+                            $scope.color = '#4db53c';
+                            if ($scope.overallScore < 33) {
+                                $scope.color = '#dd2222';
+                            }
+                            else if ($scope.overallScore < 66) {
+                                $scope.color = '#dd9d22';
+                            }
+
+                            $("#score").circliful({
+                                percent: $scope.overallScore,
+                                fontColor: '#000000',
+                                foregroundColor: $scope.color,
+                                percentageTextSize: 30
+                            });
                         } else {
                             $scope.error = localizationService.localize("error_page_error", [response.data.Status]);
                         }
 
-                        $scope.loading = false;
+
 
                     }, function errorCallback(response) {
                         $scope.error = response.data.Message;
