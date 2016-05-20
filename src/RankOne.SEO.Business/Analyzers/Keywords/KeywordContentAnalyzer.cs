@@ -30,7 +30,7 @@ namespace RankOne.Business.Analyzers.Keywords
             {
                 var bodyTag = bodyTags.FirstOrDefault();
 
-                var text = Regex.Replace(bodyTag.InnerText.Trim().ToLower(), @"\s+", " + ");
+                var text = Regex.Replace(bodyTag.InnerText.Trim().ToLower(), @"\s+", " ");
 
                 var matches = Regex.Matches(text, keyword);
 
