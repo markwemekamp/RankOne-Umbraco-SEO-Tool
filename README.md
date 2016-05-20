@@ -36,6 +36,10 @@ RankOne currently contains 4 different elements for Umbraco:
 ## Supported versions ##
 Umbraco 7.4+
 
+## Changelog ##
+
+1.2 Added seo doctype composition, removed headinganalyzer, minor bug and localization fixes
+
 ### Install Dependencies ###
 *Requires Node.js to be installed and in your system path*
 
