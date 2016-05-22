@@ -11,9 +11,11 @@
     <div ng-show="!loading && !error">
         <div ng-repeat="analyzerResult in analyzeResults.AnalyzerResults | typeFilter:model.config.typeSelection | analyzerFilter:model.config.analyzerSelection">
             <h4><localize key="{{analyzerResult.Alias}}_title"></localize></h4>
-            <div ng-repeat="result in analyzerResult.Analysis.Results | typeFilter:model.config.typeSelection | analyzerFilter:model.config.analyzerSelection">
+            <div class="result-compact" ng-repeat="result in analyzerResult.Analysis.Results | typeFilter:model.config.typeSelection | analyzerFilter:model.config.analyzerSelection">
                 <strong><localize key="{{result.Alias}}_title"></localize></strong>
-                <resultline resultline="resultLine" ng-repeat="resultLine in result.ResultRules | typeFilter:model.config.typeSelection | orderBy:sortOrder"></resultline>
+                <ul>
+                    <resultline resultline="resultLine" ng-repeat="resultLine in result.ResultRules | typeFilter:model.config.typeSelection | orderBy:sortOrder"></resultline>
+                </ul>
             </div>
         </div>
     </div>

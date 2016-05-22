@@ -1,42 +1,22 @@
 ﻿(function () {
 
     // Controller
-    function rankOne($scope, $http, editorState, urlService, localizationService) {
+    function rankOne($scope, $http, editorState, webresultService) {
 
         $scope.load = function () {
             $scope.loading = true;
-            if (!editorState.current.template) {
-                $scope.error = localizationService.localize("error_no_template");
+
+
+            var url = '/umbraco/backoffice/api/RankOneApi/GetPageInformation?url={url}';
+            webresultService.GetResult(editorState.current, url).then(function (response) {
+
+                $scope.result = response;
                 $scope.loading = false;
-            } else {
-                var relativeUrl = editorState.current.urls[0];
 
-                if (relativeUrl == "This item is not published") {
-                    $scope.error = localizationService.localize("error_not_published");
-                    $scope.loading = false;
-                } else {
-
-                    var url = urlService.GetUrl(relativeUrl);
-
-                    $http({
-                        method: 'GET',
-                        url: '/umbraco/backoffice/api/RankOneApi/GetPageInformation?url=' + url
-                    }).then(function successCallback(response) {
-
-                        if (response.data && response.data.Status == 200) {
-                            $scope.result = response.data;
-                            $scope.loading = false;
-                        } else {
-                            $scope.error = localizationService.localize("error_page_error");
-                        }
-
-                        $scope.loading = false;
-                    }, function errorCallback(response) {
-                        $scope.error = response.data.Message;
-                        $scope.loading = false;
-                    });
-                }
-            }
+            }, function (message) {
+                $scope.error = message;
+                $scope.loading = false;
+            });
         }
 
         $scope.$on("formSubmitted", function () {

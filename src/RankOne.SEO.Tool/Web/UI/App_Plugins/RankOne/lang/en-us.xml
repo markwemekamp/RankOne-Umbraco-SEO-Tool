@@ -72,7 +72,7 @@
     <key alias="no_title_tag">The page doesn't contain a title tag</key>
     <key alias="multiple_title_tags">The page contains title tags</key>
     <key alias="no_title_value">Title tag is empty</key>
-    <key alias="title_too_long">Title is longer than 60 characters</key>
+    <key alias="title_too_long">Title is longer than 60 characters, the ideal title length is between 40 and 60 characters.</key>
     <key alias="title_too_short">Title is too short, the ideal title length is between 40 and 60 characters.</key>
     <key alias="title_less_than_40_characters">Title is less than 40 characters, the ideal title length is between 40 and 60 characters.</key>
     <key alias="title_more_than_40_less_than_60_characters">The title has the ideal length, which is between 40 and 60 characters</key>

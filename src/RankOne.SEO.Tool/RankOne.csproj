@@ -262,6 +262,7 @@
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\analyzerSelector\analyzerSelector.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.controller.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\services\webresult.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\url.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\result.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.html" />

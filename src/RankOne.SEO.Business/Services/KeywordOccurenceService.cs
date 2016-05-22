@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
 using RankOne.Business.Models;
 
 namespace RankOne.Business.Services
@@ -17,11 +19,13 @@ namespace RankOne.Business.Services
             {
                 var xtext = rule.InnerText;
 
-                var ruleWords = xtext.Split(new [] { '.', '?', '!', ' ', ';', ':', ',' }, StringSplitOptions.RemoveEmptyEntries).Where(x => x.Length > minimumWordLength);
+                var ruleWords = xtext.Split(new[] { '.', '?', '!', ' ', ':', ',' }, StringSplitOptions.RemoveEmptyEntries).Where(x => x.Length > minimumWordLength);
 
                 foreach (var word in ruleWords)
                 {
                     var lowerWord = word.ToLower();
+                    var rgx = new Regex("[^a-zA-Z0-9 -]");
+                    lowerWord = rgx.Replace(WebUtility.HtmlDecode(lowerWord), "");
                     if (!string.IsNullOrWhiteSpace(lowerWord))
                     {
                         if (occurences.ContainsKey(lowerWord))
