@@ -27,19 +27,19 @@ namespace RankOne.Business.Services
             {
                 webpage.HtmlResult = GetHtml(url);
 
-                var htmlAnalyzer = new HtmlSummary(webpage.HtmlResult);
-                webpage.AnalyzerResults.Add(new AnalyzerResult
-                {
-                    Alias = "htmlanalyzer",
-                    Analysis = htmlAnalyzer.GetAnalysis()
-                });
-
                 var keywordAnalyzer = new KeywordSummary(webpage.HtmlResult);
                 keywordAnalyzer.FocusKeyword = focusKeyword;
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
                     Alias = "keywordanalyzer",
                     Analysis = keywordAnalyzer.GetAnalysis()
+                });
+
+                var htmlAnalyzer = new HtmlSummary(webpage.HtmlResult);
+                webpage.AnalyzerResults.Add(new AnalyzerResult
+                {
+                    Alias = "htmlanalyzer",
+                    Analysis = htmlAnalyzer.GetAnalysis()
                 });
 
                 var performanceAnalyzer = new PerformanceSummary(webpage.HtmlResult);
@@ -75,7 +75,7 @@ namespace RankOne.Business.Services
                 Size = Encoding.ASCII.GetByteCount(html),
                 ServerResponseTime = stopwatch.ElapsedMilliseconds,
                 Document = _htmlParser.DocumentNode
-        };
+            };
         }
     }
 }

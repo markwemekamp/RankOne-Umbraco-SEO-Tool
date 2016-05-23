@@ -4,24 +4,21 @@
         replace: true,
         templateUrl: '/App_Plugins/RankOne/directives/icon/icon.directive.html',
         scope: {
-            mode: '='
-        },
-        link: function (scope) {
-            
-            if (scope.mode == "success") {
-                scope.icon = "check info";
+            result: '='
+        }, link: function (scope) {
+            scope.colorClass = 'info';
+            scope.icon = 'check';
+            if (scope.result.errorCount > 0) {
+                scope.colorClass = 'error';
+                scope.icon = 'delete';
             }
-
-            if (scope.mode == "error") {
-                scope.icon = "delete error";
+            else if (scope.result.warningCount > 0) {
+                scope.colorClass = 'warning';
+                scope.icon = 'alert';
             }
-
-            if (scope.mode == "warning") {
-                scope.icon = "alert warning";
-            }
-
-            if (scope.mode == "hint") {
-                scope.icon = "lightbulb-active color-blue";
+            else if (scope.result.hintCount > 0) {
+                scope.colorClass = 'pointer';
+                scope.icon = 'lightbulb-active';
             }
         }
     }

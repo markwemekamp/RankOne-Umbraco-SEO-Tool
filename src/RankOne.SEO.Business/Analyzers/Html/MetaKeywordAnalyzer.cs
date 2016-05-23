@@ -29,7 +29,7 @@ namespace RankOne.Business.Analyzers.Html
 
                 if (!attributeValues.Any())
                 {
-                    result.AddResultRule("metakeywordanalyzer_no_meta_keywords_tag", ResultType.Warning);
+                    result.AddResultRule("metakeywordanalyzer_no_meta_keywords_tag", ResultType.Hint);
                 }
                 else if (attributeValues.Count() > 1)
                 {
@@ -44,7 +44,7 @@ namespace RankOne.Business.Analyzers.Html
 
                         if (string.IsNullOrWhiteSpace(keywordsValue))
                         {
-                            result.AddResultRule("metakeywordanalyzer_no_keywords_value", ResultType.Warning);
+                            result.AddResultRule("metakeywordanalyzer_no_keywords_value", ResultType.Hint);
                         }
                         else
                         {

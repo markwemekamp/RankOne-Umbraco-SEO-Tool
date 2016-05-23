@@ -4,6 +4,20 @@ using RankOne.Business.Models;
 
 namespace RankOne.Business.Analyzers.Html
 {
+    /// <summary>
+    /// Analyzer for checking title tag related optimizations
+    /// 
+    /// https://moz.com/learn/seo/title-tag
+    /// 
+    /// 1. check for head tag - critical
+    /// 2. check for presence of title tag - critical
+    /// 3. check for multiple title tags - critical
+    /// 4. check for value of title tag - critical
+    /// 5. check title tag length
+    ///     1. longer than 60 - major
+    ///     2. shorter than 10 - major
+    ///     3. shorter than 50 - minor    
+    /// </summary>
     public class TitleAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
@@ -49,14 +63,14 @@ namespace RankOne.Business.Analyzers.Html
                             {
                                 result.AddResultRule("titleanalyzer_title_too_short", ResultType.Warning);
                             }
-                            else if (titleValue.Length < 40)
+                            else if (titleValue.Length < 50)
                             {
-                                result.AddResultRule("titleanalyzer_title_less_than_40_characters", ResultType.Warning);
+                                result.AddResultRule("titleanalyzer_title_less_than_50_characters", ResultType.Hint);
                             }
 
-                            if (titleValue.Length <= 60 && titleValue.Length >= 40)
+                            if (titleValue.Length <= 60 && titleValue.Length >= 50)
                             {
-                                result.AddResultRule("titleanalyzer_title_more_than_40_less_than_60_characters",
+                                result.AddResultRule("titleanalyzer_title_more_than_50_less_than_60_characters",
                                     ResultType.Success);
                             }
                         }

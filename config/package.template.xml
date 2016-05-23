@@ -54,7 +54,7 @@
           <Tab>SEO</Tab>
           <SortOrder>2</SortOrder>
           <Mandatory>False</Mandatory>
-          <Description><![CDATA[Keywords that describe the content of the page. This is consired optional since most modern search engines don't use this anymore]]></Description>
+          <Description><![CDATA[Keywords that describe the content of the page. This is considered optional since most modern search engines don't use this anymore]]></Description>
         </GenericProperty>
         <GenericProperty>
           <Name>Meta description</Name>

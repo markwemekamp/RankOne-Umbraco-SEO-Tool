@@ -4,6 +4,14 @@ using RankOne.Business.Models;
 
 namespace RankOne.Business.Analyzers.Html
 {
+    /// <summary>
+    /// 
+    /// https://moz.com/learn/seo/meta-description
+    /// 
+    /// TODO
+    /// check for quotes
+    /// 
+    /// </summary>
     public class MetaDescriptionAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)

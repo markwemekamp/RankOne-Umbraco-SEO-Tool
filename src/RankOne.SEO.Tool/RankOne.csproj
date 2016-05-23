@@ -239,16 +239,14 @@
     <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\checkboxlist\checkboxlist.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\checkboxlist\checkboxlist.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\directives\status\status.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\directives\status\status.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\icon\icon.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\icon\icon.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\result-preview\result-preview.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\result-preview\result-preview.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\summary\summary.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\editors\summary\summary.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\filters\analyzerFilter.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\filters\typeFilter.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\directives\icon\icon.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\directives\icon\icon.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\information\information.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\information\information.directive.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\lang\en-us.xml">
@@ -283,11 +281,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="less\accordion.less" />
-    <None Include="less\circle.less" />
+    <None Include="less\score.less" />
     <None Include="less\colors.less" />
     <None Include="less\information.less" />
     <None Include="less\badges.less" />
-    <None Include="less\loader.less" />
     <None Include="less\result.less" />
     <None Include="Web\UI\App_Plugins\RankOne\package.manifest" />
   </ItemGroup>

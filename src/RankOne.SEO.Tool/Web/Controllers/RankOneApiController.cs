@@ -5,7 +5,6 @@ using Umbraco.Web.WebApi;
 
 namespace RankOne.Web.Controllers
 {
-	//[PluginController("RankOne")]
     public class RankOneApiController : UmbracoAuthorizedApiController
     {
         [HttpGet]

@@ -70,12 +70,12 @@
     </key>
     <key alias="no_head_tag">The page doesn't contain a head tag</key>
     <key alias="no_title_tag">The page doesn't contain a title tag</key>
-    <key alias="multiple_title_tags">The page contains title tags</key>
+    <key alias="multiple_title_tags">The page contains multiple title tags</key>
     <key alias="no_title_value">Title tag is empty</key>
-    <key alias="title_too_long">Title is longer than 60 characters, the ideal title length is between 40 and 60 characters.</key>
-    <key alias="title_too_short">Title is too short, the ideal title length is between 40 and 60 characters.</key>
-    <key alias="title_less_than_40_characters">Title is less than 40 characters, the ideal title length is between 40 and 60 characters.</key>
-    <key alias="title_more_than_40_less_than_60_characters">The title has the ideal length, which is between 40 and 60 characters</key>
+    <key alias="title_too_long">Title is longer than 60 characters, the ideal title length is between 50 and 60 characters.</key>
+    <key alias="title_too_short">Title is too short, the ideal title length is between 50 and 60 characters.</key>
+    <key alias="title_less_than_50_characters">Title is less than 40 characters, the ideal title length is between 50 and 60 characters.</key>
+    <key alias="title_more_than_50_less_than_60_characters">The title has the ideal length, which is between 50 and 60 characters</key>
   </area>
 
   <area alias="metadescriptionanalyzer">
@@ -98,9 +98,15 @@
   <area alias="metakeywordanalyzer">
     <key alias="title">Meta keywords</key>
     <key alias="no_meta_tags">The page doesnt contain any meta tags</key>
-    <key alias="no_meta_keywords_tag">The page doesnt contain a meta keywords tag</key>
+    <key alias="no_meta_keywords_tag">
+      The page doesnt contain a meta keywords tag. This tag arguably has very little influence with the major search engines but it does
+      have some with smaller ones
+    </key>
     <key alias="multiple_meta_keywords_tags">The page contains multiple meta keywords tags</key>
-    <key alias="no_keywords_value">The keywords tag content is empty</key>
+    <key alias="no_keywords_value">
+      The keywords tag content is empty. This tag arguably has very little influence with the major search engines but it does
+      have some with smaller ones
+    </key>
     <key alias="keywords_set">The keywords are set for this page.</key>
   </area>
 
@@ -164,12 +170,19 @@
 
   <area alias="keywordtitleanalyzer">
     <key alias="title">Title keyword analyzer</key>
+    <key alias="no_title_tag">The page doesn't contain a title tag</key>
+    <key alias="multiple_title_tags">The page contains title tags</key>
     <key alias="title_doesnt_contain_keyword">Title doesn't contain the keyword</key>
-    <key alias="title_contains_keyword">Title contains the keyword(s)</key>
+    <key alias="title_not_in_front">The title is not close to the front of the title tag. The closer to the start of the title tag a keyword is, the more helpful it will be for ranking</key>
+    <key alias="title_contains_keyword">Title contains the keyword(s) and is in close to the front of the title tag</key>  
   </area>
 
   <area alias="keywordmetadescriptionanalyzer">
     <key alias="title">Meta description keyword analyzer</key>
+    <key alias="no_meta_tags">The page doesnt contain any meta tags</key>
+    <key alias="no_meta_description_tag">The page doesnt contain a meta description tag</key>
+    <key alias="multiple_meta_description_tags">The page contains multiple meta description tags</key>
+    <key alias="no_description_value">The metadiscription tag content is empty</key>
     <key alias="meta_description_doesnt_contain_keyword">Metadescription doesn't contain the keyword</key>
     <key alias="meta_description_contains_keyword">Metadescription contains the keyword</key>
   </area>
