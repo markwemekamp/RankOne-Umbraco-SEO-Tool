@@ -51,7 +51,7 @@ namespace RankOne.Business.Analyzers.Speed
                         if (ratio < 200)
                         {
                             var resultRule = new ResultRule();
-                            resultRule.Code = "cssminificationanalyzer_file_not_minified";
+                            resultRule.Alias = "cssminificationanalyzer_file_not_minified";
                             resultRule.Type = ResultType.Hint;
                             resultRule.Tokens.Add(address.Value);
                             result.ResultRules.Add(resultRule);

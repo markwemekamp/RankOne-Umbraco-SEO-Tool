@@ -25,20 +25,21 @@ namespace RankOne.Business.Analyzers.Speed
 
             if (total > 30)
             {
-                resultRule.Code = "additionalcallanalyzer_more_than_30_calls";
+                resultRule.Alias = "additionalcallanalyzer_more_than_30_calls";
                 resultRule.Type = ResultType.Warning;
             }
             else if(total > 15)
             {
-                resultRule.Code = "additionalcallanalyzer_more_than_15_calls";
+                resultRule.Alias = "additionalcallanalyzer_more_than_15_calls";
                 resultRule.Type = ResultType.Hint;
             }
             else
             {
-                resultRule.Code = "additionalcallanalyzer_less_than_15_calls";
+                resultRule.Alias = "additionalcallanalyzer_less_than_15_calls";
                 resultRule.Type = ResultType.Success;
             }
 
+            resultRule.Tokens.Add(total.ToString());
             resultRule.Tokens.Add(cssFiles.Count().ToString());
             resultRule.Tokens.Add(scriptFiles.Count().ToString());
             resultRule.Tokens.Add(images.Count().ToString());

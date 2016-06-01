@@ -1,0 +1,30 @@
+﻿<div id="rankOneInformation" class="umb-panel" ng-controller="rankOneInformation">
+
+    <umb-load-indicator ng-show="loading"></umb-load-indicator>
+
+    <div ng-show="!loading">
+        <div class="umb-panel-header">
+
+        </div>
+        <div class="umb-panel-body no-header with-footer">
+
+            <div class="tab-content umb-control-group analyzer-guidelines">
+                <h1><localize key="{{dialogData.result.Alias}}_title"></localize></h1>
+                <br/>
+                <p>
+                    <localize key="{{dialogData.result.Alias}}_guidelines"></localize>
+                </p>
+            </div>
+        </div>
+
+        <div class="umb-panel-footer">
+            <div class="umb-el-wrap umb-panel-buttons">
+                <div class="btn-toolbar umb-btn-toolbar pull-right">
+                    <a href ng-click="close()" class="btn umb-button">
+                        <localize key="settings_close"></localize>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

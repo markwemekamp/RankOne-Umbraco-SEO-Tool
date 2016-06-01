@@ -7,7 +7,7 @@
             information: '='
         },
         link: function (scope) {
-            scope.text = localizationService.localize(scope.information.Code, scope.information.Tokens);
+            scope.text = localizationService.localize(scope.information.Alias, scope.information.Tokens);
         }
     }
 });

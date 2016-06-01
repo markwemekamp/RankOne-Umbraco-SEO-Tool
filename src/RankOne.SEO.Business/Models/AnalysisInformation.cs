@@ -4,7 +4,7 @@ namespace RankOne.Business.Models
 {
     public class AnalysisInformation
     {
-        public string Code { get; set; }
+        public string Alias { get; set; }
 
         public List<string> Tokens { get; set; }
 

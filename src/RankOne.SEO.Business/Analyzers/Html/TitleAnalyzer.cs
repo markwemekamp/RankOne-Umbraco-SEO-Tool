@@ -7,7 +7,7 @@ namespace RankOne.Business.Analyzers.Html
     /// <summary>
     /// Analyzer for checking title tag related optimizations
     /// 
-    /// https://moz.com/learn/seo/title-tag
+    /// Sources: https://moz.com/learn/seo/title-tag, SEO for 2016 by Sean Odom
     /// 
     /// 1. check for head tag - critical
     /// 2. check for presence of title tag - critical
@@ -16,7 +16,6 @@ namespace RankOne.Business.Analyzers.Html
     /// 5. check title tag length
     ///     1. longer than 60 - major
     ///     2. shorter than 10 - major
-    ///     3. shorter than 50 - minor    
     /// </summary>
     public class TitleAnalyzer : BaseAnalyzer
     {
@@ -59,19 +58,14 @@ namespace RankOne.Business.Analyzers.Html
                                 result.AddResultRule("titleanalyzer_title_too_long", ResultType.Warning);
                             }
 
-                            if (titleValue.Length < 10)
+                            if (titleValue.Length < 5)
                             {
-                                result.AddResultRule("titleanalyzer_title_too_short", ResultType.Warning);
-                            }
-                            else if (titleValue.Length < 50)
-                            {
-                                result.AddResultRule("titleanalyzer_title_less_than_50_characters", ResultType.Hint);
+                                result.AddResultRule("titleanalyzer_title_too_short", ResultType.Hint);
                             }
 
-                            if (titleValue.Length <= 60 && titleValue.Length >= 50)
+                            if (titleValue.Length <= 60 && titleValue.Length >= 10)
                             {
-                                result.AddResultRule("titleanalyzer_title_more_than_50_less_than_60_characters",
-                                    ResultType.Success);
+                                result.AddResultRule("titleanalyzer_title_success", ResultType.Success);
                             }
                         }
                     }

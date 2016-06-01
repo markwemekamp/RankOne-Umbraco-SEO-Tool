@@ -61,10 +61,10 @@ You can also watch for changes using:
 
 Add `--touch` to either command to automatically touch the web.config on a deploy
 
+Create an Umbraco package
+
     grunt package
 
-Creates an Umbraco package
+Create a nuget package
 
     grunt nuget
-
-Creates a nuget package

@@ -18,6 +18,8 @@
     <key alias="warnings">Warnings</key>
     <key alias="hints">Hints</key>
     <key alias="passed_checks">Passed checks</key>
+    <key alias="more_information">More information</key>
+    <key alias="read_more">Read more</key>
   </area>
 
   <area alias="settings">
@@ -26,6 +28,7 @@
     <key alias="focus_keyword">Focus keyword</key>
     <key alias="cancel">Cancel</key>
     <key alias="save">Save</key>
+    <key alias="close">Close</key>
   </area>
 
   <area alias="summary">
@@ -33,10 +36,10 @@
   </area>
 
   <area alias="htmlanalyzer">
-    <key alias="title">Html analyzer</key>
+    <key alias="title">Markup</key>
   </area>
   <area alias="keywordanalyzer">
-    <key alias="title">Keyword analyzer</key>
+    <key alias="title">Keywords</key>
     <key alias="focus_keyword_not_set">
       <![CDATA[
       The focus keyword for this page is not set. You can add a focus keyword by opening the settings dialog on the top of this screen. 
@@ -56,26 +59,42 @@
     </key>
   </area>
   <area alias="performanceanalyzer">
-    <key alias="title">Performance analyzer</key>
+    <key alias="title">Performance</key>
   </area>
 
   <area alias="titleanalyzer">
     <key alias="title">Page title</key>
     <key alias="guidelines">
       <![CDATA[
-      Choose a title that effectively communicates the topic of the page's content.<br/>
-      Each of your pages should ideally have a unique title tag, which helps Google know how the page is distinct from the others on your site.<br/>
-      Titles can be both short and informative. If the title is too long, search engines will show only a portion of it in the search result.
+      <p>
+        <strong>Best practices</strong>
+        <ul>
+          <li>Accurately describe the page's content</li>
+          <li>Create unique title tags for each page</li>
+          <li>Use brief, but descriptive titles</li>
+        </ul>
+      </p>
+      <p>Choose a title that effectively communicates the topic of the page's content.</p>
+      <p>A title tag tells both users and search engines what the topic of a particular page is. The <code>&lt;title&gt;</code> tag should be placed within the <code>&lt;head&gt;</code> tag of the HTML document.</p>
+      <p>
+      <img src="/App_Plugins/RankOne/images/title-bar.png" />
+      </p>
+      <p>Each of your pages should ideally have a unique title tag, which helps Google know how the page is distinct from the others on your site.</p>
+      <p>If your document appears in a search results page, the contents of the title tag will usually appear in the first line of search results.</p>
+      <p>
+      <img src="/App_Plugins/RankOne/images/search-result.png" />
+      </p>
+      <p>Titles can be both short and informative. If the title is too long, search engines will show only a portion of it in the search result.</p>
+      <p>The title for your homepage can list the name of your website/business and could include other bits of important information like the physical location of the business or maybe a few of its main focuses or offerings.</p>
       ]]>
     </key>
     <key alias="no_head_tag">The page doesn't contain a head tag</key>
     <key alias="no_title_tag">The page doesn't contain a title tag</key>
     <key alias="multiple_title_tags">The page contains multiple title tags</key>
     <key alias="no_title_value">Title tag is empty</key>
-    <key alias="title_too_long">Title is longer than 60 characters, the ideal title length is between 50 and 60 characters.</key>
-    <key alias="title_too_short">Title is too short, the ideal title length is between 50 and 60 characters.</key>
-    <key alias="title_less_than_50_characters">Title is less than 40 characters, the ideal title length is between 50 and 60 characters.</key>
-    <key alias="title_more_than_50_less_than_60_characters">The title has the ideal length, which is between 50 and 60 characters</key>
+    <key alias="title_too_long">Title is longer than 60 characters, anything longer than 60 characters will be concatenated.</key>
+    <key alias="title_too_short">Title is shorter than 5 characters.</key>
+    <key alias="title_success">The title is set correctly</key>
   </area>
 
   <area alias="metadescriptionanalyzer">
@@ -90,9 +109,31 @@
     <key alias="no_meta_description_tag">The page doesnt contain a meta description tag</key>
     <key alias="multiple_meta_description_tags">The page contains multiple meta description tags</key>
     <key alias="no_description_value">The metadiscription tag content is empty</key>
-    <key alias="description_too_short">Description is shorter than 130 characters, the ideal title length is between 130 and 155 characters</key>
-    <key alias="description_too_long">Description is longer than 160 characters, the ideal title length is between 130 and 155 characters</key>
-    <key alias="metadescriptionanalyzer_description_perfect">The meta description has the ideal length, which is between 130 and 155 characters</key>
+    <key alias="description_too_short">Description is shorter than 50 characters, the ideal title length is between 50 and 150 characters</key>
+    <key alias="description_too_long">Description is longer than 150 characters, the ideal title length is between 50 and 150 characters</key>
+    <key alias="metadescriptionanalyzer_description_perfect">The meta description has the ideal length, which is between 50 and 150 characters</key>
+  </area>
+
+  <area alias="metarobotsanalyzer">
+    <key alias="title">Meta robots</key>
+    <key alias="no_meta_tags">The page doesnt contain any meta tags</key>
+    <key alias="no_robots_tag">The robots or googlebot meta tag was not set, this means your page will be indexed by default</key>
+    <key alias="robots_none">The robots meta tag is set to none, this means this page will not be indexed by search engines</key>
+    <key alias="robots_no_index">The robots meta tag is set to noindex, this means this page will not be indexed by search engines</key>
+    <key alias="robots_no_follow">The robots meta tag is set to nofollow, this prevents the search engines from following links from this page</key>
+    <key alias="robots_no_snippet">The robots meta tag is set to nosnippet, this prevents a snippet from being shown in the search results</key>
+    <key alias="robots_no_odp">The robots meta tag is set to noodp, this prevents the alternative description from the ODP/DMOZ from being used</key>
+    <key alias="robots_no_archive">The robots meta tag is set to noindex, this prevents search engines from showing the Cached link for a page.</key>
+    <key alias="robots_unavailable_after">The robots meta tag is set to noindex, this prevents search engines from indexing this page after the set data</key>
+    <key alias="robots_no_image_index">The robots meta tag is set to noindex, this prevents search engines from referring to this page from an index search</key>
+    <key alias="googlebot_none">The robots meta tag is set to none, this means this page will not be indexed by Google</key>
+    <key alias="googlebot_no_index">The robots meta tag is set to noindex, this means this page will not be indexed by Google</key>
+    <key alias="googlebot_no_follow">The robots meta tag is set to nofollow, this prevents the Google from following links from this page</key>
+    <key alias="googlebot_no_snippet">The robots meta tag is set to nosnippet, this prevents a snippet from being shown in the Google search results</key>
+    <key alias="googlebot_no_odp">The robots meta tag is set to noodp, this prevents the alternative description from the ODP/DMOZ from being used in Google</key>
+    <key alias="googlebot_no_archive">The robots meta tag is set to noindex, this prevents Google from showing the Cached link for a page.</key>
+    <key alias="googlebot_unavailable_after">The robots meta tag is set to noindex, this prevents Google from indexing this page after the set data</key>
+    <key alias="googlebot_no_image_index">The robots meta tag is set to noindex, this prevents Google from referring to this page from an index search</key>
   </area>
 
   <area alias="metakeywordanalyzer">
@@ -138,7 +179,7 @@
     <key alias="missing_title_tags">Not all images have a title text</key>
     <key alias="alt_and_title_tags_present">Perfect! All the image tags contain an alternative and title text</key>
   </area>
-  
+
   <area alias="anchorTagAnalyzer">
     <key alias="title">Anchor tags</key>
     <key alias="missing_title_tags">Not all Anchors have a title text</key>
@@ -174,7 +215,7 @@
     <key alias="multiple_title_tags">The page contains title tags</key>
     <key alias="title_doesnt_contain_keyword">Title doesn't contain the keyword</key>
     <key alias="title_not_in_front">The title is not close to the front of the title tag. The closer to the start of the title tag a keyword is, the more helpful it will be for ranking</key>
-    <key alias="title_contains_keyword">Title contains the keyword(s) and is in close to the front of the title tag</key>  
+    <key alias="title_contains_keyword">Title contains the keyword(s) and is in close to the front of the title tag</key>
   </area>
 
   <area alias="keywordmetadescriptionanalyzer">
@@ -206,7 +247,7 @@
 
   <area alias="keywordheadinganalyzer">
     <key alias="title">Heading keyword analyzer</key>
-    <key alias="keyword_used_in_heading">Keyword is used at least once in a heading (h1, h2, h3, h4)</key>
+    <key alias="keyword_used_in_heading">Keyword is used %0% time(s) in a heading (h1, h2, h3, h4)</key>
     <key alias="keyword_not_used_in_heading">Keyword should be used at least once in a heading (h1, h2, h3, h4)</key>
   </area>
 
@@ -219,11 +260,10 @@
 
   <area alias="additionalcallanalyzer">
     <key alias="title">Additional call analyzer</key>
-    <key alias="more_than_30_calls">More then 30 calls have been made to resources. Try bundling javascript and css files.</key>
-    <key alias="more_than_15_calls">More then 15 calls have been made to resources. Try bundling javascript and css files.</key>
-    <key alias="less_than_15_calls">Less then 15 calls have been made to resources</key>
+    <key alias="more_than_30_calls">%0% calls have been made to resources. Try bundling javascript and css files.</key>
+    <key alias="more_than_15_calls">%0% calls have been made to resources. Try bundling javascript and css files.</key>
+    <key alias="less_than_15_calls">%0% calls have been made to resources.</key>
   </area>
-
 
   <area alias="cssminificationanalyzer">
     <key alias="title">CSS Minification analyzer</key>

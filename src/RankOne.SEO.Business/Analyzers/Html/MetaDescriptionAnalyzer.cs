@@ -6,7 +6,7 @@ namespace RankOne.Business.Analyzers.Html
 {
     /// <summary>
     /// 
-    /// https://moz.com/learn/seo/meta-description
+    /// Sources: https://moz.com/learn/seo/meta-description, SEO for 2016 by Sean Odom
     /// 
     /// TODO
     /// check for quotes
@@ -58,22 +58,22 @@ namespace RankOne.Business.Analyzers.Html
                         {
                             descriptionValue = descriptionValue.Trim();
 
-                            if (descriptionValue.Length > 155)
+                            if (descriptionValue.Length > 150)
                             {
                                 result.AddResultRule("metadescriptionanalyzer_description_too_long", ResultType.Warning);
                             }
 
-                            if (descriptionValue.Length < 50)
+                            if (descriptionValue.Length < 20)
                             {
                                 result.AddResultRule("metadescriptionanalyzer_description_too_short", ResultType.Warning);
                             }
 
-                            if (descriptionValue.Length < 130)
+                            if (descriptionValue.Length < 50)
                             {
                                 result.AddResultRule("metadescriptionanalyzer_description_too_short", ResultType.Hint);
                             }
 
-                            if (descriptionValue.Length <= 155 && descriptionValue.Length >= 130)
+                            if (descriptionValue.Length <= 150 && descriptionValue.Length >= 20)
                             {
                                 result.AddResultRule("metadescriptionanalyzer_description_perfect", ResultType.Success);
                             }

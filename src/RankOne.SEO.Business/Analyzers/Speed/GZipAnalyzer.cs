@@ -31,7 +31,7 @@ namespace RankOne.Business.Analyzers.Speed
             }
             else
             {
-                result.AddResultRule("gzipanalyzer_gzip_disabled", ResultType.Warning);
+                result.AddResultRule("gzipanalyzer_gzip_disabled", ResultType.Hint);
             }
 
             return result;

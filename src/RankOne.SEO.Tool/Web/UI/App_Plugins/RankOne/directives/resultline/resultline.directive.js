@@ -7,7 +7,7 @@
             resultline: '='
         },
         link: function (scope) {
-            scope.text = localizationService.localize(scope.resultline.Code, scope.resultline.Tokens);
+            scope.text = localizationService.localize(scope.resultline.Alias, scope.resultline.Tokens);
 
             if (scope.resultline.Type == "success") {
                 scope.style = "info";

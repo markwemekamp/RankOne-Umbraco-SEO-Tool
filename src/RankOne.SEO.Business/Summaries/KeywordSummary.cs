@@ -29,7 +29,7 @@ namespace RankOne.Business.Summaries
 
                 var topwords = wordOccurenceService.GetKeywords(_htmlResult);
 
-                var information = new AnalysisInformation { Code = "keywordanalyzer_top_words" };
+                var information = new AnalysisInformation { Alias = "keywordanalyzer_top_words" };
                 information.Tokens.Add(FocusKeyword);
                 foreach (var word in topwords)
                 {
@@ -60,7 +60,7 @@ namespace RankOne.Business.Summaries
             }
             else
             {
-                var information = new AnalysisInformation { Code = "keywordanalyzer_focus_keyword_not_set" };
+                var information = new AnalysisInformation { Alias = "keywordanalyzer_focus_keyword_not_set" };
                 analysis.Information.Add(information);
             }
 

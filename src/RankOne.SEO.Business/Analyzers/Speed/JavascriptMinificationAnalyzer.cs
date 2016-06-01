@@ -50,7 +50,7 @@ namespace RankOne.Business.Analyzers.Speed
                         if (ratio < 200)
                         {
                             var resultRule = new ResultRule();
-                            resultRule.Code = "javascriptminificationanalyzer_file_not_minified";
+                            resultRule.Alias = "javascriptminificationanalyzer_file_not_minified";
                             resultRule.Type = ResultType.Hint;
                             resultRule.Tokens.Add(address.Value);
                             result.ResultRules.Add(resultRule);

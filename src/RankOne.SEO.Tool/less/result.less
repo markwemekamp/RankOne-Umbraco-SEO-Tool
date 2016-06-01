@@ -81,3 +81,28 @@ li.resultline span {
     color: black;
     vertical-align: top;
 }
+
+.information-icon {
+    cursor: pointer;
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+    background: @information-button;
+    border: 2px solid @information-button;
+    z-index: 999;
+    position: absolute;
+    border-radius: 100%;
+    margin-left: -16px;
+    margin-top: 42px;
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 1em;
+    font-weight: 700;
+    padding: 5px;
+}
+
+.information-icon:hover {
+    background: #FFFFFF;
+    color: @information-button;
+}

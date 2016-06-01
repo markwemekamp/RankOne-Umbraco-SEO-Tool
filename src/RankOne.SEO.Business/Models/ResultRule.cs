@@ -6,7 +6,7 @@ namespace RankOne.Business.Models
     {
         public string Type { get; set; }
 
-        public string Code { get; set; }
+        public string Alias { get; set; }
 
         public List<string> Tokens { get; set; }
 

@@ -17,12 +17,12 @@ namespace RankOne.Business.Analyzers.Speed
             var htmlSizeResultRule = new ResultRule();
             if (byteCount < (33 * 1024))
             {
-                htmlSizeResultRule.Code = "htmlsizeanalyzer_html_size_small";
+                htmlSizeResultRule.Alias = "htmlsizeanalyzer_html_size_small";
                 htmlSizeResultRule.Type = ResultType.Success;
             }
             else
             {
-                htmlSizeResultRule.Code = "htmlsizeanalyzer_html_size_too_large";
+                htmlSizeResultRule.Alias = "htmlsizeanalyzer_html_size_too_large";
                 htmlSizeResultRule.Type = ResultType.Warning;
             }
             htmlSizeResultRule.Tokens.Add(SizeSuffix(byteCount));

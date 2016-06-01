@@ -19,19 +19,27 @@ namespace RankOne.Business.Analyzers.Keywords
             var h4Tags = HtmlHelper.GetElements(document, "h4");
             var keyword = additionalValues[0].ToString();
 
-            bool usedInHeading = h1Tags.Any(x => x.InnerText.ToLower().Contains(keyword)) || 
-                h2Tags.Any(x => x.InnerText.ToLower().Contains(keyword)) || 
-                h3Tags.Any(x => x.InnerText.ToLower().Contains(keyword)) || 
-                h4Tags.Any(x => x.InnerText.ToLower().Contains(keyword));
+            var usedInHeadingCount = h1Tags.Count(x => x.InnerText.ToLower().Contains(keyword)) + 
+                h2Tags.Count(x => x.InnerText.ToLower().Contains(keyword)) + 
+                h3Tags.Count(x => x.InnerText.ToLower().Contains(keyword)) + 
+                h4Tags.Count(x => x.InnerText.ToLower().Contains(keyword));
 
-            if (usedInHeading)
+            if (usedInHeadingCount > 0)
             {
-                result.AddResultRule("keywordheadinganalyzer_keyword_used_in_heading", ResultType.Success);
+                var resultRule = new ResultRule
+                {
+                    Alias = "keywordheadinganalyzer_keyword_used_in_heading",
+                    Type = ResultType.Success
+                };
+                resultRule.Tokens.Add(usedInHeadingCount.ToString());
+                result.ResultRules.Add(resultRule);
             }
             else
             {
                 result.AddResultRule("keywordheadinganalyzer_keyword_not_used_in_heading", ResultType.Hint);
             }
+
+            
 
             return result;
         }

@@ -1,4 +1,4 @@
-﻿angular.module('umbraco').directive('icon', function () {
+﻿angular.module('umbraco').directive('icon', function (dialogService, localizationService) {
     return {
         restrict: 'E',
         replace: true,
@@ -20,6 +20,24 @@
                 scope.colorClass = 'pointer';
                 scope.icon = 'lightbulb-active';
             }
+
+            localizationService.localize(scope.result.Alias + "_guidelines").then(function (value) {
+                scope.hasGuidelines = value && value.lastIndexOf('[', 0) === -1;
+            });
+
+            localizationService.localize('dashboard_more_information').then(function (value) {
+                scope.moreInformation = value;
+            });
+
+            scope.openInformation = function () {
+                dialogService.open({
+                    template: "/App_Plugins/RankOne/dialogs/information/information.html",
+                    show: true,
+                    dialogData: {
+                        result: scope.result
+                    }
+                });
+            };
         }
     }
 });

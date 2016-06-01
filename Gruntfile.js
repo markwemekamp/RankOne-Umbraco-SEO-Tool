@@ -79,7 +79,7 @@ module.exports = function(grunt) {
             },
             plugin: {
                 cwd: 'src/RankOne.SEO.Tool/Web/UI/App_Plugins/RankOne/',
-                src: ['package.manifest', 'lang/*.*', 'editors/**/*.html', 'dialogs/**/*.html'],
+                src: ['package.manifest', 'lang/*.*', 'editors/**/*.html', 'dialogs/**/*.html', 'images/*.*'],
                 dest: '<%= basePath %>',
                 expand: true
             },

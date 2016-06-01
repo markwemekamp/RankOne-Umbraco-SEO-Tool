@@ -41,7 +41,7 @@ namespace RankOne.Business.Analyzers.Keywords
                 else
                 {
                     var resultRule = new ResultRule();
-                    resultRule.Code = "keywordcontentanalyzer_content_contains_keyword";
+                    resultRule.Alias = "keywordcontentanalyzer_content_contains_keyword";
                     resultRule.Type = ResultType.Success;
                     resultRule.Tokens.Add(matches.Count.ToString());
                     result.ResultRules.Add(resultRule);
