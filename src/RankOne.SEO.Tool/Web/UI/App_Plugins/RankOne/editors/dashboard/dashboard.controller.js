@@ -1,7 +1,7 @@
 ﻿(function () {
 
     // Controller
-    function rankOne($scope, $http, webresultService, editorState, scoreService, resultService, dialogService, notificationsService) {
+    function rankOne($scope, $http, webresultService, editorState, scoreService, resultService, dialogService, notificationsService, localizationService) {
 
         $scope.analyzeResults = null;
         $scope.filter = null;
@@ -9,40 +9,48 @@
         $scope.load = function () {
             $scope.loading = true;
 
-            var url = '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?id={id}&focusKeyword=' + $scope.model.value.focusKeyword;
-            webresultService.GetResult(editorState.current, url).then(function (response) {
-
-                $scope.analyzeResults = response;
-
-                var results = resultService.SetMetadata($scope.analyzeResults);
-
-                $scope.overallScore = scoreService.getOverallScore(results);
-                $scope.errorCount = scoreService.getTotalErrorCount(results);
-                $scope.warningCount = scoreService.getTotalWarningCount(results);
-                $scope.hintCount = scoreService.getTotalHintCount(results);
-                $scope.successCount = scoreService.getTotalSuccessCount(results);
-
+            if (!editorState.current.published) {
+                $scope.error = localizationService.localize("error_not_published");
                 $scope.loading = false;
+            } else {
+                var url = '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?id={id}&focusKeyword=' +
+                    $scope.model.value.focusKeyword;
+                webresultService.GetResult(editorState.current, url)
+                    .then(function(response) {
 
-                $scope.color = '#4db53c';
-                if ($scope.overallScore < 33) {
-                    $scope.color = '#dd2222';
-                }
-                else if ($scope.overallScore < 66) {
-                    $scope.color = '#dd9d22';
-                }
+                            $scope.analyzeResults = response;
 
-                $("#score").circliful({
-                    percent: $scope.overallScore,
-                    fontColor: '#000000',
-                    foregroundColor: $scope.color,
-                    percentageTextSize: 30
-                });
+                            var results = resultService.SetMetadata($scope.analyzeResults);
 
-            }, function (message) {
-                $scope.error = message;
-                $scope.loading = false;
-            });
+                            $scope.overallScore = scoreService.getOverallScore(results);
+                            $scope.errorCount = scoreService.getTotalErrorCount(results);
+                            $scope.warningCount = scoreService.getTotalWarningCount(results);
+                            $scope.hintCount = scoreService.getTotalHintCount(results);
+                            $scope.successCount = scoreService.getTotalSuccessCount(results);
+
+                            $scope.loading = false;
+
+                            $scope.color = '#4db53c';
+                            if ($scope.overallScore < 33) {
+                                $scope.color = '#dd2222';
+                            } else if ($scope.overallScore < 66) {
+                                $scope.color = '#dd9d22';
+                            }
+
+                            $("#score")
+                                .circliful({
+                                    percent: $scope.overallScore,
+                                    fontColor: '#000000',
+                                    foregroundColor: $scope.color,
+                                    percentageTextSize: 30
+                                });
+
+                        },
+                        function(message) {
+                            $scope.error = message;
+                            $scope.loading = false;
+                        });
+            }
         }
 
         $scope.openSettings = function () {
