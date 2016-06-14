@@ -251,6 +251,7 @@
     <Content Include="Web\UI\App_Plugins\RankOne\filters\typeFilter.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\information\information.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\information\information.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\lang\da-dk.xml" />
     <Content Include="Web\UI\App_Plugins\RankOne\lang\en-us.xml">
       <SubType>Designer</SubType>
     </Content>

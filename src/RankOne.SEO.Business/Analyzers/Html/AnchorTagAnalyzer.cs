@@ -20,7 +20,14 @@ namespace RankOne.Business.Analyzers.Html
 
             if (anchorTagCount > anchorWithTitleTagCount)
             {
-                result.AddResultRule("anchorTagAnalyzer_missing_title_tags", ResultType.Hint);
+                var resultRule = new ResultRule
+                {
+                    Alias = "anchorTagAnalyzer_missing_title_tags",
+                    Type = ResultType.Hint
+                };
+                var numberOfTagsMissingTitle = anchorTagCount - anchorWithTitleTagCount;
+                resultRule.Tokens.Add(numberOfTagsMissingTitle.ToString());
+                result.ResultRules.Add(resultRule);
             }
             else
             {

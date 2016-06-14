@@ -96,7 +96,7 @@
     <key alias="no_title_value">Title tag is empty</key>
     <key alias="title_too_long">Title is longer than 60 characters, anything longer than 60 characters will be concatenated.</key>
     <key alias="title_too_short">Title is shorter than 5 characters.</key>
-    <key alias="title_success">The title is set correctly</key>
+    <key alias="title_success">The title is set correctly. The length is between 10 and 60 characters.</key>
   </area>
 
   <area alias="metadescriptionanalyzer">
@@ -153,13 +153,6 @@
     <key alias="keywords_set">The keywords are set for this page.</key>
   </area>
 
-  <area alias="headinganalyzer">
-    <key alias="title">Headings</key>
-    <key alias="no_h1_tag">The page doesn't contain a h1 tag</key>
-    <key alias="multiple_h1_tags">The page contains multiple h1 tags</key>
-    <key alias="one_h1_tag">Perfect! The page contains one h1 tags</key>
-  </area>
-
   <area alias="deprecatedtaganalyzer">
     <key alias="title">Deprecated tags</key>
     <key alias="no_deprecated_tags_found">The page doesn't contain any deprecated html tags</key>
@@ -177,15 +170,15 @@
 
   <area alias="imagetaganalyzer">
     <key alias="title">Image tags</key>
-    <key alias="missing_alt_tags">Not all images have an alternative text</key>
-    <key alias="missing_title_tags">Not all images have a title text</key>
+    <key alias="missing_alt_tags">%0% images are missing an alternative text</key>
+    <key alias="missing_title_tags">%0% images are missing a title text</key>
     <key alias="alt_and_title_tags_present">Perfect! All the image tags contain an alternative and title text</key>
   </area>
 
   <area alias="anchorTagAnalyzer">
     <key alias="title">Anchor tags</key>
-    <key alias="missing_title_tags">Not all Anchors have a title text</key>
-    <key alias="all_title_tags_present">All anchor tags are provided with a title tag</key>
+    <key alias="missing_title_tags">%0% anchor tags are missing a title attribute with value</key>
+    <key alias="all_title_tags_present">All anchor tags are provided with a title attribute</key>
   </area>
 
   <area alias="serverresponseanalyzer">
@@ -250,13 +243,13 @@
   <area alias="keywordheadinganalyzer">
     <key alias="title">Heading keyword</key>
     <key alias="keyword_used_in_heading">Keyword is used %0% time(s) in a heading (h1, h2, h3, h4)</key>
-    <key alias="keyword_not_used_in_heading">Keyword should be used at least once in a heading (h1, h2, h3, h4)</key>
+    <key alias="keyword_not_used_in_heading">Keyword should be used at least once in a heading (h1, h2, h3, h4) tag</key>
   </area>
 
   <area alias="gzipanalyzer">
     <key alias="title">Gzip</key>
-    <key alias="gzip_enabled">Gzip is enabled</key>
-    <key alias="gzip_disabled">Gzip is not enabled</key>
+    <key alias="gzip_enabled">Gzip is enabled on the webserver</key>
+    <key alias="gzip_disabled">Gzip is not enabled on the webserver</key>
   </area>
 
   <area alias="additionalcallanalyzer">

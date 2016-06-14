@@ -11,8 +11,7 @@
                 'metadescriptionanalyzer',
                 'metakeywordanalyzer',
                 'imagetaganalyzer',
-                'deprecatedtaganalyzer',
-                'headinganalyzer'
+                'deprecatedtaganalyzer'
             ]
         },
         {

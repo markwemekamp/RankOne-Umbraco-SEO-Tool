@@ -20,14 +20,28 @@ namespace RankOne.Business.Analyzers.Html
 
             if (imageTagCount > imagesWithAltTagCount)
             {
-                result.AddResultRule("imagetaganalyzer_missing_alt_tags", ResultType.Warning);
+                var resultRule = new ResultRule
+                {
+                    Alias = "imagetaganalyzer_missing_alt_tags",
+                    Type = ResultType.Hint
+                };
+                var numberOfTagsMissingAlt = imageTagCount - imagesWithAltTagCount;
+                resultRule.Tokens.Add(numberOfTagsMissingAlt.ToString());
+                result.ResultRules.Add(resultRule);
             }
 
             var imagesWithTitleTagCount = imageTags.Count(x => HtmlHelper.GetAttribute(x, "title") != null && !string.IsNullOrWhiteSpace(HtmlHelper.GetAttribute(x, "title").Value));
 
             if (imageTagCount > imagesWithTitleTagCount)
             {
-                result.AddResultRule("imagetaganalyzer_missing_title_tags", ResultType.Hint);
+                var resultRule = new ResultRule
+                {
+                    Alias = "imagetaganalyzer_missing_title_tags",
+                    Type = ResultType.Hint
+                };
+                var numberOfTagsMissingTitle = imageTagCount - imagesWithTitleTagCount;
+                resultRule.Tokens.Add(numberOfTagsMissingTitle.ToString());
+                result.ResultRules.Add(resultRule);
             }
 
             if (imageTagCount == imagesWithAltTagCount && imageTagCount == imagesWithTitleTagCount)
