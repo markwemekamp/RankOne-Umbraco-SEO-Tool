@@ -47,7 +47,9 @@
     </key>
     <key alias="top_words">
       <![CDATA[
-      There is likely no optimal keyword density (search engine algorithms have evolved beyond keyword density metrics as a significant ranking factor). It can be useful, however, to note which keywords appear most often on your page and if they reflect the intended topic of your page. More importantly, the keywords on your page should appear within natural sounding and grammatically correct copy.<br/><br/>
+      There is likely no optimal keyword density (search engine algorithms have evolved beyond keyword density metrics as a significant ranking factor). 
+      It can be useful, however, to note which keywords appear most often on your page and if they reflect the intended topic of your page. 
+      More importantly, the keywords on your page should appear within natural sounding and grammatically correct copy.<br/><br/>
       
       The focus keyword for this page: <strong>%0%</strong><br/><br/>
       
@@ -152,7 +154,7 @@
   </area>
 
   <area alias="headinganalyzer">
-    <key alias="title">Headers</key>
+    <key alias="title">Headings</key>
     <key alias="no_h1_tag">The page doesn't contain a h1 tag</key>
     <key alias="multiple_h1_tags">The page contains multiple h1 tags</key>
     <key alias="one_h1_tag">Perfect! The page contains one h1 tags</key>
@@ -187,7 +189,7 @@
   </area>
 
   <area alias="serverresponseanalyzer">
-    <key alias="title">Server response time analyzer</key>
+    <key alias="title">Server response time</key>
     <key alias="responsetime">
       <![CDATA[
       The server response time was %0%ms
@@ -196,7 +198,7 @@
   </area>
 
   <area alias="htmlsizeanalyzer">
-    <key alias="title">Html size analyzer</key>
+    <key alias="title">Html size</key>
     <key alias="html_size_small">
       <![CDATA[
       Html size %0%
@@ -210,7 +212,7 @@
   </area>
 
   <area alias="keywordtitleanalyzer">
-    <key alias="title">Title keyword analyzer</key>
+    <key alias="title">Title keyword</key>
     <key alias="no_title_tag">The page doesn't contain a title tag</key>
     <key alias="multiple_title_tags">The page contains title tags</key>
     <key alias="title_doesnt_contain_keyword">Title doesn't contain the keyword</key>
@@ -219,7 +221,7 @@
   </area>
 
   <area alias="keywordmetadescriptionanalyzer">
-    <key alias="title">Meta description keyword analyzer</key>
+    <key alias="title">Meta description keyword</key>
     <key alias="no_meta_tags">The page doesnt contain any meta tags</key>
     <key alias="no_meta_description_tag">The page doesnt contain a meta description tag</key>
     <key alias="multiple_meta_description_tags">The page contains multiple meta description tags</key>
@@ -229,14 +231,14 @@
   </area>
 
   <area alias="keywordurlanalyzer">
-    <key alias="title">Url keyword analyzer</key>
+    <key alias="title">Url keyword</key>
     <key alias="root_node">Page doens't have a sub url, check passed</key>
     <key alias="url_contains_keyword">Url contains the keyword</key>
     <key alias="url_doesnt_contain_keyword">Url doesn't contain the keyword</key>
   </area>
 
   <area alias="keywordcontentanalyzer">
-    <key alias="title">Content keyword analyzer</key>
+    <key alias="title">Content keyword</key>
     <key alias="no_body_tag">The page contains no body tag</key>
     <key alias="multiple_body_tags">The page contains multiple body tags</key>
     <key alias="content_doesnt_contain_keyword">The content doesn't contain the keyword</key>
@@ -246,33 +248,32 @@
   </area>
 
   <area alias="keywordheadinganalyzer">
-    <key alias="title">Heading keyword analyzer</key>
+    <key alias="title">Heading keyword</key>
     <key alias="keyword_used_in_heading">Keyword is used %0% time(s) in a heading (h1, h2, h3, h4)</key>
     <key alias="keyword_not_used_in_heading">Keyword should be used at least once in a heading (h1, h2, h3, h4)</key>
   </area>
 
-
   <area alias="gzipanalyzer">
-    <key alias="title">Gzip analyzer</key>
+    <key alias="title">Gzip</key>
     <key alias="gzip_enabled">Gzip is enabled</key>
     <key alias="gzip_disabled">Gzip is not enabled</key>
   </area>
 
   <area alias="additionalcallanalyzer">
-    <key alias="title">Additional call analyzer</key>
+    <key alias="title">Additional calls</key>
     <key alias="more_than_30_calls">%0% calls have been made to resources. Try bundling javascript and css files.</key>
     <key alias="more_than_15_calls">%0% calls have been made to resources. Try bundling javascript and css files.</key>
     <key alias="less_than_15_calls">%0% calls have been made to resources.</key>
   </area>
 
   <area alias="cssminificationanalyzer">
-    <key alias="title">CSS Minification analyzer</key>
+    <key alias="title">CSS Minification</key>
     <key alias="file_not_minified">The file %0% doesn't seem to be minified</key>
     <key alias="all_minified">All local css files seem to be minified</key>
   </area>
 
   <area alias="javascriptminificationanalyzer">
-    <key alias="title">Javascript Minification analyzer</key>
+    <key alias="title">Javascript Minification</key>
     <key alias="file_not_minified">The file %0% doesn't seem to be minified</key>
     <key alias="all_minified">All local javascript files seem to be minified</key>
   </area>

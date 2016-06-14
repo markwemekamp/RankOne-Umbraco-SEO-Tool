@@ -44,7 +44,7 @@
           <Tab>SEO</Tab>
           <SortOrder>0</SortOrder>
           <Mandatory>False</Mandatory>
-          <Description><![CDATA[The title of the page, this is also the first text in a google search result. The ideal length is between 40 and 60 characters]]></Description>
+          <Description><![CDATA[The title of the page, this is also the first text in a google search result. The ideal length is shorter than 60 characters]]></Description>
         </GenericProperty>
         <GenericProperty>
           <Name>Meta keywords</Name>
@@ -64,7 +64,7 @@
           <Tab>SEO</Tab>
           <SortOrder>1</SortOrder>
           <Mandatory>False</Mandatory>
-          <Description><![CDATA[A brief description of the content on your page. This text is shown below the title in a google search result. The ideal length is between 130 and 155 characters]]></Description>
+          <Description><![CDATA[A brief description of the content on your page. This text is shown below the title in a google search result. The ideal length is between 50 and 150 characters]]></Description>
         </GenericProperty>
       </GenericProperties>
       <Tabs>
