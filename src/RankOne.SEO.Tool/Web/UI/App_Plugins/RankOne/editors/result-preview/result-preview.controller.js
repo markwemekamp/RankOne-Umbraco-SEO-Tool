@@ -7,7 +7,7 @@
             $scope.loading = true;
 
 
-            var url = '/umbraco/backoffice/api/RankOneApi/GetPageInformation?url={url}';
+            var url = '/umbraco/backoffice/api/RankOneApi/GetPageInformation?id={id}';
             webresultService.GetResult(editorState.current, url).then(function (response) {
 
                 $scope.result = response;

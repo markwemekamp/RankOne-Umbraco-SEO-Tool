@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using System.Net;
 using HtmlAgilityPack;
 using RankOne.Business.Models;
+using Umbraco.Web;
 
 namespace RankOne.Business.Services
 {
@@ -14,14 +14,15 @@ namespace RankOne.Business.Services
             HtmlHelper = new HtmlHelper();
         }
 
-        public PageInformation GetpageInformation(string url)
+        public PageInformation GetpageInformation(int id)
         {
-            var pageInformation = new PageInformation
-            {
-                Url = url
-            };
+            var pageInformation = new PageInformation();
 
-            var html = new WebClient().DownloadString(url);
+            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+
+            var htmlObject = umbracoHelper.RenderTemplate(id);
+
+            var html = htmlObject.ToHtmlString();
 
             var htmlParser = new HtmlDocument();
             htmlParser.LoadHtml(html);

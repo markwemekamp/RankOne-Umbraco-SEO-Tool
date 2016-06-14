@@ -1,9 +1,9 @@
-﻿using System.Diagnostics;
-using System.Net;
+﻿using System.Net;
 using System.Text;
 using HtmlAgilityPack;
 using RankOne.Business.Models;
 using RankOne.Business.Summaries;
+using Umbraco.Web;
 
 namespace RankOne.Business.Services
 {
@@ -16,16 +16,12 @@ namespace RankOne.Business.Services
             _htmlParser = new HtmlDocument();
         }
 
-        public PageAnalysis AnalyzeWebPage(string url, string focusKeyword)
+        public PageAnalysis AnalyzeWebPage(int id, string focusKeyword)
         {
-            var webpage = new PageAnalysis
-            {
-                Url = url,
-            };
-
+            var webpage = new PageAnalysis();
             try
             {
-                webpage.HtmlResult = GetHtml(url);
+                webpage.HtmlResult = GetHtml(id);
 
                 var keywordAnalyzer = new KeywordSummary(webpage.HtmlResult);
                 keywordAnalyzer.FocusKeyword = focusKeyword;
@@ -56,24 +52,21 @@ namespace RankOne.Business.Services
             return webpage;
         }
 
-        private HtmlResult GetHtml(string url)
+        private HtmlResult GetHtml(int id)
         {
-            var stopwatch = new Stopwatch();
+            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
-            stopwatch.Start();
-
-            var html = new WebClient().DownloadString(url);
-
-            stopwatch.Stop();
+            var node = umbracoHelper.TypedContent(id);
+            var htmlObject = umbracoHelper.RenderTemplate(id);
+            var html = htmlObject.ToHtmlString();
 
             _htmlParser.LoadHtml(html);
 
             return new HtmlResult
             {
-                Url = url,
+                Url = node.UrlAbsolute(),
                 Html = html,
                 Size = Encoding.ASCII.GetByteCount(html),
-                ServerResponseTime = stopwatch.ElapsedMilliseconds,
                 Document = _htmlParser.DocumentNode
             };
         }

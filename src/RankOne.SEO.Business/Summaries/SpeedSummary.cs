@@ -17,9 +17,6 @@ namespace RankOne.Business.Summaries
         {
             var analysis = new Analysis();
 
-            var serverResponseAnalyzer = new ServerResponseAnalyzer();
-            analysis.Results.Add(serverResponseAnalyzer.Analyse(_htmlResult.Document, _htmlResult.ServerResponseTime));
-
             var gzipAnalyzer = new GZipAnalyzer();
             analysis.Results.Add(gzipAnalyzer.Analyse(_htmlResult.Document, _htmlResult.Url));
 

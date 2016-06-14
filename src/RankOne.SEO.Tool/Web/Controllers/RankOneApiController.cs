@@ -8,32 +8,30 @@ namespace RankOne.Web.Controllers
     public class RankOneApiController : UmbracoAuthorizedApiController
     {
         [HttpGet]
-        public PageAnalysisVm AnalyzeUrl(string url, string focusKeyword = null)
+        public PageAnalysisVm AnalyzeUrl(int id, string focusKeyword = null)
         {
             var analyzeService = new AnalyzeService();
-            var result =  analyzeService.AnalyzeWebPage(url, focusKeyword);
+            var result =  analyzeService.AnalyzeWebPage(id, focusKeyword);
 
             var analysis = new PageAnalysisVm
             {
                 AnalyzerResults = result.AnalyzerResults,
                 HtmlResult = new HtmlResultVm
                 {
-                    ServerResponseTime = result.HtmlResult.ServerResponseTime,
                     Url = result.HtmlResult.Url,
                     Size = result.HtmlResult.Size
                 },
-                Status = result.Status,
-                Url = result.Url
+                Status = result.Status
             };
 
             return analysis;
         }
 
         [HttpGet]
-        public PageInformation GetPageInformation(string url)
+        public PageInformation GetPageInformation(int id)
         {
             var pageInformationService = new PageInformationService();
-            var result = pageInformationService.GetpageInformation(url);
+            var result = pageInformationService.GetpageInformation(id);
             return result;
         } 
     }

@@ -9,7 +9,7 @@
         $scope.load = function () {
             $scope.loading = true;
 
-            var url = '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?url={url}&focusKeyword=' + $scope.model.value.focusKeyword;
+            var url = '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?id={id}&focusKeyword=' + $scope.model.value.focusKeyword;
             webresultService.GetResult(editorState.current, url).then(function (response) {
 
                 $scope.analyzeResults = response;

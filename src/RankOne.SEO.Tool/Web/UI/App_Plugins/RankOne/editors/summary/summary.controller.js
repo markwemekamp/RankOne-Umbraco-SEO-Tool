@@ -1,14 +1,14 @@
 ﻿(function () {
 
     // Controller
-    function rankOne($scope, $http, editorState, resultService, webresultService, localizationService) {
+    function rankOne($scope, $http, editorState, resultService, webresultService) {
 
         $scope.sortOrder = ['-errorCount', '-warningCount', '-hintCount'];
 
         $scope.load = function () {
             $scope.loading = true;
 
-            var url = '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?url={url}';
+            var url = '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?id={id}';
             webresultService.GetResult(editorState.current, url)
                 .then(function(response) {
                         $scope.analyzeResults = response;
