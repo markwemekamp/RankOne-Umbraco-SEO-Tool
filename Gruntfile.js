@@ -67,7 +67,7 @@ module.exports = function(grunt) {
         copy: {
             dll: {
                 cwd: 'src/RankOne.SEO.Tool/bin/Release/',
-                src: ['*.dll', '!HtmlAgilityPack.dll'],
+                src: ['RankOne.dll', 'RankOne.Business.dll'],
                 dest: '<%= dest %>/bin/',
                 expand: true
             },
@@ -75,6 +75,12 @@ module.exports = function(grunt) {
                 cwd: 'src/RankOne.SEO.Tool/bin/Debug/',
                 src: ['*.dll', '*.pdb'],
                 dest: '<%= dest %>/bin/',
+                expand: true
+            },
+            views: {
+                cwd: 'src/RankOne.SEO.Tool/Web/UI/Views/',
+                src: ["*.cshtml", "**/*.cshtml"],
+                dest: '<%= dest %>/Views/',
                 expand: true
             },
             plugin: {
@@ -182,8 +188,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['clean', 'msbuild:dist', 'less', 'ngtemplates', 'concat', 'copy:dll', 'copy:plugin']);
-    grunt.registerTask('develop', ['clean', 'msbuild:dev', 'less', 'ngtemplates', 'concat', 'copy:debug', 'copy:plugin', 'touch']);
+    grunt.registerTask('default', ['clean', 'msbuild:dist', 'less', 'ngtemplates', 'concat', 'copy:dll', 'copy:views', 'copy:plugin']);
+    grunt.registerTask('develop', ['clean', 'msbuild:dev', 'less', 'ngtemplates', 'concat', 'copy:debug', 'copy:views', 'copy:plugin', 'touch']);
     grunt.registerTask('nuget', ['copy:nuget', 'template:nuspec', 'nugetpack']);
     grunt.registerTask('package', ['clean:tmp', 'default', 'nuget', 'copy:umbraco', 'umbracoPackage', 'clean:tmp']);
 };

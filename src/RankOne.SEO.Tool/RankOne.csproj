@@ -290,6 +290,7 @@
     <None Include="less\badges.less" />
     <None Include="less\result.less" />
     <None Include="Web\UI\App_Plugins\RankOne\package.manifest" />
+    <None Include="Web\UI\Views\Partials\RankOne - Seo Properties.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
