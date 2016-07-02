@@ -1,5 +1,5 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 
-<title>@CurrentPage._seoTitle</title>
-<meta name="description" content="@CurrentPage._seoMetaDescription">
-<meta name="keywords" content="@CurrentPage._seoMetaKeywords">
+<title>@Umbraco.Field("seoTitle", altFieldAlias: "pageName")</title>
+<meta name="description" content="@Umbraco.Field("seoMetaDescription", recursive: true)">
+<meta name="keywords" content="@Umbraco.Field("seoMetaKeywords", recursive: true)">

@@ -45,7 +45,7 @@ module.exports = function(grunt) {
         ngtemplates: {
             app: {
                 cwd: 'src/RankOne.SEO.Tool/Web/UI/App_Plugins/RankOne',
-                src: ['**/*.html', '!editors/**.*.html', '!dialogs/**/*.html'],
+                src: ['**/*.html', '!editors/**/*.html', '!dialogs/**/*.html', '!dashboards/*.html'],
                 dest: '<%= basePath %>/js/templates.js',
                 options: {
                     prefix: '/App_Plugins/RankOne/',
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
         copy: {
             dll: {
                 cwd: 'src/RankOne.SEO.Tool/bin/Release/',
-                src: ['RankOne.dll', 'RankOne.Business.dll'],
+                src: ['RankOne.dll'],
                 dest: '<%= dest %>/bin/',
                 expand: true
             },
@@ -85,7 +85,7 @@ module.exports = function(grunt) {
             },
             plugin: {
                 cwd: 'src/RankOne.SEO.Tool/Web/UI/App_Plugins/RankOne/',
-                src: ['package.manifest', 'lang/*.*', 'editors/**/*.html', 'dialogs/**/*.html', 'images/*.*'],
+                src: ['package.manifest', 'lang/*.*', 'editors/**/*.html', 'dialogs/**/*.html','dashboards/**/*.html', 'images/*.*'],
                 dest: '<%= basePath %>',
                 expand: true
             },

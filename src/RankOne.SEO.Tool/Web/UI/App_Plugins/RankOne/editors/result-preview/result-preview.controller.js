@@ -1,7 +1,7 @@
 ﻿(function () {
 
     // Controller
-    function rankOne($scope, $http, editorState, webresultService, localizationService) {
+    function rankOne($scope, editorState, webresultService, localizationService) {
 
         $scope.load = function () {
             $scope.loading = true;
@@ -11,7 +11,7 @@
                 $scope.loading = false;
             } else {
                 var url = '/umbraco/backoffice/api/RankOneApi/GetPageInformation?id={id}';
-                webresultService.GetResult(editorState.current, url)
+                webresultService.GetResultFromEditorState(editorState.current, url)
                     .then(function(response) {
 
                             $scope.result = response;

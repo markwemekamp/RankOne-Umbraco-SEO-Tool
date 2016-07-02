@@ -7,15 +7,15 @@
             result: '='
         },
         link: function (scope) {
-            if (scope.result.errorCount > 0) {
+            if (scope.result.ErrorCount > 0) {
                 scope.cssClass = 'error-badge';
-                scope.number = scope.result.errorCount;
-            }else if (scope.result.warningCount > 0) {
+                scope.number = scope.result.ErrorCount;
+            }else if (scope.result.WarningCount > 0) {
                 scope.cssClass = 'warning-badge';
-                scope.number = scope.result.warningCount;
-            }else if (scope.result.hintCount > 0) {
+                scope.number = scope.result.WarningCount;
+            }else if (scope.result.HintCount > 0) {
                 scope.cssClass = 'hint-badge';
-                scope.number = scope.result.hintCount;
+                scope.number = scope.result.HintCount;
             }
         }
     }

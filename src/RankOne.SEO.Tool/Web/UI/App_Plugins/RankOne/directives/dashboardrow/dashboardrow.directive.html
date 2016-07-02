@@ -1,0 +1,29 @@
+    <div class="segment row-title">
+        <label class="indentation-{{level}}">
+            <a href="#/content/content/edit/{{row.NodeInformation.Id}}">{{row.NodeInformation.Name}}</a>
+        </label>
+    </div>
+
+    <div class="segment score">
+        <span ng-if="row.PageScore">{{row.PageScore.OverallScore}}%</span>
+    </div>
+
+    <div class="segment">
+        <span ng-if="!row.PageScore" title="There is no information available, try clicking the Refresh button.">No information available</span>
+        <span ng-if="row.PageScore.ErrorCount" class="badge error-badge" title="{{row.PageScore.ErrorCount}} errors">
+            {{row.PageScore.ErrorCount}}
+        </span>
+        <span ng-if="row.PageScore.WarningCount" class="badge warning-badge" title="{{row.PageScore.WarningCount}} warnings">
+            {{row.PageScore.WarningCount}}
+        </span>
+        <span ng-if="row.PageScore.HintCount" class="badge hint-badge" title="{{row.PageScore.HintCount}} hints">
+            {{row.PageScore.HintCount}}
+        </span>
+    </div>
+
+    <div class="segment">
+        <span ng-if="row.FocusKeyword">{{row.FocusKeyword}}</span>
+        <span ng-if="!row.FocusKeyword">No focuskeyword set</span>
+    </div>
+
+</div>

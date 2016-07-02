@@ -8,15 +8,15 @@
         }, link: function (scope) {
             scope.colorClass = 'info';
             scope.icon = 'check';
-            if (scope.result.errorCount > 0) {
+            if (scope.result.ErrorCount > 0) {
                 scope.colorClass = 'error';
                 scope.icon = 'delete';
             }
-            else if (scope.result.warningCount > 0) {
+            else if (scope.result.WarningCount > 0) {
                 scope.colorClass = 'warning';
                 scope.icon = 'alert';
             }
-            else if (scope.result.hintCount > 0) {
+            else if (scope.result.HintCount > 0) {
                 scope.colorClass = 'pointer';
                 scope.icon = 'lightbulb-active';
             }

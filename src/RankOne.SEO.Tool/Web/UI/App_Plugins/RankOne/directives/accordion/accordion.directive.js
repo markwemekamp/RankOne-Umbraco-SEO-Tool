@@ -11,13 +11,13 @@
         link: function (scope) {
 
             scope.$watch('filter', function () {
-                scope.expanded = scope.result && ((scope.filter == 'error' && scope.result.errorCount > 0) ||
-                    (scope.filter == 'warning' && scope.result.warningCount > 0) ||
-                    (scope.filter == 'hint' && scope.result.hintCount > 0) ||
-                    (scope.filter == 'success' && scope.result.successCount > 0));
+                scope.expanded = scope.result && ((scope.filter == 'error' && scope.result.ErrorCount > 0) ||
+                    (scope.filter == 'warning' && scope.result.WarningCount > 0) ||
+                    (scope.filter == 'hint' && scope.result.HintCount > 0) ||
+                    (scope.filter == 'success' && scope.result.SuccessCount > 0));
             });
 
-            scope.sortOrder = ['-errorCount', '-warningCount', '-hintCount'];
+            scope.sortOrder = ['-ErrorCount', '-WarningCount', '-HintCount'];
 
             var orderedItems = $filter('orderBy')(scope.result.Analysis.Results, scope.sortOrder);
 

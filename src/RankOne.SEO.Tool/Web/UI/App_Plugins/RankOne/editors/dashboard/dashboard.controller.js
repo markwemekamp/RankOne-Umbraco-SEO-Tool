@@ -1,7 +1,7 @@
 ﻿(function () {
 
     // Controller
-    function rankOne($scope, $http, webresultService, editorState, scoreService, resultService, dialogService, notificationsService, localizationService) {
+    function rankOne($scope, webresultService, editorState, dialogService, notificationsService, localizationService) {
 
         $scope.analyzeResults = null;
         $scope.filter = null;
@@ -13,20 +13,18 @@
                 $scope.error = localizationService.localize("error_not_published");
                 $scope.loading = false;
             } else {
-                var url = '/umbraco/backoffice/api/RankOneApi/AnalyzeUrl?id={id}&focusKeyword=' +
+                var url = '/umbraco/backoffice/api/RankOneApi/AnalyzeNode?id={id}&focusKeyword=' +
                     $scope.model.value.focusKeyword;
-                webresultService.GetResult(editorState.current, url)
+                webresultService.GetResultFromEditorState(editorState.current, url)
                     .then(function(response) {
 
                             $scope.analyzeResults = response;
 
-                            var results = resultService.SetMetadata($scope.analyzeResults);
-
-                            $scope.overallScore = scoreService.getOverallScore(results);
-                            $scope.errorCount = scoreService.getTotalErrorCount(results);
-                            $scope.warningCount = scoreService.getTotalWarningCount(results);
-                            $scope.hintCount = scoreService.getTotalHintCount(results);
-                            $scope.successCount = scoreService.getTotalSuccessCount(results);
+                            $scope.overallScore = $scope.analyzeResults.Score.OverallScore;
+                            $scope.errorCount = $scope.analyzeResults.Score.ErrorCount;
+                            $scope.warningCount = $scope.analyzeResults.Score.WarningCount;
+                            $scope.hintCount = $scope.analyzeResults.Score.HintCount;
+                            $scope.successCount = $scope.analyzeResults.Score.SuccessCount;
 
                             $scope.loading = false;
 
@@ -59,7 +57,7 @@
                 show: true,
                 callback: function (data) {
                     $scope.model.value = data;
-                    notificationsService.warning("Changes pending", "Changes will be saved when the node is saved");
+                    notificationsService.warning(localizationService.localize("warning_changes_pending_title"), localizationService.localize("warning_changes_pending_text"));
                 },
                 dialogData: {
                     configuration: $scope.model.value

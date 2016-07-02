@@ -11,6 +11,11 @@
     <key alias="page_error">The page returned a %0% status</key>
   </area>
 
+  <area alias="warning">
+    <key alias="changes_pending_title">Changes pending</key>
+    <key alias="changes_pending_text">Changes will be saved when the node is saved</key>
+  </area>
+
   <area alias="dashboard">
     <key alias="title">SEO Information</key>
     <key alias="no_results">No results</key>
@@ -36,7 +41,7 @@
   </area>
 
   <area alias="htmlanalyzer">
-    <key alias="title">Markup</key>
+    <key alias="title">Template</key>
   </area>
   <area alias="keywordanalyzer">
     <key alias="title">Keywords</key>
@@ -247,9 +252,21 @@
   </area>
 
   <area alias="gzipanalyzer">
-    <key alias="title">Gzip</key>
+    <key alias="title">Gzip compression</key>
     <key alias="gzip_enabled">Gzip is enabled on the webserver</key>
     <key alias="gzip_disabled">Gzip is not enabled on the webserver</key>
+    <key alias="guidelines">
+      <![CDATA[
+      <p>
+        Compressing your html, css and javascript files causes a faster page load and this results in a better user experience as well as a better SEO score.
+      </p>
+      <strong>Enabling Gzip on your server</strong>
+      <p>
+        To enable gzip compression on your server you'll need to edit the configuration of itself. Iis.net provides a  well documented tutorial on how to do 
+        this, you can find it <a href="https://www.iis.net/configreference/system.webserver/httpcompression" target="_blank"><u>here</u></a>.
+      </p>
+      ]]>
+    </key>
   </area>
 
   <area alias="additionalcallanalyzer">
