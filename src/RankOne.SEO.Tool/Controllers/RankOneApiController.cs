@@ -67,6 +67,7 @@ namespace RankOne.Controllers
         }
 
         [HttpGet]
+        public IEnumerable<HiearchyNode> Initialize()
         {
             if (!_nodeReportRepository.DatabaseExists())
             {

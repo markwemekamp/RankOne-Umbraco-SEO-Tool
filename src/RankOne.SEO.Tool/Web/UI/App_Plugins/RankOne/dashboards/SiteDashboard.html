@@ -1,0 +1,33 @@
+﻿<div id="rankOne" ng-controller="rankOneSiteDashboard" class="rank-one-dashboard">
+
+    <umb-load-indicator ng-show="loading"></umb-load-indicator>
+
+    <div ng-show="error">
+        {{error}}
+    </div>
+
+    <div style="max-width: 800px; text-align: center; margin: auto; padding: 20px; min-height: 800px;" ng-show="!loading && !initialized">
+
+        <div class="installer-top">
+            <i style="font-size: 80px" class="icon icon-bar-chart"></i>
+            <h3>RankOne Dashboard</h3>
+        </div>
+
+        <div class="step-one" ng-hide="state">
+
+            <p style="font-size: 16px; line-height: 1.5; color: #4c4c4c;">
+                See the pagescores of all the published pages in your Umbraco installation in one overview, even the ones 
+                without the dashboard or summary property installed.
+            </p>
+
+            <button ng-click="initialize()" class="btn publish btn-install">Initialize</button>
+        </div>
+    </div>
+
+    <button ng-click="refresh()" ng-show="!loading && !error && initialized" class="btn">Refresh</button>
+
+    <div ng-show="!loading && !error && initialized && pageHierarchy" class="dashboard-row-container">
+        <dashboardrow row="page" level="1" ng-repeat="page in pageHierarchy"/>
+    </div>
+
+</div>
