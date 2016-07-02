@@ -16,7 +16,7 @@
         <div class="step-one" ng-hide="state">
 
             <p style="font-size: 16px; line-height: 1.5; color: #4c4c4c;">
-                See the pagescores of all the published pages in your Umbraco installation in one overview, even the ones 
+                See the pagescores of all the published pages in your Umbraco installation in one overview, even the ones
                 without the dashboard or summary property installed.
             </p>
 
@@ -24,10 +24,20 @@
         </div>
     </div>
 
-    <button ng-click="refresh()" ng-show="!loading && !error && initialized" class="btn">Refresh</button>
 
-    <div ng-show="!loading && !error && initialized && pageHierarchy" class="dashboard-row-container">
-        <dashboardrow row="page" level="1" ng-repeat="page in pageHierarchy"/>
+    <div ng-show="!loading && !error && initialized && pageHierarchy">
+
+        <div id="score"></div>
+        <div class="summary clearfix">
+            <p>
+                The avarage score of all the pages analyzed is {{overallScore}}%. Click on the row to view extra information on potential problems.
+                To refresh the score, click the refresh button below.
+            </p>
+            <button ng-click="refresh()" class="btn btn-primary">Refresh</button>
+        </div>
+
+        <div class="dashboard-row-container">
+            <dashboardrow row="page" level="1" ng-repeat="page in pageHierarchy" />
+        </div>
     </div>
-
 </div>
