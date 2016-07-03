@@ -31,9 +31,10 @@
         <div class="summary clearfix">
             <p>
                 The avarage score of all the pages analyzed is {{overallScore}}%. Click on the row to view extra information on potential problems.
-                To refresh the score, click the refresh button below.
+                To add a keyword to a page you can either add the RankOne Dashboard property editor to the page and set it there or add a property named "keyword" to your document type.<br/><br/>
+                The data you see below is <strong>cached</strong>, to refresh the score, click the refresh button below.
             </p>
-            <button ng-click="refresh()" class="btn btn-primary">Refresh</button>
+            <button ng-click="refresh()" class="btn btn-primary refresh">Refresh</button>
         </div>
 
         <div class="dashboard-row-container">

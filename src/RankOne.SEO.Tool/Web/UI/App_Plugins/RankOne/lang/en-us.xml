@@ -213,9 +213,9 @@
     <key alias="title">Title keyword</key>
     <key alias="no_title_tag">The page doesn't contain a title tag</key>
     <key alias="multiple_title_tags">The page contains title tags</key>
-    <key alias="title_doesnt_contain_keyword">Title doesn't contain the keyword</key>
+    <key alias="title_doesnt_contain_keyword">Title doesn't contain the focus keyword</key>
     <key alias="title_not_in_front">The title is not close to the front of the title tag. The closer to the start of the title tag a keyword is, the more helpful it will be for ranking</key>
-    <key alias="title_contains_keyword">Title contains the keyword(s) and is in close to the front of the title tag</key>
+    <key alias="title_contains_keyword">Title contains the focus keyword(s) and is in close to the front of the title tag</key>
   </area>
 
   <area alias="keywordmetadescriptionanalyzer">
@@ -224,24 +224,24 @@
     <key alias="no_meta_description_tag">The page doesnt contain a meta description tag</key>
     <key alias="multiple_meta_description_tags">The page contains multiple meta description tags</key>
     <key alias="no_description_value">The metadiscription tag content is empty</key>
-    <key alias="meta_description_doesnt_contain_keyword">Metadescription doesn't contain the keyword</key>
-    <key alias="meta_description_contains_keyword">Metadescription contains the keyword</key>
+    <key alias="meta_description_doesnt_contain_keyword">Metadescription doesn't contain the focus keyword</key>
+    <key alias="meta_description_contains_keyword">Metadescription contains the focus keyword</key>
   </area>
 
   <area alias="keywordurlanalyzer">
     <key alias="title">Url keyword</key>
     <key alias="root_node">Page doens't have a sub url, check passed</key>
-    <key alias="url_contains_keyword">Url contains the keyword</key>
-    <key alias="url_doesnt_contain_keyword">Url doesn't contain the keyword</key>
+    <key alias="url_contains_keyword">Url contains the focus keyword</key>
+    <key alias="url_doesnt_contain_keyword">Url doesn't contain the focus keyword</key>
   </area>
 
   <area alias="keywordcontentanalyzer">
     <key alias="title">Content keyword</key>
     <key alias="no_body_tag">The page contains no body tag</key>
     <key alias="multiple_body_tags">The page contains multiple body tags</key>
-    <key alias="content_doesnt_contain_keyword">The content doesn't contain the keyword</key>
+    <key alias="content_doesnt_contain_keyword">The content doesn't contain the focus keyword</key>
     <key alias="content_contains_keyword">
-      The content contains the keyword <strong>%0%</strong> times
+      The content contains the focus keyword <strong>%0%</strong> times
     </key>
   </area>
 

@@ -78,12 +78,15 @@
         };
 
         $scope.setData = function (data) {
+
+            // Remove the previously added rows from dashboardrow directive
             $('.dashboard-row').remove();
             $scope.pageHierarchy = data;
 
             var totalScore = 0;
             var items = 0;
 
+            // sum the overallscore per node
             function addScore(item) {
                 if (item.PageScore) {
                     totalScore += item.PageScore.OverallScore;
