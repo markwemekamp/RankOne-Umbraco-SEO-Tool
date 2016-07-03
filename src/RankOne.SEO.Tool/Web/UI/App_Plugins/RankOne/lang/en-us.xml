@@ -118,7 +118,7 @@
     <key alias="no_description_value">The metadiscription tag content is empty</key>
     <key alias="description_too_short">Description is shorter than 50 characters, the ideal title length is between 50 and 150 characters</key>
     <key alias="description_too_long">Description is longer than 150 characters, the ideal title length is between 50 and 150 characters</key>
-    <key alias="metadescriptionanalyzer_description_perfect">The meta description has the ideal length, which is between 50 and 150 characters</key>
+    <key alias="description_perfect">The meta description has the ideal length, which is between 50 and 150 characters</key>
   </area>
 
   <area alias="metarobotsanalyzer">

@@ -92,7 +92,7 @@
     <key alias="no_description_value">Beskrivelsestag er ikke udfyldt</key>
     <key alias="description_too_short">Din beskrivelse er for kort. Den ideelle længde ligger imellem 130 og 155 karakterer.</key>
     <key alias="description_too_long">Din titel er længere end 160 karakterer. Den ideelle længde ligger imellem 130 og 155 karakterer.</key>
-    <key alias="metadescriptionanalyzer_description_perfect">Din beskrivelse har den perfekte længde (imellem 130 og 155 karakterer)</key>
+    <key alias="description_perfect">Din beskrivelse har den perfekte længde (imellem 130 og 155 karakterer)</key>
   </area>
 
   <area alias="metakeywordanalyzer">

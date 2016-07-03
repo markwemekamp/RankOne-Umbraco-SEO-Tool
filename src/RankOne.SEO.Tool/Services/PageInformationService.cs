@@ -21,6 +21,7 @@ namespace RankOne.Services
 
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
+            var content = umbracoHelper.TypedContent(id);
             var htmlObject = umbracoHelper.RenderTemplate(id);
 
             var html = htmlObject.ToHtmlString();
@@ -49,6 +50,7 @@ namespace RankOne.Services
             {
                 pageInformation.Description = attributeValues.First().Value;
             }
+            pageInformation.Url = content.UrlWithDomain();
 
             return pageInformation;
         }
