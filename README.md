@@ -2,9 +2,9 @@
 
 RankOne is a collection of SEO tools for Umbraco that aim to optimize your content according to the latest SEO standards.
 
-RankOne currently contains 4 different tools for Umbraco:
+RankOne currently contains 5 different tools for Umbraco:
 - A dashboard which will allow you to view the complete the seo score of all pages in your Umbraco installation
-- A doctype composition with title, meta description and meta keywords
+- A doctype composition with title, meta description and meta keywords with a corresponding partial view
 - Dashboard property editor: Score based list of seo improvements
 - Summary property editor: A list of seo improvements
 - Result preview property editor: A google search result preview
@@ -16,7 +16,7 @@ RankOne currently contains 4 different tools for Umbraco:
 2. On the top right select "Compositions"
 3. Select RankOne - Seo Compositions
 4. A new tab will be added added to your doctype
-5. Now the only thing you'll need to do is output the properties in your template. The alias names are: seoTitle, seoMetaDescription and seoMetaKeywords
+5. Now the only thing you'll need to do is output the properties in your template. For this you can use the partial view "RankOne - Seo Properties", which is included in the  package or you can use your own implementation. The alias names are: seoTitle, seoMetaDescription and seoMetaKeywords.
 
 ## How to install the dashboard ##
 
