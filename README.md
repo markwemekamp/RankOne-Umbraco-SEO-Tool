@@ -23,6 +23,7 @@ RankOne currently contains 4 different tools for Umbraco:
 1. Open Dashboard.config with a text editor, this file is located in the Config directory
 2. After the <dashBoard> tag, add the following xml
 
+```xml
     <section alias="RankOneSEODashboardSection">
       <areas>
         <area>content</area>
@@ -33,6 +34,7 @@ RankOne currently contains 4 different tools for Umbraco:
         </control>
       </tab>
     </section>
+```
 
 ## How to install property editors ##
 
