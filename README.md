@@ -21,7 +21,7 @@ RankOne currently contains 4 different tools for Umbraco:
 ## How to install the dashboard ##
 
 1. Open Dashboard.config with a text editor, this file is located in the Config directory
-2. After the <code>&lt;dashBoard&rt;</code> tag, add the following xml
+2. After the <code>&lt;dashBoard&gt;</code> tag, add the following xml
 
 ```xml
     <section alias="RankOneSEODashboardSection">
