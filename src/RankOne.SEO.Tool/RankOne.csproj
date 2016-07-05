@@ -279,6 +279,7 @@
     <Compile Include="Analyzers\Speed\ServerResponseAnalyzer.cs" />
     <Compile Include="Controllers\RankOneApiController.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
+    <Compile Include="Helpers\ContentHelper.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Interfaces\IAnalyzer.cs" />
     <Compile Include="Models\Analysis.cs" />

@@ -3,6 +3,7 @@ using System.Net;
 using System.Text;
 using System.Web.Script.Serialization;
 using HtmlAgilityPack;
+using RankOne.Helpers;
 using RankOne.Models;
 using RankOne.Repositories;
 using RankOne.Summaries;
@@ -17,6 +18,8 @@ namespace RankOne.Services
         private NodeReportRepository _nodeReportRepository;
         private ScoreService _scoreService;
         private readonly JavaScriptSerializer _javascriptSerializer;
+        private UmbracoHelper _umbracoHelper;
+        private ContentHelper _contentHelper;
 
         public AnalyzeService()
         {
@@ -24,6 +27,8 @@ namespace RankOne.Services
             _nodeReportRepository = new NodeReportRepository();
             _scoreService = new ScoreService();
             _javascriptSerializer = new JavaScriptSerializer();
+            _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+            _contentHelper = new ContentHelper(_umbracoHelper);
         }
 
         public PageAnalysis AnalyzeWebPage(int id, string focusKeyword = null)
@@ -31,22 +36,8 @@ namespace RankOne.Services
             var pageAnalysis = new PageAnalysis();
             try
             {
-                var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-
-                var node = umbracoHelper.TypedContent(id);
-
-                var htmlString = "";
-
-                if (node != null && node.TemplateId > 0)
-                {
-                    var htmlObject = umbracoHelper.RenderTemplate(id);
-                    htmlString = htmlObject.ToHtmlString();
-                }
-                else if (!string.IsNullOrEmpty(node.Url))
-                {
-                    // Fallback for when a template is not set (yes, I'm looking at you Merchello ;))
-                    htmlString = new WebClient().DownloadString(node.UrlWithDomain());
-                }
+                var node = _umbracoHelper.TypedContent(id);
+                var htmlString = _contentHelper.GetNodeHtml(node);
 
                 if (string.IsNullOrEmpty(focusKeyword))
                 {
