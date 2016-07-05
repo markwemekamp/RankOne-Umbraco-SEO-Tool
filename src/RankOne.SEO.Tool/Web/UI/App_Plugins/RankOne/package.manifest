@@ -3,7 +3,7 @@
         {
             alias: "RankOneDashboard",
             name: "Rank One - Dashboard",
-            icon: "icon-code",
+            icon: "icon-bar-chart",
             editor: {
                 view: "~/App_Plugins/RankOne/editors/dashboard/dashboard.html",
 				hideLabel: true
@@ -12,7 +12,7 @@
 		{
             alias: "RankOneSummary",
             name: "Rank One - Summary",
-            icon: "icon-code",
+            icon: "icon-bar-chart",
             editor: {
                 view: "~/App_Plugins/RankOne/editors/summary/summary.html"
             },
@@ -36,7 +36,7 @@
 		{
             alias: "RankOneResultPreview",
             name: "Rank One - Result Preview",
-            icon: "icon-code",
+            icon: "icon-bar-chart",
             editor: {
                 view: "~/App_Plugins/RankOne/editors/result-preview/result-preview.html"
             },
