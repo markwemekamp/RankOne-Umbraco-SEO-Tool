@@ -63,7 +63,7 @@ namespace RankOne.Analyzers.Html
                                 result.AddResultRule("titleanalyzer_title_too_short", ResultType.Hint);
                             }
 
-                            if (titleValue.Length <= 60 && titleValue.Length >= 10)
+                            if (titleValue.Length <= 60 && titleValue.Length >= 5)
                             {
                                 result.AddResultRule("titleanalyzer_title_success", ResultType.Success);
                             }

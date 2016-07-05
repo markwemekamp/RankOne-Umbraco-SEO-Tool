@@ -35,14 +35,23 @@ namespace RankOne.Services
 
                 var node = umbracoHelper.TypedContent(id);
 
+                var htmlString = "";
+
+                if (node != null && node.TemplateId > 0)
+                {
+                    var htmlObject = umbracoHelper.RenderTemplate(id);
+                    htmlString = htmlObject.ToHtmlString();
+                }
+                else if (!string.IsNullOrEmpty(node.Url))
+                {
+                    // Fallback for when a template is not set (yes, I'm looking at you Merchello ;))
+                    htmlString = new WebClient().DownloadString(node.UrlWithDomain());
+                }
+
                 if (string.IsNullOrEmpty(focusKeyword))
                 {
                     focusKeyword = GetFocusKeyword(node);
                 }
-
-
-                var htmlObject = umbracoHelper.RenderTemplate(id);
-                var htmlString = htmlObject.ToHtmlString();
 
                 _htmlParser.LoadHtml(htmlString);
 
