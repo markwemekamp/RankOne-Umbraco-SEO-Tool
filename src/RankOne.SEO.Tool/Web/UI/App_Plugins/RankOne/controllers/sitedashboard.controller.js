@@ -96,7 +96,11 @@
             }
             _.each(data, addScore);
 
-            $scope.overallScore = Math.round(totalScore / items);
+            if (items > 0) {
+                $scope.overallScore = Math.round(totalScore / items);
+            } else {
+                $scope.overallScore = 0;
+            }
 
             $scope.color = '#4db53c';
             if ($scope.overallScore < 33) {
