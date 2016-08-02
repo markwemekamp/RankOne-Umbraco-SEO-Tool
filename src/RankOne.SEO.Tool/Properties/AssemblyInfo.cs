@@ -2,14 +2,14 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Our.Umbraco.NestedContent")]
+[assembly: AssemblyTitle("RankOne")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The Umbraco Community")]
-[assembly: AssemblyProduct("Our.Umbraco.NestedContent")]
-[assembly: AssemblyCopyright("Copyright \xa9 The Umbraco Community 2015")]
+[assembly: AssemblyProduct("RankOne")]
+[assembly: AssemblyCopyright("Copyright \xa9 Mark Wemekamp")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
-[assembly: Guid("8B4FA1D2-118F-497F-B7FB-636F366E245E")]
+[assembly: Guid("37ac4ac8-ff25-4382-b006-45cd31dc796b")]
