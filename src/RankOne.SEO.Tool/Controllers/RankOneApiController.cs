@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using RankOne.Models;
 using RankOne.Repositories;
 using RankOne.Services;
+using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 using Umbraco.Web.WebApi;
@@ -40,15 +40,32 @@ namespace RankOne.Controllers
         [HttpGet]
         public PageAnalysis AnalyzeNode(int id, string focusKeyword = null)
         {
-            return _analyzeService.AnalyzeWebPage(id, focusKeyword);
+            try
+            {
+                var test=  _analyzeService.AnalyzeWebPage(id, focusKeyword);
+                return test;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(typeof(RankOneApiController), "RankOne AnalyzeNode Exception", ex);
+                throw;
+            }
         }
 
         [HttpGet]
         public PageInformation GetPageInformation(int id)
         {
-            var pageInformationService = new PageInformationService();
-            var result = pageInformationService.GetpageInformation(id);
-            return result;
+            try
+            {
+                var pageInformationService = new PageInformationService();
+                var result = pageInformationService.GetpageInformation(id);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(typeof(RankOneApiController), "RankOne GetPageInformation Exception", ex);
+                throw;
+            }
         }
 
         [HttpGet]

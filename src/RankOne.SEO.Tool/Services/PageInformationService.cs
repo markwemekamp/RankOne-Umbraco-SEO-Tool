@@ -30,11 +30,15 @@ namespace RankOne.Services
             htmlParser.LoadHtml(html);
 
             var headTag = HtmlHelper.GetElements(htmlParser.DocumentNode, "head");
-            var titleTags = HtmlHelper.GetElements(headTag.First(), "title");
 
-            if (titleTags.Any())
+            if (headTag.Any())
             {
-                pageInformation.Title = titleTags.First().InnerText;
+                var titleTags = HtmlHelper.GetElements(headTag.First(), "title");
+
+                if (titleTags.Any())
+                {
+                    pageInformation.Title = titleTags.First().InnerText;
+                }
             }
 
             var metaTags = HtmlHelper.GetElements(htmlParser.DocumentNode, "meta");

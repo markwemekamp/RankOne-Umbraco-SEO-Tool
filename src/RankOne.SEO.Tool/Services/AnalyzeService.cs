@@ -7,6 +7,7 @@ using RankOne.Helpers;
 using RankOne.Models;
 using RankOne.Repositories;
 using RankOne.Summaries;
+using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 

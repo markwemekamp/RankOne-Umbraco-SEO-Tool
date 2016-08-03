@@ -15,31 +15,36 @@ namespace RankOne.Services
 
             var rules = result.Document.SelectNodes("//text()");
 
-            foreach (var rule in rules)
+            if (rules != null)
             {
-                var xtext = rule.InnerText;
-
-                var ruleWords = xtext.Split(new[] { '.', '?', '!', ' ', ':', ',' }, StringSplitOptions.RemoveEmptyEntries).Where(x => x.Length > minimumWordLength);
-
-                foreach (var word in ruleWords)
+                foreach (var rule in rules)
                 {
-                    var lowerWord = word.ToLower();
-                    var rgx = new Regex("[^a-zA-Z0-9 -]");
-                    lowerWord = rgx.Replace(WebUtility.HtmlDecode(lowerWord), "");
-                    if (!string.IsNullOrWhiteSpace(lowerWord))
+                    var xtext = rule.InnerText;
+
+                    var ruleWords =
+                        xtext.Split(new[] {'.', '?', '!', ' ', ':', ','}, StringSplitOptions.RemoveEmptyEntries)
+                            .Where(x => x.Length > minimumWordLength);
+
+                    foreach (var word in ruleWords)
                     {
-                        if (occurences.ContainsKey(lowerWord))
+                        var lowerWord = word.ToLower();
+                        var rgx = new Regex("[^a-zA-Z0-9 -]");
+                        lowerWord = rgx.Replace(WebUtility.HtmlDecode(lowerWord), "");
+                        if (!string.IsNullOrWhiteSpace(lowerWord))
                         {
-                            occurences[lowerWord]++;
-                        }
-                        else
-                        {
-                            occurences.Add(lowerWord, 1);
+                            if (occurences.ContainsKey(lowerWord))
+                            {
+                                occurences[lowerWord]++;
+                            }
+                            else
+                            {
+                                occurences.Add(lowerWord, 1);
+                            }
                         }
                     }
                 }
-            }
 
+            }
             return occurences.OrderByDescending(x => x.Value).Take(numberOfWordsToReturn);
         }
     }
