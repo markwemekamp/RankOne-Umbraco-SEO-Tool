@@ -276,7 +276,7 @@
     <Compile Include="Analyzers\Speed\GZipAnalyzer.cs" />
     <Compile Include="Analyzers\Speed\HtmlSizeAnalyzer.cs" />
     <Compile Include="Analyzers\Speed\JavascriptMinificationAnalyzer.cs" />
-    <Compile Include="Analyzers\Speed\ServerResponseAnalyzer.cs" />
+    <Compile Include="Attributes\AnalyzerCategory.cs" />
     <Compile Include="Controllers\RankOneApiController.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Helpers\ContentHelper.cs" />
@@ -307,8 +307,9 @@
     <Compile Include="Services\KeywordOccurenceService.cs" />
     <Compile Include="Services\PageInformationService.cs" />
     <Compile Include="Services\ScoreService.cs" />
+    <Compile Include="Summaries\BaseSummary.cs" />
     <Compile Include="Summaries\HtmlSummary.cs" />
-    <Compile Include="Summaries\KeywordSummary.cs" />
+    <Compile Include="Summaries\KeywordsSummary.cs" />
     <Compile Include="Summaries\SpeedSummary.cs" />
   </ItemGroup>
   <ItemGroup>

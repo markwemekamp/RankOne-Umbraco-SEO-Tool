@@ -58,7 +58,7 @@ namespace RankOne.Services
                 };
 
 
-                var keywordAnalyzer = new KeywordSummary(html);
+                var keywordAnalyzer = new KeywordsSummary(html);
                 keywordAnalyzer.FocusKeyword = focusKeyword;
                 keywordAnalyzer.Url = pageAnalysis.Url;
                 pageAnalysis.AnalyzerResults.Add(new AnalyzerResult

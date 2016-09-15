@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Text;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Speed
 {
+    [AnalyzerCategory(SummaryName = "Speed")]
     public class HtmlSizeAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
+        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
         {
             var htmlSizeAnalysis = new AnalyzeResult
             {

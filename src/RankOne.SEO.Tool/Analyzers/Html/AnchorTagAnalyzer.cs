@@ -1,12 +1,14 @@
 ﻿using System.Linq;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Html
 {
+    [AnalyzerCategory(SummaryName = "Html")]
     public class AnchorTagAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
+        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
         {
             var result = new AnalyzeResult
             {

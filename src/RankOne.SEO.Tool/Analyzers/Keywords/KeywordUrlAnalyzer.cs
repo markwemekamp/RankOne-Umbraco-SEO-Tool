@@ -1,21 +1,21 @@
 ﻿using System;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
 {
+    [AnalyzerCategory(SummaryName = "Keywords")]
     public class KeywordUrlAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
+        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string urlString)
         {
             var result = new AnalyzeResult
             {
                 Alias = "keywordurlanalyzer"
             };
 
-            var keyword = additionalValues[0].ToString();
-            var urlString = additionalValues[1].ToString();
             var url = new Uri(urlString);
 
             if (url.AbsolutePath == "" || url.AbsolutePath == "/")
@@ -24,7 +24,7 @@ namespace RankOne.Analyzers.Keywords
             }
             else
             {
-                var keywordUrl = keyword.Alias();
+                var keywordUrl = focuskeyword.Alias();
                 if (url.AbsolutePath.Contains(keywordUrl))
                 {
                     result.AddResultRule("keywordurlanalyzer_url_contains_keyword", ResultType.Success);

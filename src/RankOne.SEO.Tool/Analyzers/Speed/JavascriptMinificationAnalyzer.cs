@@ -2,20 +2,22 @@
 using System.Linq;
 using System.Net;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Speed
 {
+    [AnalyzerCategory(SummaryName = "Speed")]
     public class JavascriptMinificationAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
+        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string urlString)
         {
             var result = new AnalyzeResult
             {
                 Alias = "javascriptminificationanalyzer"
             };
 
-            var url = (Uri)additionalValues[0];
+            var url = new Uri(urlString);
 
             var localCssFiles = HtmlHelper.GetElementsWithAttribute(document, "script", "src").
                 Where(x =>

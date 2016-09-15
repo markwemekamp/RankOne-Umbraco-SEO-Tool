@@ -1,14 +1,15 @@
 ﻿using System.Net;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Speed
 {
+    [AnalyzerCategory(SummaryName = "Speed")]
     public class GZipAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
+        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
         {
-            var url = additionalValues[0].ToString();
             string encoding = null;
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";

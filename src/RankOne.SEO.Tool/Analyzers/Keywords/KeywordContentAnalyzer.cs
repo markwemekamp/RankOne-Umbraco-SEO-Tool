@@ -1,20 +1,20 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
 {
+    [AnalyzerCategory(SummaryName = "Keywords")]
     public class KeywordContentAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
+        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
         {
             var result = new AnalyzeResult
             {
                 Alias = "keywordcontentanalyzer"
             };
-
-            var keyword = additionalValues[0].ToString();
 
             var bodyTags = HtmlHelper.GetElements(document, "body");
 
@@ -32,7 +32,7 @@ namespace RankOne.Analyzers.Keywords
 
                 var text = Regex.Replace(bodyTag.InnerText.Trim().ToLower(), @"\s+", " ");
 
-                var matches = Regex.Matches(text, keyword);
+                var matches = Regex.Matches(text, focuskeyword);
 
                 if (matches.Count == 0)
                 {

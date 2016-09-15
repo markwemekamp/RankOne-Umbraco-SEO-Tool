@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Html
@@ -10,10 +11,10 @@ namespace RankOne.Analyzers.Html
     /// Sources: https://support.google.com/webmasters/answer/79812?hl=en, SEO for 2016 by Sean Odom
     /// 
     /// </summary>
-
+    [AnalyzerCategory(SummaryName = "Html")]
     public class MetaRobotsAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
+        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
         {
             var result = new AnalyzeResult
             {

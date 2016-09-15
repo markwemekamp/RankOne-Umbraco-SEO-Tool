@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Linq;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
 {
+    [AnalyzerCategory(SummaryName = "Keywords")]
     public class KeywordMetaDescriptionAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
+        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
         {
             var result = new AnalyzeResult
             {
@@ -15,7 +17,6 @@ namespace RankOne.Analyzers.Keywords
             };
 
             var metaTags = HtmlHelper.GetElements(document, "meta");
-            var keyword = additionalValues[0].ToString();
 
             if (!metaTags.Any())
             {
@@ -44,7 +45,7 @@ namespace RankOne.Analyzers.Keywords
                     {
                         var descriptionValue = firstMetaDescriptionTag.Value;
 
-                        if (descriptionValue.IndexOf(keyword, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                        if (descriptionValue.IndexOf(focuskeyword, StringComparison.InvariantCultureIgnoreCase) >= 0)
                         {
                             result.AddResultRule("keywordmetadescriptionanalyzer_meta_description_contains_keyword", ResultType.Success);
                         }

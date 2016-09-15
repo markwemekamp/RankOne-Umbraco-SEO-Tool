@@ -1,12 +1,14 @@
 ﻿using System.Linq;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Speed
 {
+    [AnalyzerCategory(SummaryName = "Speed")]
     public class AdditionalCallAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
+        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
         {
             var result = new AnalyzeResult
             {

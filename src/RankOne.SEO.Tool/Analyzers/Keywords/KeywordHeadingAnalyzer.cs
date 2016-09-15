@@ -1,12 +1,14 @@
 ﻿using System.Linq;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
 {
+    [AnalyzerCategory(SummaryName = "Keywords")]
     public class KeywordHeadingAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
+        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
         {
             var result = new AnalyzeResult
             {
@@ -17,12 +19,11 @@ namespace RankOne.Analyzers.Keywords
             var h2Tags = HtmlHelper.GetElements(document, "h2");
             var h3Tags = HtmlHelper.GetElements(document, "h3");
             var h4Tags = HtmlHelper.GetElements(document, "h4");
-            var keyword = additionalValues[0].ToString();
 
-            var usedInHeadingCount = h1Tags.Count(x => x.InnerText.ToLower().Contains(keyword)) + 
-                h2Tags.Count(x => x.InnerText.ToLower().Contains(keyword)) + 
-                h3Tags.Count(x => x.InnerText.ToLower().Contains(keyword)) + 
-                h4Tags.Count(x => x.InnerText.ToLower().Contains(keyword));
+            var usedInHeadingCount = h1Tags.Count(x => x.InnerText.ToLower().Contains(focuskeyword)) + 
+                h2Tags.Count(x => x.InnerText.ToLower().Contains(focuskeyword)) + 
+                h3Tags.Count(x => x.InnerText.ToLower().Contains(focuskeyword)) + 
+                h4Tags.Count(x => x.InnerText.ToLower().Contains(focuskeyword));
 
             if (usedInHeadingCount > 0)
             {

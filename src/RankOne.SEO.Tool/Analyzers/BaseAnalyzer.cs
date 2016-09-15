@@ -14,6 +14,6 @@ namespace RankOne.Analyzers
             HtmlHelper = new HtmlHelper();
         }
 
-        public abstract AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues);
+        public abstract AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url);
     }
 }

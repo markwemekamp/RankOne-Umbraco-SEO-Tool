@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
@@ -15,9 +16,10 @@ namespace RankOne.Analyzers.Keywords
     /// 3. check if title contains keyword - major
     /// 4. location of the keyword - minor
     /// </summary>
+    [AnalyzerCategory(SummaryName = "Keywords")]
     public class KeywordTitleAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues)
+        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
         {
             var result = new AnalyzeResult
             {
@@ -25,7 +27,6 @@ namespace RankOne.Analyzers.Keywords
             };
 
             var titleTags = HtmlHelper.GetElements(document, "title");
-            var keyword = additionalValues[0].ToString();
 
             if (!titleTags.Any())
             {
@@ -39,7 +40,7 @@ namespace RankOne.Analyzers.Keywords
             else
             {
                 var titleText = titleTags.First().InnerText;
-                var position = titleText.IndexOf(keyword, StringComparison.InvariantCultureIgnoreCase);
+                var position = titleText.IndexOf(focuskeyword, StringComparison.InvariantCultureIgnoreCase);
 
                 if (position >= 0)
                 {
