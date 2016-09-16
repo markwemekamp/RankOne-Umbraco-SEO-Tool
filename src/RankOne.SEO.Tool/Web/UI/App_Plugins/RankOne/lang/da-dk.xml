@@ -32,7 +32,7 @@
     <key alias="loading">Henter data...</key>
   </area>
 
-  <area alias="htmlanalyzer">
+  <area alias="templateanalyzer">
     <key alias="title">Html analysator</key>
   </area>
   <area alias="keywordanalyzer">

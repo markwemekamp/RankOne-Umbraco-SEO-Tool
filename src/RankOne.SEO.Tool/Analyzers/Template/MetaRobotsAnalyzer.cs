@@ -3,7 +3,7 @@ using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
-namespace RankOne.Analyzers.Html
+namespace RankOne.Analyzers.Template
 {
     /// <summary>
     /// Analyzer for checking robots meta data tag related optimizations
@@ -11,7 +11,7 @@ namespace RankOne.Analyzers.Html
     /// Sources: https://support.google.com/webmasters/answer/79812?hl=en, SEO for 2016 by Sean Odom
     /// 
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Html")]
+    [AnalyzerCategory(SummaryName = "Template")]
     public class MetaRobotsAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)

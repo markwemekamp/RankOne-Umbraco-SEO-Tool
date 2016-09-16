@@ -3,9 +3,9 @@ using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
-namespace RankOne.Analyzers.Html
+namespace RankOne.Analyzers.Template
 {
-    [AnalyzerCategory(SummaryName = "Html")]
+    [AnalyzerCategory(SummaryName = "Template")]
     public class AnchorTagAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)

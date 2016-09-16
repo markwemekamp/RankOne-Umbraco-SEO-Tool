@@ -3,7 +3,7 @@ using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
-namespace RankOne.Analyzers.Html
+namespace RankOne.Analyzers.Template
 {
     /// <summary>
     /// 
@@ -13,7 +13,7 @@ namespace RankOne.Analyzers.Html
     /// check for quotes
     /// 
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Html")]
+    [AnalyzerCategory(SummaryName = "Template")]
     public class MetaDescriptionAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)

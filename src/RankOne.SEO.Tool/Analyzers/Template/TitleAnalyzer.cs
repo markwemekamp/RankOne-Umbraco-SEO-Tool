@@ -3,7 +3,7 @@ using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
-namespace RankOne.Analyzers.Html
+namespace RankOne.Analyzers.Template
 {
     /// <summary>
     /// Analyzer for checking title tag related optimizations
@@ -18,7 +18,7 @@ namespace RankOne.Analyzers.Html
     ///     1. longer than 60 - major
     ///     2. shorter than 10 - major
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Html")]
+    [AnalyzerCategory(SummaryName = "Template")]
     public class TitleAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)

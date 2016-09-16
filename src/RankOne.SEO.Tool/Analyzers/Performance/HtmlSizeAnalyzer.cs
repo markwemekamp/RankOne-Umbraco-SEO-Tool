@@ -4,9 +4,9 @@ using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
-namespace RankOne.Analyzers.Speed
+namespace RankOne.Analyzers.Performance
 {
-    [AnalyzerCategory(SummaryName = "Speed")]
+    [AnalyzerCategory(SummaryName = "Performance")]
     public class HtmlSizeAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)

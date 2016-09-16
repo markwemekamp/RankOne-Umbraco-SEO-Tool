@@ -259,23 +259,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analyzers\BaseAnalyzer.cs" />
-    <Compile Include="Analyzers\Html\AnchorTagAnalyzer.cs" />
-    <Compile Include="Analyzers\Html\DeprecatedTagAnalyzer.cs" />
-    <Compile Include="Analyzers\Html\ImageTagAnalyzer.cs" />
-    <Compile Include="Analyzers\Html\MetaDescriptionAnalyzer.cs" />
-    <Compile Include="Analyzers\Html\MetaKeywordAnalyzer.cs" />
-    <Compile Include="Analyzers\Html\MetaRobotsAnalyzer.cs" />
-    <Compile Include="Analyzers\Html\TitleAnalyzer.cs" />
+    <Compile Include="Analyzers\Template\AnchorTagAnalyzer.cs" />
+    <Compile Include="Analyzers\Template\DeprecatedTagAnalyzer.cs" />
+    <Compile Include="Analyzers\Template\ImageTagAnalyzer.cs" />
+    <Compile Include="Analyzers\Template\MetaDescriptionAnalyzer.cs" />
+    <Compile Include="Analyzers\Template\MetaKeywordAnalyzer.cs" />
+    <Compile Include="Analyzers\Template\MetaRobotsAnalyzer.cs" />
+    <Compile Include="Analyzers\Template\TitleAnalyzer.cs" />
     <Compile Include="Analyzers\Keywords\KeywordContentAnalyzer.cs" />
     <Compile Include="Analyzers\Keywords\KeywordHeadingAnalyzer.cs" />
     <Compile Include="Analyzers\Keywords\KeywordMetaDescriptionAnalyzer.cs" />
     <Compile Include="Analyzers\Keywords\KeywordTitleAnalyzer.cs" />
     <Compile Include="Analyzers\Keywords\KeywordUrlAnalyzer.cs" />
-    <Compile Include="Analyzers\Speed\AdditionalCallAnalyzer.cs" />
-    <Compile Include="Analyzers\Speed\CssMinificationAnalyzer.cs" />
-    <Compile Include="Analyzers\Speed\GZipAnalyzer.cs" />
-    <Compile Include="Analyzers\Speed\HtmlSizeAnalyzer.cs" />
-    <Compile Include="Analyzers\Speed\JavascriptMinificationAnalyzer.cs" />
+    <Compile Include="Analyzers\Performance\AdditionalCallAnalyzer.cs" />
+    <Compile Include="Analyzers\Performance\CssMinificationAnalyzer.cs" />
+    <Compile Include="Analyzers\Performance\GZipAnalyzer.cs" />
+    <Compile Include="Analyzers\Performance\HtmlSizeAnalyzer.cs" />
+    <Compile Include="Analyzers\Performance\JavascriptMinificationAnalyzer.cs" />
+    <Compile Include="Attributes\Summary.cs" />
     <Compile Include="Attributes\AnalyzerCategory.cs" />
     <Compile Include="Controllers\RankOneApiController.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
@@ -308,9 +309,9 @@
     <Compile Include="Services\PageInformationService.cs" />
     <Compile Include="Services\ScoreService.cs" />
     <Compile Include="Summaries\BaseSummary.cs" />
-    <Compile Include="Summaries\HtmlSummary.cs" />
+    <Compile Include="Summaries\TemplateSummary.cs" />
     <Compile Include="Summaries\KeywordsSummary.cs" />
-    <Compile Include="Summaries\SpeedSummary.cs" />
+    <Compile Include="Summaries\PerformanceSummary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web\UI\App_Plugins\RankOne\controllers\sitedashboard.controller.js" />

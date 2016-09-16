@@ -5,7 +5,7 @@
 
         $scope.analyzerSummaries = [
         {
-            name: 'htmlanalyzer',
+            name: 'templateanalyzer',
             analyzers: [
                 'titleanalyzer',
                 'metadescriptionanalyzer',

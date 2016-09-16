@@ -1,8 +1,10 @@
-﻿using RankOne.Models;
+﻿using RankOne.Attributes;
+using RankOne.Models;
 using RankOne.Services;
 
 namespace RankOne.Summaries
 {
+    [Summary(SortOrder=2)]
     public class KeywordsSummary : BaseSummary
     {
         public KeywordsSummary(HtmlResult htmlResult) : base(htmlResult)

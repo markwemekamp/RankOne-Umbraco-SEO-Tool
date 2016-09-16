@@ -40,7 +40,7 @@
     <key alias="loading">Loading...</key>
   </area>
 
-  <area alias="htmlanalyzer">
+  <area alias="templateanalyzer">
     <key alias="title">Template</key>
   </area>
   <area alias="keywordanalyzer">

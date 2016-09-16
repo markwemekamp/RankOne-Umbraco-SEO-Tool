@@ -67,11 +67,11 @@ namespace RankOne.Services
                     Analysis = keywordAnalyzer.GetAnalysis()
                 });
 
-                var htmlAnalyzer = new HtmlSummary(html);
+                var templateanalyzer = new TemplateSummary(html);
                 pageAnalysis.AnalyzerResults.Add(new AnalyzerResult
                 {
-                    Alias = "htmlanalyzer",
-                    Analysis = htmlAnalyzer.GetAnalysis()
+                    Alias = "templateanalyzer",
+                    Analysis = templateanalyzer.GetAnalysis()
                 });
 
                 var performanceAnalyzer = new PerformanceSummary(html);
