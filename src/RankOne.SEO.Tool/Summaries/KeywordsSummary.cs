@@ -4,10 +4,10 @@ using RankOne.Services;
 
 namespace RankOne.Summaries
 {
-    [Summary(SortOrder=2)]
+    [Summary(Alias = "keywordanalyzer", SortOrder = 2)]
     public class KeywordsSummary : BaseSummary
     {
-        public KeywordsSummary(HtmlResult htmlResult) : base(htmlResult)
+        public KeywordsSummary()
         {
             Name = "Keywords";
         }

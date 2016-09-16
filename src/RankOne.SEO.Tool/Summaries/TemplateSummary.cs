@@ -3,10 +3,10 @@ using RankOne.Models;
 
 namespace RankOne.Summaries
 {
-    [Summary(SortOrder = 1)]
+    [Summary(Alias = "templateanalyzer", SortOrder = 1)]
     public class TemplateSummary : BaseSummary
     {
-        public TemplateSummary(HtmlResult htmlResult) : base(htmlResult)
+        public TemplateSummary()
         {
             Name = "Template";
         }

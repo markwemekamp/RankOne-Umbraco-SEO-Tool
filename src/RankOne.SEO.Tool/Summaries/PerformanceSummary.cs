@@ -3,10 +3,10 @@ using RankOne.Models;
 
 namespace RankOne.Summaries
 {
-    [Summary(SortOrder = 3)]
+    [Summary(Alias = "performanceanalyzer", SortOrder = 3)]
     public class PerformanceSummary : BaseSummary
     {
-        public PerformanceSummary(HtmlResult htmlResult) : base(htmlResult)
+        public PerformanceSummary()
         {
             Name = "Performance";
         }

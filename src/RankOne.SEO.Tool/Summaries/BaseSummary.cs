@@ -9,16 +9,11 @@ namespace RankOne.Summaries
 {
     public class BaseSummary
     {
-        protected readonly HtmlResult HtmlResult;
+        public HtmlResult HtmlResult;
 
         public string Name { get; set; }
         public string Url { get; set; }
         public string FocusKeyword { get; set; }
-
-        public BaseSummary(HtmlResult htmlResult)
-        {
-            HtmlResult = htmlResult;
-        }
 
         public virtual Analysis GetAnalysis()
         {

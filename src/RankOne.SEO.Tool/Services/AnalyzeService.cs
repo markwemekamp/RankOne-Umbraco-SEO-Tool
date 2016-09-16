@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Web.Script.Serialization;
 using HtmlAgilityPack;
+using RankOne.Attributes;
 using RankOne.Helpers;
 using RankOne.Models;
 using RankOne.Repositories;
 using RankOne.Summaries;
-using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
@@ -57,30 +59,29 @@ namespace RankOne.Services
                     Document = _htmlParser.DocumentNode
                 };
 
+                var currentAssembly = Assembly.GetExecutingAssembly();
+                var types = currentAssembly.GetTypes()
+                    .Where(
+                        x => Attribute.IsDefined(x, typeof(Summary))).Select(x => new
+                        {
+                            Type = x,
+                            Summary = (Summary)Attribute.GetCustomAttributes(x).FirstOrDefault(y => y is Summary)
+                        }).OrderBy(x => x.Summary.SortOrder);
 
-                var keywordAnalyzer = new KeywordsSummary(html);
-                keywordAnalyzer.FocusKeyword = focusKeyword;
-                keywordAnalyzer.Url = pageAnalysis.Url;
-                pageAnalysis.AnalyzerResults.Add(new AnalyzerResult
+                foreach (var type in types)
                 {
-                    Alias = "keywordanalyzer",
-                    Analysis = keywordAnalyzer.GetAnalysis()
-                });
+                    var instance = Activator.CreateInstance(type.Type);
+                    var summary = (BaseSummary) instance;
+                    summary.FocusKeyword = focusKeyword;
+                    summary.HtmlResult = html;
+                    summary.Url = pageAnalysis.Url;
 
-                var templateanalyzer = new TemplateSummary(html);
-                pageAnalysis.AnalyzerResults.Add(new AnalyzerResult
-                {
-                    Alias = "templateanalyzer",
-                    Analysis = templateanalyzer.GetAnalysis()
-                });
-
-                var performanceAnalyzer = new PerformanceSummary(html);
-                performanceAnalyzer.Url = pageAnalysis.Url;
-                pageAnalysis.AnalyzerResults.Add(new AnalyzerResult
-                {
-                    Alias = "performanceanalyzer",
-                    Analysis = performanceAnalyzer.GetAnalysis()
-                });
+                    pageAnalysis.AnalyzerResults.Add(new AnalyzerResult
+                    {
+                        Alias = type.Summary.Alias,
+                        Analysis = summary.GetAnalysis()
+                    });
+                }
             }
             catch (WebException ex)
             {
