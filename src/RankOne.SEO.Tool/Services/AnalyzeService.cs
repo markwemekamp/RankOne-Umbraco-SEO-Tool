@@ -18,20 +18,21 @@ namespace RankOne.Services
     public class AnalyzeService
     {
         private readonly HtmlDocument _htmlParser;
-        private NodeReportRepository _nodeReportRepository;
+        
         private ScoreService _scoreService;
         private readonly JavaScriptSerializer _javascriptSerializer;
         private UmbracoHelper _umbracoHelper;
         private ContentHelper _contentHelper;
+        private NodeReportService _nodeReportService;
 
         public AnalyzeService()
         {
             _htmlParser = new HtmlDocument();
-            _nodeReportRepository = new NodeReportRepository();
             _scoreService = new ScoreService();
             _javascriptSerializer = new JavaScriptSerializer();
             _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
             _contentHelper = new ContentHelper(_umbracoHelper);
+            _nodeReportService = new NodeReportService();
         }
 
         public PageAnalysis AnalyzeWebPage(int id, string focusKeyword = null)
@@ -59,6 +60,7 @@ namespace RankOne.Services
                     Document = _htmlParser.DocumentNode
                 };
 
+                // Get all types marked with the Summary attribute
                 var currentAssembly = Assembly.GetExecutingAssembly();
                 var types = currentAssembly.GetTypes()
                     .Where(
@@ -68,6 +70,7 @@ namespace RankOne.Services
                             Summary = (Summary)Attribute.GetCustomAttributes(x).FirstOrDefault(y => y is Summary)
                         }).OrderBy(x => x.Summary.SortOrder);
 
+                // Instantiate the types and retrieve te results
                 foreach (var type in types)
                 {
                     var instance = Activator.CreateInstance(type.Type);
@@ -90,32 +93,7 @@ namespace RankOne.Services
 
             pageAnalysis.Score = _scoreService.GetScore(pageAnalysis);
 
-            if (_nodeReportRepository.DatabaseExists())
-            {
-                var serializer = new JavaScriptSerializer();
-
-                var json = serializer.Serialize(pageAnalysis.Score);
-
-                var nodeReport = _nodeReportRepository.GetById(id);
-                if (nodeReport == null)
-                {
-                    nodeReport = new NodeReport
-                    {
-                        Id = id,
-                        FocusKeyword = focusKeyword,
-                        Report = json
-                    };
-
-                    _nodeReportRepository.Insert(nodeReport);
-                }
-                else
-                {
-                    nodeReport.FocusKeyword = focusKeyword;
-                    nodeReport.Report = json;
-
-                    _nodeReportRepository.Update(nodeReport);
-                }
-            }
+            _nodeReportService.Save(id, focusKeyword, pageAnalysis);
 
             return pageAnalysis;
         }

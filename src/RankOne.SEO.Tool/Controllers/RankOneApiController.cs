@@ -42,8 +42,7 @@ namespace RankOne.Controllers
         {
             try
             {
-                var test=  _analyzeService.AnalyzeWebPage(id, focusKeyword);
-                return test;
+                return  _analyzeService.AnalyzeWebPage(id, focusKeyword);
             }
             catch (Exception ex)
             {

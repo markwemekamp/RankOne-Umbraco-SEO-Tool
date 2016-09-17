@@ -306,6 +306,7 @@
     <Compile Include="Repositories\NodeReportRepository.cs" />
     <Compile Include="Services\AnalyzeService.cs" />
     <Compile Include="Services\KeywordOccurenceService.cs" />
+    <Compile Include="Services\NodeReportService.cs" />
     <Compile Include="Services\PageInformationService.cs" />
     <Compile Include="Services\ScoreService.cs" />
     <Compile Include="Summaries\BaseSummary.cs" />
