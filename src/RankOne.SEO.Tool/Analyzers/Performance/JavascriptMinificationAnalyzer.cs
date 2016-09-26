@@ -51,16 +51,19 @@ namespace RankOne.Analyzers.Performance
 
                         if (ratio < 200)
                         {
-                            var resultRule = new ResultRule();
-                            resultRule.Alias = "javascriptminificationanalyzer_file_not_minified";
-                            resultRule.Type = ResultType.Hint;
+                            var resultRule = new ResultRule
+                            {
+                                Alias = "javascriptminificationanalyzer_file_not_minified",
+                                Type = ResultType.Hint
+                            };
                             resultRule.Tokens.Add(address.Value);
                             result.ResultRules.Add(resultRule);
                         }
                     }
                     catch (Exception)
-                    { }
-
+                    {
+                        // ignored
+                    }
                 }
             }
             if (!result.ResultRules.Any())

@@ -30,21 +30,26 @@ namespace RankOne.Analyzers.Keywords
             {
                 var bodyTag = bodyTags.FirstOrDefault();
 
-                var text = Regex.Replace(bodyTag.InnerText.Trim().ToLower(), @"\s+", " ");
-
-                var matches = Regex.Matches(text, focuskeyword);
-
-                if (matches.Count == 0)
+                if (bodyTag != null)
                 {
-                    result.AddResultRule("keywordcontentanalyzer_content_doesnt_contain_keyword", ResultType.Warning);
-                }
-                else
-                {
-                    var resultRule = new ResultRule();
-                    resultRule.Alias = "keywordcontentanalyzer_content_contains_keyword";
-                    resultRule.Type = ResultType.Success;
-                    resultRule.Tokens.Add(matches.Count.ToString());
-                    result.ResultRules.Add(resultRule);
+                    var text = Regex.Replace(bodyTag.InnerText.Trim().ToLower(), @"\s+", " ");
+
+                    var matches = Regex.Matches(text, focuskeyword);
+
+                    if (matches.Count == 0)
+                    {
+                        result.AddResultRule("keywordcontentanalyzer_content_doesnt_contain_keyword", ResultType.Warning);
+                    }
+                    else
+                    {
+                        var resultRule = new ResultRule
+                        {
+                            Alias = "keywordcontentanalyzer_content_contains_keyword",
+                            Type = ResultType.Success
+                        };
+                        resultRule.Tokens.Add(matches.Count.ToString());
+                        result.ResultRules.Add(resultRule);
+                    }
                 }
             }
 

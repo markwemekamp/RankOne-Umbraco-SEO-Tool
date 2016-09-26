@@ -8,7 +8,6 @@ using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Helpers;
 using RankOne.Models;
-using RankOne.Repositories;
 using RankOne.Summaries;
 using Umbraco.Core.Models;
 using Umbraco.Web;
@@ -19,11 +18,11 @@ namespace RankOne.Services
     {
         private readonly HtmlDocument _htmlParser;
         
-        private ScoreService _scoreService;
+        private readonly ScoreService _scoreService;
         private readonly JavaScriptSerializer _javascriptSerializer;
-        private UmbracoHelper _umbracoHelper;
-        private ContentHelper _contentHelper;
-        private NodeReportService _nodeReportService;
+        private readonly UmbracoHelper _umbracoHelper;
+        private readonly ContentHelper _contentHelper;
+        private readonly NodeReportService _nodeReportService;
 
         public AnalyzeService()
         {

@@ -5,7 +5,7 @@
                 var deferred = $q.defer();
                 $http({ method: 'GET', url: url })
                     .then(function (response) {
-                        if (response.data && response.status == 200) {
+                        if (response.data && response.status === 200) {
                             deferred.resolve(response.data);
                         } else {
                             deferred.reject(localizationService

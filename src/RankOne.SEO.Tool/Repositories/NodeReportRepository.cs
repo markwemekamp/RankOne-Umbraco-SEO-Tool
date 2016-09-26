@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using RankOne.Models;
 using Umbraco.Core.Persistence;
 using Umbraco.Web;
@@ -9,7 +8,7 @@ namespace RankOne.Repositories
 {
     public class NodeReportRepository : BaseRepository<NodeReport>
     {
-        private string TableName = "NodeReport";
+        private readonly string TableName = "NodeReport";
 
         public NodeReportRepository() : base(UmbracoContext.Current.Application.DatabaseContext)
         {}

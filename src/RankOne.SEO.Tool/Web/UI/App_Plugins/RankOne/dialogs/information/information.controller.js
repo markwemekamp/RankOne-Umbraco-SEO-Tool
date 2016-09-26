@@ -1,6 +1,6 @@
 ﻿(function () {
 
-    function rankOneInformation($scope) {
+    function rankOneInformation() {
 
     }
 

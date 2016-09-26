@@ -14,8 +14,8 @@
 
             $http({ method: 'GET', url: url })
                 .then(function (response) {
-                    if (response.data && response.status == 200) {                        
-                        if (response.data == null || response.data == "null") {
+                    if (response.data && response.status === 200) {                        
+                        if (response.data == null || response.data === "null") {
                             $scope.initialized = false;
                         } else {
                             $scope.setData(response.data);
@@ -40,7 +40,7 @@
 
             $http({ method: 'GET', url: url })
                 .then(function (response) {
-                    if (response.data && response.status == 200) {
+                    if (response.data && response.status === 200) {
                         $scope.setData(response.data);
                         $scope.loading = false;
                     } else {
@@ -61,7 +61,7 @@
 
             $http({ method: 'GET', url: url })
                 .then(function (response) {
-                    if (response.data && response.status == 200) {
+                    if (response.data && response.status === 200) {
                         $scope.setData(response.data);
                         $scope.initialized = true;
                         $scope.loading = false;

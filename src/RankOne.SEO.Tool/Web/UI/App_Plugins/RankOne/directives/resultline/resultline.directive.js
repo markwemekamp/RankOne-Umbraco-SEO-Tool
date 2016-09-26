@@ -9,19 +9,19 @@
         link: function (scope) {
             scope.text = localizationService.localize(scope.resultline.Alias, scope.resultline.Tokens);
 
-            if (scope.resultline.Type == "success") {
+            if (scope.resultline.Type === "success") {
                 scope.style = "info";
             }
 
-            if (scope.resultline.Type == "error") {
+            if (scope.resultline.Type === "error") {
                 scope.style = "error";
             }
 
-            if (scope.resultline.Type == "warning") {
+            if (scope.resultline.Type === "warning") {
                 scope.style = "warning";
             }
 
-            if (scope.resultline.Type == "hint") {
+            if (scope.resultline.Type === "hint") {
                 scope.style = "pointer";
             }
         }

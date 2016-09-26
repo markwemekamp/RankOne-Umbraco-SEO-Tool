@@ -1,5 +1,4 @@
 ﻿using RankOne.Attributes;
-using RankOne.Models;
 
 namespace RankOne.Summaries
 {

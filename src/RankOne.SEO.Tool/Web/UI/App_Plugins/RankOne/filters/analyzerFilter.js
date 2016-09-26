@@ -6,13 +6,13 @@
                 var added = false;
                 angular.forEach(analyzers, function (analyzer) {
                     if (!added) {
-                        if (analyzer.checked && item.Alias == analyzer.name) {
+                        if (analyzer.checked && item.Alias === analyzer.name) {
                             filteredItems.push(item);
                             added = true;
                         } else if (analyzer.analyzers.length > 0) {
                             angular.forEach(analyzer.analyzers, function(subAnalyzer) {
                                 if (!added) {
-                                    if (subAnalyzer.checked && item.Alias == subAnalyzer.name) {
+                                    if (subAnalyzer.checked && item.Alias === subAnalyzer.name) {
                                         filteredItems.push(item);
                                         added = true;
                                     }

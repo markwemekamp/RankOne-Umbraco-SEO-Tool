@@ -11,10 +11,10 @@
         link: function (scope) {
 
             scope.$watch('filter', function () {
-                scope.expanded = scope.result && ((scope.filter == 'error' && scope.result.ErrorCount > 0) ||
-                    (scope.filter == 'warning' && scope.result.WarningCount > 0) ||
-                    (scope.filter == 'hint' && scope.result.HintCount > 0) ||
-                    (scope.filter == 'success' && scope.result.SuccessCount > 0));
+                scope.expanded = scope.result && ((scope.filter === 'error' && scope.result.ErrorCount > 0) ||
+                    (scope.filter === 'warning' && scope.result.WarningCount > 0) ||
+                    (scope.filter === 'hint' && scope.result.HintCount > 0) ||
+                    (scope.filter === 'success' && scope.result.SuccessCount > 0));
             });
 
             scope.sortOrder = ['-ErrorCount', '-WarningCount', '-HintCount'];
@@ -26,7 +26,7 @@
             scope.column2 = [];
 
             angular.forEach(orderedItems, function (value, key) {
-                if (key % 2 == 0) {
+                if (key % 2 === 0) {
                     scope.column1.push(value);
                 } else {
                     scope.column2.push(value);

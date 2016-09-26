@@ -6,7 +6,7 @@ namespace RankOne.Services
 {
     public class NodeReportService
     {
-        private NodeReportRepository _nodeReportRepository;
+        private readonly NodeReportRepository _nodeReportRepository;
 
         public NodeReportService()
         {

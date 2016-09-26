@@ -12,7 +12,7 @@
                 scope.model = [];
             }
 
-            if (scope.model.length == 0) {
+            if (scope.model.length === 0) {
                 angular.forEach(scope.types, function(prevalue) {
                     scope.model.push(
                         {
