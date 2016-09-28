@@ -278,6 +278,7 @@
     <Compile Include="Analyzers\Performance\JavascriptMinificationAnalyzer.cs" />
     <Compile Include="Attributes\Summary.cs" />
     <Compile Include="Attributes\AnalyzerCategory.cs" />
+    <Compile Include="Controllers\AnalyzerStructureApiController.cs" />
     <Compile Include="Controllers\RankOneApiController.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Helpers\ContentHelper.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Models\AnalysisInformation.cs" />
     <Compile Include="Models\AnalyzeResult.cs" />
     <Compile Include="Models\AnalyzerResult.cs" />
+    <Compile Include="Models\AnalyzerStructure.cs" />
     <Compile Include="Models\BaseDatabaseObject.cs" />
     <Compile Include="Models\DashboardSettings.cs" />
     <Compile Include="Models\HtmlResult.cs" />

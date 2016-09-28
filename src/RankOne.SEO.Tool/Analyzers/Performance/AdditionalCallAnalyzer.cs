@@ -5,7 +5,7 @@ using RankOne.Models;
 
 namespace RankOne.Analyzers.Performance
 {
-    [AnalyzerCategory(SummaryName = "Performance")]
+    [AnalyzerCategory(SummaryName = "Performance", Alias = "additionalcallanalyzer")]
     public class AdditionalCallAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)

@@ -6,7 +6,7 @@ using RankOne.Models;
 
 namespace RankOne.Analyzers.Performance
 {
-    [AnalyzerCategory(SummaryName = "Performance")]
+    [AnalyzerCategory(SummaryName = "Performance", Alias = "htmlsizeanalyzer")]
     public class HtmlSizeAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)

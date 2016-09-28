@@ -5,7 +5,7 @@ using RankOne.Models;
 
 namespace RankOne.Analyzers.Template
 {
-    [AnalyzerCategory(SummaryName = "Template")]
+    [AnalyzerCategory(SummaryName = "Template", Alias = "anchorTagAnalyzer")]
     public class AnchorTagAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)

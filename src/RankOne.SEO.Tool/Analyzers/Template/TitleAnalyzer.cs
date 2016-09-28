@@ -18,7 +18,7 @@ namespace RankOne.Analyzers.Template
     ///     1. longer than 60 - major
     ///     2. shorter than 10 - major
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Template")]
+    [AnalyzerCategory(SummaryName = "Template", Alias = "titleanalyzer")]
     public class TitleAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)

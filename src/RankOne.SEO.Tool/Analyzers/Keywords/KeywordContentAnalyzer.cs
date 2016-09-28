@@ -6,7 +6,7 @@ using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
 {
-    [AnalyzerCategory(SummaryName = "Keywords")]
+    [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordcontentanalyzer")]
     public class KeywordContentAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)

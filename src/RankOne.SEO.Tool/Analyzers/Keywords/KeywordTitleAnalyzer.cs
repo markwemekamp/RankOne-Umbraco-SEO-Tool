@@ -16,7 +16,7 @@ namespace RankOne.Analyzers.Keywords
     /// 3. check if title contains keyword - major
     /// 4. location of the keyword - minor
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Keywords")]
+    [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordtitleanalyzer")]
     public class KeywordTitleAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)

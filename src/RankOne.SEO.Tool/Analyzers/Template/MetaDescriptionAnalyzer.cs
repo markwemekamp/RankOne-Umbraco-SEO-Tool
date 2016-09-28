@@ -13,7 +13,7 @@ namespace RankOne.Analyzers.Template
     /// check for quotes
     /// 
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Template")]
+    [AnalyzerCategory(SummaryName = "Template", Alias = "metadescriptionanalyzer")]
     public class MetaDescriptionAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
