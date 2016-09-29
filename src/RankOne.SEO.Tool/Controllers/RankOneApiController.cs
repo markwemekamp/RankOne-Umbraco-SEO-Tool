@@ -153,18 +153,21 @@ namespace RankOne.Controllers
             var nodeHiearchyCollection = new List<HiearchyNode>();
             foreach (var node in nodeCollection)
             {
-                var nodeHierarchy = new HiearchyNode
+                if (node.TemplateId > 0)
                 {
-                    NodeInformation = new NodeInformation
+                    var nodeHierarchy = new HiearchyNode
                     {
-                        Id = node.Id,
-                        Name = node.Name,
-                        TemplateId = node.TemplateId
-                    },
-                    Children = GetHierarchy(node.Children)
-                };
+                        NodeInformation = new NodeInformation
+                        {
+                            Id = node.Id,
+                            Name = node.Name,
+                            TemplateId = node.TemplateId
+                        },
+                        Children = GetHierarchy(node.Children)
+                    };
 
-                nodeHiearchyCollection.Add(nodeHierarchy);
+                    nodeHiearchyCollection.Add(nodeHierarchy);
+                }
             }
             return nodeHiearchyCollection;
         }
