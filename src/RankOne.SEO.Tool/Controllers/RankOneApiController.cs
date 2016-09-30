@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using RankOne.Models;
@@ -42,7 +43,7 @@ namespace RankOne.Controllers
         {
             try
             {
-                return  _analyzeService.AnalyzeWebPage(id, focusKeyword);
+                return _analyzeService.AnalyzeWebPage(id, focusKeyword);
             }
             catch (Exception ex)
             {
@@ -127,8 +128,8 @@ namespace RankOne.Controllers
                             _nodeReportRepository.Delete(nodeReport);
                         }
                     }
-                    GetPageScores(node.Children);
                 }
+                GetPageScores(node.Children);
             }
         }
 
@@ -140,11 +141,10 @@ namespace RankOne.Controllers
 
                 node.FocusKeyword = analysis.FocusKeyword;
                 node.PageScore = analysis.Score;
-
-                foreach (var childNode in node.Children)
-                {
-                    UpdatePageScore(childNode);
-                }
+            }
+            foreach (var childNode in node.Children)
+            {
+                UpdatePageScore(childNode);
             }
         }
 
@@ -153,23 +153,22 @@ namespace RankOne.Controllers
             var nodeHiearchyCollection = new List<HiearchyNode>();
             foreach (var node in nodeCollection)
             {
-                if (node.TemplateId > 0)
+                
+                var nodeHierarchy = new HiearchyNode
                 {
-                    var nodeHierarchy = new HiearchyNode
+                    NodeInformation = new NodeInformation
                     {
-                        NodeInformation = new NodeInformation
-                        {
-                            Id = node.Id,
-                            Name = node.Name,
-                            TemplateId = node.TemplateId
-                        },
-                        Children = GetHierarchy(node.Children)
-                    };
+                        Id = node.Id,
+                        Name = node.Name,
+                        TemplateId = node.TemplateId
+                    },
+                    Children = GetHierarchy(node.Children)
+                };
 
-                    nodeHiearchyCollection.Add(nodeHierarchy);
-                }
+                nodeHiearchyCollection.Add(nodeHierarchy);
             }
-            return nodeHiearchyCollection;
+
+            return nodeHiearchyCollection.Where(x => x.HasChildrenWithTemplate).ToList();
         }
     }
 }

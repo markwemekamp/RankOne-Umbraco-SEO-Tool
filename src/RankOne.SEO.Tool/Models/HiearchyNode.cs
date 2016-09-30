@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace RankOne.Models
 {
@@ -12,6 +13,11 @@ namespace RankOne.Models
         public HiearchyNode()
         {
             Children = new List<HiearchyNode>();
+        }
+
+        public bool HasChildrenWithTemplate
+        {
+            get { return NodeInformation.TemplateId > 0 || Children.Any(x => x.NodeInformation.TemplateId > 0 || x.HasChildrenWithTemplate); }
         }
     }
 }
