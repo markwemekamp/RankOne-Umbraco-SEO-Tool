@@ -17,7 +17,7 @@ namespace RankOne.Models
 
         public bool HasChildrenWithTemplate
         {
-            get { return NodeInformation.TemplateId > 0 || Children.Any(x => x.NodeInformation.TemplateId > 0 || x.HasChildrenWithTemplate); }
+            get { return Children.Any(x => x.NodeInformation.TemplateId > 0 || x.HasChildrenWithTemplate); }
         }
     }
 }

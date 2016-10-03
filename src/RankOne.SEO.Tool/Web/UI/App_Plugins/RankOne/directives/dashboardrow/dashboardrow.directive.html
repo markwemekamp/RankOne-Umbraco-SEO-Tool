@@ -1,4 +1,4 @@
-﻿<div class="dashboard-row {{cssClass}}" ng-click="!row.PageScore || viewDetails(row)">
+﻿<div class="dashboard-row {{cssClass}}" ng-click="!row.PageScore || viewDetails(row)" ng-show='row.NodeInformation.TemplateId > 0 || row.HasChildrenWithTemplate'>
     <div class="segment row-title">
         <label class="indentation-{{level}}">
             <a href="#/content/content/edit/{{row.NodeInformation.Id}}">{{row.NodeInformation.Name}}</a>
@@ -23,8 +23,8 @@
     </div>
 
     <div class="segment">
-        <span ng-if="row.FocusKeyword">{{row.FocusKeyword}}</span>
-        <span ng-if="!row.FocusKeyword">No focuskeyword set</span>
+        <span ng-if="row.FocusKeyword && row.FocusKeyword != 'undefined'">{{row.FocusKeyword}}</span>
+        <span ng-if="!row.FocusKeyword || row.FocusKeyword == 'undefined'">No focuskeyword set</span>
     </div>
 
 </div>

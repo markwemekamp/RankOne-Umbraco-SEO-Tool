@@ -112,7 +112,7 @@ namespace RankOne.Controllers
         {
             foreach (var node in nodeHierarchy)
             {
-                if (node.NodeInformation.TemplateId > 0)
+                if (node.NodeInformation.TemplateId > 0 || node.HasChildrenWithTemplate)
                 {
                     var nodeReport = _nodeReportRepository.GetById(node.NodeInformation.Id);
                     if (nodeReport != null)
@@ -168,7 +168,7 @@ namespace RankOne.Controllers
                 nodeHiearchyCollection.Add(nodeHierarchy);
             }
 
-            return nodeHiearchyCollection.Where(x => x.HasChildrenWithTemplate).ToList();
+            return nodeHiearchyCollection.ToList();
         }
     }
 }

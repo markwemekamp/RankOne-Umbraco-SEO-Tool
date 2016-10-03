@@ -17,8 +17,8 @@
                 }
             }
 
-            if (angular.isArray(scope.row.Children)) {
-                var nextrow = angular.element("<dashboardrow row='childRow' level='" + (scope.level+1) + "' ng-repeat='childRow in row.Children'/>");
+            if (angular.isArray(scope.row.Children) && scope.row.HasChildrenWithTemplate) {
+                var nextrow = angular.element("<dashboardrow row='childRow' level='" + (scope.level + 1) + "' ng-repeat='childRow in row.Children'/>");
                 nextrow.insertAfter(element);
                 $compile(nextrow)(scope);
             }
