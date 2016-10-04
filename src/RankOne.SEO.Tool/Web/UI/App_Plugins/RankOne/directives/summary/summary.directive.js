@@ -13,7 +13,7 @@
             scope.load = function () {
                 scope.loading = true;
 
-                var url = '/umbraco/backoffice/api/RankOneApi/AnalyzeNode?id=' + scope.nodeId;
+                var url = '/umbraco/backoffice/rankone/RankOneApi/AnalyzeNode?id=' + scope.nodeId;
                 webresultService.GetResult(url)
                     .then(function (response) {
                         scope.analyzeResults = response;

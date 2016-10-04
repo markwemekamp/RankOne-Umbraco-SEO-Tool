@@ -1,7 +1,7 @@
 ﻿(function () {
 
     // Controller
-    function rankOneSiteDashboard($scope, $http, webresultService, localizationService) {
+    function rankOneSiteDashboard($scope, webresultService) {
 
         $scope.analyzeResults = null;
         $scope.filter = null;
@@ -10,71 +10,49 @@
         $scope.load = function () {
             $scope.loading = true;
 
-            var url = '/umbraco/backoffice/api/RankOneApi/GetPageHierarchy';
+            var url = '/umbraco/backoffice/rankone/RankOneApi/GetPageHierarchy';
 
-            $http({ method: 'GET', url: url })
-                .then(function (response) {
-                    if (response.data && response.status === 200) {                        
-                        if (response.data == null || response.data === "null") {
-                            $scope.initialized = false;
-                        } else {
-                            $scope.setData(response.data);
-                            $scope.initialized = true;
-                        }
-                        $scope.loading = false;
-                    } else {
-                        $scope.error = localizationService.localize("error_page_error", [response.status]);
-                        $scope.loading = false;
-                    }
-                },
-                function (response) {
-                    $scope.error = response.data.Message;
-                    $scope.loading = false;
-                });
+            webresultService.GetResult(url).then(function (response) {
+                $scope.setData(response);
+                $scope.initialized = true;
+                $scope.loading = false;
+            },
+            function (response) {
+                $scope.error = response;
+                $scope.loading = false;
+            });
         };
 
         $scope.refresh = function () {
             $scope.loading = true;
             $scope.pageHierarchy = null;
-            var url = '/umbraco/backoffice/api/RankOneApi/UpdateAllPages';
+            var url = '/umbraco/backoffice/rankone/RankOneApi/UpdateAllPages';
 
-            $http({ method: 'GET', url: url })
-                .then(function (response) {
-                    if (response.data && response.status === 200) {
-                        $scope.setData(response.data);
-                        $scope.loading = false;
-                    } else {
-                        $scope.error = localizationService.localize("error_page_error", [response.status]);
-                        $scope.loading = false;
-                    }
-                },
-                function (response) {
-                    $scope.error = response.data.Message;
-                    $scope.loading = false;
-                });
+            webresultService.GetResult(url).then(function (response) {
+                $scope.setData(response);
+                $scope.initialized = true;
+                $scope.loading = false;
+            },
+            function (response) {
+                $scope.error = response;
+                $scope.loading = false;
+            });
         };
 
         $scope.initialize = function () {
             $scope.loading = true;
             $scope.pageHierarchy = null;
-            var url = '/umbraco/backoffice/api/RankOneApi/Initialize';
+            var url = '/umbraco/backoffice/rankone/RankOneApi/Initialize';
 
-            $http({ method: 'GET', url: url })
-                .then(function (response) {
-                    if (response.data && response.status === 200) {
-                        $scope.setData(response.data);
-                        $scope.initialized = true;
-                        $scope.loading = false;
-                    } else {
-                        $scope.initialized = true;
-                        $scope.error = localizationService.localize("error_page_error", [response.status]);
-                        $scope.loading = false;
-                    }
-                },
-                function (response) {
-                    $scope.error = response.data.Message;
-                    $scope.loading = false;
-                });
+            webresultService.GetResult(url).then(function (response) {
+                $scope.setData(response);
+                $scope.initialized = true;
+                $scope.loading = false;
+            },
+           function (response) {
+               $scope.error = response;
+               $scope.loading = false;
+           });
         };
 
         $scope.setData = function (data) {

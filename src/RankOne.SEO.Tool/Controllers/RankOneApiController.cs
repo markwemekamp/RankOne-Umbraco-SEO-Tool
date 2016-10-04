@@ -9,10 +9,12 @@ using RankOne.Services;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Web;
+using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 
 namespace RankOne.Controllers
 {
+    [PluginController("RankOne")]
     public class RankOneApiController : UmbracoAuthorizedApiController
     {
         private readonly UmbracoHelper _umbracoHelper;

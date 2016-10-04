@@ -5,10 +5,12 @@ using System.Reflection;
 using RankOne.Attributes;
 using RankOne.Models;
 using RankOne.Summaries;
+using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 
 namespace RankOne.Controllers
 {
+    [PluginController("RankOne")]
     public class AnalyzerStructureApiController : UmbracoAuthorizedApiController
     {
         public IEnumerable<AnalyzerStructure> GetStructure()
