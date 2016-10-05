@@ -1,80 +1,63 @@
 ﻿(function () {
 
     // Controller
-    function analyzerSelectorController($scope) {
+    function analyzerSelectorController($scope, webresultService) {
 
-        $scope.analyzerSummaries = [
-        {
-            name: 'templateanalyzer',
-            analyzers: [
-                'titleanalyzer',
-                'metadescriptionanalyzer',
-                'metakeywordanalyzer',
-                'imagetaganalyzer',
-                'deprecatedtaganalyzer'
-            ]
-        },
-        {
-            name: 'keywordanalyzer',
-            analyzers: [
-                'keywordtitleanalyzer',
-                'keywordmetadescriptionanalyzer'
-            ]
-        },
-        {
-            name: 'performanceanalyzer',
-            analyzers: [
-                'serverresponseanalyzer',
-                'gzipanalyzer',
-                'htmlsizeanalyzer',
-                'additionalcallanalyzer',
-                'cssminificationanalyzer',
-                'javascriptminificationanalyzer'
-            ]
-        }
-        ];
+        var url = '/umbraco/backoffice/rankone/AnalyzerStructureApi/GetStructure';
+        webresultService.GetResult(url)
+            .then(function (response) {
 
-        var firstTime = false;
-        if (!$scope.model.value) {
-            $scope.model.value = [];
-            firstTime = true;
-        }
+                $scope.analyzerSummaries = response;
+                $scope.load();
+                $scope.loading = false;
 
-        angular.forEach($scope.analyzerSummaries, function (analyzerSummary) {
-
-            var analyzerSummaryObject = _.findWhere($scope.model.value, { name: analyzerSummary.name });
-
-            if (!analyzerSummaryObject) {
-                analyzerSummaryObject = {
-                    name: analyzerSummary.name,
-                    checked: firstTime,
-                    analyzers: []
-                };
-
-                angular.forEach(analyzerSummary.analyzers, function (analyzer) {
-                    var analyzerObject = {
-                        name: analyzer,
-                        checked: firstTime
-                    };
-                    analyzerSummaryObject.analyzers.push(analyzerObject);
+            },
+                function (message) {
+                    $scope.error = message;
+                    $scope.loading = false;
                 });
 
-                $scope.model.value.push(analyzerSummaryObject);
-            } else {
-                angular.forEach(analyzerSummary.analyzers, function (analyzer) {
+        $scope.load = function () {
 
-                    var analyzerObject = _.findWhere(analyzerSummaryObject.analyzers, { name: analyzer });
-
-                    if (!analyzerObject) {
-                        analyzerObject = {
-                            name: analyzer,
-                            checked: firstTime
-                        }
-                        analyzerSummaryObject.analyzers.push(analyzerObject);
-                    }
-                });
+            var tempObject = [];
+            var firstTime = false;
+            if (!$scope.model.value) {
+                $scope.model.value = [];
+                firstTime = true;
             }
-        });
+
+            angular.forEach($scope.analyzerSummaries,
+                function (analyzerSummary) {
+
+                    var analyzerSummaryObject = _.findWhere($scope.model.value, { name: analyzerSummary.Name });
+
+                    if (!analyzerSummaryObject) {
+                        analyzerSummaryObject = {
+                            name: analyzerSummary.Name,
+                            checked: firstTime,
+                            analyzers: []
+                        };
+
+                    }
+                    angular.forEach(analyzerSummary.Analyzers,
+                            function (analyzer) {
+
+                                var analyzerObject = _.findWhere(analyzerSummaryObject.analyzers, { name: analyzer });
+
+                                if (!analyzerObject) {
+                                    analyzerObject = {
+                                        name: analyzer,
+                                        checked: firstTime
+                                    }
+                                    analyzerSummaryObject.analyzers.push(analyzerObject);
+                                }
+                            });
+
+                    tempObject.push(analyzerSummaryObject);
+                });
+
+            $scope.model.value = tempObject;
+        }
     };
 
     // Register the controller
