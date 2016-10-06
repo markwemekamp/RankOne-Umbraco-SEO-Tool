@@ -1,7 +1,7 @@
 ﻿(function () {
 
     // Controller
-    function rankOneSiteDashboard($scope, webresultService) {
+    function rankOneSiteDashboard($scope, dashboardService) {
 
         $scope.analyzeResults = null;
         $scope.filter = null;
@@ -9,51 +9,31 @@
 
         $scope.load = function () {
             $scope.loading = true;
-
-            var url = '/umbraco/backoffice/rankone/RankOneApi/GetPageHierarchy';
-
-            webresultService.GetResult(url).then(function (response) {
-                $scope.setData(response);
-                $scope.initialized = true;
-                $scope.loading = false;
-            },
-            function (response) {
-                $scope.error = response;
-                $scope.loading = false;
-            });
+            dashboardService.GetPageHierarchy().then(loadData, showError);
         };
 
         $scope.refresh = function () {
             $scope.loading = true;
             $scope.pageHierarchy = null;
-            var url = '/umbraco/backoffice/rankone/RankOneApi/UpdateAllPages';
-
-            webresultService.GetResult(url).then(function (response) {
-                $scope.setData(response);
-                $scope.initialized = true;
-                $scope.loading = false;
-            },
-            function (response) {
-                $scope.error = response;
-                $scope.loading = false;
-            });
+            dashboardService.UpdateAllPages().then(loadData, showError);
         };
 
         $scope.initialize = function () {
             $scope.loading = true;
             $scope.pageHierarchy = null;
-            var url = '/umbraco/backoffice/rankone/RankOneApi/Initialize';
-
-            webresultService.GetResult(url).then(function (response) {
-                $scope.setData(response);
-                $scope.initialized = true;
-                $scope.loading = false;
-            },
-           function (response) {
-               $scope.error = response;
-               $scope.loading = false;
-           });
+            dashboardService.Initialize().then(loadData, showError);
         };
+
+        function loadData(response) {
+            $scope.setData(response);
+            $scope.initialized = true;
+            $scope.loading = false;
+        }
+
+        function showError(response) {
+            $scope.error = response;
+            $scope.loading = false;
+        }
 
         $scope.setData = function (data) {
 
