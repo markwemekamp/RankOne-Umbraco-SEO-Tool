@@ -17,7 +17,7 @@ namespace RankOne.Services
     public class AnalyzeService
     {
         private readonly HtmlDocument _htmlParser;
-        
+
         private readonly ScoreService _scoreService;
         private readonly JavaScriptSerializer _javascriptSerializer;
         private readonly UmbracoHelper _umbracoHelper;
@@ -40,6 +40,10 @@ namespace RankOne.Services
             try
             {
                 var node = _umbracoHelper.TypedContent(id);
+                if (node.TemplateId == 0)
+                {
+                    return null;
+                }
                 var htmlString = _contentHelper.GetNodeHtml(node);
 
                 if (string.IsNullOrEmpty(focusKeyword))
@@ -73,7 +77,7 @@ namespace RankOne.Services
                 foreach (var type in types)
                 {
                     var instance = Activator.CreateInstance(type.Type);
-                    var summary = (BaseSummary) instance;
+                    var summary = (BaseSummary)instance;
                     summary.FocusKeyword = focusKeyword;
                     summary.HtmlResult = html;
                     summary.Url = pageAnalysis.Url;
@@ -84,6 +88,7 @@ namespace RankOne.Services
                         Analysis = summary.GetAnalysis()
                     });
                 }
+
             }
             catch (WebException ex)
             {

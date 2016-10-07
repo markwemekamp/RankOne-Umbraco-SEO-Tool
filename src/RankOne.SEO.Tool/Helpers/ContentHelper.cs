@@ -28,11 +28,6 @@ namespace RankOne.Helpers
                     var htmlObject = _umbracoHelper.RenderTemplate(content.Id);
                     htmlString = htmlObject.ToHtmlString();
                 }
-                else if (!string.IsNullOrEmpty(content.Url))
-                {
-                    // Fallback for when a template is not set (yes, I'm looking at you Merchello ;))
-                    htmlString = new WebClient().DownloadString(content.UrlWithDomain());
-                }
             }
             return htmlString;
         }

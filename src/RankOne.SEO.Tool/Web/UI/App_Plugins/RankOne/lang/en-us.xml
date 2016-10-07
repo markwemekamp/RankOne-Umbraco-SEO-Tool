@@ -5,6 +5,22 @@
     <link>https://github.com/markwemekamp/</link>
   </creator>
 
+  <area alias="sitedashboard">
+    <key alias="title">RankOne Dashboard</key>
+    <key alias="description">
+      See the pagescores of all the published pages in your Umbraco installation in one overview, even the ones
+      without the dashboard or summary property installed.
+    </key>
+    <key alias="initialize">Initialize</key>
+    <key alias="intro_text">
+      <![CDATA[
+      The avarage score of all the pages analyzed is %0%%. Click on the row to view extra information on potential problems.
+                To add a keyword to a page you can either add the RankOne Dashboard property editor to the page and set it there or add a property named "keyword" to your document type.<br/><br/>
+                The data you see below is <strong>cached</strong>, to refresh the score, click the refresh button below.
+      ]]></key>
+    <key alias="refresh">Refresh</key>
+  </area>
+  
   <area alias="error">
     <key alias="no_template">This item does not have a template</key>
     <key alias="not_published">This item is not published</key>

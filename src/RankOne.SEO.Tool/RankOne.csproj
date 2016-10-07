@@ -321,7 +321,6 @@
     <Content Include="Web\UI\App_Plugins\RankOne\dashboards\SiteDashboard.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\dialogs\pageinformation\pageinformation.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\dialogs\pageinformation\pageinformation.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\dialogs\information\information.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\dialogs\information\information.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\dialogs\settings\settings.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\dialogs\settings\settings.html" />
@@ -355,6 +354,7 @@
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\analyzerSelector\analyzerSelector.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.controller.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\services\dashboard.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\webresult.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.js" />

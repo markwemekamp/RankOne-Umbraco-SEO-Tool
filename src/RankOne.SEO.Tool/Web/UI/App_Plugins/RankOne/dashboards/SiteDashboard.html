@@ -6,21 +6,20 @@
         {{error}}
     </div>
 
-    <div style="max-width: 800px; text-align: center; margin: auto; padding: 20px; min-height: 800px;" ng-show="!loading && !initialized">
+    <div class="installer" ng-show="!loading && !initialized">
 
         <div class="installer-top">
-            <i style="font-size: 80px" class="icon icon-bar-chart"></i>
-            <h3>RankOne Dashboard</h3>
+            <i class="icon icon-bar-chart"></i>
+            <h3><localize key="sitedashboard_title"></localize></h3>
         </div>
 
         <div class="step-one" ng-hide="state">
 
-            <p style="font-size: 16px; line-height: 1.5; color: #4c4c4c;">
-                See the pagescores of all the published pages in your Umbraco installation in one overview, even the ones
-                without the dashboard or summary property installed.
+            <p>
+                <localize key="sitedashboard_description"></localize>
             </p>
 
-            <button ng-click="initialize()" class="btn publish btn-install">Initialize</button>
+            <button ng-click="initialize()" class="btn publish btn-install"><localize key="sitedashboard_initialize"></localize></button>
         </div>
     </div>
 
@@ -30,11 +29,9 @@
         <div id="score"></div>
         <div class="summary clearfix">
             <p>
-                The avarage score of all the pages analyzed is {{overallScore}}%. Click on the row to view extra information on potential problems.
-                To add a keyword to a page you can either add the RankOne Dashboard property editor to the page and set it there or add a property named "keyword" to your document type.<br/><br/>
-                The data you see below is <strong>cached</strong>, to refresh the score, click the refresh button below.
+                <div ng-bind-html="intro_text"></div>
             </p>
-            <button ng-click="refresh()" class="btn btn-primary refresh">Refresh</button>
+            <button ng-click="refresh()" class="btn btn-primary refresh"><localize key="sitedashboard_refresh"></localize></button>
         </div>
 
         <div class="dashboard-row-container">

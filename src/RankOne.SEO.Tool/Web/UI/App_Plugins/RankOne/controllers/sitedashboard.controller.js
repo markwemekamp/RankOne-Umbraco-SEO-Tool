@@ -1,7 +1,7 @@
 ﻿(function () {
 
     // Controller
-    function rankOneSiteDashboard($scope, dashboardService) {
+    function rankOneSiteDashboard($scope, dashboardService, localizationService) {
 
         $scope.analyzeResults = null;
         $scope.filter = null;
@@ -66,6 +66,8 @@
             } else if ($scope.overallScore < 66) {
                 $scope.color = '#dd9d22';
             }
+
+            $scope.intro_text = localizationService.localize('sitedashboard_intro_text', [$scope.overallScore]);
 
             $("#score")
                 .circliful({

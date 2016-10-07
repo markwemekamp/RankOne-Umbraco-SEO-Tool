@@ -1,6 +1,5 @@
 ﻿(function () {
 
-    // Controller
     function rankOneSettings($scope) {
         $scope.loading = false;
 
@@ -9,7 +8,6 @@
         };
     };
 
-    // Register the controller
     angular.module("umbraco").controller('rankOneSettings', rankOneSettings);
 
 })();
