@@ -114,10 +114,14 @@ namespace RankOne.Controllers
         {
             foreach (var node in nodeHierarchy)
             {
-                if (node.NodeInformation.TemplateId > 0 || node.HasChildrenWithTemplate)
+                var nodeReport = _nodeReportRepository.GetById(node.NodeInformation.Id);
+                if (nodeReport != null)
                 {
-                    var nodeReport = _nodeReportRepository.GetById(node.NodeInformation.Id);
-                    if (nodeReport != null)
+                    if (node.NodeInformation.TemplateId == 0)
+                    {
+                        _nodeReportRepository.Delete(nodeReport);
+                    }
+                    if (node.NodeInformation.TemplateId > 0 || node.HasChildrenWithTemplate)
                     {
                         node.FocusKeyword = nodeReport.FocusKeyword;
                         try
@@ -155,7 +159,7 @@ namespace RankOne.Controllers
             var nodeHiearchyCollection = new List<HiearchyNode>();
             foreach (var node in nodeCollection)
             {
-                
+
                 var nodeHierarchy = new HiearchyNode
                 {
                     NodeInformation = new NodeInformation
