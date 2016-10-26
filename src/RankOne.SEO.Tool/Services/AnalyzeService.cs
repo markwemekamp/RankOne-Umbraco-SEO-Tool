@@ -64,14 +64,8 @@ namespace RankOne.Services
                 };
 
                 // Get all types marked with the Summary attribute
-                var currentAssembly = Assembly.GetExecutingAssembly();
-                var types = currentAssembly.GetTypes()
-                    .Where(
-                        x => Attribute.IsDefined(x, typeof(Summary))).Select(x => new
-                        {
-                            Type = x,
-                            Summary = (Summary)Attribute.GetCustomAttributes(x).FirstOrDefault(y => y is Summary)
-                        }).OrderBy(x => x.Summary.SortOrder);
+                var reflectionService = new ReflectionService();
+                var types = reflectionService.GetSummaries();
 
                 // Instantiate the types and retrieve te results
                 foreach (var type in types)

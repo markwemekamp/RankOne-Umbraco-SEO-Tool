@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Linq;
-using System.Reflection;
 using RankOne.Analyzers;
-using RankOne.Attributes;
 using RankOne.Models;
+using RankOne.Services;
 
 namespace RankOne.Summaries
 {
     public class BaseSummary
     {
-        public HtmlResult HtmlResult;
-
+        public HtmlResult HtmlResult { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
         public string FocusKeyword { get; set; }
@@ -19,15 +16,8 @@ namespace RankOne.Summaries
         {
             var analysis = new Analysis();
 
-            var currentAssembly = Assembly.GetExecutingAssembly();
-
-            // Get all types within the assembly that are marked with the AnalyzerCategory attribute
-            // and have the SummaryName equal to the Name of the current Summary
-            var types = currentAssembly.GetTypes()
-                .Where(
-                    x => Attribute.IsDefined(x, typeof(AnalyzerCategory)) && 
-                    Attribute.GetCustomAttributes(x).Any(y => y is AnalyzerCategory && 
-                    ((AnalyzerCategory) y).SummaryName == Name));
+            var reflectionService = new ReflectionService();
+            var types = reflectionService.GetAllAnalyzersForSummary(Name);
 
             foreach (var type in types)
             {
