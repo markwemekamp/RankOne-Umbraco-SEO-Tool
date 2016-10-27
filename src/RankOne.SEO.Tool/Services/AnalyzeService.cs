@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Text;
 using System.Web.Script.Serialization;
 using HtmlAgilityPack;
-using RankOne.Attributes;
 using RankOne.Helpers;
 using RankOne.Models;
 using RankOne.Summaries;
@@ -17,7 +14,6 @@ namespace RankOne.Services
     public class AnalyzeService
     {
         private readonly HtmlDocument _htmlParser;
-
         private readonly ScoreService _scoreService;
         private readonly JavaScriptSerializer _javascriptSerializer;
         private readonly UmbracoHelper _umbracoHelper;

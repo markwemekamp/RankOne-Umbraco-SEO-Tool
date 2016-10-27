@@ -42,6 +42,5 @@ namespace RankOne.Services
                 }
             }
         }
-
     }
 }
