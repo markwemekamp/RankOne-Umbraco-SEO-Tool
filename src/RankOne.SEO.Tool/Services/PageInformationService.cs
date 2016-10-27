@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Web;
 using HtmlAgilityPack;
 using RankOne.Helpers;
 using RankOne.Models;
@@ -27,7 +28,7 @@ namespace RankOne.Services
             var html = htmlObject.ToHtmlString();
 
             var htmlParser = new HtmlDocument();
-            htmlParser.LoadHtml(html);
+            htmlParser.LoadHtml(HttpUtility.HtmlDecode(html));
 
             var headTag = HtmlHelper.GetElements(htmlParser.DocumentNode, "head");
 
