@@ -25,8 +25,10 @@
         };
 
         function loadData(response) {
-            $scope.setData(response);
-            $scope.initialized = true;
+            if (response && response !== "null") {
+                $scope.setData(response);
+                $scope.initialized = true;
+            }
             $scope.loading = false;
         }
 
