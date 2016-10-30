@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
@@ -9,13 +8,13 @@ namespace RankOne.Analyzers.Performance
     [AnalyzerCategory(SummaryName = "Performance", Alias = "htmlsizeanalyzer")]
     public class HtmlSizeAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
+        public override AnalyzeResult Analyse(PageData pageData)
         {
             var htmlSizeAnalysis = new AnalyzeResult
             {
                 Alias = "htmlsizeanalyzer"
             };
-            var byteCount = Encoding.Unicode.GetByteCount(document.InnerHtml);
+            var byteCount = Encoding.Unicode.GetByteCount(pageData.Document.InnerHtml);
             var htmlSizeResultRule = new ResultRule();
             if (byteCount < (33 * 1024))
             {

@@ -297,6 +297,7 @@
     <Compile Include="Models\NodeInformation.cs" />
     <Compile Include="Models\NodeReport.cs" />
     <Compile Include="Models\PageAnalysis.cs" />
+    <Compile Include="Models\PageData.cs" />
     <Compile Include="Models\PageInformation.cs" />
     <Compile Include="Models\PageScore.cs" />
     <Compile Include="Models\ResultRule.cs" />

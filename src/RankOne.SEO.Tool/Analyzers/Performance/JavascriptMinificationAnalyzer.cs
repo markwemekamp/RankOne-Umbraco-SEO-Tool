@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
-using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
@@ -10,16 +9,16 @@ namespace RankOne.Analyzers.Performance
     [AnalyzerCategory(SummaryName = "Performance", Alias = "javascriptminificationanalyzer")]
     public class JavascriptMinificationAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string urlString)
+        public override AnalyzeResult Analyse(PageData pageData)
         {
             var result = new AnalyzeResult
             {
                 Alias = "javascriptminificationanalyzer"
             };
 
-            var url = new Uri(urlString);
+            var url = new Uri(pageData.Url);
 
-            var localCssFiles = HtmlHelper.GetElementsWithAttribute(document, "script", "src").
+            var localCssFiles = HtmlHelper.GetElementsWithAttribute(pageData.Document, "script", "src").
                 Where(x =>
                         x.Attributes.Any(y => y.Name == "src" && y.Value.EndsWith("js") && ((y.Value.StartsWith("/") && !y.Value.StartsWith("//"))
                             || y.Value.StartsWith(url.Host)

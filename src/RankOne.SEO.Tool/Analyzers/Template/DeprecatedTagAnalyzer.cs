@@ -8,25 +8,25 @@ namespace RankOne.Analyzers.Template
     [AnalyzerCategory(SummaryName = "Template", Alias = "deprecatedtaganalyzer")]
     public class DeprecatedTagAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
+        public override AnalyzeResult Analyse(PageData pageData)
         {
             var result = new AnalyzeResult
             {
                 Alias = "deprecatedtaganalyzer"
             };
 
-            CheckTag(document, "acronym", result);
-            CheckTag(document, "applet", result);
-            CheckTag(document, "basefont", result);
-            CheckTag(document, "big", result);
-            CheckTag(document, "center", result);
-            CheckTag(document, "dir", result);
-            CheckTag(document, "font", result);
-            CheckTag(document, "frame", result);
-            CheckTag(document, "frameset", result);
-            CheckTag(document, "noframes", result);
-            CheckTag(document, "strike", result);
-            CheckTag(document, "tt", result);
+            CheckTag(pageData.Document, "acronym", result);
+            CheckTag(pageData.Document, "applet", result);
+            CheckTag(pageData.Document, "basefont", result);
+            CheckTag(pageData.Document, "big", result);
+            CheckTag(pageData.Document, "center", result);
+            CheckTag(pageData.Document, "dir", result);
+            CheckTag(pageData.Document, "font", result);
+            CheckTag(pageData.Document, "frame", result);
+            CheckTag(pageData.Document, "frameset", result);
+            CheckTag(pageData.Document, "noframes", result);
+            CheckTag(pageData.Document, "strike", result);
+            CheckTag(pageData.Document, "tt", result);
 
             if (!result.ResultRules.Any())
             {

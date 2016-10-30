@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
@@ -8,14 +7,14 @@ namespace RankOne.Analyzers.Template
     [AnalyzerCategory(SummaryName = "Template", Alias = "metakeywordanalyzer")]
     public class MetaKeywordAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
+        public override AnalyzeResult Analyse(PageData pageData)
         {
             var result = new AnalyzeResult
             {
                 Alias = "metakeywordanalyzer"
             };
 
-            var metaTags = HtmlHelper.GetElements(document, "meta");
+            var metaTags = HtmlHelper.GetElements(pageData.Document, "meta");
 
             if (!metaTags.Any())
             {

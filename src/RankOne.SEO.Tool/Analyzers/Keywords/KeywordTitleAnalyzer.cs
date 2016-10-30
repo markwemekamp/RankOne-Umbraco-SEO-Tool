@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
@@ -19,14 +18,14 @@ namespace RankOne.Analyzers.Keywords
     [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordtitleanalyzer")]
     public class KeywordTitleAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
+        public override AnalyzeResult Analyse(PageData pageData)
         {
             var result = new AnalyzeResult
             {
                 Alias = "keywordtitleanalyzer"
             };
 
-            var titleTags = HtmlHelper.GetElements(document, "title");
+            var titleTags = HtmlHelper.GetElements(pageData.Document, "title");
 
             if (!titleTags.Any())
             {
@@ -40,7 +39,7 @@ namespace RankOne.Analyzers.Keywords
             else
             {
                 var titleText = titleTags.First().InnerText;
-                var position = titleText.IndexOf(focuskeyword, StringComparison.InvariantCultureIgnoreCase);
+                var position = titleText.IndexOf(pageData.Focuskeyword, StringComparison.InvariantCultureIgnoreCase);
 
                 if (position >= 0)
                 {

@@ -15,22 +15,22 @@ namespace RankOne.Models
 
         public int ErrorCount
         {
-            get { return ResultRules.Count(x => x.Type == ResultType.Error); }
+            get { return CountRestultRulesByType(ResultType.Error); }
         }
 
         public int WarningCount
         {
-            get { return ResultRules.Count(x => x.Type == ResultType.Warning); }
+            get { return CountRestultRulesByType(ResultType.Warning); }
         }
 
         public int HintCount
         {
-            get { return ResultRules.Count(x => x.Type == ResultType.Hint); }
+            get { return CountRestultRulesByType(ResultType.Hint); }
         }
 
         public int SuccessCount
         {
-            get { return ResultRules.Count(x => x.Type == ResultType.Success); }
+            get { return CountRestultRulesByType(ResultType.Success); }
         }
 
         public int Score { get; set; }
@@ -39,5 +39,11 @@ namespace RankOne.Models
         {
             ResultRules.Add(new ResultRule { Alias = code, Type = type });
         }
+
+        public int CountRestultRulesByType(string type)
+        {
+            return ResultRules.Count(x => x.Type == type);
+        }
+
     }
 }

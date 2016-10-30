@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Umbraco.Core.Models;
+﻿using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace RankOne.Helpers

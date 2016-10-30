@@ -12,22 +12,44 @@ namespace RankOne.Summaries
         public string Url { get; set; }
         public string FocusKeyword { get; set; }
 
+        private readonly ReflectionService _reflectionService;
+
+        public BaseSummary()
+        {
+            _reflectionService = new ReflectionService();
+        }
+
         public virtual Analysis GetAnalysis()
         {
             var analysis = new Analysis();
-
-            var reflectionService = new ReflectionService();
-            var types = reflectionService.GetAllAnalyzersForSummary(Name);
+            var types = _reflectionService.GetAllAnalyzersForSummary(Name);
 
             foreach (var type in types)
             {
-                // Create an instance of the found type and call the Analyse method
-                var instance = Activator.CreateInstance(type);
-                var result = ((BaseAnalyzer) instance).Analyse(HtmlResult.Document, FocusKeyword, Url);
+                var instance = GetInstance(type);
+
+                var result = GetResultFromAnalyzer(instance);
                 analysis.Results.Add(result);
             }
 
             return analysis;
+        }
+
+        private BaseAnalyzer GetInstance(Type type)
+        {
+            var instance = Activator.CreateInstance(type);
+            return (BaseAnalyzer)instance;
+        }
+
+        private AnalyzeResult GetResultFromAnalyzer(BaseAnalyzer baseAnalyzerInstance)
+        {
+            var pageData = new PageData
+            {
+                Document = HtmlResult.Document,
+                Focuskeyword = FocusKeyword,
+                Url = Url
+            };
+            return baseAnalyzerInstance.Analyse(pageData);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
-using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
@@ -10,16 +9,16 @@ namespace RankOne.Analyzers.Performance
     [AnalyzerCategory(SummaryName = "Performance", Alias = "cssminificationanalyzer")]
     public class CssMinificationAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string urlString)
+        public override AnalyzeResult Analyse(PageData pageData)
         {
             var result = new AnalyzeResult
             {
                 Alias = "cssminificationanalyzer"
             };
 
-            var url = new Uri(urlString);
+            var url = new Uri(pageData.Url);
 
-            var localCssFiles = HtmlHelper.GetElementsWithAttribute(document, "link", "href").
+            var localCssFiles = HtmlHelper.GetElementsWithAttribute(pageData.Document, "link", "href").
                 Where(x =>
                         x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet") &&
                         x.Attributes.Any(y => y.Name == "href" && ((y.Value.StartsWith("/") && !y.Value.StartsWith("//"))

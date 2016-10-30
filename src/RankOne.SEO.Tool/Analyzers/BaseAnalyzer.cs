@@ -1,5 +1,4 @@
-﻿using HtmlAgilityPack;
-using RankOne.Helpers;
+﻿using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 
@@ -14,6 +13,6 @@ namespace RankOne.Analyzers
             HtmlHelper = new HtmlHelper();
         }
 
-        public abstract AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url);
+        public abstract AnalyzeResult Analyse(PageData pageData);
     }
 }

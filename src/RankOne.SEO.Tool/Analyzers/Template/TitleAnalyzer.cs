@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
@@ -21,14 +20,14 @@ namespace RankOne.Analyzers.Template
     [AnalyzerCategory(SummaryName = "Template", Alias = "titleanalyzer")]
     public class TitleAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
+        public override AnalyzeResult Analyse(PageData pageData)
         {
             var result = new AnalyzeResult
             {
                 Alias = "titleanalyzer"
             };
 
-            var headTag = HtmlHelper.GetElements(document, "head");
+            var headTag = HtmlHelper.GetElements(pageData.Document, "head");
             if (headTag.Any())
             {
                 var titleTags = HtmlHelper.GetElements(headTag.First(), "title");

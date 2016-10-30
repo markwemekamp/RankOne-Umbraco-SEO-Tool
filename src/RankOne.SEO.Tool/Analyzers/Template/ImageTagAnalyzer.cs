@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
@@ -8,14 +7,14 @@ namespace RankOne.Analyzers.Template
     [AnalyzerCategory(SummaryName = "Template", Alias = "imagetaganalyzer")]
     public class ImageTagAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
+        public override AnalyzeResult Analyse(PageData pageData)
         {
             var result = new AnalyzeResult
             {
                 Alias = "imagetaganalyzer"
             };
 
-            var imageTags = HtmlHelper.GetElements(document, "img");
+            var imageTags = HtmlHelper.GetElements(pageData.Document, "img");
             var imageTagCount = imageTags.Count();
 
             var imagesWithAltTagCount = imageTags.Count(x => HtmlHelper.GetAttribute(x, "alt") != null && !string.IsNullOrWhiteSpace(HtmlHelper.GetAttribute(x, "alt").Value));

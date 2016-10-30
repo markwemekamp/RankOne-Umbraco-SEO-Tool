@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
@@ -8,22 +7,22 @@ namespace RankOne.Analyzers.Keywords
     [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordheadinganalyzer")]
     public class KeywordHeadingAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
+        public override AnalyzeResult Analyse(PageData pageData)
         {
             var result = new AnalyzeResult
             {
                 Alias = "keywordheadinganalyzer"
             };
 
-            var h1Tags = HtmlHelper.GetElements(document, "h1");
-            var h2Tags = HtmlHelper.GetElements(document, "h2");
-            var h3Tags = HtmlHelper.GetElements(document, "h3");
-            var h4Tags = HtmlHelper.GetElements(document, "h4");
+            var h1Tags = HtmlHelper.GetElements(pageData.Document, "h1");
+            var h2Tags = HtmlHelper.GetElements(pageData.Document, "h2");
+            var h3Tags = HtmlHelper.GetElements(pageData.Document, "h3");
+            var h4Tags = HtmlHelper.GetElements(pageData.Document, "h4");
 
-            var usedInHeadingCount = h1Tags.Count(x => x.InnerText.ToLower().Contains(focuskeyword)) + 
-                h2Tags.Count(x => x.InnerText.ToLower().Contains(focuskeyword)) + 
-                h3Tags.Count(x => x.InnerText.ToLower().Contains(focuskeyword)) + 
-                h4Tags.Count(x => x.InnerText.ToLower().Contains(focuskeyword));
+            var usedInHeadingCount = h1Tags.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword)) + 
+                h2Tags.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword)) + 
+                h3Tags.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword)) + 
+                h4Tags.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword));
 
             if (usedInHeadingCount > 0)
             {

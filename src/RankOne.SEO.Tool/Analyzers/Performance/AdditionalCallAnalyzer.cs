@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.Models;
 
@@ -8,18 +7,18 @@ namespace RankOne.Analyzers.Performance
     [AnalyzerCategory(SummaryName = "Performance", Alias = "additionalcallanalyzer")]
     public class AdditionalCallAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(HtmlNode document, string focuskeyword, string url)
+        public override AnalyzeResult Analyse(PageData pageData)
         {
             var result = new AnalyzeResult
             {
                 Alias = "additionalcallanalyzer"
             };
 
-            var cssFiles = HtmlHelper.GetElementsWithAttribute(document, "link", "href").
+            var cssFiles = HtmlHelper.GetElementsWithAttribute(pageData.Document, "link", "href").
                 Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));
-            var scriptFiles = HtmlHelper.GetElementsWithAttribute(document, "script", "src");
-            var images = HtmlHelper.GetElementsWithAttribute(document, "img", "src");
-            var objects = HtmlHelper.GetElementsWithAttribute(document, "object ", "data");
+            var scriptFiles = HtmlHelper.GetElementsWithAttribute(pageData.Document, "script", "src");
+            var images = HtmlHelper.GetElementsWithAttribute(pageData.Document, "img", "src");
+            var objects = HtmlHelper.GetElementsWithAttribute(pageData.Document, "object ", "data");
 
             var total = cssFiles.Count() + scriptFiles.Count() + images.Count() + objects.Count();
 

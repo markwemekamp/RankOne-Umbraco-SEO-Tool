@@ -73,7 +73,7 @@ module.exports = function(grunt) {
             },
             debug: {
                 cwd: 'src/RankOne.SEO.Tool/bin/Debug/',
-                src: ['*.dll', '*.pdb'],
+                src: ['RankOne.dll', 'RankOne.pdb'],
                 dest: '<%= dest %>/bin/',
                 expand: true
             },
