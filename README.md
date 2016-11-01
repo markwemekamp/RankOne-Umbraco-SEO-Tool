@@ -9,6 +9,8 @@ RankOne currently contains 5 different tools for Umbraco:
 - Summary property editor: A list of seo improvements
 - Result preview property editor: A google search result preview
 
+![](https://www.github.com/markwemekamp/RankOne-Umbraco-SEO-Tool/raw/master/docs/assets/img/dashboard.png)
+
 
 ## How to install the fields composition ##
 
