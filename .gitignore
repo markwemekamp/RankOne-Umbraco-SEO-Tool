@@ -19,7 +19,6 @@ artifacts/
 src/packages/*/**
 build/App_plugins/
 build/bin/
-assets/
 dist/
 node_modules/
 tmp/
