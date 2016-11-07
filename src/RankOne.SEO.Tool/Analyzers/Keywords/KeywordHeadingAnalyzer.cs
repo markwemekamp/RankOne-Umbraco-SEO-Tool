@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
@@ -14,10 +15,10 @@ namespace RankOne.Analyzers.Keywords
                 Alias = "keywordheadinganalyzer"
             };
 
-            var h1Tags = HtmlHelper.GetElements(pageData.Document, "h1");
-            var h2Tags = HtmlHelper.GetElements(pageData.Document, "h2");
-            var h3Tags = HtmlHelper.GetElements(pageData.Document, "h3");
-            var h4Tags = HtmlHelper.GetElements(pageData.Document, "h4");
+            var h1Tags = pageData.Document.GetDescendingElements("h1");
+            var h2Tags = pageData.Document.GetDescendingElements("h2");
+            var h3Tags = pageData.Document.GetDescendingElements("h3");
+            var h4Tags = pageData.Document.GetDescendingElements("h4");
 
             var usedInHeadingCount = h1Tags.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword)) + 
                 h2Tags.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword)) + 
@@ -38,8 +39,6 @@ namespace RankOne.Analyzers.Keywords
             {
                 result.AddResultRule("keywordheadinganalyzer_keyword_not_used_in_heading", ResultType.Hint);
             }
-
-            
 
             return result;
         }

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Template
@@ -27,10 +28,10 @@ namespace RankOne.Analyzers.Template
                 Alias = "titleanalyzer"
             };
 
-            var headTag = HtmlHelper.GetElements(pageData.Document, "head");
+            var headTag = pageData.Document.GetDescendingElements("head");
             if (headTag.Any())
             {
-                var titleTags = HtmlHelper.GetElements(headTag.First(), "title");
+                var titleTags = headTag.First().GetDescendingElements("title");
                 if (!titleTags.Any())
                 {
                     result.AddResultRule("titleanalyzer_no_title_tag", ResultType.Error);

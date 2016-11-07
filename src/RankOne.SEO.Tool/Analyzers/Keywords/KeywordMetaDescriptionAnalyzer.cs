@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
@@ -15,7 +16,7 @@ namespace RankOne.Analyzers.Keywords
                 Alias = "keywordmetadescriptionanalyzer"
             };
 
-            var metaTags = HtmlHelper.GetElements(pageData.Document, "meta");
+            var metaTags = pageData.Document.GetDescendingElements("meta");
 
             if (!metaTags.Any())
             {
@@ -24,10 +25,10 @@ namespace RankOne.Analyzers.Keywords
             else
             {
                 var attributeValues = from metaTag in metaTags
-                                      let attribute = HtmlHelper.GetAttribute(metaTag, "name")
+                                      let attribute = metaTag.GetAttribute("name")
                                       where attribute != null
                                       where attribute.Value == "description"
-                                      select HtmlHelper.GetAttribute(metaTag, "content");
+                                      select metaTag.GetAttribute("content");
 
                 if (!attributeValues.Any())
                 {

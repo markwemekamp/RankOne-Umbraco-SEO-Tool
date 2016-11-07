@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Template
@@ -20,7 +21,7 @@ namespace RankOne.Analyzers.Template
                 Alias = "metarobotsanalyzer"
             };
 
-            var metaTags = HtmlHelper.GetElements(pageData.Document, "meta");
+            var metaTags = pageData.Document.GetDescendingElements("meta");
 
             if (!metaTags.Any())
             {
@@ -29,16 +30,16 @@ namespace RankOne.Analyzers.Template
             else
             {
                 var robots = from metaTag in metaTags
-                             let attribute = HtmlHelper.GetAttribute(metaTag, "name")
+                             let attribute = metaTag.GetAttribute("name")
                              where attribute != null
                              where attribute.Value == "robots"
-                             select HtmlHelper.GetAttribute(metaTag, "content");
+                             select metaTag.GetAttribute("content");
 
                 var googlebot = from metaTag in metaTags
-                                let attribute = HtmlHelper.GetAttribute(metaTag, "name")
+                                let attribute = metaTag.GetAttribute("name")
                                 where attribute != null
                                 where attribute.Value == "googlebot"
-                                select HtmlHelper.GetAttribute(metaTag, "content");
+                                select metaTag.GetAttribute("content");
 
                 if (!robots.Any() && !googlebot.Any())
                 {

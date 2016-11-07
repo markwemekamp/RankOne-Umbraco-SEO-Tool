@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Performance
@@ -18,7 +19,7 @@ namespace RankOne.Analyzers.Performance
 
             var url = new Uri(pageData.Url);
 
-            var localCssFiles = HtmlHelper.GetElementsWithAttribute(pageData.Document, "script", "src").
+            var localCssFiles = pageData.Document.GetDescendingElementsWithAttribute("script", "src").
                 Where(x =>
                         x.Attributes.Any(y => y.Name == "src" && y.Value.EndsWith("js") && ((y.Value.StartsWith("/") && !y.Value.StartsWith("//"))
                             || y.Value.StartsWith(url.Host)
@@ -29,7 +30,7 @@ namespace RankOne.Analyzers.Performance
 
             foreach (var localCssFile in localCssFiles)
             {
-                var address = HtmlHelper.GetAttribute(localCssFile, "src");
+                var address = localCssFile.GetAttribute("src");
 
                 if (address != null)
                 {

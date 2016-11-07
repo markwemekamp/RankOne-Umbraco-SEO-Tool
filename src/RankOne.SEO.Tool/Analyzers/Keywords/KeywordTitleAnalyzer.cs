@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
@@ -25,7 +26,7 @@ namespace RankOne.Analyzers.Keywords
                 Alias = "keywordtitleanalyzer"
             };
 
-            var titleTags = HtmlHelper.GetElements(pageData.Document, "title");
+            var titleTags = pageData.Document.GetDescendingElements("title");
 
             if (!titleTags.Any())
             {

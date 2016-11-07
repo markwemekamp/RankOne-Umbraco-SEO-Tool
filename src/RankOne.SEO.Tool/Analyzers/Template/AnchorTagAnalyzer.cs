@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Template
@@ -14,10 +15,10 @@ namespace RankOne.Analyzers.Template
                 Alias = "anchorTagAnalyzer"
             };
 
-            var anchorTags = HtmlHelper.GetElements(pageData.Document, "a");
+            var anchorTags = pageData.Document.GetDescendingElements("a");
             var anchorTagCount = anchorTags.Count();
 
-            var anchorWithTitleTagCount = anchorTags.Count(x => HtmlHelper.GetAttribute(x, "title") != null && !string.IsNullOrWhiteSpace(HtmlHelper.GetAttribute(x, "title").Value));
+            var anchorWithTitleTagCount = anchorTags.Count(x => x.GetAttribute("title") != null && !string.IsNullOrWhiteSpace(x.GetAttribute("title").Value));
 
             if (anchorTagCount > anchorWithTitleTagCount)
             {

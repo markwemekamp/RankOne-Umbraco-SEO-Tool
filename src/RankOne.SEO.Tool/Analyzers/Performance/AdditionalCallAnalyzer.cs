@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Performance
@@ -14,11 +15,11 @@ namespace RankOne.Analyzers.Performance
                 Alias = "additionalcallanalyzer"
             };
 
-            var cssFiles = HtmlHelper.GetElementsWithAttribute(pageData.Document, "link", "href").
+            var cssFiles = pageData.Document.GetDescendingElementsWithAttribute("link", "href").
                 Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));
-            var scriptFiles = HtmlHelper.GetElementsWithAttribute(pageData.Document, "script", "src");
-            var images = HtmlHelper.GetElementsWithAttribute(pageData.Document, "img", "src");
-            var objects = HtmlHelper.GetElementsWithAttribute(pageData.Document, "object ", "data");
+            var scriptFiles = pageData.Document.GetDescendingElementsWithAttribute("script", "src");
+            var images = pageData.Document.GetDescendingElementsWithAttribute("img", "src");
+            var objects = pageData.Document.GetDescendingElementsWithAttribute("object ", "data");
 
             var total = cssFiles.Count() + scriptFiles.Count() + images.Count() + objects.Count();
 

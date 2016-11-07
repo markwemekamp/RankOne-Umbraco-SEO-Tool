@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Performance
@@ -18,7 +19,7 @@ namespace RankOne.Analyzers.Performance
 
             var url = new Uri(pageData.Url);
 
-            var localCssFiles = HtmlHelper.GetElementsWithAttribute(pageData.Document, "link", "href").
+            var localCssFiles = pageData.Document.GetDescendingElementsWithAttribute("link", "href").
                 Where(x =>
                         x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet") &&
                         x.Attributes.Any(y => y.Name == "href" && ((y.Value.StartsWith("/") && !y.Value.StartsWith("//"))
@@ -30,7 +31,7 @@ namespace RankOne.Analyzers.Performance
 
             foreach (var localCssFile in localCssFiles)
             {
-                var address = HtmlHelper.GetAttribute(localCssFile, "href");
+                var address = localCssFile.GetAttribute("href");
 
                 if (address != null)
                 {

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web;
 using HtmlAgilityPack;
+using RankOne.ExtensionMethods;
 using RankOne.Helpers;
 using RankOne.Models;
 using Umbraco.Web;
@@ -9,13 +10,6 @@ namespace RankOne.Services
 {
     public class PageInformationService
     {
-        protected HtmlHelper HtmlHelper;
-
-        public PageInformationService()
-        {
-            HtmlHelper = new HtmlHelper();
-        }
-
         public PageInformation GetpageInformation(int id)
         {
             var pageInformation = new PageInformation();
@@ -30,11 +24,11 @@ namespace RankOne.Services
             var htmlParser = new HtmlDocument();
             htmlParser.LoadHtml(HttpUtility.HtmlDecode(html));
 
-            var headTag = HtmlHelper.GetElements(htmlParser.DocumentNode, "head");
+            var headTag = htmlParser.DocumentNode.GetDescendingElements("head");
 
             if (headTag.Any())
             {
-                var titleTags = HtmlHelper.GetElements(headTag.First(), "title");
+                var titleTags = headTag.First().GetDescendingElements("title");
 
                 if (titleTags.Any())
                 {
@@ -42,13 +36,13 @@ namespace RankOne.Services
                 }
             }
 
-            var metaTags = HtmlHelper.GetElements(htmlParser.DocumentNode, "meta");
+            var metaTags = htmlParser.DocumentNode.GetDescendingElements("meta");
 
             var attributeValues = from metaTag in metaTags
-                                  let attribute = HtmlHelper.GetAttribute(metaTag, "name")
+                                  let attribute = metaTag.GetAttribute("name")
                                   where attribute != null
                                   where attribute.Value == "description"
-                                  select HtmlHelper.GetAttribute(metaTag, "content");
+                                  select metaTag.GetAttribute("content");
 
 
             if (attributeValues.Any())

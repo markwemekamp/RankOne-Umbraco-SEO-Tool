@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Template
@@ -14,10 +15,10 @@ namespace RankOne.Analyzers.Template
                 Alias = "imagetaganalyzer"
             };
 
-            var imageTags = HtmlHelper.GetElements(pageData.Document, "img");
+            var imageTags = pageData.Document.GetDescendingElements("img");
             var imageTagCount = imageTags.Count();
 
-            var imagesWithAltTagCount = imageTags.Count(x => HtmlHelper.GetAttribute(x, "alt") != null && !string.IsNullOrWhiteSpace(HtmlHelper.GetAttribute(x, "alt").Value));
+            var imagesWithAltTagCount = imageTags.Count(x => x.GetAttribute("alt") != null && !string.IsNullOrWhiteSpace(x.GetAttribute("alt").Value));
 
             if (imageTagCount > imagesWithAltTagCount)
             {
@@ -31,7 +32,7 @@ namespace RankOne.Analyzers.Template
                 result.ResultRules.Add(resultRule);
             }
 
-            var imagesWithTitleTagCount = imageTags.Count(x => HtmlHelper.GetAttribute(x, "title") != null && !string.IsNullOrWhiteSpace(HtmlHelper.GetAttribute(x, "title").Value));
+            var imagesWithTitleTagCount = imageTags.Count(x => x.GetAttribute("title") != null && !string.IsNullOrWhiteSpace(x.GetAttribute("title").Value));
 
             if (imageTagCount > imagesWithTitleTagCount)
             {

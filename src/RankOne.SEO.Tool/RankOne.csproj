@@ -280,9 +280,9 @@
     <Compile Include="Attributes\AnalyzerCategory.cs" />
     <Compile Include="Controllers\AnalyzerStructureApiController.cs" />
     <Compile Include="Controllers\RankOneApiController.cs" />
+    <Compile Include="ExtensionMethods\HtmlNodeExtensions.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Helpers\ContentHelper.cs" />
-    <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Interfaces\IAnalyzer.cs" />
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisInformation.cs" />

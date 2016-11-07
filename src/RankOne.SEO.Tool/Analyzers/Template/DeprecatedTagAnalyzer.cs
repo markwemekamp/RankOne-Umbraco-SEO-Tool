@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using HtmlAgilityPack;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Template
@@ -36,9 +37,9 @@ namespace RankOne.Analyzers.Template
             return result;
         }
 
-        private void CheckTag(HtmlNode document, string tagname, AnalyzeResult result)
+        private void CheckTag(HtmlNode htmlNode, string tagname, AnalyzeResult result)
         {
-            var acronymTags = HtmlHelper.GetElements(document, tagname);
+            var acronymTags = htmlNode.GetDescendingElements(tagname);
 
             if (acronymTags.Any())
             {

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
@@ -15,7 +16,7 @@ namespace RankOne.Analyzers.Keywords
                 Alias = "keywordcontentanalyzer"
             };
 
-            var bodyTags = HtmlHelper.GetElements(pageData.Document, "body");
+            var bodyTags = pageData.Document.GetDescendingElements("body");
 
             if (!bodyTags.Any())
             {
@@ -31,8 +32,8 @@ namespace RankOne.Analyzers.Keywords
 
                 if (bodyTag != null)
                 {
-                    var text = Regex.Replace(bodyTag.InnerText.Trim().ToLower(), @"\s+", " ");
-
+                    var bodyText = bodyTag.InnerText.Trim();
+                    var text = Regex.Replace(bodyText.ToLower(), @"\s+", " ");
                     var matches = Regex.Matches(text, pageData.Focuskeyword);
 
                     if (matches.Count == 0)
