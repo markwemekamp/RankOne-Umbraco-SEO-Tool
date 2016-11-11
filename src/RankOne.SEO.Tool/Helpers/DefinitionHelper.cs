@@ -3,59 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using RankOne.Attributes;
+using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Helpers
 {
-    public class DefintionHelper : IDefintionHelper
+    public class DefinitionHelper : IDefintionHelper
     {
-        private readonly IReflectionHelper _reflectionHelper;
         private IEnumerable<Assembly> _assemblies;
 
-        public DefintionHelper() : this(new ReflectionHelper())
-        { }
-
-        public DefintionHelper(IReflectionHelper reflectionHelper)
+        public IEnumerable<Assembly> Assemblies
         {
-            _reflectionHelper = reflectionHelper;
-            Initialize();
-        }
-
-        protected void Initialize()
-        {
-            _assemblies = _reflectionHelper.GetAssemblies();
+            get
+            {
+                if (_assemblies == null)
+                {
+                    var currentAssembly = Assembly.GetExecutingAssembly();
+                    _assemblies = new List<Assembly> {currentAssembly};
+                }
+                return _assemblies;
+            }
+            set { _assemblies = value; }
         }
 
         public IEnumerable<SummaryDefinition> GetSummaryDefinitions()
         {
-            return _assemblies.SelectMany(GetSummaryDefinitionsFromAssembly);
+            return Assemblies.SelectMany(GetSummaryDefinitionsFromAssembly);
         }
 
         public IEnumerable<SummaryDefinition> GetSummaryDefinitionsFromAssembly(Assembly assembly)
         {
-            var typesWithSummaryAttribute = _reflectionHelper.GetTypesWithAttribute(assembly, typeof(Summary));
+            var typesWithSummaryAttribute = assembly.GetTypesWithAttribute(typeof(Summary));
 
             return typesWithSummaryAttribute.Select(x => new SummaryDefinition
             {
                 Type = x,
-                Summary = _reflectionHelper.GetAttributeFromType<Summary>(x)
+                Summary = x.GetAttributeWithType<Summary>()
             }).OrderBy(x => x.Summary.SortOrder);
         }
 
         public IEnumerable<AnalyzerDefinition> GetAnalyzerDefintions()
         {
-            return _assemblies.SelectMany(GetAnalyzerDefintionsFromAssembly);
+            return Assemblies.SelectMany(GetAnalyzerDefintionsFromAssembly);
         }
 
         public IEnumerable<AnalyzerDefinition> GetAnalyzerDefintionsFromAssembly(Assembly assembly)
         {
-            var typesWithAnalyzerCategoryAttribute = _reflectionHelper.GetTypesWithAttribute(assembly, typeof(AnalyzerCategory));
+            var typesWithAnalyzerCategoryAttribute = assembly.GetTypesWithAttribute(typeof(AnalyzerCategory));
 
             return typesWithAnalyzerCategoryAttribute.Select(x => new AnalyzerDefinition
             {
                 Type = x,
-                AnalyzerCategory = _reflectionHelper.GetAttributeFromType<AnalyzerCategory>(x)
+                AnalyzerCategory = x.GetAttributeWithType<AnalyzerCategory>()
             });
         }
 
@@ -67,7 +67,7 @@ namespace RankOne.Helpers
         /// <returns></returns>
         public IEnumerable<Type> GetAllAnalyzerTypesForSummary(string summaryName)
         {
-            return _assemblies.SelectMany(a => GetAllAnalyzerTypesForSummary(a, summaryName));
+            return Assemblies.SelectMany(a => GetAllAnalyzerTypesForSummary(a, summaryName));
         }
 
         /// <summary>

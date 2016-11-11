@@ -35,8 +35,7 @@ namespace RankOne.Controllers
         {
             try
             {
-                _analyzeService.FocusKeyword = focusKeyword;
-                return _analyzeService.CreateAnalysis(id);
+                return _analyzeService.CreateAnalysis(id, focusKeyword);
             }
             catch (MissingFieldException ex)
             {

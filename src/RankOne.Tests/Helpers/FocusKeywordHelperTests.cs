@@ -9,7 +9,7 @@ using Umbraco.Web.Models.Fakes;
 namespace RankOne.Tests.Helpers
 {
     [TestClass]
-    public class FocusKeywordHelperTest
+    public class FocusKeywordHelperTests
     {
         [TestMethod]
         public void GetFocusKeywordReturnsFocusKeywordProperty()
@@ -46,7 +46,7 @@ namespace RankOne.Tests.Helpers
                 var focusKeywordHelper = new FocusKeywordHelper();
                 var result = focusKeywordHelper.GetFocusKeyword(publishedContent);
 
-                Assert.AreEqual(result, "test keyword");
+                Assert.AreEqual("test keyword", result);
             }
         }
 
@@ -94,7 +94,7 @@ namespace RankOne.Tests.Helpers
                 var focusKeywordHelper = new FocusKeywordHelper();
                 var result = focusKeywordHelper.GetFocusKeyword(publishedContent);
 
-                Assert.AreEqual(result, "umbraco");
+                Assert.AreEqual("umbraco", result);
             }
         }
 

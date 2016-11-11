@@ -22,11 +22,11 @@ using Umbraco.Web.Security;
 namespace RankOne.Tests.Helpers
 {
     [TestClass]
-    public class ContentHelperTest
+    public class ContentHelperTests
     {
         private readonly UmbracoHelper _umbracoHelper;
 
-        public ContentHelperTest()
+        public ContentHelperTests()
         {
             var databaseContext = new DatabaseContext(Mock.Of<IDatabaseFactory>(), Mock.Of<ILogger>(),
                 new SqlSyntaxProviders(new[] {Mock.Of<ISqlSyntaxProvider>()}));
@@ -120,7 +120,7 @@ namespace RankOne.Tests.Helpers
             var result = contentHelper.GetNodeHtml(publishedContent);
 
             Assert.IsInstanceOfType(result, typeof(string));
-            Assert.AreEqual(result, "<html>test</html>");
+            Assert.AreEqual("<html>test</html>", result);
         }
     }
 }

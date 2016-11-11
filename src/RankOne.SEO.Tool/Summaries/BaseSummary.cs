@@ -12,11 +12,11 @@ namespace RankOne.Summaries
         public string Url { get; set; }
         public string FocusKeyword { get; set; }
 
-        private readonly DefintionHelper _reflectionService;
+        private readonly DefinitionHelper _reflectionService;
 
         public BaseSummary()
         {
-            _reflectionService = new DefintionHelper();
+            _reflectionService = new DefinitionHelper();
         }
 
         public virtual Analysis GetAnalysis()

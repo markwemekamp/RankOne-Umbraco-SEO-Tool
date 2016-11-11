@@ -15,7 +15,7 @@ namespace RankOne.Controllers
     {
         private readonly IDefintionHelper _defintionHelper;
 
-        public AnalyzerStructureApiController() : this(new DefintionHelper())
+        public AnalyzerStructureApiController() : this(new DefinitionHelper())
         { }
 
         public AnalyzerStructureApiController(IDefintionHelper defintionHelper)

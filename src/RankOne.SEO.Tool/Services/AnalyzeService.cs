@@ -18,7 +18,7 @@ namespace RankOne.Services
         private readonly ContentHelper _contentHelper;
         private readonly AnalysisCacheService _analysisCacheService;
         private readonly FocusKeywordHelper _focusKeywordHelper;
-        private readonly DefintionHelper _reflectionService;
+        private readonly DefinitionHelper _reflectionService;
 
         public AnalyzeService()
         {
@@ -28,10 +28,8 @@ namespace RankOne.Services
             _contentHelper = new ContentHelper(_umbracoHelper);
             _analysisCacheService = new AnalysisCacheService();
             _focusKeywordHelper = new FocusKeywordHelper();
-            _reflectionService = new DefintionHelper();
+            _reflectionService = new DefinitionHelper();
         }
-
-        public string FocusKeyword { get; set; }
 
         public PageAnalysis CreateAnalysis(int id, string focusKeyword = null)
         {
@@ -129,7 +127,7 @@ namespace RankOne.Services
             // Instantiate the types and retrieve te results
             foreach (var summaryDefinition in summaryDefinitions)
             {
-                var summary = CreateSummaryFromType(pageAnalysis, html, summaryDefinition.Type);
+                var summary = CreateSummaryFromType(summaryDefinition.Type, pageAnalysis, html);
 
                 var analyzerResult = new AnalyzerResult
                 {
@@ -141,11 +139,11 @@ namespace RankOne.Services
             }
         }
 
-        private BaseSummary CreateSummaryFromType(PageAnalysis pageAnalysis, HtmlResult html, Type type)
+        private BaseSummary CreateSummaryFromType(Type type, PageAnalysis pageAnalysis, HtmlResult html)
         {
             var instance = Activator.CreateInstance(type);
             var summary = (BaseSummary)instance;
-            summary.FocusKeyword = FocusKeyword;
+            summary.FocusKeyword = pageAnalysis.FocusKeyword;
             summary.HtmlResult = html;
             summary.Url = pageAnalysis.Url;
             return summary;

@@ -280,8 +280,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Helpers\ContentHelperTest.cs" />
-    <Compile Include="Helpers\FocusKeywordHelperTest.cs" />
+    <Compile Include="Helpers\ContentHelperTests.cs" />
+    <Compile Include="Helpers\DefinitionHelperTests.cs" />
+    <Compile Include="Helpers\FocusKeywordHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

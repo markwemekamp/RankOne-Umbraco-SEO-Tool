@@ -282,16 +282,16 @@
     <Compile Include="Controllers\DashboardApiController.cs" />
     <Compile Include="Controllers\AnalysisApiController.cs" />
     <Compile Include="Controllers\PageApiController.cs" />
+    <Compile Include="ExtensionMethods\AssemblyExtensions.cs" />
     <Compile Include="ExtensionMethods\HtmlNodeExtensions.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
+    <Compile Include="ExtensionMethods\TypeExtensions.cs" />
     <Compile Include="Helpers\ContentHelper.cs" />
     <Compile Include="Helpers\FocusKeywordHelper.cs" />
-    <Compile Include="Helpers\ReflectionHelper.cs" />
     <Compile Include="Interfaces\IAnalyzer.cs" />
     <Compile Include="Interfaces\IDefinitionHelper.cs" />
     <Compile Include="Interfaces\IPageData.cs" />
     <Compile Include="Interfaces\IPageInformationService.cs" />
-    <Compile Include="Interfaces\IReflectionHelper.cs" />
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisInformation.cs" />
     <Compile Include="Models\AnalyzerDefinition.cs" />
@@ -321,7 +321,7 @@
     <Compile Include="Services\KeywordOccurenceService.cs" />
     <Compile Include="Services\AnalysisCacheService.cs" />
     <Compile Include="Services\PageInformationService.cs" />
-    <Compile Include="Helpers\DefintionHelper.cs" />
+    <Compile Include="Helpers\DefinitionHelper.cs" />
     <Compile Include="Services\ScoreService.cs" />
     <Compile Include="Summaries\BaseSummary.cs" />
     <Compile Include="Summaries\TemplateSummary.cs" />
