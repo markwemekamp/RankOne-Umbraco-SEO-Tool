@@ -2,13 +2,13 @@
 using System.Web;
 using HtmlAgilityPack;
 using RankOne.ExtensionMethods;
-using RankOne.Helpers;
+using RankOne.Interfaces;
 using RankOne.Models;
 using Umbraco.Web;
 
 namespace RankOne.Services
 {
-    public class PageInformationService
+    public class PageInformationService : IPageInformationService
     {
         public PageInformation GetpageInformation(int id)
         {

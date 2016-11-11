@@ -2,6 +2,7 @@
 using System.Linq;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
@@ -9,7 +10,7 @@ namespace RankOne.Analyzers.Keywords
     [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordmetadescriptionanalyzer")]
     public class KeywordMetaDescriptionAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        public override AnalyzeResult Analyse(IPageData pageData)
         {
             var result = new AnalyzeResult
             {

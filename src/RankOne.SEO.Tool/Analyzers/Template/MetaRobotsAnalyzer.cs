@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Template
@@ -14,7 +17,7 @@ namespace RankOne.Analyzers.Template
     [AnalyzerCategory(SummaryName = "Template", Alias = "metarobotsanalyzer")]
     public class MetaRobotsAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        public override AnalyzeResult Analyse(IPageData pageData)
         {
             var result = new AnalyzeResult
             {
@@ -29,42 +32,57 @@ namespace RankOne.Analyzers.Template
             }
             else
             {
-                var robots = from metaTag in metaTags
-                             let attribute = metaTag.GetAttribute("name")
-                             where attribute != null
-                             where attribute.Value == "robots"
-                             select metaTag.GetAttribute("content");
-
-                var googlebot = from metaTag in metaTags
-                                let attribute = metaTag.GetAttribute("name")
-                                where attribute != null
-                                where attribute.Value == "googlebot"
-                                select metaTag.GetAttribute("content");
-
-                if (!robots.Any() && !googlebot.Any())
-                {
-                    result.AddResultRule("metarobotsanalyzer_no_robots_tag", ResultType.Success);
-                }
-                else
-                {
-                    var firstRobotTag = robots.FirstOrDefault();
-                    if (firstRobotTag != null)
-                    {
-                        AnalyzeTag(firstRobotTag.Value, result, "robots");
-                    }
-
-                    var firstGooglebotTag = googlebot.FirstOrDefault();
-                    if (firstGooglebotTag != null)
-                    {
-                        AnalyzeTag(firstGooglebotTag.Value, result, "googlebot");
-                    }
-
-                }
+                AnalyzeMetaTags(metaTags, result);
             }
             return result;
         }
 
-        private static void AnalyzeTag(string tagValue, AnalyzeResult result, string tag)
+        private void AnalyzeMetaTags(IEnumerable<HtmlNode> metaTags, AnalyzeResult result)
+        {
+            var robots = GetContentAttributeFromMetaTag(metaTags, "robots");
+            var googlebot = GetContentAttributeFromMetaTag(metaTags, "googlebots");
+
+            if (!robots.Any() && !googlebot.Any())
+            {
+                result.AddResultRule("metarobotsanalyzer_no_robots_tag", ResultType.Success);
+            }
+            else
+            {
+                var firstRobotTag = robots.FirstOrDefault();
+                if (firstRobotTag != null)
+                {
+                    AnalyzeRobotTag(firstRobotTag, result);
+                }
+
+                var firstGooglebotTag = googlebot.FirstOrDefault();
+                if (firstGooglebotTag != null)
+                {
+                    AnalyzeGoogleBotTag(firstGooglebotTag, result);
+                }
+
+            }
+        }
+
+        private IEnumerable<HtmlAttribute> GetContentAttributeFromMetaTag(IEnumerable<HtmlNode> metaTags, string name)
+        {
+            return from metaTag in metaTags
+                   let attribute = metaTag.GetAttribute("name")
+                   where attribute != null
+                   where attribute.Value == name
+                   select metaTag.GetAttribute("content");
+        }
+
+        private void AnalyzeRobotTag(HtmlAttribute robotTag, AnalyzeResult result)
+        {
+            AnalyzeTag(robotTag.Value, result, "robots");
+        }
+
+        private void AnalyzeGoogleBotTag(HtmlAttribute googleBotTag, AnalyzeResult result)
+        {
+            AnalyzeTag(googleBotTag.Value, result, "googlebot");
+        }
+
+        private void AnalyzeTag(string tagValue, AnalyzeResult result, string tag)
         {
             if (tagValue.Contains("none"))
             {

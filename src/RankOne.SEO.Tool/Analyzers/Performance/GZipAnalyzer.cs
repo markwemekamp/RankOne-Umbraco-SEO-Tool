@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using RankOne.Attributes;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Performance
@@ -7,7 +8,7 @@ namespace RankOne.Analyzers.Performance
     [AnalyzerCategory(SummaryName = "Performance", Alias = "gzipanalyzer")]
     public class GZipAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        public override AnalyzeResult Analyse(IPageData pageData)
         {
             string encoding = null;
             var request = (HttpWebRequest)WebRequest.Create(pageData.Url);

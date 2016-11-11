@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using RankOne.Attributes;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Performance
@@ -8,7 +9,7 @@ namespace RankOne.Analyzers.Performance
     [AnalyzerCategory(SummaryName = "Performance", Alias = "htmlsizeanalyzer")]
     public class HtmlSizeAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        public override AnalyzeResult Analyse(IPageData pageData)
         {
             var htmlSizeAnalysis = new AnalyzeResult
             {

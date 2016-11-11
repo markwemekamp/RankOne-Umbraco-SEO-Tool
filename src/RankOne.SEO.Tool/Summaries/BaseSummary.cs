@@ -1,7 +1,7 @@
 ﻿using System;
 using RankOne.Analyzers;
+using RankOne.Helpers;
 using RankOne.Models;
-using RankOne.Services;
 
 namespace RankOne.Summaries
 {
@@ -12,17 +12,17 @@ namespace RankOne.Summaries
         public string Url { get; set; }
         public string FocusKeyword { get; set; }
 
-        private readonly ReflectionService _reflectionService;
+        private readonly DefintionHelper _reflectionService;
 
         public BaseSummary()
         {
-            _reflectionService = new ReflectionService();
+            _reflectionService = new DefintionHelper();
         }
 
         public virtual Analysis GetAnalysis()
         {
             var analysis = new Analysis();
-            var types = _reflectionService.GetAllAnalyzersForSummary(Name);
+            var types = _reflectionService.GetAllAnalyzerTypesForSummary(Name);
 
             foreach (var type in types)
             {

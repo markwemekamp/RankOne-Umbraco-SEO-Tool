@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Text;
-using System.Web.Script.Serialization;
 using HtmlAgilityPack;
 using RankOne.Helpers;
 using RankOne.Models;
@@ -15,70 +14,62 @@ namespace RankOne.Services
     {
         private readonly HtmlDocument _htmlParser;
         private readonly ScoreService _scoreService;
-        private readonly JavaScriptSerializer _javascriptSerializer;
         private readonly UmbracoHelper _umbracoHelper;
         private readonly ContentHelper _contentHelper;
-        private readonly NodeReportService _nodeReportService;
+        private readonly AnalysisCacheService _analysisCacheService;
+        private readonly FocusKeywordHelper _focusKeywordHelper;
+        private readonly DefintionHelper _reflectionService;
 
         public AnalyzeService()
         {
             _htmlParser = new HtmlDocument();
             _scoreService = new ScoreService();
-            _javascriptSerializer = new JavaScriptSerializer();
             _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
             _contentHelper = new ContentHelper(_umbracoHelper);
-            _nodeReportService = new NodeReportService();
+            _analysisCacheService = new AnalysisCacheService();
+            _focusKeywordHelper = new FocusKeywordHelper();
+            _reflectionService = new DefintionHelper();
         }
 
-        public PageAnalysis AnalyzeWebPage(int id, string focusKeyword = null)
+        public string FocusKeyword { get; set; }
+
+        public PageAnalysis CreateAnalysis(int id, string focusKeyword = null)
+        {
+            var node = _umbracoHelper.TypedContent(id);
+            return CreateAnalysis(node, focusKeyword);
+        }
+
+        public PageAnalysis CreateAnalysis(IPublishedContent node, string focusKeyword = null)
+        {
+            if (node.TemplateId == 0)
+            {
+                throw new MissingFieldException("TemplateId is not set");
+            }
+
+            if (!string.IsNullOrEmpty(focusKeyword))
+            {
+                focusKeyword = GetFocusKeywordFromProperties(node);
+            }
+
+            var pageAnalysis = GetPageAnalysis(node, focusKeyword);
+            _analysisCacheService.SaveCachedAnalysis(node.Id, focusKeyword, pageAnalysis);
+            return pageAnalysis;
+        }
+
+        private PageAnalysis GetPageAnalysis(IPublishedContent node, string focusKeyword)
         {
             var pageAnalysis = new PageAnalysis();
+
             try
             {
-                var node = _umbracoHelper.TypedContent(id);
-                if (node.TemplateId == 0)
-                {
-                    return null;
-                }
-                var htmlString = _contentHelper.GetNodeHtml(node);
-
-                if (string.IsNullOrEmpty(focusKeyword))
-                {
-                    focusKeyword = GetFocusKeyword(node);
-                }
-
-                _htmlParser.LoadHtml(htmlString);
+                var htmlString = GetTemplateHtml(node);
+                var htmlResult = GetHtmlResult(htmlString);
 
                 pageAnalysis.Url = node.UrlAbsolute();
                 pageAnalysis.FocusKeyword = focusKeyword;
-                pageAnalysis.Size = Encoding.ASCII.GetByteCount(htmlString);
+                pageAnalysis.Size = GetHtmlSize(htmlString);
 
-                var html = new HtmlResult
-                {
-                    Html = htmlString,
-                    Document = _htmlParser.DocumentNode
-                };
-
-                // Get all types marked with the Summary attribute
-                var reflectionService = new ReflectionService();
-                var types = reflectionService.GetSummaries();
-
-                // Instantiate the types and retrieve te results
-                foreach (var type in types)
-                {
-                    var instance = Activator.CreateInstance(type.Type);
-                    var summary = (BaseSummary)instance;
-                    summary.FocusKeyword = focusKeyword;
-                    summary.HtmlResult = html;
-                    summary.Url = pageAnalysis.Url;
-
-                    pageAnalysis.AnalyzerResults.Add(new AnalyzerResult
-                    {
-                        Alias = type.Summary.Alias,
-                        Analysis = summary.GetAnalysis()
-                    });
-                }
-
+                SetAnalyzerResults(pageAnalysis, htmlResult);
             }
             catch (WebException ex)
             {
@@ -87,32 +78,77 @@ namespace RankOne.Services
 
             pageAnalysis.Score = _scoreService.GetScore(pageAnalysis);
 
-            _nodeReportService.Save(id, focusKeyword, pageAnalysis);
-
             return pageAnalysis;
         }
 
-        private string GetFocusKeyword(IPublishedContent node)
+        private int GetHtmlSize(string htmlString)
         {
-            // Try property focusKeyword
-            if (node.HasProperty("focusKeyword"))
+            if (htmlString == null)
             {
-                return node.GetPropertyValue<string>("focusKeyword");
+                return 0;
             }
+            return Encoding.ASCII.GetByteCount(htmlString);
+        }
 
-            // Try to figure out if there's a property of type RankOneDashboard on the node
-            foreach (var property in node.Properties)
+        private HtmlResult GetHtmlResult(string htmlString)
+        {
+            var htmlNode = GetHtmlNode(htmlString);
+            var htmlResult = new HtmlResult
             {
-                if (property.HasValue && property.Value.ToString().Contains("focusKeyword"))
-                {
-                    var dashboardSettings = _javascriptSerializer.Deserialize<DashboardSettings>(property.Value.ToString());
-                    if (dashboardSettings != null)
-                    {
-                        return dashboardSettings.FocusKeyword;
-                    }
-                }
+                Html = htmlString,
+                Document = htmlNode
+            };
+            return htmlResult;
+        }
+
+        private HtmlNode GetHtmlNode(string htmlString)
+        {
+            if (htmlString != null)
+            {
+                _htmlParser.LoadHtml(htmlString);
+                return _htmlParser.DocumentNode;
             }
             return null;
+        }
+
+        private string GetTemplateHtml(IPublishedContent node)
+        {
+            return _contentHelper.GetNodeHtml(node);
+        }
+
+        private string GetFocusKeywordFromProperties(IPublishedContent node)
+        {
+            return _focusKeywordHelper.GetFocusKeyword(node);
+        }
+
+        private void SetAnalyzerResults(PageAnalysis pageAnalysis, HtmlResult html)
+        {
+            // Get all types marked with the Summary attribute
+            var summaryDefinitions = _reflectionService.GetSummaryDefinitions();
+
+            // Instantiate the types and retrieve te results
+            foreach (var summaryDefinition in summaryDefinitions)
+            {
+                var summary = CreateSummaryFromType(pageAnalysis, html, summaryDefinition.Type);
+
+                var analyzerResult = new AnalyzerResult
+                {
+                    Alias = summaryDefinition.Summary.Alias,
+                    Analysis = summary.GetAnalysis()
+                };
+
+                pageAnalysis.AnalyzerResults.Add(analyzerResult);
+            }
+        }
+
+        private BaseSummary CreateSummaryFromType(PageAnalysis pageAnalysis, HtmlResult html, Type type)
+        {
+            var instance = Activator.CreateInstance(type);
+            var summary = (BaseSummary)instance;
+            summary.FocusKeyword = FocusKeyword;
+            summary.HtmlResult = html;
+            summary.Url = pageAnalysis.Url;
+            return summary;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Umbraco.Core.Models;
+﻿using System;
+using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace RankOne.Helpers
@@ -19,16 +20,21 @@ namespace RankOne.Helpers
 
         public string GetNodeHtml(IPublishedContent content)
         {
-            var htmlString = "";
-            if (content != null)
+            if (content == null)
             {
-                if (content.TemplateId > 0)
-                {
-                    var htmlObject = _umbracoHelper.RenderTemplate(content.Id);
-                    htmlString = htmlObject.ToHtmlString();
-                }
+                throw new ArgumentException();
             }
-            return htmlString;
+            if (content.Id == 0)
+            {
+                throw new MissingFieldException("The Id of content is not set");
+            }
+            if (content.TemplateId == 0)
+            {
+                throw new MissingFieldException("The templateId of content is not set");
+            }
+
+            var htmlObject = _umbracoHelper.RenderTemplate(content.Id);
+            return htmlObject != null ? htmlObject.ToHtmlString() : null;
         }
     }
 }

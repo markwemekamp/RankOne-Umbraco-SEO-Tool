@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Template
@@ -21,63 +24,73 @@ namespace RankOne.Analyzers.Template
     [AnalyzerCategory(SummaryName = "Template", Alias = "titleanalyzer")]
     public class TitleAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        public override AnalyzeResult Analyse(IPageData pageData)
         {
             var result = new AnalyzeResult
             {
                 Alias = "titleanalyzer"
             };
 
-            var headTag = pageData.Document.GetDescendingElements("head");
+            var headTag = pageData.GetElements("head");
             if (headTag.Any())
             {
-                var titleTags = headTag.First().GetDescendingElements("title");
-                if (!titleTags.Any())
-                {
-                    result.AddResultRule("titleanalyzer_no_title_tag", ResultType.Error);
-                }
-                else if (titleTags.Count() > 1)
-                {
-                    result.AddResultRule("titleanalyzer_multiple_title_tags", ResultType.Error);
-                }
-                else
-                {
-                    var firstTitleTag = titleTags.FirstOrDefault();
-                    if (firstTitleTag != null)
-                    {
-                        var titleValue = firstTitleTag.InnerText;
-
-                        if (string.IsNullOrWhiteSpace(titleValue))
-                        {
-                            result.AddResultRule("titleanalyzer_no_title_value", ResultType.Error);
-                        }
-                        else
-                        {
-                            titleValue = titleValue.Trim();
-
-                            if (titleValue.Length > 60)
-                            {
-                                result.AddResultRule("titleanalyzer_title_too_long", ResultType.Warning);
-                            }
-
-                            if (titleValue.Length < 5)
-                            {
-                                result.AddResultRule("titleanalyzer_title_too_short", ResultType.Hint);
-                            }
-
-                            if (titleValue.Length <= 60 && titleValue.Length >= 5)
-                            {
-                                result.AddResultRule("titleanalyzer_title_success", ResultType.Success);
-                            }
-                        }
-                    }
-                }
+                AnalyzeHeadTag(headTag, result);
             }
             else
             {
                 result.AddResultRule("titleanalyzer_no_head_tag", ResultType.Error);
             }
             return result;
+        }
+
+        private void AnalyzeHeadTag(IEnumerable<HtmlNode> headTag, AnalyzeResult result)
+        {
+            var titleTags = headTag.First().GetDescendingElements("title");
+            if (!titleTags.Any())
+            {
+                result.AddResultRule("titleanalyzer_no_title_tag", ResultType.Error);
+            }
+            else if (titleTags.Count() > 1)
+            {
+                result.AddResultRule("titleanalyzer_multiple_title_tags", ResultType.Error);
+            }
+            else
+            {
+                var firstTitleTag = titleTags.FirstOrDefault();
+                if (firstTitleTag != null)
+                {
+                    AnalyzeTitleTag(firstTitleTag, result);
+                }
+            }
+        }
+
+        private void AnalyzeTitleTag(HtmlNode titleTag, AnalyzeResult result)
+        {
+            var titleValue = titleTag.InnerText;
+
+            if (string.IsNullOrWhiteSpace(titleValue))
+            {
+                result.AddResultRule("titleanalyzer_no_title_value", ResultType.Error);
+            }
+            else
+            {
+                titleValue = titleValue.Trim();
+
+                if (titleValue.Length > 60)
+                {
+                    result.AddResultRule("titleanalyzer_title_too_long", ResultType.Warning);
+                }
+
+                if (titleValue.Length < 5)
+                {
+                    result.AddResultRule("titleanalyzer_title_too_short", ResultType.Hint);
+                }
+
+                if (titleValue.Length <= 60 && titleValue.Length >= 5)
+                {
+                    result.AddResultRule("titleanalyzer_title_success", ResultType.Success);
+                }
+            }
         }
     }
 }
