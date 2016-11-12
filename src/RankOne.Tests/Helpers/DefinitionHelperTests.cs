@@ -10,12 +10,14 @@ namespace RankOne.Tests.Helpers
     [TestClass]
     public class DefinitionHelperTests
     {
+
         [TestMethod]
         public void SettingAssembliesProperty()
         {
             var rankOneAssembly = AppDomain.CurrentDomain.GetAssemblies().SingleOrDefault(assembly => assembly.GetName().Name == "RankOne");
+            Assert.IsNotNull(rankOneAssembly);
 
-            var assemblyCollection = new List<Assembly> {rankOneAssembly};
+            var assemblyCollection = new List<Assembly> { rankOneAssembly };
 
             var definitionHelper = new DefinitionHelper {Assemblies = assemblyCollection};
 
@@ -26,9 +28,10 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
-        public void RankOneContainsSummaryTypes()
+        public void RankOneContainsSummaryTypesUsingGetSummaryDefinitionsFromAssembly()
         {
             var rankOneAssembly = AppDomain.CurrentDomain.GetAssemblies().SingleOrDefault(assembly => assembly.GetName().Name == "RankOne");
+            Assert.IsNotNull(rankOneAssembly);
 
             var definitionHelper = new DefinitionHelper();
 
@@ -39,9 +42,10 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
-        public void RankOneContainsAnalyzerTypes()
+        public void RankOneContainsAnalyzerTypesUsingGetAnalyzerDefintionsFromAssembly()
         {
             var rankOneAssembly = AppDomain.CurrentDomain.GetAssemblies().SingleOrDefault(assembly => assembly.GetName().Name == "RankOne");
+            Assert.IsNotNull(rankOneAssembly);
 
             var definitionHelper = new DefinitionHelper();
 
@@ -49,6 +53,52 @@ namespace RankOne.Tests.Helpers
 
             Assert.IsNotNull(analyzerDefinitions);
             Assert.IsTrue(analyzerDefinitions.Any());
+        }
+
+        [TestMethod]
+        public void RankOneContainsSummaryDefinitionsUsingGetSummaryDefinitions()
+        {
+            var rankOneAssembly = AppDomain.CurrentDomain.GetAssemblies().SingleOrDefault(assembly => assembly.GetName().Name == "RankOne");
+            Assert.IsNotNull(rankOneAssembly);
+
+            var assemblyCollection = new List<Assembly> { rankOneAssembly };
+
+            var definitionHelper = new DefinitionHelper { Assemblies = assemblyCollection };
+
+            var summaryDefinitions = definitionHelper.GetSummaryDefinitions();
+
+            Assert.IsNotNull(summaryDefinitions);
+            Assert.IsTrue(summaryDefinitions.Any());
+        }
+
+        [TestMethod]
+        public void RankOneContainsAnalyzerDefinitionsUsingGetAnalyzerDefintions()
+        {
+            var rankOneAssembly = AppDomain.CurrentDomain.GetAssemblies().SingleOrDefault(assembly => assembly.GetName().Name == "RankOne");
+            Assert.IsNotNull(rankOneAssembly);
+
+            var assemblyCollection = new List<Assembly> { rankOneAssembly };
+
+            var definitionHelper = new DefinitionHelper { Assemblies = assemblyCollection };
+
+            var analyzerDefinitions = definitionHelper.GetAnalyzerDefintions();
+
+            Assert.IsNotNull(analyzerDefinitions);
+            Assert.IsTrue(analyzerDefinitions.Any());
+        }
+
+        [TestMethod]
+        public void NonExistingSummaryNameReturnsEmptyCollection()
+        {
+            var rankOneAssembly = AppDomain.CurrentDomain.GetAssemblies().SingleOrDefault(assembly => assembly.GetName().Name == "RankOne");
+            Assert.IsNotNull(rankOneAssembly);
+
+            var definitionHelper = new DefinitionHelper();
+
+            var analyzerDefinitions = definitionHelper.GetAllAnalyzerTypesForSummary(rankOneAssembly, "fakeSummary");
+
+            Assert.IsNotNull(analyzerDefinitions);
+            Assert.IsFalse(analyzerDefinitions.Any());
         }
     }
 }

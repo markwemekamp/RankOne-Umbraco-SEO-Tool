@@ -68,7 +68,7 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void GetNodeHtmlFromNullReturnsNull()
         {
             var contentHelper = new ContentHelper(_umbracoHelper);

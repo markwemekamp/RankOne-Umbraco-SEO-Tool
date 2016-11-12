@@ -318,7 +318,7 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\NodeReportRepository.cs" />
     <Compile Include="Services\AnalyzeService.cs" />
-    <Compile Include="Services\KeywordOccurenceService.cs" />
+    <Compile Include="Helpers\WordCounter.cs" />
     <Compile Include="Services\AnalysisCacheService.cs" />
     <Compile Include="Services\PageInformationService.cs" />
     <Compile Include="Helpers\DefinitionHelper.cs" />

@@ -9,5 +9,11 @@ namespace RankOne.ExtensionMethods
         {
             return (T)Attribute.GetCustomAttributes(type).FirstOrDefault(y => y is T);
         }
+
+        public static T GetInstance<T>(this Type type)
+        {
+            var instance = Activator.CreateInstance(type);
+            return (T)instance;
+        }
     }
 }
