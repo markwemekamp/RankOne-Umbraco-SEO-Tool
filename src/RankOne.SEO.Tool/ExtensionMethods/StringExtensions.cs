@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Net;
+using System.Text.RegularExpressions;
 
 namespace RankOne.ExtensionMethods
 {
@@ -21,6 +22,20 @@ namespace RankOne.ExtensionMethods
         {
             byte[] bytes = System.Text.Encoding.GetEncoding("Cyrillic").GetBytes(txt);
             return System.Text.Encoding.ASCII.GetString(bytes);
+        }
+
+        public static string ConvertToSimpleWord(this string word)
+        {
+            word = word.ToLower();
+            word = WebUtility.HtmlDecode(word);
+
+            var htmlRegex = new Regex("<.*?>", RegexOptions.Compiled);
+            word = htmlRegex.Replace(word, string.Empty);
+
+            var rgx = new Regex("[^a-zA-Z0-9-]");
+            word = rgx.Replace(word, string.Empty);
+
+            return word;
         }
     }
 }

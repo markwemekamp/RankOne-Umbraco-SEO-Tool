@@ -22,7 +22,7 @@ namespace RankOne.Helpers
         {
             if (content == null)
             {
-                throw new ArgumentNullException("content", "Content parameter cannot be null");
+                throw new ArgumentNullException(nameof(content), "Content parameter cannot be null");
             }
             if (content.Id == 0)
             {

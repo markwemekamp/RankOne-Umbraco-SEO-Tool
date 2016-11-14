@@ -283,6 +283,7 @@
     <Compile Include="Helpers\ContentHelperTests.cs" />
     <Compile Include="Helpers\DefinitionHelperTests.cs" />
     <Compile Include="Helpers\FocusKeywordHelperTests.cs" />
+    <Compile Include="ExtensionMethods\StringTests.cs" />
     <Compile Include="Helpers\WordCounterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

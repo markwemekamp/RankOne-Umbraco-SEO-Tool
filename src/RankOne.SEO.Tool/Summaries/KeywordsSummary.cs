@@ -1,4 +1,5 @@
-﻿using RankOne.Attributes;
+﻿using System.Linq;
+using RankOne.Attributes;
 using RankOne.Helpers;
 using RankOne.Models;
 using RankOne.Services;
@@ -43,14 +44,14 @@ namespace RankOne.Summaries
 
         private AnalysisInformation GetAnalysisInformation(string focusKeyword)
         {
-            var topwords = _wordOccurenceHelper.GetKeywords(HtmlResult);
+            var topwords = _wordOccurenceHelper.GetKeywords(HtmlResult).Take(10);
 
             var information = new AnalysisInformation {Alias = "keywordanalyzer_top_words"};
             information.Tokens.Add(focusKeyword);
-            foreach (var word in topwords)
+            foreach (var wordOccurence in topwords)
             {
-                information.Tokens.Add(word.Key);
-                information.Tokens.Add(word.Value.ToString());
+                information.Tokens.Add(wordOccurence.Word);
+                information.Tokens.Add(wordOccurence.OccurenceCount.ToString());
             }
             return information;
         }

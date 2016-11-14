@@ -302,6 +302,8 @@
     <Compile Include="Models\DashboardSettings.cs" />
     <Compile Include="Models\HtmlResult.cs" />
     <Compile Include="Models\HiearchyNode.cs" />
+    <Compile Include="Models\WordOccurence.cs" />
+    <Compile Include="Models\Collections\WordOccurenceCollection.cs" />
     <Compile Include="Models\NodeInformation.cs" />
     <Compile Include="Models\NodeReport.cs" />
     <Compile Include="Models\PageAnalysis.cs" />

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Helpers;
 
@@ -8,72 +8,38 @@ namespace RankOne.Tests.Helpers
     public class WordCounterTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetSimpleWordCallWithNullReturnsException()
+        public void Test()
         {
             var wordCounter = new WordCounter();
 
-            wordCounter.GetSimpleWord(null);
+            var text = "test1 test2 test3 test4 test5 test6 test1 test2";
+
+            var result = wordCounter.CountOccurencesForText(text);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+            Assert.AreEqual(6, result.Count);
+            Assert.AreEqual(2, result.GetWordCount("test1"));
+            Assert.AreEqual(2, result.GetWordCount("test2"));
+            Assert.AreEqual(1, result.GetWordCount("test3"));
+            Assert.AreEqual(1, result.GetWordCount("test4"));
+            Assert.AreEqual(1, result.GetWordCount("test5"));
+            Assert.AreEqual(1, result.GetWordCount("test6"));
         }
 
         [TestMethod]
-        public void GetSimpleWordCallWithSimpleWordReturnsSimpleWord()
+        public void WordCounterOnlyCountsWordsThatAre4CharactersOrLonger()
         {
             var wordCounter = new WordCounter();
-            var simpleWord = "test";
-            var result = wordCounter.GetSimpleWord(simpleWord);
 
-            Assert.AreEqual("test", result);
-        }
+            var text = "test test test tes tes tes tes";
 
-        [TestMethod]
-        public void GetSimpleWordIncludesNumericValues()
-        {
-            var wordCounter = new WordCounter();
-            var wordWithNumbers = "test123";
-            var result = wordCounter.GetSimpleWord(wordWithNumbers);
+            var result = wordCounter.CountOccurencesForText(text);
 
-            Assert.AreEqual("test123", result);
-        }
-
-        [TestMethod]
-        public void GetSimpleWordReplacesSpaces()
-        {
-            var wordCounter = new WordCounter();
-            var twoWords = "test test";
-            var result = wordCounter.GetSimpleWord(twoWords);
-
-            Assert.AreEqual("testtest", result);
-        }
-
-        [TestMethod]
-        public void GetSimpleWordCallFiltersSpecialCharacters()
-        {
-            var wordCounter = new WordCounter();
-            var specialCharacters = "test!@#$!@";
-            var result = wordCounter.GetSimpleWord(specialCharacters);
-
-            Assert.AreEqual("test", result);
-        }
-
-        [TestMethod]
-        public void GetSimpleWordCallLeavesHyphens()
-        {
-            var wordCounter = new WordCounter();
-            var hyphenedWord = "test-test";
-            var result = wordCounter.GetSimpleWord(hyphenedWord);
-
-            Assert.AreEqual("test-test", result);
-        }
-
-        [TestMethod]
-        public void GetSimpleWordReplacesEncodedHtmlTags()
-        {
-            var wordCounter = new WordCounter();
-            var specialCharacters = "&lt;span&gt;test&lt;/span&gt;";
-            var result = wordCounter.GetSimpleWord(specialCharacters);
-
-            Assert.AreEqual("test", result);
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(3, result.GetWordCount("test"));
         }
     }
 }
