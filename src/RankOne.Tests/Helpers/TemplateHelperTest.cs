@@ -22,11 +22,12 @@ using Umbraco.Web.Security;
 namespace RankOne.Tests.Helpers
 {
     [TestClass]
-    public class ContentHelperTests
+    public class TemplateHelperTest
     {
-        private readonly UmbracoHelper _umbracoHelper;
+        private UmbracoHelper _umbracoHelper;
 
-        public ContentHelperTests()
+        [TestInitialize]
+        public void Initialize()
         {
             var databaseContext = new DatabaseContext(Mock.Of<IDatabaseFactory>(), Mock.Of<ILogger>(),
                 new SqlSyntaxProviders(new[] {Mock.Of<ISqlSyntaxProvider>()}));
@@ -71,7 +72,7 @@ namespace RankOne.Tests.Helpers
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetNodeHtmlFromNullReturnsNull()
         {
-            var contentHelper = new ContentHelper(_umbracoHelper);
+            var contentHelper = new TemplateHelper(_umbracoHelper);
 
             contentHelper.GetNodeHtml(null);
         }
@@ -86,7 +87,7 @@ namespace RankOne.Tests.Helpers
                 IdGet = () => 1
             };
 
-            var contentHelper = new ContentHelper(_umbracoHelper);
+            var contentHelper = new TemplateHelper(_umbracoHelper);
 
             contentHelper.GetNodeHtml(publishedContent);
         }
@@ -101,7 +102,7 @@ namespace RankOne.Tests.Helpers
                 IdGet = () => 0
             };
 
-            var contentHelper = new ContentHelper(_umbracoHelper);
+            var contentHelper = new TemplateHelper(_umbracoHelper);
 
             contentHelper.GetNodeHtml(publishedContent);
         }
@@ -115,7 +116,7 @@ namespace RankOne.Tests.Helpers
                 IdGet = () => 1
             };
 
-            var contentHelper = new ContentHelper(_umbracoHelper);
+            var contentHelper = new TemplateHelper(_umbracoHelper);
 
             var result = contentHelper.GetNodeHtml(publishedContent);
 

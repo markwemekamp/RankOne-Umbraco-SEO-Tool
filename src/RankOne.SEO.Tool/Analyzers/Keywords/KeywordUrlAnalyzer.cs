@@ -24,7 +24,7 @@ namespace RankOne.Analyzers.Keywords
             }
             else
             {
-                var keywordUrl = pageData.Focuskeyword.Alias();
+                var keywordUrl = pageData.Focuskeyword.UrlFriendly();
                 if (url.AbsolutePath.Contains(keywordUrl))
                 {
                     result.AddResultRule("keywordurlanalyzer_url_contains_keyword", ResultType.Success);

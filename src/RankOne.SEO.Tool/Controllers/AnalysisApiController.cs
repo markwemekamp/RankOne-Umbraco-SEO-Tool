@@ -2,9 +2,11 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using RankOne.Interfaces;
 using RankOne.Models;
 using RankOne.Services;
 using Umbraco.Core.Logging;
+using Umbraco.Web;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 
@@ -13,11 +15,18 @@ namespace RankOne.Controllers
     [PluginController("RankOne")]
     public class AnalysisApiController : UmbracoAuthorizedApiController
     {
-        private readonly AnalyzeService _analyzeService;
+        private readonly IAnalyzeService _analyzeService;
+        private readonly UmbracoHelper _umbracoHelper;
+        private readonly AnalysisCacheService _analysisCacheService;
 
-        public AnalysisApiController()
+        public AnalysisApiController() : this(new AnalyzeService())
+        { }
+
+        public AnalysisApiController(IAnalyzeService analyzeService)
         {
-            _analyzeService = new AnalyzeService();
+            _analyzeService = analyzeService;
+            _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+            _analysisCacheService = new AnalysisCacheService();
         }
 
         /// <summary>
@@ -35,7 +44,10 @@ namespace RankOne.Controllers
         {
             try
             {
-                return _analyzeService.CreateAnalysis(id, focusKeyword);
+                var node = _umbracoHelper.TypedContent(id);
+                var analysis = _analyzeService.CreateAnalysis(node, focusKeyword);
+                _analysisCacheService.SaveCachedAnalysis(node.Id, focusKeyword, analysis);
+                return analysis;
             }
             catch (MissingFieldException ex)
             {

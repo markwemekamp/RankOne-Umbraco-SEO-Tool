@@ -8,7 +8,7 @@ using RankOne.Helpers;
 namespace RankOne.Tests.Helpers
 {
     [TestClass]
-    public class DefinitionHelperTests
+    public class DefinitionHelperTest
     {
 
         [TestMethod]

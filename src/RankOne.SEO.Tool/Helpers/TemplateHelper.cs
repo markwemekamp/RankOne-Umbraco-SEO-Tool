@@ -4,16 +4,16 @@ using Umbraco.Web;
 
 namespace RankOne.Helpers
 {
-    public class ContentHelper
+    public class TemplateHelper
     {
         private readonly UmbracoHelper _umbracoHelper;
 
-        public ContentHelper()
+        public TemplateHelper()
         {
             _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
         }
 
-        public ContentHelper(UmbracoHelper umbracoHelper)
+        public TemplateHelper(UmbracoHelper umbracoHelper)
         {
             _umbracoHelper = umbracoHelper;
         }

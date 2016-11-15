@@ -49,7 +49,7 @@ namespace RankOne.Helpers
 
             foreach (var word in words)
             {
-                var simpleWord = word.ConvertToSimpleWord();
+                var simpleWord = word.Simplify();
                 occurences.IncreaseCount(simpleWord);
             }
 

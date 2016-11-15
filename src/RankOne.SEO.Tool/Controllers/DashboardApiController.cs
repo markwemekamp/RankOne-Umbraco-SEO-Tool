@@ -102,7 +102,8 @@ namespace RankOne.Controllers
         {
             if (node.NodeInformation.TemplateId > 0)
             {
-                var analysis = _analyzeService.CreateAnalysis(node.NodeInformation.Id);
+                var umbracoNode = _umbracoHelper.TypedContent(node.NodeInformation.Id);
+                var analysis = _analyzeService.CreateAnalysis(umbracoNode);
 
                 node.FocusKeyword = analysis.FocusKeyword;
                 node.PageScore = analysis.Score;

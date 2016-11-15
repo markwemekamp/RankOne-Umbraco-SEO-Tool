@@ -280,11 +280,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Helpers\ContentHelperTests.cs" />
-    <Compile Include="Helpers\DefinitionHelperTests.cs" />
-    <Compile Include="Helpers\FocusKeywordHelperTests.cs" />
-    <Compile Include="ExtensionMethods\StringTests.cs" />
-    <Compile Include="Helpers\WordCounterTests.cs" />
+    <Compile Include="Helpers\TemplateHelperTest.cs" />
+    <Compile Include="Helpers\DefinitionHelperTest.cs" />
+    <Compile Include="Helpers\FocusKeywordHelperTest.cs" />
+    <Compile Include="ExtensionMethods\StringExtensionsTest.cs" />
+    <Compile Include="Helpers\WordCounterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@ using RankOne.Helpers;
 namespace RankOne.Tests.Helpers
 {
     [TestClass]
-    public class WordCounterTests
+    public class WordCounterTest
     {
         [TestMethod]
         public void Test()

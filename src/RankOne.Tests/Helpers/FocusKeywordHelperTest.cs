@@ -9,7 +9,7 @@ using Umbraco.Web.Models.Fakes;
 namespace RankOne.Tests.Helpers
 {
     [TestClass]
-    public class FocusKeywordHelperTests
+    public class FocusKeywordHelperTest
     {
         [TestMethod]
         public void GetFocusKeywordReturnsFocusKeywordProperty()
