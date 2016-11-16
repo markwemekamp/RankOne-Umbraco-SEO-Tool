@@ -50,8 +50,8 @@ namespace RankOne.Summaries
             information.Tokens.Add(focusKeyword);
             foreach (var wordOccurence in topwords)
             {
-                information.Tokens.Add(wordOccurence.Word);
-                information.Tokens.Add(wordOccurence.OccurenceCount.ToString());
+                information.Tokens.Add(wordOccurence.Key);
+                information.Tokens.Add(wordOccurence.Value.ToString());
             }
             return information;
         }

@@ -3,16 +3,16 @@ using System.Linq;
 
 namespace RankOne.Models
 {
-    public class HiearchyNode
+    public class PageScoreNode
     {
         public NodeInformation NodeInformation { get; set; }
         public string FocusKeyword { get; set; }
         public PageScore PageScore { get; set; }
-        public IEnumerable<HiearchyNode> Children { get; set; }
+        public IEnumerable<PageScoreNode> Children { get; set; }
 
-        public HiearchyNode()
+        public PageScoreNode()
         {
-            Children = new List<HiearchyNode>();
+            Children = new List<PageScoreNode>();
         }
 
         public bool HasChildrenWithTemplate

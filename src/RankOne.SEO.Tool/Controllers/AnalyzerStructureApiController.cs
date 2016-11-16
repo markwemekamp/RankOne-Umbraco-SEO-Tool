@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using RankOne.ExtensionMethods;
 using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
@@ -31,9 +31,9 @@ namespace RankOne.Controllers
             var structure = new List<AnalyzerStructure>();
             foreach (var summary in summaries)
             {
-                var summaryInstance = Activator.CreateInstance(summary.Type);
+                var summaryInstance = summary.Type.GetInstance<BaseSummary>();
                 var analyzersForSummary = analyzers.Where(
-                    x => x.AnalyzerCategory.SummaryName == ((BaseSummary)summaryInstance).Name)
+                    x => x.AnalyzerCategory.SummaryName == summaryInstance.Name)
                     .Select(x => x.AnalyzerCategory.Alias);
 
                 structure.Add(new AnalyzerStructure

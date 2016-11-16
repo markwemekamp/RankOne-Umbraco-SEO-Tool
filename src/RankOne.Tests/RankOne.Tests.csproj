@@ -280,6 +280,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Collections\WordOccurenceCollectionTest.cs" />
     <Compile Include="Helpers\TemplateHelperTest.cs" />
     <Compile Include="Helpers\DefinitionHelperTest.cs" />
     <Compile Include="Helpers\FocusKeywordHelperTest.cs" />

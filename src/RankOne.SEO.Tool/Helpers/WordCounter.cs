@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RankOne.Collections;
 using RankOne.ExtensionMethods;
 using RankOne.Models;
-using RankOne.Models.Collections;
 
 namespace RankOne.Helpers
 {
@@ -16,11 +16,11 @@ namespace RankOne.Helpers
             MinimumWordLength = 4;
         }
 
-        public IEnumerable<WordOccurence> GetKeywords(string text)
+        public IEnumerable<KeyValuePair<string, int>> GetKeywords(string text)
         {
-            return CountOccurencesForText(text).OrderByDescending(x => x.OccurenceCount);
+            return CountOccurencesForText(text).OrderByDescending(x => x.Value);
         }
-        public IEnumerable<WordOccurence> GetKeywords(HtmlResult html)
+        public IEnumerable<KeyValuePair<string, int>> GetKeywords(HtmlResult html)
         {
             var occurences = new WordOccurenceCollection();
 
@@ -35,7 +35,7 @@ namespace RankOne.Helpers
                     occurences.Merge(occurencesInBlock);
                 }
             }
-            return occurences.OrderByDescending(x => x.OccurenceCount);
+            return occurences.OrderByDescending(x => x.Value);
         }
 
         public WordOccurenceCollection CountOccurencesForText(string textBlockText)
@@ -50,7 +50,7 @@ namespace RankOne.Helpers
             foreach (var word in words)
             {
                 var simpleWord = word.Simplify();
-                occurences.IncreaseCount(simpleWord);
+                occurences.Add(simpleWord);
             }
 
             return occurences;
