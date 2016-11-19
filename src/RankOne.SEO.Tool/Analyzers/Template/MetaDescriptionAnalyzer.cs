@@ -21,16 +21,13 @@ namespace RankOne.Analyzers.Template
     {
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "metadescriptionanalyzer"
-            };
+            var result = new AnalyzeResult();
 
             var metaTags = pageData.Document.GetDescendingElements("meta");
 
             if (!metaTags.Any())
             {
-                result.AddResultRule("metadescriptionanalyzer_no_meta_tags", ResultType.Error);
+                result.AddResultRule("no_meta_tags", ResultType.Error);
             }
             else
             {
@@ -49,11 +46,11 @@ namespace RankOne.Analyzers.Template
 
             if (!attributeValues.Any())
             {
-                result.AddResultRule("metadescriptionanalyzer_no_meta_description_tag", ResultType.Error);
+                result.AddResultRule("no_meta_description_tag", ResultType.Error);
             }
             else if (attributeValues.Count() > 1)
             {
-                result.AddResultRule("metadescriptionanalyzer_multiple_meta_description_tags", ResultType.Error);
+                result.AddResultRule("multiple_meta_description_tags", ResultType.Error);
             }
             else
             {
@@ -71,7 +68,7 @@ namespace RankOne.Analyzers.Template
 
             if (string.IsNullOrWhiteSpace(descriptionValue))
             {
-                result.AddResultRule("metadescriptionanalyzer_no_description_value", ResultType.Error);
+                result.AddResultRule("no_description_value", ResultType.Error);
             }
             else
             {
@@ -79,22 +76,22 @@ namespace RankOne.Analyzers.Template
 
                 if (descriptionValue.Length > 150)
                 {
-                    result.AddResultRule("metadescriptionanalyzer_description_too_long", ResultType.Warning);
+                    result.AddResultRule("description_too_long", ResultType.Warning);
                 }
 
                 if (descriptionValue.Length < 20)
                 {
-                    result.AddResultRule("metadescriptionanalyzer_description_too_short", ResultType.Warning);
+                    result.AddResultRule("description_too_short", ResultType.Warning);
                 }
 
                 if (descriptionValue.Length < 50)
                 {
-                    result.AddResultRule("metadescriptionanalyzer_description_too_short", ResultType.Hint);
+                    result.AddResultRule("description_too_short", ResultType.Hint);
                 }
 
                 if (descriptionValue.Length <= 150 && descriptionValue.Length >= 20)
                 {
-                    result.AddResultRule("metadescriptionanalyzer_description_perfect", ResultType.Success);
+                    result.AddResultRule("description_perfect", ResultType.Success);
                 }
             }
         }

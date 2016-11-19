@@ -2,6 +2,7 @@
 using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Repositories;
 using Umbraco.Core.Models;
 
 namespace RankOne.Services
@@ -10,11 +11,13 @@ namespace RankOne.Services
     {
         private readonly FocusKeywordHelper _focusKeywordHelper;
         private readonly PageAnalysisService _pageAnalysisService;
+        private readonly AnalysisCacheRepository _analysisCacheService;
 
         public AnalyzeService()
         {
             _focusKeywordHelper = new FocusKeywordHelper();
             _pageAnalysisService = new PageAnalysisService();
+            _analysisCacheService = new AnalysisCacheRepository();
         }
 
         public PageAnalysis CreateAnalysis(IPublishedContent node, string focusKeyword = null)
@@ -29,7 +32,16 @@ namespace RankOne.Services
                 focusKeyword = _focusKeywordHelper.GetFocusKeyword(node);
             }
 
-            return _pageAnalysisService.CreatePageAnalysis(node, focusKeyword);
+            var analysis = _pageAnalysisService.CreatePageAnalysis(node, focusKeyword);
+
+            CreateCachedAnalysisItem(node.Id, analysis);
+
+            return analysis;
+        }
+
+        private void CreateCachedAnalysisItem(int pageId, PageAnalysis analysis)
+        {
+            _analysisCacheService.Save(pageId, analysis);
         }
     }
 }

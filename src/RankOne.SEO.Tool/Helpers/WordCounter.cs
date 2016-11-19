@@ -20,6 +20,7 @@ namespace RankOne.Helpers
         {
             return CountOccurencesForText(text).OrderByDescending(x => x.Value);
         }
+
         public IEnumerable<KeyValuePair<string, int>> GetKeywords(HtmlResult html)
         {
             var occurences = new WordOccurenceCollection();
@@ -32,7 +33,7 @@ namespace RankOne.Helpers
                 {
                     var textBlockText = textBlock.InnerText;
                     var occurencesInBlock = CountOccurencesForText(textBlockText);
-                    occurences.Merge(occurencesInBlock);
+                    occurences = occurences.Merge(occurencesInBlock);
                 }
             }
             return occurences.OrderByDescending(x => x.Value);
@@ -50,7 +51,11 @@ namespace RankOne.Helpers
             foreach (var word in words)
             {
                 var simpleWord = word.Simplify();
-                occurences.Add(simpleWord);
+                if(!string.IsNullOrWhiteSpace(simpleWord) && simpleWord.Length >= MinimumWordLength)
+                {
+                    occurences.Add(simpleWord);
+                }
+                
             }
 
             return occurences;

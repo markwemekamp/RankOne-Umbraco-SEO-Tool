@@ -12,16 +12,13 @@ namespace RankOne.Analyzers.Keywords
     {
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "keywordmetadescriptionanalyzer"
-            };
+            var result = new AnalyzeResult();
 
             var metaTags = pageData.Document.GetDescendingElements("meta");
 
             if (!metaTags.Any())
             {
-                result.AddResultRule("keywordmetadescriptionanalyzer_no_meta_tags", ResultType.Error);
+                result.AddResultRule("no_meta_tags", ResultType.Error);
             }
             else
             {
@@ -33,11 +30,11 @@ namespace RankOne.Analyzers.Keywords
 
                 if (!attributeValues.Any())
                 {
-                    result.AddResultRule("keywordmetadescriptionanalyzer_no_meta_description_tag", ResultType.Warning);
+                    result.AddResultRule("no_meta_description_tag", ResultType.Warning);
                 }
                 else if (attributeValues.Count() > 1)
                 {
-                    result.AddResultRule("keywordmetadescriptionanalyzer_multiple_meta_description_tags", ResultType.Warning);
+                    result.AddResultRule("multiple_meta_description_tags", ResultType.Warning);
                 }
                 else
                 {
@@ -48,11 +45,11 @@ namespace RankOne.Analyzers.Keywords
 
                         if (descriptionValue.IndexOf(pageData.Focuskeyword, StringComparison.InvariantCultureIgnoreCase) >= 0)
                         {
-                            result.AddResultRule("keywordmetadescriptionanalyzer_meta_description_contains_keyword", ResultType.Success);
+                            result.AddResultRule("meta_description_contains_keyword", ResultType.Success);
                         }
                         else
                         {
-                            result.AddResultRule("keywordmetadescriptionanalyzer_meta_description_doesnt_contain_keyword", ResultType.Hint);
+                            result.AddResultRule("meta_description_doesnt_contain_keyword", ResultType.Hint);
                         }
                     }
                 }

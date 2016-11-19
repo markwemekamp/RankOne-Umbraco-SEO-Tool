@@ -19,16 +19,13 @@ namespace RankOne.Analyzers.Template
     {
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "metarobotsanalyzer"
-            };
+            var result = new AnalyzeResult();
 
             var metaTags = pageData.Document.GetDescendingElements("meta");
 
             if (!metaTags.Any())
             {
-                result.AddResultRule("metarobotsanalyzer_no_meta_tags", ResultType.Error);
+                result.AddResultRule("no_meta_tags", ResultType.Error);
             }
             else
             {
@@ -44,7 +41,7 @@ namespace RankOne.Analyzers.Template
 
             if (!robots.Any() && !googlebot.Any())
             {
-                result.AddResultRule("metarobotsanalyzer_no_robots_tag", ResultType.Success);
+                result.AddResultRule("no_robots_tag", ResultType.Success);
             }
             else
             {
@@ -86,35 +83,35 @@ namespace RankOne.Analyzers.Template
         {
             if (tagValue.Contains("none"))
             {
-                result.AddResultRule("metarobotsanalyzer_" + tag + "_none", ResultType.Error);
+                result.AddResultRule(tag + "_none", ResultType.Error);
             }
             if (tagValue.Contains("noindex"))
             {
-                result.AddResultRule("metarobotsanalyzer_" + tag + "_no_index", ResultType.Error);
+                result.AddResultRule(tag + "_no_index", ResultType.Error);
             }
             if (tagValue.Contains("nofollow"))
             {
-                result.AddResultRule("metarobotsanalyzer_" + tag + "_no_follow", ResultType.Warning);
+                result.AddResultRule(tag + "_no_follow", ResultType.Warning);
             }
             if (tagValue.Contains("nosnippet"))
             {
-                result.AddResultRule("metarobotsanalyzer_" + tag + "_no_snippet", ResultType.Information);
+                result.AddResultRule(tag + "_no_snippet", ResultType.Information);
             }
             if (tagValue.Contains("noodp"))
             {
-                result.AddResultRule("metarobotsanalyzer_" + tag + "_no_odp", ResultType.Information);
+                result.AddResultRule(tag + "_no_odp", ResultType.Information);
             }
             if (tagValue.Contains("noarchive"))
             {
-                result.AddResultRule("metarobotsanalyzer_" + tag + "_no_archive", ResultType.Information);
+                result.AddResultRule(tag + "_no_archive", ResultType.Information);
             }
             if (tagValue.Contains("unavailable_after"))
             {
-                result.AddResultRule("metarobotsanalyzer_" + tag + "_unavailable_after", ResultType.Information);
+                result.AddResultRule(tag + "_unavailable_after", ResultType.Information);
             }
             if (tagValue.Contains("noimageindex"))
             {
-                result.AddResultRule("metarobotsanalyzer_" + tag + "_no_image_index", ResultType.Information);
+                result.AddResultRule(tag + "_no_image_index", ResultType.Information);
             }
         }
     }

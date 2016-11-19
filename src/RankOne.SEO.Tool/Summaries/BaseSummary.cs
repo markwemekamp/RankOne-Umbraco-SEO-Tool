@@ -1,8 +1,11 @@
-﻿using System;
-using RankOne.Analyzers;
+﻿using RankOne.Analyzers;
+using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Helpers;
+using RankOne.Interfaces;
 using RankOne.Models;
+using Umbraco.Core;
+using Umbraco.Core.Persistence;
 
 namespace RankOne.Summaries
 {
@@ -13,11 +16,14 @@ namespace RankOne.Summaries
         public string Url { get; set; }
         public string FocusKeyword { get; set; }
 
-        private readonly DefinitionHelper _definitionHelper;
+        private readonly IDefintionHelper _definitionHelper;
 
-        public BaseSummary()
+        public BaseSummary() : this(new DefinitionHelper())
+        { }
+
+        public BaseSummary(IDefintionHelper defintionHelper)
         {
-            _definitionHelper = new DefinitionHelper();
+            _definitionHelper = defintionHelper;
         }
 
         public virtual Analysis GetAnalysis()
@@ -29,7 +35,11 @@ namespace RankOne.Summaries
             {
                 var instance = type.GetInstance<BaseAnalyzer>();
 
+                var analyzerCategory = type.FirstAttribute<AnalyzerCategory>();
+
                 var result = GetResultFromAnalyzer(instance);
+
+                result.Alias = analyzerCategory.Alias;
                 analysis.Results.Add(result);
             }
 

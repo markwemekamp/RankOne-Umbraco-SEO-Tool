@@ -16,8 +16,7 @@ namespace RankOne.Services
             var totalScore = 0;
             foreach (var analyzerResult in pageAnalysis.AnalyzerResults)
             {
-                var analysis = analyzerResult.Analysis;
-                totalScore = CalculateScore(analysis, pageScore, totalScore);
+                totalScore += CalculateScore(analyzerResult.Analysis, pageScore);
             }
 
             var numberOfAnalyzers = pageAnalysis.AnalyzerResults.Sum(x => x.Analysis.Results.Count);
@@ -26,8 +25,9 @@ namespace RankOne.Services
             return pageScore;
         }
 
-        private int CalculateScore(Analysis analysis, PageScore pageScore, int totalScore)
+        private int CalculateScore(Analysis analysis, PageScore pageScore)
         {
+            var totalScore = 0;
             foreach (var result in analysis.Results)
             {
                 pageScore.ErrorCount += result.ErrorCount;

@@ -21,13 +21,15 @@ namespace RankOne.Services
 
         private readonly DefinitionHelper _reflectionService;
         private readonly HtmlHelper _htmlHelper;
+        private readonly ByteSizeHelper _byteSizeHelper;
 
         public PageAnalysisService()
         {
             _scoreService = new ScoreService();
 
             _reflectionService = new DefinitionHelper();
-            _htmlHelper = new HtmlHelper();          
+            _htmlHelper = new HtmlHelper();     
+            _byteSizeHelper = new ByteSizeHelper();     
         }
 
         public PageAnalysis CreatePageAnalysis(IPublishedContent node, string focusKeyword)
@@ -41,7 +43,7 @@ namespace RankOne.Services
 
                 pageAnalysis.Url = node.UrlAbsolute();
                 pageAnalysis.FocusKeyword = focusKeyword;
-                pageAnalysis.Size = _htmlHelper.GetSize(htmlString);
+                pageAnalysis.Size = _byteSizeHelper.GetByteSize(htmlString);
 
                 SetAnalyzerResults(pageAnalysis, htmlResult);
             }

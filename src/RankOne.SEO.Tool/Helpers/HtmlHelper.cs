@@ -16,14 +16,6 @@ namespace RankOne.Helpers
             _contentHelper = new TemplateHelper();
         }
 
-        public int GetSize(string htmlString)
-        {
-            if (htmlString == null)
-            {
-                return 0;
-            }
-            return Encoding.ASCII.GetByteCount(htmlString);
-        }
 
         public HtmlNode GetHtmlNodeFromString(string htmlString)
         {

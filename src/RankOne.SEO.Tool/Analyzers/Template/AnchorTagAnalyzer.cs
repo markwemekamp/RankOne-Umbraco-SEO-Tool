@@ -11,10 +11,7 @@ namespace RankOne.Analyzers.Template
     {
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "anchorTagAnalyzer"
-            };
+            var result = new AnalyzeResult();
 
             var anchorTags = pageData.Document.GetDescendingElements("a");
             var anchorTagCount = anchorTags.Count();
@@ -25,7 +22,7 @@ namespace RankOne.Analyzers.Template
             {
                 var resultRule = new ResultRule
                 {
-                    Alias = "anchorTagAnalyzer_missing_title_tags",
+                    Alias = "missing_title_tags",
                     Type = ResultType.Hint
                 };
                 var numberOfTagsMissingTitle = anchorTagCount - anchorWithTitleTagCount;
@@ -34,7 +31,7 @@ namespace RankOne.Analyzers.Template
             }
             else
             {
-                result.AddResultRule("anchorTagAnalyzer_all_title_tags_present", ResultType.Hint);
+                result.AddResultRule("all_title_tags_present", ResultType.Hint);
             }
 
             return result;

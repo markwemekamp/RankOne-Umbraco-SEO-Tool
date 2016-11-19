@@ -13,10 +13,7 @@ namespace RankOne.Analyzers.Performance
     {
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "javascriptminificationanalyzer"
-            };
+            var result = new AnalyzeResult();
 
             var url = new Uri(pageData.Url);
 
@@ -54,7 +51,7 @@ namespace RankOne.Analyzers.Performance
                         {
                             var resultRule = new ResultRule
                             {
-                                Alias = "javascriptminificationanalyzer_file_not_minified",
+                                Alias = "file_not_minified",
                                 Type = ResultType.Hint
                             };
                             resultRule.Tokens.Add(address.Value);
@@ -69,7 +66,7 @@ namespace RankOne.Analyzers.Performance
             }
             if (!result.ResultRules.Any())
             {
-                result.AddResultRule("javascriptminificationanalyzer_all_minified", ResultType.Success);
+                result.AddResultRule("all_minified", ResultType.Success);
             }
 
             return result;

@@ -1,38 +1,34 @@
 ﻿using System;
 using System.Web.Script.Serialization;
 using RankOne.Models;
-using RankOne.Repositories;
 
-namespace RankOne.Services
+namespace RankOne.Repositories
 {
-    public class AnalysisCacheService
+    public class AnalysisCacheRepository
     {
         private readonly NodeReportRepository _nodeReportRepository;
         private readonly JavaScriptSerializer _javaScriptSerializer;
 
-        public AnalysisCacheService()
+        public AnalysisCacheRepository()
         {
             _nodeReportRepository = new NodeReportRepository();
             _javaScriptSerializer = new JavaScriptSerializer();
         }
 
-        public void SaveCachedAnalysis(int id, string focusKeyword, PageAnalysis pageAnalysis)
+        public void Save(int id, PageAnalysis pageAnalysis)
         {
-            if (_nodeReportRepository.DatabaseExists())
+            var scoreReport = _javaScriptSerializer.Serialize(pageAnalysis.Score);
+
+            var nodeReport = new NodeReport
             {
-                var scoreReport = _javaScriptSerializer.Serialize(pageAnalysis.Score);
+                Id = id,
+                FocusKeyword = pageAnalysis.FocusKeyword,
+                Report = scoreReport,
+                CreatedOn = DateTime.Now,
+                UpdatedOn = DateTime.Now
+            };
 
-                var nodeReport = new NodeReport
-                {
-                    Id = id,
-                    FocusKeyword = focusKeyword,
-                    Report = scoreReport,
-                    CreatedOn = DateTime.Now,
-                    UpdatedOn = DateTime.Now
-                };
-
-                CreateOrUpdateNodeReport(nodeReport);
-            }
+            CreateOrUpdateNodeReport(nodeReport);
         }
 
         private void CreateOrUpdateNodeReport(NodeReport nodeReport)

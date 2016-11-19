@@ -17,7 +17,6 @@ namespace RankOne.Controllers
     {
         private readonly IAnalyzeService _analyzeService;
         private readonly UmbracoHelper _umbracoHelper;
-        private readonly AnalysisCacheService _analysisCacheService;
 
         public AnalysisApiController() : this(new AnalyzeService())
         { }
@@ -26,7 +25,6 @@ namespace RankOne.Controllers
         {
             _analyzeService = analyzeService;
             _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-            _analysisCacheService = new AnalysisCacheService();
         }
 
         /// <summary>
@@ -45,9 +43,7 @@ namespace RankOne.Controllers
             try
             {
                 var node = _umbracoHelper.TypedContent(id);
-                var analysis = _analyzeService.CreateAnalysis(node, focusKeyword);
-                _analysisCacheService.SaveCachedAnalysis(node.Id, focusKeyword, analysis);
-                return analysis;
+                return _analyzeService.CreateAnalysis(node, focusKeyword);
             }
             catch (MissingFieldException ex)
             {

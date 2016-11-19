@@ -11,10 +11,7 @@ namespace RankOne.Analyzers.Performance
     {
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "additionalcallanalyzer"
-            };
+            var result = new AnalyzeResult();
 
             var cssFiles = pageData.Document.GetDescendingElementsWithAttribute("link", "href").
                 Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));
@@ -28,17 +25,17 @@ namespace RankOne.Analyzers.Performance
 
             if (total > 30)
             {
-                resultRule.Alias = "additionalcallanalyzer_more_than_30_calls";
+                resultRule.Alias = "more_than_30_calls";
                 resultRule.Type = ResultType.Warning;
             }
             else if(total > 15)
             {
-                resultRule.Alias = "additionalcallanalyzer_more_than_15_calls";
+                resultRule.Alias = "more_than_15_calls";
                 resultRule.Type = ResultType.Hint;
             }
             else
             {
-                resultRule.Alias = "additionalcallanalyzer_less_than_15_calls";
+                resultRule.Alias = "less_than_15_calls";
                 resultRule.Type = ResultType.Success;
             }
 

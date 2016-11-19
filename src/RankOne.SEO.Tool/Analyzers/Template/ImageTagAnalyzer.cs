@@ -11,10 +11,7 @@ namespace RankOne.Analyzers.Template
     {
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "imagetaganalyzer"
-            };
+            var result = new AnalyzeResult();
 
             var imageTags = pageData.Document.GetDescendingElements("img");
             var imageTagCount = imageTags.Count();
@@ -25,7 +22,7 @@ namespace RankOne.Analyzers.Template
             {
                 var resultRule = new ResultRule
                 {
-                    Alias = "imagetaganalyzer_missing_alt_tags",
+                    Alias = "missing_alt_tags",
                     Type = ResultType.Hint
                 };
                 var numberOfTagsMissingAlt = imageTagCount - imagesWithAltTagCount;
@@ -39,7 +36,7 @@ namespace RankOne.Analyzers.Template
             {
                 var resultRule = new ResultRule
                 {
-                    Alias = "imagetaganalyzer_missing_title_tags",
+                    Alias = "missing_title_tags",
                     Type = ResultType.Hint
                 };
                 var numberOfTagsMissingTitle = imageTagCount - imagesWithTitleTagCount;
@@ -49,7 +46,7 @@ namespace RankOne.Analyzers.Template
 
             if (imageTagCount == imagesWithAltTagCount && imageTagCount == imagesWithTitleTagCount)
             {
-                result.AddResultRule("imagetaganalyzer_alt_and_title_tags_present", ResultType.Success);
+                result.AddResultRule("alt_and_title_tags_present", ResultType.Success);
             }
 
             return result;

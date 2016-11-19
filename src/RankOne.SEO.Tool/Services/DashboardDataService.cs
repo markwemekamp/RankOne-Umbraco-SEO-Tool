@@ -11,20 +11,20 @@ namespace RankOne.Services
     {
         private readonly UmbracoHelper _umbracoHelper;
         private readonly IPageScoreNodeHelper _pageScoreNodeHelper;
-        private readonly NodeReportRepository _nodeReportRepository;
+        private readonly SchemaRepository<NodeReport> _schemaRepository;
 
         public DashboardDataService()
         {
             _pageScoreNodeHelper = new PageScoreNodeHelper();
             _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-            _nodeReportRepository = new NodeReportRepository();
+            _schemaRepository = new SchemaRepository<NodeReport>();
         }
 
         public void Initialize()
         {
-            if (!_nodeReportRepository.DatabaseExists())
+            if (!_schemaRepository.DatabaseExists())
             {
-                _nodeReportRepository.CreateTable();
+                _schemaRepository.CreateTable();
             }
         }
 
@@ -35,7 +35,7 @@ namespace RankOne.Services
         /// <returns></returns>
         public List<PageScoreNode> GetHierarchy(bool useCache = true)
         {
-            if (_nodeReportRepository.DatabaseExists())
+            if (_schemaRepository.DatabaseExists())
             {
                 var nodeCollection = _umbracoHelper.TypedContentAtRoot();
                 return _pageScoreNodeHelper.GetPageHierarchy(nodeCollection, useCache);

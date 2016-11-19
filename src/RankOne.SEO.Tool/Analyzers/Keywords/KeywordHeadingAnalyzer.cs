@@ -11,10 +11,7 @@ namespace RankOne.Analyzers.Keywords
     {
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "keywordheadinganalyzer"
-            };
+            var result = new AnalyzeResult();
 
             var h1Tags = pageData.Document.GetDescendingElements("h1");
             var h2Tags = pageData.Document.GetDescendingElements("h2");
@@ -30,7 +27,7 @@ namespace RankOne.Analyzers.Keywords
             {
                 var resultRule = new ResultRule
                 {
-                    Alias = "keywordheadinganalyzer_keyword_used_in_heading",
+                    Alias = "keyword_used_in_heading",
                     Type = ResultType.Success
                 };
                 resultRule.Tokens.Add(usedInHeadingCount.ToString());
@@ -38,7 +35,7 @@ namespace RankOne.Analyzers.Keywords
             }
             else
             {
-                result.AddResultRule("keywordheadinganalyzer_keyword_not_used_in_heading", ResultType.Hint);
+                result.AddResultRule("keyword_not_used_in_heading", ResultType.Hint);
             }
 
             return result;

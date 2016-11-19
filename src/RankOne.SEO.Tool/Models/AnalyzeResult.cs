@@ -5,12 +5,8 @@ namespace RankOne.Models
 {
     public class AnalyzeResult
     {
-        public AnalyzeResult()
-        {
-            ResultRules = new List<ResultRule>();
-        }
-
         public string Alias { get; set; }
+
         public List<ResultRule> ResultRules { get; set; }
 
         public int ErrorCount
@@ -34,6 +30,11 @@ namespace RankOne.Models
         }
 
         public int Score { get; set; }
+
+        public AnalyzeResult()
+        {
+            ResultRules = new List<ResultRule>();
+        }
 
         public void AddResultRule(string code, string type)
         {

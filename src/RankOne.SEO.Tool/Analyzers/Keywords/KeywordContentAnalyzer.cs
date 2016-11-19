@@ -12,20 +12,17 @@ namespace RankOne.Analyzers.Keywords
     {
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "keywordcontentanalyzer"
-            };
+            var result = new AnalyzeResult();
 
             var bodyTags = pageData.Document.GetDescendingElements("body");
 
             if (!bodyTags.Any())
             {
-                result.AddResultRule("keywordcontentanalyzer_no_body_tag", ResultType.Warning);
+                result.AddResultRule("no_body_tag", ResultType.Warning);
             }
             else if (bodyTags.Count() > 1)
             {
-                result.AddResultRule("keywordcontentanalyzer_multiple_body_tags", ResultType.Warning);
+                result.AddResultRule("multiple_body_tags", ResultType.Warning);
             }
             else
             {
@@ -39,13 +36,13 @@ namespace RankOne.Analyzers.Keywords
 
                     if (matches.Count == 0)
                     {
-                        result.AddResultRule("keywordcontentanalyzer_content_doesnt_contain_keyword", ResultType.Warning);
+                        result.AddResultRule("content_doesnt_contain_keyword", ResultType.Warning);
                     }
                     else
                     {
                         var resultRule = new ResultRule
                         {
-                            Alias = "keywordcontentanalyzer_content_contains_keyword",
+                            Alias = "content_contains_keyword",
                             Type = ResultType.Success
                         };
                         resultRule.Tokens.Add(matches.Count.ToString());

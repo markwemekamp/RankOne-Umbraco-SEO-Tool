@@ -26,10 +26,7 @@ namespace RankOne.Analyzers.Template
     {
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "titleanalyzer"
-            };
+            var result = new AnalyzeResult();
 
             var headTag = pageData.GetElements("head");
             if (headTag.Any())
@@ -38,7 +35,7 @@ namespace RankOne.Analyzers.Template
             }
             else
             {
-                result.AddResultRule("titleanalyzer_no_head_tag", ResultType.Error);
+                result.AddResultRule("no_head_tag", ResultType.Error);
             }
             return result;
         }
@@ -48,11 +45,11 @@ namespace RankOne.Analyzers.Template
             var titleTags = headTag.First().GetDescendingElements("title");
             if (!titleTags.Any())
             {
-                result.AddResultRule("titleanalyzer_no_title_tag", ResultType.Error);
+                result.AddResultRule("no_title_tag", ResultType.Error);
             }
             else if (titleTags.Count() > 1)
             {
-                result.AddResultRule("titleanalyzer_multiple_title_tags", ResultType.Error);
+                result.AddResultRule("multiple_title_tags", ResultType.Error);
             }
             else
             {
@@ -70,7 +67,7 @@ namespace RankOne.Analyzers.Template
 
             if (string.IsNullOrWhiteSpace(titleValue))
             {
-                result.AddResultRule("titleanalyzer_no_title_value", ResultType.Error);
+                result.AddResultRule("no_title_value", ResultType.Error);
             }
             else
             {
@@ -78,7 +75,7 @@ namespace RankOne.Analyzers.Template
 
                 if (titleValue.Length > 60)
                 {
-                    result.AddResultRule("titleanalyzer_title_too_long", ResultType.Warning);
+                    result.AddResultRule("title_too_long", ResultType.Warning);
                 }
 
                 if (titleValue.Length < 5)
@@ -88,7 +85,7 @@ namespace RankOne.Analyzers.Template
 
                 if (titleValue.Length <= 60 && titleValue.Length >= 5)
                 {
-                    result.AddResultRule("titleanalyzer_title_success", ResultType.Success);
+                    result.AddResultRule("title_success", ResultType.Success);
                 }
             }
         }

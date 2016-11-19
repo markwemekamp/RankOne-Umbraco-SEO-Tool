@@ -22,17 +22,14 @@ namespace RankOne.Analyzers.Performance
                 }
             }
 
-            var result = new AnalyzeResult
-            {
-                Alias = "gzipanalyzer"
-            };
+            var result = new AnalyzeResult();
             if (encoding == "gzip")
             {
-                result.AddResultRule("gzipanalyzer_gzip_enabled", ResultType.Success);
+                result.AddResultRule("gzip_enabled", ResultType.Success);
             }
             else
             {
-                result.AddResultRule("gzipanalyzer_gzip_disabled", ResultType.Hint);
+                result.AddResultRule("gzip_disabled", ResultType.Hint);
             }
 
             return result;

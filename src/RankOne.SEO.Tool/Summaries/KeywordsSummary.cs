@@ -2,7 +2,6 @@
 using RankOne.Attributes;
 using RankOne.Helpers;
 using RankOne.Models;
-using RankOne.Services;
 
 namespace RankOne.Summaries
 {
