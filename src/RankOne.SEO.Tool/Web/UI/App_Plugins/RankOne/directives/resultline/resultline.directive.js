@@ -5,6 +5,7 @@
         templateUrl: '/App_Plugins/RankOne/directives/resultline/resultline.directive.html',
         scope: {
             resultline: '=',
+            result: '='
         },
         link: function (scope) {
             scope.text = localizationService.localize(scope.result.Alias + '_' + scope.resultline.Alias, scope.resultline.Tokens);

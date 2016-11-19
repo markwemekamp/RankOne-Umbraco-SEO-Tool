@@ -35,6 +35,7 @@ namespace RankOne.Repositories
             {
                 if (_tableName == null)
                 {
+                    _tableName = TableNameHelper.GetTableName();
                 }
                 return _tableName;
             }
