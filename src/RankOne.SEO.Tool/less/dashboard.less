@@ -1,103 +1,100 @@
-﻿.rank-one-dashboard {
+﻿.installer {
+    max-width: 800px;
+    text-align: center;
+    margin: auto;
+    padding: 20px;
+    min-height: 800px;
+}
 
-    .installer{
-        max-width: 800px; 
-        text-align: center; 
-        margin: auto; 
-        padding: 20px; 
-        min-height: 800px;
+.installer-top {
+    position: relative;
+    height: 80px;
+    margin: 0 auto 30px;
+    overflow: hidden;
+    line-height: 80px;
+    text-align: center;
+
+    i {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        margin-top: -40px;
+        font-size: 80px;
     }
 
-    .installer-top {
-        position: relative;
-        height: 80px;
-        margin: 0 auto 30px;
-        overflow: hidden;
+    h3 {
+        display: inline-block;
+        margin: 0;
+        margin-left: 100px;
+        font-size: 36px;
+        font-weight: 700;
         line-height: 80px;
-        text-align: center;
-
-        i {
-            display: inline-block;
-            position: absolute;
-            top: 50%;
-            margin-top: -40px;
-            font-size: 80px;
-        }
-
-        h3 {
-            display: inline-block;
-            margin: 0;
-            margin-left: 100px;
-            font-size: 36px;
-            font-weight: 700;
-            line-height: 80px;
-            letter-spacing: -1px;
-        }
+        letter-spacing: -1px;
     }
+}
 
-    .step-one{
-        p{
-            font-size: 16px; 
-            line-height: 1.5; 
-            color: #4c4c4c;
-        }
+.step-one {
+    p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #4c4c4c;
     }
+}
 
-    .refresh {
-        margin-top: 10px;
-    }
+.refresh {
+    margin-top: 10px;
+}
 
-    .summary {
-        padding-top: 30px;
-    }
+.summary {
+    padding-top: 30px;
+}
 
-    .dashboard-row-container {
-        display: table;
-        border-collapse: separate;
-        border-spacing: 10px;
+.dashboard-row-container {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 10px;
+    width: 100%;
+
+    .dashboard-row {
+        display: table-row;
         width: 100%;
+        cursor: pointer;
 
-        .dashboard-row {
-            display: table-row;
-            width: 100%;
-            cursor: pointer;
-
-            .segment {
-                width: 25%;
-                display: table-cell;
-            }
-
-            .row-title {
-                width: 40%;
-            }
-
-            .score {
-                width: 10%;
-            }
-
-            .indentation-2 {
-                margin-left: 10px;
-            }
-
-            .indentation-3 {
-                margin-left: 20px;
-            }
-
-            .indentation-4,
-            .indentation-5,
-            .indentation-6,
-            .indentation-7,
-            .indentation-8 {
-                margin-left: 30px;
-            }
+        .segment {
+            width: 25%;
+            display: table-cell;
         }
 
-        .error-background {
-            background-color: @error-background;
+        .row-title {
+            width: 40%;
         }
 
-        .warning-background {
-            background-color: @warning-background;
+        .score {
+            width: 10%;
         }
+
+        .indentation-2 {
+            margin-left: 10px;
+        }
+
+        .indentation-3 {
+            margin-left: 20px;
+        }
+
+        .indentation-4,
+        .indentation-5,
+        .indentation-6,
+        .indentation-7,
+        .indentation-8 {
+            margin-left: 30px;
+        }
+    }
+
+    .error-background {
+        background-color: @error-background;
+    }
+
+    .warning-background {
+        background-color: @warning-background;
     }
 }

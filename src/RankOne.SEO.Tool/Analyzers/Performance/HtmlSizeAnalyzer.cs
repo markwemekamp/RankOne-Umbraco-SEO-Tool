@@ -15,7 +15,7 @@ namespace RankOne.Analyzers.Performance
             {
                 Alias = "htmlsizeanalyzer"
             };
-            var byteCount = Encoding.Unicode.GetByteCount(pageData.Document.InnerHtml);
+            var byteCount = Encoding.ASCII.GetByteCount(pageData.Document.InnerHtml);
             var htmlSizeResultRule = new ResultRule();
             if (byteCount < (33 * 1024))
             {
