@@ -13,24 +13,22 @@ namespace RankOne.Analyzers.Keywords
         {
             var result = new AnalyzeResult();
 
-            var h1Tags = pageData.Document.GetDescendingElements("h1");
-            var h2Tags = pageData.Document.GetDescendingElements("h2");
-            var h3Tags = pageData.Document.GetDescendingElements("h3");
-            var h4Tags = pageData.Document.GetDescendingElements("h4");
+            // Check for h1, h2, h3 and h4
+            var headerTagCount = 0;
+            for (var i = 1; i <=4;i++)
+            {
+                var headerTag = pageData.Document.GetElements("h" + i);
+                headerTagCount += headerTag.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword));
+            }
 
-            var usedInHeadingCount = h1Tags.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword)) + 
-                h2Tags.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword)) + 
-                h3Tags.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword)) + 
-                h4Tags.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword));
-
-            if (usedInHeadingCount > 0)
+            if (headerTagCount > 0)
             {
                 var resultRule = new ResultRule
                 {
                     Alias = "keyword_used_in_heading",
                     Type = ResultType.Success
                 };
-                resultRule.Tokens.Add(usedInHeadingCount.ToString());
+                resultRule.Tokens.Add(headerTagCount.ToString());
                 result.ResultRules.Add(resultRule);
             }
             else

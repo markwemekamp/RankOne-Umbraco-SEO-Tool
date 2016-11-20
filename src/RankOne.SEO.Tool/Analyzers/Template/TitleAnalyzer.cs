@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using RankOne.Attributes;
-using RankOne.ExtensionMethods;
+using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 
@@ -24,40 +22,33 @@ namespace RankOne.Analyzers.Template
     [AnalyzerCategory(SummaryName = "Template", Alias = "titleanalyzer")]
     public class TitleAnalyzer : BaseAnalyzer
     {
+        private readonly HtmlTagHelper _htmlTagHelper;
+        public TitleAnalyzer()
+        {
+            _htmlTagHelper = new HtmlTagHelper();
+        }
+
         public override AnalyzeResult Analyse(IPageData pageData)
         {
             var result = new AnalyzeResult();
 
-            var headTag = pageData.GetElements("head");
-            if (headTag.Any())
+            var headTag = _htmlTagHelper.GetHeadTag(pageData.Document, result);
+
+            if (headTag != null)
             {
                 AnalyzeHeadTag(headTag, result);
             }
-            else
-            {
-                result.AddResultRule("no_head_tag", ResultType.Error);
-            }
+
             return result;
         }
 
-        private void AnalyzeHeadTag(IEnumerable<HtmlNode> headTag, AnalyzeResult result)
+        private void AnalyzeHeadTag(HtmlNode headTag, AnalyzeResult result)
         {
-            var titleTags = headTag.First().GetDescendingElements("title");
-            if (!titleTags.Any())
+            var titleTag = _htmlTagHelper.GetHeadTag(headTag, result);
+
+            if (titleTag != null)
             {
-                result.AddResultRule("no_title_tag", ResultType.Error);
-            }
-            else if (titleTags.Count() > 1)
-            {
-                result.AddResultRule("multiple_title_tags", ResultType.Error);
-            }
-            else
-            {
-                var firstTitleTag = titleTags.FirstOrDefault();
-                if (firstTitleTag != null)
-                {
-                    AnalyzeTitleTag(firstTitleTag, result);
-                }
+                AnalyzeTitleTag(titleTag, result);
             }
         }
 

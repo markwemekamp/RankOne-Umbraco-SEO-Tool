@@ -13,11 +13,11 @@ namespace RankOne.Analyzers.Performance
         {
             var result = new AnalyzeResult();
 
-            var cssFiles = pageData.Document.GetDescendingElementsWithAttribute("link", "href").
+            var cssFiles = pageData.Document.GetElementsWithAttribute("link", "href").
                 Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));
-            var scriptFiles = pageData.Document.GetDescendingElementsWithAttribute("script", "src");
-            var images = pageData.Document.GetDescendingElementsWithAttribute("img", "src");
-            var objects = pageData.Document.GetDescendingElementsWithAttribute("object ", "data");
+            var scriptFiles = pageData.Document.GetElementsWithAttribute("script", "src");
+            var images = pageData.Document.GetElementsWithAttribute("img", "src");
+            var objects = pageData.Document.GetElementsWithAttribute("object ", "data");
 
             var total = cssFiles.Count() + scriptFiles.Count() + images.Count() + objects.Count();
 

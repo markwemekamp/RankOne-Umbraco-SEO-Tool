@@ -1,5 +1,5 @@
-﻿using System.Net;
-using RankOne.Attributes;
+﻿using RankOne.Attributes;
+using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 
@@ -8,19 +8,16 @@ namespace RankOne.Analyzers.Performance
     [AnalyzerCategory(SummaryName = "Performance", Alias = "gzipanalyzer")]
     public class GZipAnalyzer : BaseAnalyzer
     {
+        private readonly EncodingHelper _encodingHelper;
+
+        public GZipAnalyzer()
+        {
+            _encodingHelper = new EncodingHelper();
+        }
+
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            string encoding = null;
-            var request = (HttpWebRequest)WebRequest.Create(pageData.Url);
-            request.Method = "GET";
-            request.Headers.Add("Accept-Encoding", "gzip,deflate");
-            using (var response = request.GetResponse() as HttpWebResponse)
-            {
-                if (response != null)
-                {
-                    encoding = response.ContentEncoding;
-                }
-            }
+            var encoding = _encodingHelper.GetEncodingFromUrl(pageData.Url);
 
             var result = new AnalyzeResult();
             if (encoding == "gzip")

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 
 namespace RankOne.Interfaces
 {
@@ -8,7 +7,5 @@ namespace RankOne.Interfaces
         HtmlNode Document { get; set; }
         string Focuskeyword { get; set; }
         string Url { get; set; }
-
-        IEnumerable<HtmlNode> GetElements(string name);
     }
 }

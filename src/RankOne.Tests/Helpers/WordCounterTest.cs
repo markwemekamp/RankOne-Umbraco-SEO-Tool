@@ -57,8 +57,10 @@ namespace RankOne.Tests.Helpers
         [TestMethod]
         public void CountOccurencesForText_OnExecuteWithMinimumWordLengthSetTo6_SkipsWordsThatAre5CharactersOrShorter()
         {
-            var wordCounter = new WordCounter();
-            wordCounter.MinimumWordLength = 6;
+            var wordCounter = new WordCounter
+            {
+                MinimumWordLength = 6
+            };
 
             var text = "test1234 test123 test12 test1 test";
 

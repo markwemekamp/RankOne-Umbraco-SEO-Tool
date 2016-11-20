@@ -13,7 +13,7 @@ namespace RankOne.Analyzers.Template
         {
             var result = new AnalyzeResult();
 
-            var anchorTags = pageData.Document.GetDescendingElements("a");
+            var anchorTags = pageData.Document.GetElements("a");
             var anchorTagCount = anchorTags.Count();
 
             var anchorWithTitleTagCount = anchorTags.Count(x => x.GetAttribute("title") != null && !string.IsNullOrWhiteSpace(x.GetAttribute("title").Value));

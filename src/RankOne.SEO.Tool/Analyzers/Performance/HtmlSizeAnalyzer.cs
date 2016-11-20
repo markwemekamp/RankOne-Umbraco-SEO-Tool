@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using RankOne.Attributes;
+﻿using RankOne.Attributes;
 using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
@@ -11,6 +9,8 @@ namespace RankOne.Analyzers.Performance
     public class HtmlSizeAnalyzer : BaseAnalyzer
     {
         private readonly ByteSizeHelper _byteSizeHelper;
+
+        private static readonly int MaximumSizeInKb = 33792;   // 33 kb
 
         public HtmlSizeAnalyzer()
         {
@@ -23,7 +23,8 @@ namespace RankOne.Analyzers.Performance
 
             var byteCount = _byteSizeHelper.GetByteSize(pageData.Document.InnerHtml);
             var htmlSizeResultRule = new ResultRule();
-            if (byteCount < (33 * 1024))
+
+            if (byteCount < MaximumSizeInKb)
             {
                 htmlSizeResultRule.Alias = "html_size_small";
                 htmlSizeResultRule.Type = ResultType.Success;
@@ -38,7 +39,5 @@ namespace RankOne.Analyzers.Performance
 
             return htmlSizeAnalysis;
         }
-
-        
     }
 }

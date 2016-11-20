@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using HtmlAgilityPack;
-using RankOne.ExtensionMethods;
+﻿using HtmlAgilityPack;
 using RankOne.Interfaces;
 
 namespace RankOne.Models
@@ -10,10 +8,5 @@ namespace RankOne.Models
         public HtmlNode Document { get; set; }
         public string Focuskeyword { get; set; }
         public string Url { get; set; }
-
-        public IEnumerable<HtmlNode> GetElements(string name)
-        {
-            return Document.GetDescendingElements(name);
-        }
     }
 }

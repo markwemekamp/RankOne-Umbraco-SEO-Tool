@@ -5,23 +5,27 @@ using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Helpers;
 
 namespace RankOne.Analyzers.Template
 {
     [AnalyzerCategory(SummaryName = "Template", Alias = "metakeywordanalyzer")]
     public class MetaKeywordAnalyzer : BaseAnalyzer
     {
+        private readonly HtmlTagHelper _htmlTagHelper;
+
+        public MetaKeywordAnalyzer()
+        {
+            _htmlTagHelper = new HtmlTagHelper();
+        }
+
         public override AnalyzeResult Analyse(IPageData pageData)
         {
             var result = new AnalyzeResult();
 
-            var metaTags = pageData.Document.GetDescendingElements("meta");
+            var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document, result);
 
-            if (!metaTags.Any())
-            {
-                result.AddResultRule("no_meta_tags", ResultType.Error);
-            }
-            else
+            if (metaTags.Any())
             {
                 AnalyzeMetaTags(metaTags, result);
             }

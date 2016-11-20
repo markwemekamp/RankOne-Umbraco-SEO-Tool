@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
@@ -13,43 +15,36 @@ namespace RankOne.Analyzers.Template
         {
             var result = new AnalyzeResult();
 
-            var imageTags = pageData.Document.GetDescendingElements("img");
+            var imageTags = pageData.Document.GetElements("img");
             var imageTagCount = imageTags.Count();
 
-            var imagesWithAltTagCount = imageTags.Count(x => x.GetAttribute("alt") != null && !string.IsNullOrWhiteSpace(x.GetAttribute("alt").Value));
+            CheckImagesForAttribute(imageTags, imageTagCount, result, "alt");
+            CheckImagesForAttribute(imageTags, imageTagCount, result, "title");
 
-            if (imageTagCount > imagesWithAltTagCount)
-            {
-                var resultRule = new ResultRule
-                {
-                    Alias = "missing_alt_tags",
-                    Type = ResultType.Hint
-                };
-                var numberOfTagsMissingAlt = imageTagCount - imagesWithAltTagCount;
-                resultRule.Tokens.Add(numberOfTagsMissingAlt.ToString());
-                result.ResultRules.Add(resultRule);
-            }
-
-            var imagesWithTitleTagCount = imageTags.Count(x => x.GetAttribute("title") != null && !string.IsNullOrWhiteSpace(x.GetAttribute("title").Value));
-
-            if (imageTagCount > imagesWithTitleTagCount)
-            {
-                var resultRule = new ResultRule
-                {
-                    Alias = "missing_title_tags",
-                    Type = ResultType.Hint
-                };
-                var numberOfTagsMissingTitle = imageTagCount - imagesWithTitleTagCount;
-                resultRule.Tokens.Add(numberOfTagsMissingTitle.ToString());
-                result.ResultRules.Add(resultRule);
-            }
-
-            if (imageTagCount == imagesWithAltTagCount && imageTagCount == imagesWithTitleTagCount)
+            if (!result.ResultRules.Any())
             {
                 result.AddResultRule("alt_and_title_tags_present", ResultType.Success);
             }
 
             return result;
+        }
+
+        private void CheckImagesForAttribute(IEnumerable<HtmlNode> imageTags, int imageTagCount, AnalyzeResult result, string attributeName)
+        {
+            var imagesWithAttributeCount =
+                imageTags.Count(x => x.GetAttribute(attributeName) != null && !string.IsNullOrWhiteSpace(x.GetAttribute(attributeName).Value));
+
+            if (imageTagCount > imagesWithAttributeCount)
+            {
+                var resultRule = new ResultRule
+                {
+                    Alias = "missing_" + attributeName + "_tags",
+                    Type = ResultType.Hint
+                };
+                var numberOfTagsMissingAttribute = imageTagCount - imagesWithAttributeCount;
+                resultRule.Tokens.Add(numberOfTagsMissingAttribute.ToString());
+                result.ResultRules.Add(resultRule);
+            }
         }
     }
 }

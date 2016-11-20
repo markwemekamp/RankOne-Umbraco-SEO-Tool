@@ -2,6 +2,7 @@
 using System.Linq;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
+using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 
@@ -20,24 +21,21 @@ namespace RankOne.Analyzers.Keywords
     [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordtitleanalyzer")]
     public class KeywordTitleAnalyzer : BaseAnalyzer
     {
+        private readonly HtmlTagHelper _htmlTagHelper;
+
+        public KeywordTitleAnalyzer()
+        {
+            _htmlTagHelper = new HtmlTagHelper();
+        }
+
         public override AnalyzeResult Analyse(IPageData pageData)
         {
             var result = new AnalyzeResult();
 
-            var titleTags = pageData.Document.GetDescendingElements("title");
-
-            if (!titleTags.Any())
+            var titleTag = _htmlTagHelper.GetTitleTag(pageData.Document, result);
+            if (titleTag != null)
             {
-                result.AddResultRule("no_title_tag", ResultType.Error);
-
-            }
-            else if (titleTags.Count() > 1)
-            {
-                result.AddResultRule("multiple_title_tags", ResultType.Error);
-            }
-            else
-            {
-                var titleText = titleTags.First().InnerText;
+                var titleText = titleTag.InnerText;
                 var position = titleText.IndexOf(pageData.Focuskeyword, StringComparison.InvariantCultureIgnoreCase);
 
                 if (position >= 0)

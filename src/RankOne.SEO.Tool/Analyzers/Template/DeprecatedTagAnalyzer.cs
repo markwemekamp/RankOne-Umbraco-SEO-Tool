@@ -37,7 +37,7 @@ namespace RankOne.Analyzers.Template
 
         private void CheckTag(HtmlNode htmlNode, string tagname, AnalyzeResult result)
         {
-            var acronymTags = htmlNode.GetDescendingElements(tagname);
+            var acronymTags = htmlNode.GetElements(tagname);
 
             if (acronymTags.Any())
             {
