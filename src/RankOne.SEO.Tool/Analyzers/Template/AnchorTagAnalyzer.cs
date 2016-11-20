@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Template
@@ -8,14 +9,11 @@ namespace RankOne.Analyzers.Template
     [AnalyzerCategory(SummaryName = "Template", Alias = "anchorTagAnalyzer")]
     public class AnchorTagAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "anchorTagAnalyzer"
-            };
+            var result = new AnalyzeResult();
 
-            var anchorTags = pageData.Document.GetDescendingElements("a");
+            var anchorTags = pageData.Document.GetElements("a");
             var anchorTagCount = anchorTags.Count();
 
             var anchorWithTitleTagCount = anchorTags.Count(x => x.GetAttribute("title") != null && !string.IsNullOrWhiteSpace(x.GetAttribute("title").Value));
@@ -24,7 +22,7 @@ namespace RankOne.Analyzers.Template
             {
                 var resultRule = new ResultRule
                 {
-                    Alias = "anchorTagAnalyzer_missing_title_tags",
+                    Alias = "missing_title_tags",
                     Type = ResultType.Hint
                 };
                 var numberOfTagsMissingTitle = anchorTagCount - anchorWithTitleTagCount;
@@ -33,7 +31,7 @@ namespace RankOne.Analyzers.Template
             }
             else
             {
-                result.AddResultRule("anchorTagAnalyzer_all_title_tags_present", ResultType.Hint);
+                result.AddResultRule("all_title_tags_present", ResultType.Hint);
             }
 
             return result;

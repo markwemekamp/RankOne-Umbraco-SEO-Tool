@@ -4,10 +4,11 @@
         replace: true,
         templateUrl: '/App_Plugins/RankOne/directives/resultline/resultline.directive.html',
         scope: {
-            resultline: '='
+            resultline: '=',
+            result: '='
         },
         link: function (scope) {
-            scope.text = localizationService.localize(scope.resultline.Alias, scope.resultline.Tokens);
+            scope.text = localizationService.localize(scope.result.Alias + '_' + scope.resultline.Alias, scope.resultline.Tokens);
 
             if (scope.resultline.Type === "success") {
                 scope.style = "info";

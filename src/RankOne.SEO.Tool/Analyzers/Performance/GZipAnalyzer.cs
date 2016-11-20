@@ -1,5 +1,6 @@
-﻿using System.Net;
-using RankOne.Attributes;
+﻿using RankOne.Attributes;
+using RankOne.Helpers;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Performance
@@ -7,31 +8,25 @@ namespace RankOne.Analyzers.Performance
     [AnalyzerCategory(SummaryName = "Performance", Alias = "gzipanalyzer")]
     public class GZipAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
-        {
-            string encoding = null;
-            var request = (HttpWebRequest)WebRequest.Create(pageData.Url);
-            request.Method = "GET";
-            request.Headers.Add("Accept-Encoding", "gzip,deflate");
-            using (var response = request.GetResponse() as HttpWebResponse)
-            {
-                if (response != null)
-                {
-                    encoding = response.ContentEncoding;
-                }
-            }
+        private readonly EncodingHelper _encodingHelper;
 
-            var result = new AnalyzeResult
-            {
-                Alias = "gzipanalyzer"
-            };
+        public GZipAnalyzer()
+        {
+            _encodingHelper = new EncodingHelper();
+        }
+
+        public override AnalyzeResult Analyse(IPageData pageData)
+        {
+            var encoding = _encodingHelper.GetEncodingFromUrl(pageData.Url);
+
+            var result = new AnalyzeResult();
             if (encoding == "gzip")
             {
-                result.AddResultRule("gzipanalyzer_gzip_enabled", ResultType.Success);
+                result.AddResultRule("gzip_enabled", ResultType.Success);
             }
             else
             {
-                result.AddResultRule("gzipanalyzer_gzip_disabled", ResultType.Hint);
+                result.AddResultRule("gzip_disabled", ResultType.Hint);
             }
 
             return result;

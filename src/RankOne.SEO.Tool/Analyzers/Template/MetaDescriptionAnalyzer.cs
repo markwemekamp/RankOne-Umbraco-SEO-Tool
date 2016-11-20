@@ -1,6 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
+using RankOne.Helpers;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Template
@@ -16,74 +20,84 @@ namespace RankOne.Analyzers.Template
     [AnalyzerCategory(SummaryName = "Template", Alias = "metadescriptionanalyzer")]
     public class MetaDescriptionAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        private readonly HtmlTagHelper _htmlTagHelper;
+
+        public MetaDescriptionAnalyzer()
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "metadescriptionanalyzer"
-            };
+            _htmlTagHelper = new HtmlTagHelper();
+        }
 
-            var metaTags = pageData.Document.GetDescendingElements("meta");
+        public override AnalyzeResult Analyse(IPageData pageData)
+        {
+            var result = new AnalyzeResult();
 
-            if (!metaTags.Any())
+            var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document, result);
+
+            if (metaTags.Any())
             {
-                result.AddResultRule("metadescriptionanalyzer_no_meta_tags", ResultType.Error);
+                AnalyzeMetaTags(metaTags, result);
+            }
+            return result;
+        }
+
+        private void AnalyzeMetaTags(IEnumerable<HtmlNode> metaTags, AnalyzeResult result)
+        {
+            var attributeValues = from metaTag in metaTags
+                                  let attribute = metaTag.GetAttribute("name")
+                                  where attribute != null
+                                  where attribute.Value == "description"
+                                  select metaTag.GetAttribute("content");
+
+            if (!attributeValues.Any())
+            {
+                result.AddResultRule("no_meta_description_tag", ResultType.Error);
+            }
+            else if (attributeValues.Count() > 1)
+            {
+                result.AddResultRule("multiple_meta_description_tags", ResultType.Error);
             }
             else
             {
-                var attributeValues = from metaTag in metaTags
-                                      let attribute = metaTag.GetAttribute("name")
-                                      where attribute != null
-                                      where attribute.Value == "description"
-                                      select metaTag.GetAttribute("content");
-
-                if (!attributeValues.Any())
+                var firstMetaDescriptionAttribute = attributeValues.FirstOrDefault();
+                if (firstMetaDescriptionAttribute != null)
                 {
-                    result.AddResultRule("metadescriptionanalyzer_no_meta_description_tag", ResultType.Error);
-                }
-                else if (attributeValues.Count() > 1)
-                {
-                    result.AddResultRule("metadescriptionanalyzer_multiple_meta_description_tags", ResultType.Error);
-                }
-                else
-                {
-                    var firstMetaDescriptionTag = attributeValues.FirstOrDefault();
-                    if (firstMetaDescriptionTag != null)
-                    {
-                        var descriptionValue = firstMetaDescriptionTag.Value;
-
-                        if (string.IsNullOrWhiteSpace(descriptionValue))
-                        {
-                            result.AddResultRule("metadescriptionanalyzer_no_description_value", ResultType.Error);
-                        }
-                        else
-                        {
-                            descriptionValue = descriptionValue.Trim();
-
-                            if (descriptionValue.Length > 150)
-                            {
-                                result.AddResultRule("metadescriptionanalyzer_description_too_long", ResultType.Warning);
-                            }
-
-                            if (descriptionValue.Length < 20)
-                            {
-                                result.AddResultRule("metadescriptionanalyzer_description_too_short", ResultType.Warning);
-                            }
-
-                            if (descriptionValue.Length < 50)
-                            {
-                                result.AddResultRule("metadescriptionanalyzer_description_too_short", ResultType.Hint);
-                            }
-
-                            if (descriptionValue.Length <= 150 && descriptionValue.Length >= 20)
-                            {
-                                result.AddResultRule("metadescriptionanalyzer_description_perfect", ResultType.Success);
-                            }
-                        }
-                    }
+                    AnalyzeMetaDescriptionAttribute(firstMetaDescriptionAttribute, result);
                 }
             }
-            return result;
+        }
+
+        private void AnalyzeMetaDescriptionAttribute(HtmlAttribute metaDescriptionAttribute, AnalyzeResult result)
+        {
+            var descriptionValue = metaDescriptionAttribute.Value;
+
+            if (string.IsNullOrWhiteSpace(descriptionValue))
+            {
+                result.AddResultRule("no_description_value", ResultType.Error);
+            }
+            else
+            {
+                descriptionValue = descriptionValue.Trim();
+
+                if (descriptionValue.Length > 150)
+                {
+                    result.AddResultRule("description_too_long", ResultType.Warning);
+                }
+
+                if (descriptionValue.Length < 20)
+                {
+                    result.AddResultRule("description_too_short", ResultType.Warning);
+                }
+
+                if (descriptionValue.Length < 50)
+                {
+                    result.AddResultRule("description_too_short", ResultType.Hint);
+                }
+
+                if (descriptionValue.Length <= 150 && descriptionValue.Length >= 20)
+                {
+                    result.AddResultRule("description_perfect", ResultType.Success);
+                }
+            }
         }
     }
 }

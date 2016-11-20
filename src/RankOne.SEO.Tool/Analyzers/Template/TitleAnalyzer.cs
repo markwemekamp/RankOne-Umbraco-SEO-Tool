@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using HtmlAgilityPack;
 using RankOne.Attributes;
-using RankOne.ExtensionMethods;
+using RankOne.Helpers;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Template
@@ -21,63 +22,63 @@ namespace RankOne.Analyzers.Template
     [AnalyzerCategory(SummaryName = "Template", Alias = "titleanalyzer")]
     public class TitleAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        private readonly HtmlTagHelper _htmlTagHelper;
+        public TitleAnalyzer()
         {
-            var result = new AnalyzeResult
+            _htmlTagHelper = new HtmlTagHelper();
+        }
+
+        public override AnalyzeResult Analyse(IPageData pageData)
+        {
+            var result = new AnalyzeResult();
+
+            var headTag = _htmlTagHelper.GetHeadTag(pageData.Document, result);
+
+            if (headTag != null)
             {
-                Alias = "titleanalyzer"
-            };
+                AnalyzeHeadTag(headTag, result);
+            }
 
-            var headTag = pageData.Document.GetDescendingElements("head");
-            if (headTag.Any())
+            return result;
+        }
+
+        private void AnalyzeHeadTag(HtmlNode headTag, AnalyzeResult result)
+        {
+            var titleTag = _htmlTagHelper.GetHeadTag(headTag, result);
+
+            if (titleTag != null)
             {
-                var titleTags = headTag.First().GetDescendingElements("title");
-                if (!titleTags.Any())
-                {
-                    result.AddResultRule("titleanalyzer_no_title_tag", ResultType.Error);
-                }
-                else if (titleTags.Count() > 1)
-                {
-                    result.AddResultRule("titleanalyzer_multiple_title_tags", ResultType.Error);
-                }
-                else
-                {
-                    var firstTitleTag = titleTags.FirstOrDefault();
-                    if (firstTitleTag != null)
-                    {
-                        var titleValue = firstTitleTag.InnerText;
+                AnalyzeTitleTag(titleTag, result);
+            }
+        }
 
-                        if (string.IsNullOrWhiteSpace(titleValue))
-                        {
-                            result.AddResultRule("titleanalyzer_no_title_value", ResultType.Error);
-                        }
-                        else
-                        {
-                            titleValue = titleValue.Trim();
+        private void AnalyzeTitleTag(HtmlNode titleTag, AnalyzeResult result)
+        {
+            var titleValue = titleTag.InnerText;
 
-                            if (titleValue.Length > 60)
-                            {
-                                result.AddResultRule("titleanalyzer_title_too_long", ResultType.Warning);
-                            }
-
-                            if (titleValue.Length < 5)
-                            {
-                                result.AddResultRule("titleanalyzer_title_too_short", ResultType.Hint);
-                            }
-
-                            if (titleValue.Length <= 60 && titleValue.Length >= 5)
-                            {
-                                result.AddResultRule("titleanalyzer_title_success", ResultType.Success);
-                            }
-                        }
-                    }
-                }
+            if (string.IsNullOrWhiteSpace(titleValue))
+            {
+                result.AddResultRule("no_title_value", ResultType.Error);
             }
             else
             {
-                result.AddResultRule("titleanalyzer_no_head_tag", ResultType.Error);
+                titleValue = titleValue.Trim();
+
+                if (titleValue.Length > 60)
+                {
+                    result.AddResultRule("title_too_long", ResultType.Warning);
+                }
+
+                if (titleValue.Length < 5)
+                {
+                    result.AddResultRule("titleanalyzer_title_too_short", ResultType.Hint);
+                }
+
+                if (titleValue.Length <= 60 && titleValue.Length >= 5)
+                {
+                    result.AddResultRule("title_success", ResultType.Success);
+                }
             }
-            return result;
         }
     }
 }

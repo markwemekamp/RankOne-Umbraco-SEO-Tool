@@ -1,14 +1,21 @@
-﻿using RankOne.Attributes;
+﻿using System.Linq;
+using RankOne.Attributes;
+using RankOne.Helpers;
 using RankOne.Models;
-using RankOne.Services;
 
 namespace RankOne.Summaries
 {
     [Summary(Alias = "keywordanalyzer", SortOrder = 2)]
     public class KeywordsSummary : BaseSummary
     {
-        public KeywordsSummary()
+        private readonly WordCounter _wordOccurenceHelper;
+
+        public KeywordsSummary() : this(new WordCounter())
+        { }
+
+        public KeywordsSummary(WordCounter wordOccurenceService)
         {
+            _wordOccurenceHelper = wordOccurenceService;
             Name = "Keywords";
         }
 
@@ -18,19 +25,9 @@ namespace RankOne.Summaries
 
             if (!string.IsNullOrEmpty(FocusKeyword) && FocusKeyword != "undefined")
             {
-                FocusKeyword = FocusKeyword.ToLower();
+                var focusKeyword = FocusKeyword.ToLower();
 
-                var wordOccurenceService = new WordOccurenceService();
-
-                var topwords = wordOccurenceService.GetKeywords(HtmlResult);
-
-                var information = new AnalysisInformation { Alias = "keywordanalyzer_top_words" };
-                information.Tokens.Add(FocusKeyword);
-                foreach (var word in topwords)
-                {
-                    information.Tokens.Add(word.Key);
-                    information.Tokens.Add(word.Value.ToString());
-                }
+                var information = GetAnalysisInformation(focusKeyword);
                 analysis = base.GetAnalysis();
                 analysis.Information.Add(information);
             }
@@ -42,6 +39,20 @@ namespace RankOne.Summaries
             }
 
             return analysis;
+        }
+
+        private AnalysisInformation GetAnalysisInformation(string focusKeyword)
+        {
+            var topwords = _wordOccurenceHelper.GetKeywords(HtmlResult).Take(10);
+
+            var information = new AnalysisInformation {Alias = "keywordanalyzer_top_words"};
+            information.Tokens.Add(focusKeyword);
+            foreach (var wordOccurence in topwords)
+            {
+                information.Tokens.Add(wordOccurence.Key);
+                information.Tokens.Add(wordOccurence.Value.ToString());
+            }
+            return information;
         }
     }
 }

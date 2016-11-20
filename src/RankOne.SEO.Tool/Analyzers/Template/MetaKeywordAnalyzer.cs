@@ -1,61 +1,75 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
+using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Helpers;
 
 namespace RankOne.Analyzers.Template
 {
     [AnalyzerCategory(SummaryName = "Template", Alias = "metakeywordanalyzer")]
     public class MetaKeywordAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        private readonly HtmlTagHelper _htmlTagHelper;
+
+        public MetaKeywordAnalyzer()
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "metakeywordanalyzer"
-            };
+            _htmlTagHelper = new HtmlTagHelper();
+        }
 
-            var metaTags = pageData.Document.GetDescendingElements("meta");
+        public override AnalyzeResult Analyse(IPageData pageData)
+        {
+            var result = new AnalyzeResult();
 
-            if (!metaTags.Any())
+            var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document, result);
+
+            if (metaTags.Any())
             {
-                result.AddResultRule("metakeywordanalyzer_no_meta_tags", ResultType.Error);
+                AnalyzeMetaTags(metaTags, result);
+            }
+            return result;
+        }
+
+        private void AnalyzeMetaTags(IEnumerable<HtmlNode> metaTags, AnalyzeResult result)
+        {
+            var attributeValues = from metaTag in metaTags
+                                  let attribute = metaTag.GetAttribute("name")
+                                  where attribute != null
+                                  where attribute.Value == "keywords"
+                                  select metaTag.GetAttribute("content");
+
+            if (!attributeValues.Any())
+            {
+                result.AddResultRule("no_meta_keywords_tag", ResultType.Hint);
+            }
+            else if (attributeValues.Count() > 1)
+            {
+                result.AddResultRule("multiple_meta_keywords_tags", ResultType.Warning);
             }
             else
             {
-                var attributeValues = from metaTag in metaTags
-                                      let attribute = metaTag.GetAttribute("name")
-                                      where attribute != null
-                                      where attribute.Value == "keywords"
-                                      select metaTag.GetAttribute("content");
-
-                if (!attributeValues.Any())
+                var firstMetaKeywordsTag = attributeValues.FirstOrDefault();
+                if (firstMetaKeywordsTag != null)
                 {
-                    result.AddResultRule("metakeywordanalyzer_no_meta_keywords_tag", ResultType.Hint);
-                }
-                else if (attributeValues.Count() > 1)
-                {
-                    result.AddResultRule("metakeywordanalyzer_multiple_meta_keywords_tags", ResultType.Warning);
-                }
-                else
-                {
-                    var firstMetaKeywordsTag = attributeValues.FirstOrDefault();
-                    if (firstMetaKeywordsTag != null)
-                    {
-                        var keywordsValue = firstMetaKeywordsTag.Value;
-
-                        if (string.IsNullOrWhiteSpace(keywordsValue))
-                        {
-                            result.AddResultRule("metakeywordanalyzer_no_keywords_value", ResultType.Hint);
-                        }
-                        else
-                        {
-                            result.AddResultRule("metakeywordanalyzer_keywords_set", ResultType.Success);
-                        }
-                    }
+                    AnalyzeMetaKeywordsAttribute(firstMetaKeywordsTag, result);
                 }
             }
-            return result;
+        }
+
+        private void AnalyzeMetaKeywordsAttribute(HtmlAttribute metaKeywordsTag, AnalyzeResult result)
+        {
+            var keywordsValue = metaKeywordsTag.Value;
+
+            if (string.IsNullOrWhiteSpace(keywordsValue))
+            {
+                result.AddResultRule("no_keywords_value", ResultType.Hint);
+            }
+            else
+            {
+                result.AddResultRule("keywords_set", ResultType.Success);
+            }
         }
     }
 }

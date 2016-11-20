@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Performance
@@ -8,18 +9,15 @@ namespace RankOne.Analyzers.Performance
     [AnalyzerCategory(SummaryName = "Performance", Alias = "additionalcallanalyzer")]
     public class AdditionalCallAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "additionalcallanalyzer"
-            };
+            var result = new AnalyzeResult();
 
-            var cssFiles = pageData.Document.GetDescendingElementsWithAttribute("link", "href").
+            var cssFiles = pageData.Document.GetElementsWithAttribute("link", "href").
                 Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));
-            var scriptFiles = pageData.Document.GetDescendingElementsWithAttribute("script", "src");
-            var images = pageData.Document.GetDescendingElementsWithAttribute("img", "src");
-            var objects = pageData.Document.GetDescendingElementsWithAttribute("object ", "data");
+            var scriptFiles = pageData.Document.GetElementsWithAttribute("script", "src");
+            var images = pageData.Document.GetElementsWithAttribute("img", "src");
+            var objects = pageData.Document.GetElementsWithAttribute("object ", "data");
 
             var total = cssFiles.Count() + scriptFiles.Count() + images.Count() + objects.Count();
 
@@ -27,17 +25,17 @@ namespace RankOne.Analyzers.Performance
 
             if (total > 30)
             {
-                resultRule.Alias = "additionalcallanalyzer_more_than_30_calls";
+                resultRule.Alias = "more_than_30_calls";
                 resultRule.Type = ResultType.Warning;
             }
             else if(total > 15)
             {
-                resultRule.Alias = "additionalcallanalyzer_more_than_15_calls";
+                resultRule.Alias = "more_than_15_calls";
                 resultRule.Type = ResultType.Hint;
             }
             else
             {
-                resultRule.Alias = "additionalcallanalyzer_less_than_15_calls";
+                resultRule.Alias = "less_than_15_calls";
                 resultRule.Type = ResultType.Success;
             }
 

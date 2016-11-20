@@ -4,6 +4,6 @@ namespace RankOne.Interfaces
 {
     public interface IAnalyzer
     {
-        AnalyzeResult Analyse(PageData pageData);
+        AnalyzeResult Analyse(IPageData pageData);
     }
 }

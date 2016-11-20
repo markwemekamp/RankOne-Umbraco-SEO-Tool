@@ -1,7 +1,11 @@
-﻿using System;
-using RankOne.Analyzers;
+﻿using RankOne.Analyzers;
+using RankOne.Attributes;
+using RankOne.ExtensionMethods;
+using RankOne.Helpers;
+using RankOne.Interfaces;
 using RankOne.Models;
-using RankOne.Services;
+using Umbraco.Core;
+using Umbraco.Core.Persistence;
 
 namespace RankOne.Summaries
 {
@@ -12,33 +16,34 @@ namespace RankOne.Summaries
         public string Url { get; set; }
         public string FocusKeyword { get; set; }
 
-        private readonly ReflectionService _reflectionService;
+        private readonly IDefintionHelper _definitionHelper;
 
-        public BaseSummary()
+        public BaseSummary() : this(new DefinitionHelper())
+        { }
+
+        public BaseSummary(IDefintionHelper defintionHelper)
         {
-            _reflectionService = new ReflectionService();
+            _definitionHelper = defintionHelper;
         }
 
         public virtual Analysis GetAnalysis()
         {
             var analysis = new Analysis();
-            var types = _reflectionService.GetAllAnalyzersForSummary(Name);
+            var types = _definitionHelper.GetAllAnalyzerTypesForSummary(Name);
 
             foreach (var type in types)
             {
-                var instance = GetInstance(type);
+                var instance = type.GetInstance<BaseAnalyzer>();
+
+                var analyzerCategory = type.FirstAttribute<AnalyzerCategory>();
 
                 var result = GetResultFromAnalyzer(instance);
+
+                result.Alias = analyzerCategory.Alias;
                 analysis.Results.Add(result);
             }
 
             return analysis;
-        }
-
-        private BaseAnalyzer GetInstance(Type type)
-        {
-            var instance = Activator.CreateInstance(type);
-            return (BaseAnalyzer)instance;
         }
 
         private AnalyzeResult GetResultFromAnalyzer(BaseAnalyzer baseAnalyzerInstance)

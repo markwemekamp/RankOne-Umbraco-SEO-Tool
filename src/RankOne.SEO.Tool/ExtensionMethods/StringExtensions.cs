@@ -1,26 +1,44 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Net;
+using System.Text.RegularExpressions;
 
 namespace RankOne.ExtensionMethods
 {
     public static class StringExtensions
     {
-        public static string Alias(this string phrase)
+        public static string UrlFriendly(this string text)
         {
-            string str = phrase.RemoveAccent().ToLower();
+            text = text.RemoveAccents().ToLower();
+            text = WebUtility.HtmlDecode(text);
+            var htmlRegex = new Regex("<.*?>", RegexOptions.Compiled);
+            text = htmlRegex.Replace(text, string.Empty);
             // invalid chars           
-            str = Regex.Replace(str, @"[^a-z0-9\s-]", "");
+            text = Regex.Replace(text, @"[^a-z0-9\s-]", "");
             // convert multiple spaces into one space   
-            str = Regex.Replace(str, @"\s+", " ").Trim();
+            text = Regex.Replace(text, @"\s+", " ").Trim();
             // cut and trim 
-            str = str.Substring(0, str.Length <= 45 ? str.Length : 45).Trim();
-            str = Regex.Replace(str, @"\s", "-"); // hyphens   
-            return str;
+            text = text.Substring(0, text.Length <= 45 ? text.Length : 45).Trim();
+            text = Regex.Replace(text, @"\s", "-"); // hyphens   
+            return text;
         }
 
-        public static string RemoveAccent(this string txt)
+        public static string RemoveAccents(this string text)
         {
-            byte[] bytes = System.Text.Encoding.GetEncoding("Cyrillic").GetBytes(txt);
+            var bytes = System.Text.Encoding.GetEncoding("Cyrillic").GetBytes(text);
             return System.Text.Encoding.ASCII.GetString(bytes);
+        }
+
+        public static string Simplify(this string text)
+        {
+            text = text.RemoveAccents().ToLower();
+            text = WebUtility.HtmlDecode(text);
+
+            var htmlRegex = new Regex("<.*?>", RegexOptions.Compiled);
+            text = htmlRegex.Replace(text, string.Empty);
+
+            var rgx = new Regex("[^a-z0-9-]");
+            text = rgx.Replace(text, string.Empty);
+
+            return text;
         }
     }
 }

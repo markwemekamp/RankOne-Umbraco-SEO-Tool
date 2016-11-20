@@ -2,13 +2,13 @@
 using System.Web;
 using HtmlAgilityPack;
 using RankOne.ExtensionMethods;
-using RankOne.Helpers;
+using RankOne.Interfaces;
 using RankOne.Models;
 using Umbraco.Web;
 
 namespace RankOne.Services
 {
-    public class PageInformationService
+    public class PageInformationService : IPageInformationService
     {
         public PageInformation GetpageInformation(int id)
         {
@@ -24,11 +24,11 @@ namespace RankOne.Services
             var htmlParser = new HtmlDocument();
             htmlParser.LoadHtml(HttpUtility.HtmlDecode(html));
 
-            var headTag = htmlParser.DocumentNode.GetDescendingElements("head");
+            var headTag = htmlParser.DocumentNode.GetElements("head");
 
             if (headTag.Any())
             {
-                var titleTags = headTag.First().GetDescendingElements("title");
+                var titleTags = headTag.First().GetElements("title");
 
                 if (titleTags.Any())
                 {
@@ -36,7 +36,7 @@ namespace RankOne.Services
                 }
             }
 
-            var metaTags = htmlParser.DocumentNode.GetDescendingElements("meta");
+            var metaTags = htmlParser.DocumentNode.GetElements("meta");
 
             var attributeValues = from metaTag in metaTags
                                   let attribute = metaTag.GetAttribute("name")

@@ -5,6 +5,6 @@ namespace RankOne.Analyzers
 {
     public abstract class BaseAnalyzer : IAnalyzer
     {
-        public abstract AnalyzeResult Analyse(PageData pageData);
+        public abstract AnalyzeResult Analyse(IPageData pageData);
     }
 }

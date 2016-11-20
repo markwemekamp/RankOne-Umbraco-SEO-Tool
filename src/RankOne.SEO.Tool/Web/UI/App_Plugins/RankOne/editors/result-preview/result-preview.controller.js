@@ -10,7 +10,7 @@
                 $scope.error = localizationService.localize("error_not_published");
                 $scope.loading = false;
             } else {
-                var url = '/umbraco/backoffice/rankone/RankOneApi/GetPageInformation?id={id}';
+                var url = '/umbraco/backoffice/rankone/PageApi/GetPageInformation?id={id}';
                 webresultService.GetResultFromEditorState(editorState.current, url)
                     .then(function(response) {
 

@@ -13,7 +13,7 @@
                 $scope.error = localizationService.localize("error_not_published");
                 $scope.loading = false;
             } else {
-                var url = '/umbraco/backoffice/rankone/RankOneApi/AnalyzeNode?id={id}&focusKeyword=' +
+                var url = '/umbraco/backoffice/rankone/AnalysisApi/AnalyzeNode?id={id}&focusKeyword=' +
                     $scope.model.value.focusKeyword;
                 webresultService.GetResultFromEditorState(editorState.current, url)
                     .then(function (response) {

@@ -16,23 +16,28 @@ namespace RankOne.Services
             var totalScore = 0;
             foreach (var analyzerResult in pageAnalysis.AnalyzerResults)
             {
-                var analysis = analyzerResult.Analysis;
-
-                foreach (var result in analysis.Results)
-                {
-                    pageScore.ErrorCount += result.ErrorCount;
-                    pageScore.WarningCount += result.WarningCount;
-                    pageScore.HintCount += result.HintCount;
-                    pageScore.SuccessCount += result.SuccessCount;
-                    result.Score = GetResultScore(result);
-                    totalScore += result.Score;
-                }
+                totalScore += CalculateScore(analyzerResult.Analysis, pageScore);
             }
 
             var numberOfAnalyzers = pageAnalysis.AnalyzerResults.Sum(x => x.Analysis.Results.Count);
             pageScore.OverallScore = totalScore / numberOfAnalyzers;
 
             return pageScore;
+        }
+
+        private int CalculateScore(Analysis analysis, PageScore pageScore)
+        {
+            var totalScore = 0;
+            foreach (var result in analysis.Results)
+            {
+                pageScore.ErrorCount += result.ErrorCount;
+                pageScore.WarningCount += result.WarningCount;
+                pageScore.HintCount += result.HintCount;
+                pageScore.SuccessCount += result.SuccessCount;
+                result.Score = GetResultScore(result);
+                totalScore += result.Score;
+            }
+            return totalScore;
         }
 
         /// <summary>

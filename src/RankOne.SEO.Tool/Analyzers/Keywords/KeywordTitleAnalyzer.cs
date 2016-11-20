@@ -2,6 +2,8 @@
 using System.Linq;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
+using RankOne.Helpers;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
@@ -19,43 +21,37 @@ namespace RankOne.Analyzers.Keywords
     [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordtitleanalyzer")]
     public class KeywordTitleAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        private readonly HtmlTagHelper _htmlTagHelper;
+
+        public KeywordTitleAnalyzer()
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "keywordtitleanalyzer"
-            };
+            _htmlTagHelper = new HtmlTagHelper();
+        }
 
-            var titleTags = pageData.Document.GetDescendingElements("title");
+        public override AnalyzeResult Analyse(IPageData pageData)
+        {
+            var result = new AnalyzeResult();
 
-            if (!titleTags.Any())
+            var titleTag = _htmlTagHelper.GetTitleTag(pageData.Document, result);
+            if (titleTag != null)
             {
-                result.AddResultRule("keywordtitleanalyzer_no_title_tag", ResultType.Error);
-
-            }
-            else if (titleTags.Count() > 1)
-            {
-                result.AddResultRule("keywordtitleanalyzer_multiple_title_tags", ResultType.Error);
-            }
-            else
-            {
-                var titleText = titleTags.First().InnerText;
+                var titleText = titleTag.InnerText;
                 var position = titleText.IndexOf(pageData.Focuskeyword, StringComparison.InvariantCultureIgnoreCase);
 
                 if (position >= 0)
                 {
                     if (position < 10)
                     {
-                        result.AddResultRule("keywordtitleanalyzer_title_contains_keyword", ResultType.Success);
+                        result.AddResultRule("title_contains_keyword", ResultType.Success);
                     }
                     else
                     {
-                        result.AddResultRule("keywordtitleanalyzer_title_not_in_front", ResultType.Hint);
+                        result.AddResultRule("title_not_in_front", ResultType.Hint);
                     }
                 }
                 else
                 {
-                    result.AddResultRule("keywordtitleanalyzer_title_doesnt_contain_keyword", ResultType.Warning);
+                    result.AddResultRule("title_doesnt_contain_keyword", ResultType.Warning);
                 }
             }
 

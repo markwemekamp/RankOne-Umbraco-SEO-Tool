@@ -2,6 +2,8 @@
 using System.Linq;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
+using RankOne.Helpers;
+using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Keywords
@@ -9,20 +11,20 @@ namespace RankOne.Analyzers.Keywords
     [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordmetadescriptionanalyzer")]
     public class KeywordMetaDescriptionAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(PageData pageData)
+        private readonly HtmlTagHelper _htmlTagHelper;
+
+        public KeywordMetaDescriptionAnalyzer()
         {
-            var result = new AnalyzeResult
-            {
-                Alias = "keywordmetadescriptionanalyzer"
-            };
+            _htmlTagHelper = new HtmlTagHelper();
+        }
 
-            var metaTags = pageData.Document.GetDescendingElements("meta");
+        public override AnalyzeResult Analyse(IPageData pageData)
+        {
+            var result = new AnalyzeResult();
 
-            if (!metaTags.Any())
-            {
-                result.AddResultRule("keywordmetadescriptionanalyzer_no_meta_tags", ResultType.Error);
-            }
-            else
+            var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document, result);
+
+            if (metaTags.Any())
             {
                 var attributeValues = from metaTag in metaTags
                                       let attribute = metaTag.GetAttribute("name")
@@ -32,11 +34,11 @@ namespace RankOne.Analyzers.Keywords
 
                 if (!attributeValues.Any())
                 {
-                    result.AddResultRule("keywordmetadescriptionanalyzer_no_meta_description_tag", ResultType.Warning);
+                    result.AddResultRule("no_meta_description_tag", ResultType.Warning);
                 }
                 else if (attributeValues.Count() > 1)
                 {
-                    result.AddResultRule("keywordmetadescriptionanalyzer_multiple_meta_description_tags", ResultType.Warning);
+                    result.AddResultRule("multiple_meta_description_tags", ResultType.Warning);
                 }
                 else
                 {
@@ -47,11 +49,11 @@ namespace RankOne.Analyzers.Keywords
 
                         if (descriptionValue.IndexOf(pageData.Focuskeyword, StringComparison.InvariantCultureIgnoreCase) >= 0)
                         {
-                            result.AddResultRule("keywordmetadescriptionanalyzer_meta_description_contains_keyword", ResultType.Success);
+                            result.AddResultRule("meta_description_contains_keyword", ResultType.Success);
                         }
                         else
                         {
-                            result.AddResultRule("keywordmetadescriptionanalyzer_meta_description_doesnt_contain_keyword", ResultType.Hint);
+                            result.AddResultRule("meta_description_doesnt_contain_keyword", ResultType.Hint);
                         }
                     }
                 }
