@@ -25,7 +25,7 @@ namespace RankOne.Helpers
         {
             var occurences = new WordOccurenceCollection();
 
-            var textBlocks = html.Document.SelectNodes("//text()");
+            var textBlocks = html.Document.SelectNodes("//*[not(self::script) and not(self::style)]]//text()");
 
             if (textBlocks != null)
             {

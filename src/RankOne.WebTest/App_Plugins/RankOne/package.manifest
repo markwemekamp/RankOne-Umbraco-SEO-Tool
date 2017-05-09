@@ -1,0 +1,62 @@
+﻿{
+    propertyEditors: [
+        {
+            alias: "RankOneDashboard",
+            name: "Rank One - Dashboard",
+            icon: "icon-bar-chart",
+            editor: {
+                view: "~/App_Plugins/RankOne/editors/dashboard/dashboard.html",
+				hideLabel: true
+            }
+        },
+		{
+            alias: "RankOneSummary",
+            name: "Rank One - Summary",
+            icon: "icon-bar-chart",
+            editor: {
+                view: "~/App_Plugins/RankOne/editors/summary/summary.html"
+            },
+			prevalues: {
+				fields:[
+					{
+					   label: "Show result types",
+					   description: "Which results should be shown?",
+					   key: "typeSelection",
+					   view: '~/App_Plugins/RankOne/prevalue-editors/typeSelector/typeSelector.html'
+					},
+					{
+					   label: "Show analyzer types",
+					   description: "Which analyzers should be shown?",
+					   key: "analyzerSelection",
+					   view: '~/App_Plugins/RankOne/prevalue-editors/analyzerSelector/analyzerSelector.html'
+					}
+				]
+			}
+        },
+		{
+            alias: "RankOneResultPreview",
+            name: "Rank One - Result Preview",
+            icon: "icon-bar-chart",
+            editor: {
+                view: "~/App_Plugins/RankOne/editors/result-preview/result-preview.html"
+            },
+			prevalues: {
+				fields:[
+					{
+					   label: "Show google interface",
+					   description: "Shows a fake google searchbar and menu",
+					   key: "showGoogleInterface",
+					   view: 'boolean'
+					}
+				]
+			}
+        }
+    ],
+    javascript: [
+		'~/App_Plugins/RankOne/js/templates.js',
+		'~/App_Plugins/RankOne/js/scripts.js'
+    ],
+	css : [
+		'~/App_Plugins/RankOne/css/styles.css'
+	]
+}

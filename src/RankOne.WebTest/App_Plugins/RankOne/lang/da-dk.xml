@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="da_dk" intName="Danish (DA)" localName="Danish (DA)" lcid="" culture="da-DK">
+  <creator>
+    <name>René Pjengaard Bank</name>
+    <link>https://github.com/rpjengaard</link>
+  </creator>
+
+  <area alias="error">
+    <key alias="no_template">Denne side har ingen template</key>
+    <key alias="not_published">Denne side er ikke publiceret</key>
+    <key alias="page_error">Siden returnerede en %0% status</key>
+  </area>
+
+  <area alias="dashboard">
+    <key alias="title">SEO Information</key>
+    <key alias="no_results">Ingen resultater</key>
+    <key alias="errors">Fejl</key>
+    <key alias="warnings">Advarsler</key>
+    <key alias="hints">Tips</key>
+    <key alias="passed_checks">Tjek bestået</key>
+  </area>
+
+  <area alias="settings">
+    <key alias="title">Sideindstillinger</key>
+    <key alias="description">Indstillinger for den aktuelle side.</key>
+    <key alias="focus_keyword">Fokus søgeord</key>
+    <key alias="cancel">Fortryd</key>
+    <key alias="save">Gem</key>
+  </area>
+
+  <area alias="summary">
+    <key alias="loading">Henter data...</key>
+  </area>
+
+  <area alias="templateanalyzer">
+    <key alias="title">Html analysator</key>
+  </area>
+  <area alias="keywordanalyzer">
+    <key alias="title">Søgeordsanalysator</key>
+    <key alias="focus_keyword_not_set">
+      <![CDATA[
+      Fokus søgeordet for denne side er ikke sat. Du kan tilføje et fokus søgeord ved at åbne indstillingsdialogen i toppen af denne skærm.
+    ]]>
+    </key>
+    <key alias="top_words">
+      <![CDATA[
+      There is likely no optimal keyword density (search engine algorithms have evolved beyond keyword density metrics as a significant ranking factor). It can be useful, however, to note which keywords appear most often on your page and if they reflect the intended topic of your page. More importantly, the keywords on your page should appear within natural sounding and grammatically correct copy.<br/><br/>
+      
+      The focus keyword for this page: <strong>%0%</strong><br/><br/>
+      
+      <strong>Top 3 words used on this this page:</strong><br/>
+      <strong>1.</strong> %1% (%2% times)<br/>
+      <strong>2.</strong> %3% (%4% times)<br/>
+      <strong>3.</strong> %5% (%6% times)<br/>
+    ]]>
+    </key>
+  </area>
+  <area alias="performanceanalyzer">
+    <key alias="title">Ydelsesanalysator</key>
+  </area>
+
+  <area alias="titleanalyzer">
+    <key alias="title">Sidetitel</key>
+    <key alias="guidelines">
+      <![CDATA[
+      Vælg en titel der effektivt kommunikere emnet på denne sides indhold.<br/>
+      Hver af dine sider skal gerne have en unik titel. Dette hjælper Google med at forstå forskellen på dine sider.<br />
+      Titler kan både være korte og informative. Hvis titlen er for lang, viser søgemaskinerne kun noget af titlen i deres søgeresultat.
+      ]]>
+    </key>
+    <key alias="no_head_tag">Siden indeholder ikke et head tag</key>
+    <key alias="no_title_tag">Siden indeholder ikke et title tag</key>
+    <key alias="multiple_title_tags">Siden indeholdere mere end et title tags</key>
+    <key alias="no_title_value">Title tag er ikke udfyldt</key>
+    <key alias="title_too_long">Din titel er længere end 60 karakterer</key>
+    <key alias="title_too_short">Din titel er for kort. Den ideelle længde ligger imellem 40 og 60 karakterer.</key>
+    <key alias="title_less_than_40_characters">Din titel er kortere end 40 karakterer. Den ideelle længde ligger imellem 40 og 60 karakterer.</key>
+    <key alias="title_more_than_40_less_than_60_characters">Din titel har den perfekte længde (imellem 40 og 60 karakterer)</key>
+  </area>
+
+  <area alias="metadescriptionanalyzer">
+    <key alias="title">Meta beskrivelse</key>
+    <key alias="guidelines">
+      <![CDATA[
+      Skriv en beskrivelse som både informerer og virker interessant for brugeren, hvis de læste din beskrivelse som en kort intro i et søgeresultat.<br />
+      Hvis du har forskellige beskrivelser pr side, hjælper det både dine brugere og Google. Specielt i søgninger hvor brugeren kan risikere at frembringe flere forskellige sider fra dit domæne.<br />
+      ]]>
+    </key>
+    <key alias="no_meta_tags">Siden indeholder ingen meta tags</key>
+    <key alias="no_meta_description_tag">Siden indeholder ikke et beskrivelses tag</key>
+    <key alias="multiple_meta_description_tags">Siden indeholdere mere end et beskrivelses tags</key>
+    <key alias="no_description_value">Beskrivelsestag er ikke udfyldt</key>
+    <key alias="description_too_short">Din beskrivelse er for kort. Den ideelle længde ligger imellem 130 og 155 karakterer.</key>
+    <key alias="description_too_long">Din titel er længere end 160 karakterer. Den ideelle længde ligger imellem 130 og 155 karakterer.</key>
+    <key alias="description_perfect">Din beskrivelse har den perfekte længde (imellem 130 og 155 karakterer)</key>
+  </area>
+
+  <area alias="metakeywordanalyzer">
+    <key alias="title">Meta søgeord</key>
+    <key alias="no_meta_tags">Siden indeholder ingen meta tags</key>
+    <key alias="no_meta_keywords_tag">Siden indeholder ikke et søgeords tag</key>
+    <key alias="multiple_meta_keywords_tags">Siden indeholdere mere end et søgeords tags</key>
+    <key alias="no_keywords_value">Søgeordstagget er ikke udfyldt</key>
+    <key alias="keywords_set">Søgeord er sat for denne side.</key>
+  </area>
+
+  <area alias="headinganalyzer">
+    <key alias="title">Headers</key>
+    <key alias="no_h1_tag">Siden indeholder ikke et h1 tag</key>
+    <key alias="multiple_h1_tags">Siden indeholder mere end et h1 tag</key>
+    <key alias="one_h1_tag">Perfekt! Siden har ét h1 tag</key>
+  </area>
+
+  <area alias="deprecatedtaganalyzer">
+    <key alias="title">Forældede tags</key>
+    <key alias="no_deprecated_tags_found">Siden indeholder ingen forældede html tags</key>
+    <key alias="acronym_tag_found">Siden indeholder et &lt;acronym&gt; tag, dette betragtes som et forældet html tag</key>
+    <key alias="acronym_tag_found">Siden indeholder et &lt;applet&gt; tag, dette betragtes som et forældet html tag</key>
+    <key alias="acronym_tag_found">Siden indeholder et &lt;basefont&gt; tag, dette betragtes som et forældet html tag</key>
+    <key alias="acronym_tag_found">Siden indeholder et &lt;big&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="acronym_tag_found">Siden indeholder et &lt;center&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="acronym_tag_found">Siden indeholder et &lt;dir&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="acronym_tag_found">Siden indeholder et &lt;font&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="acronym_tag_found">Siden indeholder et &lt;frame&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="acronym_tag_found">Siden indeholder et &lt;strike&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="acronym_tag_found">Siden indeholder et &lt;tt&gt; tag, tag, dette betragtes som et forældet html tag</key>
+  </area>
+
+  <area alias="imagetaganalyzer">
+    <key alias="title">Billede tags</key>
+    <key alias="missing_alt_tags">Ikke alle billeder har en alternativ-tekst</key>
+    <key alias="missing_title_tags">Ikke alle billeder har en title-tekst</key>
+    <key alias="alt_and_title_tags_present">Perfekt! Alle billederne indeholder både alt og title tekster</key>
+  </area>
+  
+  <area alias="anchorTagAnalyzer">
+    <key alias="title">Anker tags</key>
+    <key alias="missing_title_tags">Ikke alle Ankertags har en title-tekst</key>
+    <key alias="all_title_tags_present">Akke Ankertags har en title-tekst</key>
+  </area>
+
+  <area alias="serverresponseanalyzer">
+    <key alias="title">Server svartider analysator</key>
+    <key alias="responsetime">
+      <![CDATA[
+      Serverens responstid var %0%ms
+    ]]>
+    </key>
+  </area>
+
+  <area alias="htmlsizeanalyzer">
+    <key alias="title">Html størrelse analysator</key>
+    <key alias="html_size_small">
+      <![CDATA[
+      Html størrelse %0%
+    ]]>
+    </key>
+    <key alias="html_size_too_large">
+      <![CDATA[
+      Html størrelse %0%
+    ]]>
+    </key>
+  </area>
+
+  <area alias="keywordtitleanalyzer">
+    <key alias="title">Titel søgeordsanalysator</key>
+    <key alias="title_doesnt_contain_keyword">Titel indeholder ikke søgeordet</key>
+    <key alias="title_contains_keyword">Titel indeholder søgeord/søgeordene</key>
+  </area>
+
+  <area alias="keywordmetadescriptionanalyzer">
+    <key alias="title">Meta beskrivelse søgeord analysator</key>
+    <key alias="meta_description_doesnt_contain_keyword">Metabeskrivelse indeholder ikke søgeordet</key>
+    <key alias="meta_description_contains_keyword">Metabeskrivelse indeholder søgeordet</key>
+  </area>
+
+  <area alias="keywordurlanalyzer">
+    <key alias="title">Url søgeord analysator</key>
+    <key alias="root_node">Siden har ikke en sub url, test bestået</key>
+    <key alias="url_contains_keyword">Url indeholder nøgleordet</key>
+    <key alias="url_doesnt_contain_keyword">Url indeholder ikke nøgleordetd</key>
+  </area>
+
+  <area alias="keywordcontentanalyzer">
+    <key alias="title">Indholds søgeords analysator</key>
+    <key alias="no_body_tag">Siden indeholder ikke et body tag</key>
+    <key alias="multiple_body_tags">Siden indeholder mere end ét body tag</key>
+    <key alias="content_doesnt_contain_keyword">Sidens indholder indeholder ikke søgeordet</key>
+    <key alias="content_contains_keyword">
+      Sidens indhold indeholder søgeordet <strong>%0%</strong> gange
+    </key>
+  </area>
+
+  <area alias="keywordheadinganalyzer">
+    <key alias="title">Overskrift søgeord analysator</key>
+    <key alias="keyword_used_in_heading">Søgeord er brugt mindst én gang i en overskrift (h1, h2, h3, h4)</key>
+    <key alias="keyword_not_used_in_heading">Søgeord skal fremkomme mindst én gang i en overskrift (h1, h2, h3, h4)</key>
+  </area>
+
+
+  <area alias="gzipanalyzer">
+    <key alias="title">Gzip analysator</key>
+    <key alias="gzip_enabled">Gzip er aktiveret</key>
+    <key alias="gzip_disabled">Gzip er ikke aktiveret</key>
+  </area>
+
+  <area alias="additionalcallanalyzer">
+    <key alias="title">Yderligere kald analysator</key>
+    <key alias="more_than_30_calls">Mere end 30 kald er lavet til ressourcer. Prøv og bundle javascript og css filer.</key>
+    <key alias="more_than_15_calls">Mere end 15 kald er lavet til ressource. Prøv og bundle javascript og css filer.</key>
+    <key alias="less_than_15_calls">Mindre end 15 kald er lavet til ressource.</key>
+  </area>
+
+
+  <area alias="cssminificationanalyzer">
+    <key alias="title">CSS minificering analysator</key>
+    <key alias="file_not_minified">Filen %0% lader ikke til at være minificeret</key>
+    <key alias="all_minified">Alle lokale css filer virker til at være minificeret</key>
+  </area>
+
+  <area alias="javascriptminificationanalyzer">
+    <key alias="title">Javascript minificering analysator</key>
+    <key alias="file_not_minified">Filen %0% lader ikke til at være minificeret</key>
+    <key alias="all_minified">Alle lokale javascript filer virker til at være minificeret</key>
+  </area>
+
+</language>

@@ -17,7 +17,7 @@
     "url": "https://github.com/markwemekamp/RankOne-Umbraco-SEO-Tool.git"
   },
   "devDependencies": {
-    "grunt-msbuild": "^0.1.12",
+    "grunt-msbuild": "^0.3.8",
     "grunt-string-replace": "^1.2.0"
   }
 }

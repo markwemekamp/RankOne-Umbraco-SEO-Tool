@@ -1,0 +1,42 @@
+﻿<div id="rankOneResultPreview" class="rank-one" ng-controller="rankOneResultPreview">
+
+    <div ng-show="loading">
+        <localize key="summary_loading"></localize>
+    </div>
+
+    <div ng-show="error">
+        {{error}}
+    </div>
+
+    <div ng-show="!loading && !error" class="google-result-preview">
+        <div class="wrapper clearfix">
+
+            <div class="preview-window  clearfix">
+                <div class="google-top" ng-if="model.config.showGoogleInterface">
+                    <span class="google-logo"></span>
+
+                    <div class="search-wrapper">
+                        <span class="google-search emptyMe"></span>
+                        <span class="google-btn"></span>
+                    </div>
+
+                </div>
+
+                <div class="search-type-bar" ng-if="model.config.showGoogleInterface">
+                    <ul class="search-type">
+                        <li><span class="active">Web</span></li>
+                        <li>Images</li>
+                        <li>Videos</li>
+                        <li>Shopping</li>
+                        <li>News</li>
+                    </ul>
+                </div>
+                <div class="results">
+                    <p id="title" class="title">{{result.Title | limitTo:60}}</p>
+                    <p id="url" class="url">{{result.Url}}</p>
+                    <p id="desc" class="description">{{result.Description | limitTo:160}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

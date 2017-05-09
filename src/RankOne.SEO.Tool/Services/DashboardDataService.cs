@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using RankOne.Helpers;
+﻿using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
-using RankOne.Repositories;
+using System.Collections.Generic;
+using Umbraco.Core.Logging;
+using Umbraco.Core.Persistence;
 using Umbraco.Web;
 
 namespace RankOne.Services
@@ -11,20 +12,25 @@ namespace RankOne.Services
     {
         private readonly UmbracoHelper _umbracoHelper;
         private readonly IPageScoreNodeHelper _pageScoreNodeHelper;
-        private readonly SchemaRepository<NodeReport> _schemaRepository;
+        private readonly TableNameHelper<NodeReport> _tableNameHelper;
+        private readonly DatabaseSchemaHelper _databaseSchemaHelper;
 
         public DashboardDataService()
         {
             _pageScoreNodeHelper = new PageScoreNodeHelper();
             _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-            _schemaRepository = new SchemaRepository<NodeReport>();
+            _tableNameHelper = new TableNameHelper<NodeReport>();
+            var databaseContext = UmbracoContext.Current.Application.DatabaseContext;
+            _databaseSchemaHelper = new DatabaseSchemaHelper(databaseContext.Database, LoggerResolver.Current.Logger, databaseContext.SqlSyntax);
         }
 
         public void Initialize()
         {
-            if (!_schemaRepository.DatabaseExists())
+            var tableName = _tableNameHelper.GetTableName();
+
+            if (!_databaseSchemaHelper.TableExist(tableName))
             {
-                _schemaRepository.CreateTable();
+                _databaseSchemaHelper.CreateTable<NodeReport>(false);
             }
         }
 
@@ -35,7 +41,9 @@ namespace RankOne.Services
         /// <returns></returns>
         public List<PageScoreNode> GetHierarchy(bool useCache = true)
         {
-            if (_schemaRepository.DatabaseExists())
+            var tableName = _tableNameHelper.GetTableName();
+
+            if (_databaseSchemaHelper.TableExist(tableName))
             {
                 var nodeCollection = _umbracoHelper.TypedContentAtRoot();
                 return _pageScoreNodeHelper.GetPageHierarchy(nodeCollection, useCache);

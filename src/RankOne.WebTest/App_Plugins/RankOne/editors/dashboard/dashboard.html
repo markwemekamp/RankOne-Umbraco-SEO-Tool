@@ -1,0 +1,41 @@
+﻿<div id="rankOne" class="rank-one" ng-controller="rankOneDashboard">
+
+    <umb-load-indicator ng-show="loading"></umb-load-indicator>
+
+    <div ng-show="error">
+        {{error}}
+    </div>
+
+    <div ng-show="!loading && !error">
+
+        <span ng-click="openSettings()" class="settings">
+            <i class="icon-settings large"></i>
+        </span>
+
+        <div id="score" ng-click="setFilter('')" class="clickable"></div>
+
+        <div class="summary clearfix">
+            <div class="summary-block clickable" ng-click="setFilter('error')">
+                <strong class="error">{{errorCount}}</strong>
+                <small><localize key="dashboard_errors"></localize></small>
+            </div>
+            <div class="summary-block clickable" ng-click="setFilter('warning')">
+                <strong class="warning">{{warningCount}}</strong>
+                <small><localize key="dashboard_warnings"></localize></small>
+            </div>
+            <div class="summary-block clickable" ng-click="setFilter('hint')">
+                <strong class="pointer">{{hintCount}}</strong>
+                <small><localize key="dashboard_hints"></localize></small>
+            </div>
+            <div class="summary-block clickable" ng-click="setFilter('success')">
+                <strong class="info">{{successCount}}</strong>
+                <small><localize key="dashboard_passed_checks"></localize></small>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <accordion result="analyzerResults" filter="filter" ng-repeat="analyzerResults in analyzeResults.AnalyzerResults">
+            </accordion>
+        </div>
+    </div>
+</div>
