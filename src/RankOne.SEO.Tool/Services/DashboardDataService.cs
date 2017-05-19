@@ -13,24 +13,24 @@ namespace RankOne.Services
         private readonly UmbracoHelper _umbracoHelper;
         private readonly IPageScoreNodeHelper _pageScoreNodeHelper;
         private readonly TableNameHelper<NodeReport> _tableNameHelper;
-        private readonly DatabaseSchemaHelper _databaseSchemaHelper;
 
         public DashboardDataService()
         {
             _pageScoreNodeHelper = new PageScoreNodeHelper();
             _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
             _tableNameHelper = new TableNameHelper<NodeReport>();
-            var databaseContext = UmbracoContext.Current.Application.DatabaseContext;
-            _databaseSchemaHelper = new DatabaseSchemaHelper(databaseContext.Database, LoggerResolver.Current.Logger, databaseContext.SqlSyntax);
         }
 
         public void Initialize()
         {
             var tableName = _tableNameHelper.GetTableName();
 
-            if (!_databaseSchemaHelper.TableExist(tableName))
+            var databaseContext = UmbracoContext.Current.Application.DatabaseContext;
+            var databaseSchemaHelper = new DatabaseSchemaHelper(databaseContext.Database, LoggerResolver.Current.Logger, databaseContext.SqlSyntax);
+
+            if (!databaseSchemaHelper.TableExist(tableName))
             {
-                _databaseSchemaHelper.CreateTable<NodeReport>(false);
+                databaseSchemaHelper.CreateTable<NodeReport>(false);
             }
         }
 
@@ -43,7 +43,10 @@ namespace RankOne.Services
         {
             var tableName = _tableNameHelper.GetTableName();
 
-            if (_databaseSchemaHelper.TableExist(tableName))
+            var databaseContext = UmbracoContext.Current.Application.DatabaseContext;
+            var databaseSchemaHelper = new DatabaseSchemaHelper(databaseContext.Database, LoggerResolver.Current.Logger, databaseContext.SqlSyntax);
+
+            if (databaseSchemaHelper.TableExist(tableName))
             {
                 var nodeCollection = _umbracoHelper.TypedContentAtRoot();
                 return _pageScoreNodeHelper.GetPageHierarchy(nodeCollection, useCache);
