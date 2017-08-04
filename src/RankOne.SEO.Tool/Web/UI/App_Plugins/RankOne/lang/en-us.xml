@@ -115,7 +115,7 @@
     <key alias="no_title_tag">The page doesn't contain a title tag</key>
     <key alias="multiple_title_tags">The page contains multiple title tags</key>
     <key alias="no_title_value">Title tag is empty</key>
-    <key alias="title_too_long">Title is longer than 60 characters, anything longer than 60 characters will be concatenated.</key>
+    <key alias="title_too_long">Title is longer than 60 characters. Anything longer than 60 characters will be truncated.</key>
     <key alias="title_too_short">Title is shorter than 5 characters.</key>
     <key alias="title_success">The title is set correctly. The length is between 10 and 60 characters.</key>
   </area>
