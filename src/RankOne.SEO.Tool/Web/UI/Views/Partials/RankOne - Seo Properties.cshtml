@@ -1,5 +1,14 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 
-<title>@Umbraco.Field("seoTitle", altFieldAlias: "pageName")</title>
-<meta name="description" content="@Umbraco.Field("seoMetaDescription", recursive: true)">
-<meta name="keywords" content="@Umbraco.Field("seoMetaKeywords", recursive: true)">
+@if(Model.Content.HasProperty("seoTitle") && Model.Content.HasValue("seoTitle")){
+    <title>@(Model.Content.GetPropertyValue<string>("seoTitle"))</title>
+}
+
+@if(Model.Content.HasProperty("seoMetaDescription") && Model.Content.HasValue("seoMetaDescription")){
+    <meta name="description" content="@(Model.Content.GetPropertyValue<string>("seoMetaDescription"))">
+}
+
+@if(Model.Content.HasProperty("seoMetaKeywords") && Model.Content.HasValue("seoMetaKeywords")){
+    var keywordsValue = string.Join(", ", Model.Content.GetPropertyValue<System.String[]>("seoMetaKeywords"));
+    <meta name="keywords" content="@keywordsValue">
+}
