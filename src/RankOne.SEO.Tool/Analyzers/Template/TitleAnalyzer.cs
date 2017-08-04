@@ -44,7 +44,7 @@ namespace RankOne.Analyzers.Template
 
         private void AnalyzeHeadTag(HtmlNode headTag, AnalyzeResult result)
         {
-            var titleTag = _htmlTagHelper.GetHeadTag(headTag, result);
+            var titleTag = _htmlTagHelper.GetTitleTag(headTag, result);
 
             if (titleTag != null)
             {
