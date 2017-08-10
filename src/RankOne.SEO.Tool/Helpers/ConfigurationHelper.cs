@@ -48,14 +48,19 @@ namespace RankOne.Helpers
                 else
                 {
                     var type = Type.GetType(summarySetting.Type);
-                    summary = (ISummary)Activator.CreateInstance(type);
-                    summary.Name = summarySetting.Name;
-                    summary.Alias = summarySetting.Alias;
+                    if (type != null)
+                    {
+                        summary = (ISummary)Activator.CreateInstance(type);
+                        summary.Name = summarySetting.Name;
+                        summary.Alias = summarySetting.Alias;
+                    }
                 }
 
-                summary.Analyzers = GetAnalyzers(summarySetting.Analyzers);
-
-                summaries.Add(summary);
+                if (summary != null)
+                {
+                    summary.Analyzers = GetAnalyzers(summarySetting.Analyzers);
+                    summaries.Add(summary);
+                }
             }
 
             return summaries;
@@ -67,10 +72,13 @@ namespace RankOne.Helpers
             foreach (var analyzerSetting in analyzerSettings)
             {
                 var type = Type.GetType(analyzerSetting.Type);
-                var analyzer = (IAnalyzer)Activator.CreateInstance(type);
-                analyzer.Alias = analyzerSetting.Alias;
+                if (type != null)
+                {
+                    var analyzer = (IAnalyzer)Activator.CreateInstance(type);
+                    analyzer.Alias = analyzerSetting.Alias;
 
-                analyzers.Add(analyzer);
+                    analyzers.Add(analyzer);
+                }
             }
 
             return analyzers;
