@@ -1,11 +1,9 @@
 ﻿using System.Linq;
-using RankOne.Attributes;
 using RankOne.Helpers;
 using RankOne.Models;
 
 namespace RankOne.Summaries
 {
-    [Summary(Alias = "keywordanalyzer", SortOrder = 2)]
     public class KeywordsSummary : BaseSummary
     {
         private readonly WordCounter _wordOccurenceHelper;
