@@ -11,13 +11,13 @@ namespace RankOne.ExtensionMethods
             text = WebUtility.HtmlDecode(text);
             var htmlRegex = new Regex("<.*?>", RegexOptions.Compiled);
             text = htmlRegex.Replace(text, string.Empty);
-            // invalid chars           
+            // invalid chars
             text = Regex.Replace(text, @"[^a-z0-9\s-]", "");
-            // convert multiple spaces into one space   
+            // convert multiple spaces into one space
             text = Regex.Replace(text, @"\s+", " ").Trim();
-            // cut and trim 
+            // cut and trim
             text = text.Substring(0, text.Length <= 45 ? text.Length : 45).Trim();
-            text = Regex.Replace(text, @"\s", "-"); // hyphens   
+            text = Regex.Replace(text, @"\s", "-"); // hyphens
             return text;
         }
 

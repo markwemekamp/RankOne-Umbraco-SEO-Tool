@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using RankOne.Attributes;
+﻿using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System.Linq;
 
 namespace RankOne.Analyzers.Keywords
 {
@@ -15,7 +15,7 @@ namespace RankOne.Analyzers.Keywords
 
             // Check for h1, h2, h3 and h4
             var headerTagCount = 0;
-            for (var i = 1; i <=4;i++)
+            for (var i = 1; i <= 4; i++)
             {
                 var headerTag = pageData.Document.GetElements("h" + i);
                 headerTagCount += headerTag.Count(x => x.InnerText.ToLower().Contains(pageData.Focuskeyword));

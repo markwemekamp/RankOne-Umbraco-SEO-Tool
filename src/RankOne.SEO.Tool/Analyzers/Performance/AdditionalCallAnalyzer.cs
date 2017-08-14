@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using RankOne.Attributes;
+﻿using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System.Linq;
 
 namespace RankOne.Analyzers.Performance
 {
@@ -28,7 +28,7 @@ namespace RankOne.Analyzers.Performance
                 resultRule.Alias = "more_than_30_calls";
                 resultRule.Type = ResultType.Warning;
             }
-            else if(total > 15)
+            else if (total > 15)
             {
                 resultRule.Alias = "more_than_15_calls";
                 resultRule.Type = ResultType.Hint;

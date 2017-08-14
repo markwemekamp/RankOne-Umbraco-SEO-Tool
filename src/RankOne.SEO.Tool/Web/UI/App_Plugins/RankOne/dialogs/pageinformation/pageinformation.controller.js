@@ -1,5 +1,4 @@
 ﻿(function () {
-
     function rankOnePageInformation($scope) {
         var model = {};
         model.config = {};
@@ -9,5 +8,4 @@
     }
 
     angular.module("umbraco").controller('rankOnePageInformation', rankOnePageInformation);
-
 })();

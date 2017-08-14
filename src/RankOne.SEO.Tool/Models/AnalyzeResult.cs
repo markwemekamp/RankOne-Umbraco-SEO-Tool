@@ -45,6 +45,5 @@ namespace RankOne.Models
         {
             return ResultRules.Count(x => x.Type == type);
         }
-
     }
 }

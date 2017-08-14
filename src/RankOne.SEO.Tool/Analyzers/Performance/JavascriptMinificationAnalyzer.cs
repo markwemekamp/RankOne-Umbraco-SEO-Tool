@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 
 namespace RankOne.Analyzers.Performance
 {
@@ -85,8 +85,6 @@ namespace RankOne.Analyzers.Performance
             }
             return null;
         }
-
-
 
         private IEnumerable<HtmlNode> GetLocalJsFiles(IPageData pageData, Uri url)
         {

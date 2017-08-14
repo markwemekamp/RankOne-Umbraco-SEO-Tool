@@ -2,12 +2,12 @@
     <ul class="unstyled">
         <li ng-repeat="analyzerSummary in model.value">
             <label class="checkbox">
-                <input type="checkbox" ng-model="analyzerSummary.checked" value="{{analyzerSummary}}" class="checkbox-level1"/> <localize key="{{analyzerSummary.name}}_title"></localize>
+                <input type="checkbox" ng-model="analyzerSummary.checked" value="{{analyzerSummary}}" class="checkbox-level1" /> <localize key="{{analyzerSummary.name}}_title"></localize>
             </label>
             <ul class="unstyled level2">
                 <li ng-repeat="analyzer in analyzerSummary.analyzers">
                     <label class="checkbox">
-                        <input type="checkbox" ng-model="analyzer.checked" value="{{analyzer}}" class="checkbox-level2"/> <localize key="{{analyzer.name}}_title"></localize>
+                        <input type="checkbox" ng-model="analyzer.checked" value="{{analyzer}}" class="checkbox-level2" /> <localize key="{{analyzer.name}}_title"></localize>
                     </label>
                 </li>
             </ul>

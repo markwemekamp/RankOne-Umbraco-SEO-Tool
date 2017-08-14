@@ -1,21 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RankOne.Analyzers.Template
 {
     /// <summary>
-    /// 
+    ///
     /// Sources: https://moz.com/learn/seo/meta-description, SEO for 2016 by Sean Odom
-    /// 
+    ///
     /// TODO
     /// check for quotes
-    /// 
+    ///
     /// </summary>
     [AnalyzerCategory(SummaryName = "Template", Alias = "metadescriptionanalyzer")]
     public class MetaDescriptionAnalyzer : BaseAnalyzer

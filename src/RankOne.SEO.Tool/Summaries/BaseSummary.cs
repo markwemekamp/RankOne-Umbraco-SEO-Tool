@@ -5,7 +5,6 @@ using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 using Umbraco.Core;
-using Umbraco.Core.Persistence;
 
 namespace RankOne.Summaries
 {

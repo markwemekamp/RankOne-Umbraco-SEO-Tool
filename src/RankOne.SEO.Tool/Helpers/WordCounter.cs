@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using RankOne.Collections;
+﻿using RankOne.Collections;
 using RankOne.ExtensionMethods;
 using RankOne.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RankOne.Helpers
 {
@@ -46,17 +46,16 @@ namespace RankOne.Helpers
 
             // Split text to words
             var words =
-                textBlockText.Split(new[] {'.', '?', '!', ' ', ':', ','}, StringSplitOptions.RemoveEmptyEntries)
+                textBlockText.Split(new[] { '.', '?', '!', ' ', ':', ',' }, StringSplitOptions.RemoveEmptyEntries)
                     .Where(x => x.Length >= MinimumWordLength);
 
             foreach (var word in words)
             {
                 var simpleWord = word.Simplify();
-                if(!string.IsNullOrWhiteSpace(simpleWord) && simpleWord.Length >= MinimumWordLength)
+                if (!string.IsNullOrWhiteSpace(simpleWord) && simpleWord.Length >= MinimumWordLength)
                 {
                     occurences.Add(simpleWord);
                 }
-                
             }
 
             return occurences;

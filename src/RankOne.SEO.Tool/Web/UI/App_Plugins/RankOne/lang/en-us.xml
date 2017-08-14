@@ -15,12 +15,12 @@
     <key alias="intro_text">
       <![CDATA[
       The avarage score of all the pages analyzed is %0%%. Click on the row to view extra information on potential problems.
-                To add a keyword to a page you can either add the RankOne Dashboard property editor to the page and set it there or add a property named "keyword" to your document type.<br/><br/>
+                To add a keyword to a page you can either add the RankOne Dashboard property editor to the page and set it there or add a property named "keyword" to your document type.<br /><br />
                 The data you see below is <strong>cached</strong>, to refresh the score, click the refresh button below.
       ]]></key>
     <key alias="refresh">Refresh</key>
   </area>
-  
+
   <area alias="error">
     <key alias="no_template">This item does not have a template</key>
     <key alias="not_published">This item is not published</key>
@@ -63,21 +63,21 @@
     <key alias="title">Keywords</key>
     <key alias="focus_keyword_not_set">
       <![CDATA[
-      The focus keyword for this page is not set. You can add a focus keyword by opening the settings dialog on the top of this screen. 
+      The focus keyword for this page is not set. You can add a focus keyword by opening the settings dialog on the top of this screen.
     ]]>
     </key>
     <key alias="top_words">
       <![CDATA[
-      There is likely no optimal keyword density (search engine algorithms have evolved beyond keyword density metrics as a significant ranking factor). 
-      It can be useful, however, to note which keywords appear most often on your page and if they reflect the intended topic of your page. 
-      More importantly, the keywords on your page should appear within natural sounding and grammatically correct copy.<br/><br/>
-      
-      The focus keyword for this page: <strong>%0%</strong><br/><br/>
-      
-      <strong>Top 3 words used on this this page:</strong><br/>
-      <strong>1.</strong> %1% (%2% times)<br/>
-      <strong>2.</strong> %3% (%4% times)<br/>
-      <strong>3.</strong> %5% (%6% times)<br/>
+      There is likely no optimal keyword density (search engine algorithms have evolved beyond keyword density metrics as a significant ranking factor).
+      It can be useful, however, to note which keywords appear most often on your page and if they reflect the intended topic of your page.
+      More importantly, the keywords on your page should appear within natural sounding and grammatically correct copy.<br /><br />
+
+      The focus keyword for this page: <strong>%0%</strong><br /><br />
+
+      <strong>Top 3 words used on this this page:</strong><br />
+      <strong>1.</strong> %1% (%2% times)<br />
+      <strong>2.</strong> %3% (%4% times)<br />
+      <strong>3.</strong> %5% (%6% times)<br />
     ]]>
     </key>
   </area>
@@ -124,8 +124,8 @@
     <key alias="title">Meta description</key>
     <key alias="guidelines">
       <![CDATA[
-      Write a description that would both inform and interest users if they saw your description meta tag as a snippet in a search result.<br/>
-      Having a different description meta tag for each page helps both users and Google, especially in searches where users may bring up multiple pages on your domain.<br/>
+      Write a description that would both inform and interest users if they saw your description meta tag as a snippet in a search result.<br />
+      Having a different description meta tag for each page helps both users and Google, especially in searches where users may bring up multiple pages on your domain.<br />
       ]]>
     </key>
     <key alias="no_meta_tags">The page doesnt contain any meta tags</key>
@@ -278,7 +278,7 @@
       </p>
       <strong>Enabling Gzip on your server</strong>
       <p>
-        To enable gzip compression on your server you'll need to edit the configuration of itself. Iis.net provides a  well documented tutorial on how to do 
+        To enable gzip compression on your server you'll need to edit the configuration of itself. Iis.net provides a  well documented tutorial on how to do
         this, you can find it <a href="https://www.iis.net/configreference/system.webserver/httpcompression" target="_blank"><u>here</u></a>.
       </p>
       ]]>
@@ -303,5 +303,4 @@
     <key alias="file_not_minified">The file %0% doesn't seem to be minified</key>
     <key alias="all_minified">All local javascript files seem to be minified</key>
   </area>
-
 </language>

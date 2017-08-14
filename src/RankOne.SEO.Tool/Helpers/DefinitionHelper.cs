@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using RankOne.Attributes;
+﻿using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace RankOne.Helpers
 {
@@ -20,7 +20,7 @@ namespace RankOne.Helpers
                 if (_assemblies == null)
                 {
                     var currentAssembly = Assembly.GetExecutingAssembly();
-                    _assemblies = new List<Assembly> {currentAssembly};
+                    _assemblies = new List<Assembly> { currentAssembly };
                 }
                 return _assemblies;
             }

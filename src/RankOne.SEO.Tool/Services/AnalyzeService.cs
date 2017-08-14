@@ -1,8 +1,8 @@
-﻿using System;
-using RankOne.Helpers;
+﻿using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 using RankOne.Repositories;
+using System;
 using Umbraco.Core.Models;
 
 namespace RankOne.Services

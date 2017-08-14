@@ -12,6 +12,6 @@ namespace RankOne.Models
 
         public List<AnalyzeResult> Results { get; set; }
 
-        public List<AnalysisInformation> Information { get; set; } 
+        public List<AnalysisInformation> Information { get; set; }
     }
 }

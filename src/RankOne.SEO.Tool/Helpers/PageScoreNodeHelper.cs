@@ -1,11 +1,11 @@
-﻿using System;
+﻿using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Repositories;
+using RankOne.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Script.Serialization;
-using RankOne.Interfaces;
-using RankOne.Repositories;
-using RankOne.Services;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 

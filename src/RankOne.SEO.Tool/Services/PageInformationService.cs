@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using System.Web;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System.Linq;
+using System.Web;
 using Umbraco.Web;
 
 namespace RankOne.Services
@@ -43,7 +43,6 @@ namespace RankOne.Services
                                   where attribute != null
                                   where attribute.Value == "description"
                                   select metaTag.GetAttribute("content");
-
 
             if (attributeValues.Any())
             {

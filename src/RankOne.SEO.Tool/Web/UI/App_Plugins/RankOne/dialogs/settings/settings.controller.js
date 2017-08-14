@@ -1,5 +1,4 @@
 ﻿(function () {
-
     function rankOneSettings($scope) {
         $scope.loading = false;
 
@@ -9,5 +8,4 @@
     };
 
     angular.module("umbraco").controller('rankOneSettings', rankOneSettings);
-
 })();

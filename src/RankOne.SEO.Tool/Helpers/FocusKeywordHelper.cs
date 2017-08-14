@@ -1,5 +1,5 @@
-﻿using System.Web.Script.Serialization;
-using RankOne.Models;
+﻿using RankOne.Models;
+using System.Web.Script.Serialization;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
