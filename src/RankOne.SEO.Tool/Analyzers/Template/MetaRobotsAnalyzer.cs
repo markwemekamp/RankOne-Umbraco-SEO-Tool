@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RankOne.Analyzers.Template
 {
     /// <summary>
     /// Analyzer for checking robots meta data tag related optimizations
-    /// 
+    ///
     /// Sources: https://support.google.com/webmasters/answer/79812?hl=en, SEO for 2016 by Sean Odom
-    /// 
+    ///
     /// </summary>
     [AnalyzerCategory(SummaryName = "Template", Alias = "metarobotsanalyzer")]
     public class MetaRobotsAnalyzer : BaseAnalyzer
@@ -60,7 +60,6 @@ namespace RankOne.Analyzers.Template
                 {
                     AnalyzeGoogleBotTag(firstGooglebotTag, result);
                 }
-
             }
         }
 

@@ -1,8 +1,6 @@
 ﻿(function () {
-
     // Controller
     function rankOne($scope, webresultService, editorState, dialogService, notificationsService, localizationService) {
-
         $scope.analyzeResults = null;
         $scope.filter = null;
 
@@ -17,7 +15,6 @@
                     $scope.model.value.focusKeyword;
                 webresultService.GetResultFromEditorState(editorState.current, url)
                     .then(function (response) {
-
                         $scope.analyzeResults = response;
 
                         $scope.overallScore = $scope.analyzeResults.Score.OverallScore;
@@ -42,7 +39,6 @@
                                 foregroundColor: $scope.color,
                                 percentageTextSize: 30
                             });
-
                     },
                     function (message) {
                         $scope.error = message;
@@ -61,7 +57,6 @@
                         .then(function (title) {
                             localizationService.localize("warning_changes_pending_text")
                                 .then(function (text) {
-
                                     notificationsService
                                         .warning(title, text);
                                 });
@@ -86,5 +81,4 @@
 
     // Register the controller
     angular.module("umbraco").controller('rankOneDashboard', rankOne);
-
 })();

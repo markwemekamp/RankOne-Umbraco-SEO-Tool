@@ -18,7 +18,7 @@ namespace RankOne.Models
 
         [NullSetting(NullSetting = NullSettings.Null)]
         public DateTime? UpdatedOn { get; set; }
-        
+
         [SpecialDbType(SpecialDbTypes.NTEXT)]
         public string Report { get; set; }
     }

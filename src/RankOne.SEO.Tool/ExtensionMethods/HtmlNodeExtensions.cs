@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using HtmlAgilityPack;
+using System.Collections.Generic;
 using System.Linq;
-using HtmlAgilityPack;
 
 namespace RankOne.ExtensionMethods
 {
@@ -20,6 +20,5 @@ namespace RankOne.ExtensionMethods
         {
             return element.Attributes.FirstOrDefault(x => x.Name == name);
         }
-
     }
 }

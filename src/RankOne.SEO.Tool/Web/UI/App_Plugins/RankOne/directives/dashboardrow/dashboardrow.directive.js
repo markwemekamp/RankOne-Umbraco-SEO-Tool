@@ -8,7 +8,6 @@
             level: '='
         },
         link: function (scope, element) {
-
             if (scope.row.PageScore) {
                 if (scope.row.PageScore.OverallScore < 33) {
                     scope.cssClass = 'error-background';

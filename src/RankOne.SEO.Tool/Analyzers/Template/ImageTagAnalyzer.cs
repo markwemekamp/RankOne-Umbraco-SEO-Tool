@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RankOne.Analyzers.Template
 {

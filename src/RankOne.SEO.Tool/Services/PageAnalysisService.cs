@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using HtmlAgilityPack;
-using RankOne.ExtensionMethods;
+﻿using RankOne.ExtensionMethods;
 using RankOne.Helpers;
 using RankOne.Models;
 using RankOne.Summaries;
+using System.Net;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
@@ -16,7 +10,6 @@ namespace RankOne.Services
 {
     public class PageAnalysisService
     {
-        
         private readonly ScoreService _scoreService;
 
         private readonly DefinitionHelper _reflectionService;
@@ -28,8 +21,8 @@ namespace RankOne.Services
             _scoreService = new ScoreService();
 
             _reflectionService = new DefinitionHelper();
-            _htmlHelper = new HtmlHelper();     
-            _byteSizeHelper = new ByteSizeHelper();     
+            _htmlHelper = new HtmlHelper();
+            _byteSizeHelper = new ByteSizeHelper();
         }
 
         public PageAnalysis CreatePageAnalysis(IPublishedContent node, string focusKeyword)

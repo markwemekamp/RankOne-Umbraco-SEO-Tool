@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RankOne.Models;
+using System;
 using System.Web.Script.Serialization;
-using RankOne.Models;
 
 namespace RankOne.Repositories
 {

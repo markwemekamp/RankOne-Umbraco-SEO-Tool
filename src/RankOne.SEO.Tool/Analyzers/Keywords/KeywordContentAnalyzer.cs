@@ -1,10 +1,8 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
-using RankOne.Attributes;
-using RankOne.ExtensionMethods;
+﻿using RankOne.Attributes;
 using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System.Text.RegularExpressions;
 
 namespace RankOne.Analyzers.Keywords
 {
@@ -44,7 +42,6 @@ namespace RankOne.Analyzers.Keywords
                     resultRule.Tokens.Add(matches.Count.ToString());
                     result.ResultRules.Add(resultRule);
                 }
-
             }
 
             return result;

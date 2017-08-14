@@ -1,5 +1,5 @@
-﻿using System;
-using RankOne.Attributes;
+﻿using RankOne.Attributes;
+using System;
 
 namespace RankOne.Models
 {

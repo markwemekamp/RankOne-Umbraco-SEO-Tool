@@ -1,5 +1,4 @@
 ﻿(function () {
-
     // Controller
     function rankOneSummary($scope, editorState, webresultService, localizationService) {
         $scope.load = function () {
@@ -27,10 +26,8 @@
         });
 
         $scope.load();
-        
     };
 
     // Register the controller
     angular.module("umbraco").controller('rankOneSummary', rankOneSummary);
-
 })();

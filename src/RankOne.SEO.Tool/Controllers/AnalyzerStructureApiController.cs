@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using RankOne.ExtensionMethods;
+﻿using RankOne.ExtensionMethods;
 using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 using RankOne.Summaries;
+using System.Collections.Generic;
+using System.Linq;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 
@@ -41,7 +41,6 @@ namespace RankOne.Controllers
                     Name = summary.Summary.Alias,
                     Analyzers = analyzersForSummary
                 });
-
             }
             return structure;
         }

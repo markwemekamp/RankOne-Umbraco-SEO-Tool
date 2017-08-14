@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
-using RankOne.Models;
+﻿using RankOne.Models;
 using RankOne.Services;
+using System.Collections.Generic;
+using System.Web.Http;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 

@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace RankOne.Helpers
+﻿namespace RankOne.Helpers
 {
     public class MinificationHelper
     {

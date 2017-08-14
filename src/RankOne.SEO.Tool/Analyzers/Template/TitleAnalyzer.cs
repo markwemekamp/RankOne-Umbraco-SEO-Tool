@@ -8,9 +8,9 @@ namespace RankOne.Analyzers.Template
 {
     /// <summary>
     /// Analyzer for checking title tag related optimizations
-    /// 
+    ///
     /// Sources: https://moz.com/learn/seo/title-tag, SEO for 2016 by Sean Odom
-    /// 
+    ///
     /// 1. check for head tag - critical
     /// 2. check for presence of title tag - critical
     /// 3. check for multiple title tags - critical
@@ -23,6 +23,7 @@ namespace RankOne.Analyzers.Template
     public class TitleAnalyzer : BaseAnalyzer
     {
         private readonly HtmlTagHelper _htmlTagHelper;
+
         public TitleAnalyzer()
         {
             _htmlTagHelper = new HtmlTagHelper();

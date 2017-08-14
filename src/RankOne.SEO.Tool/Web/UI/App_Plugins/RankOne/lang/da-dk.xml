@@ -44,14 +44,14 @@
     </key>
     <key alias="top_words">
       <![CDATA[
-      There is likely no optimal keyword density (search engine algorithms have evolved beyond keyword density metrics as a significant ranking factor). It can be useful, however, to note which keywords appear most often on your page and if they reflect the intended topic of your page. More importantly, the keywords on your page should appear within natural sounding and grammatically correct copy.<br/><br/>
-      
-      The focus keyword for this page: <strong>%0%</strong><br/><br/>
-      
-      <strong>Top 3 words used on this this page:</strong><br/>
-      <strong>1.</strong> %1% (%2% times)<br/>
-      <strong>2.</strong> %3% (%4% times)<br/>
-      <strong>3.</strong> %5% (%6% times)<br/>
+      There is likely no optimal keyword density (search engine algorithms have evolved beyond keyword density metrics as a significant ranking factor). It can be useful, however, to note which keywords appear most often on your page and if they reflect the intended topic of your page. More importantly, the keywords on your page should appear within natural sounding and grammatically correct copy.<br /><br />
+
+      The focus keyword for this page: <strong>%0%</strong><br /><br />
+
+      <strong>Top 3 words used on this this page:</strong><br />
+      <strong>1.</strong> %1% (%2% times)<br />
+      <strong>2.</strong> %3% (%4% times)<br />
+      <strong>3.</strong> %5% (%6% times)<br />
     ]]>
     </key>
   </area>
@@ -63,7 +63,7 @@
     <key alias="title">Sidetitel</key>
     <key alias="guidelines">
       <![CDATA[
-      Vælg en titel der effektivt kommunikere emnet på denne sides indhold.<br/>
+      Vælg en titel der effektivt kommunikere emnet på denne sides indhold.<br />
       Hver af dine sider skal gerne have en unik titel. Dette hjælper Google med at forstå forskellen på dine sider.<br />
       Titler kan både være korte og informative. Hvis titlen er for lang, viser søgemaskinerne kun noget af titlen i deres søgeresultat.
       ]]>
@@ -132,7 +132,7 @@
     <key alias="missing_title_tags">Ikke alle billeder har en title-tekst</key>
     <key alias="alt_and_title_tags_present">Perfekt! Alle billederne indeholder både alt og title tekster</key>
   </area>
-  
+
   <area alias="anchorTagAnalyzer">
     <key alias="title">Anker tags</key>
     <key alias="missing_title_tags">Ikke alle Ankertags har en title-tekst</key>
@@ -197,7 +197,6 @@
     <key alias="keyword_not_used_in_heading">Søgeord skal fremkomme mindst én gang i en overskrift (h1, h2, h3, h4)</key>
   </area>
 
-
   <area alias="gzipanalyzer">
     <key alias="title">Gzip analysator</key>
     <key alias="gzip_enabled">Gzip er aktiveret</key>
@@ -211,7 +210,6 @@
     <key alias="less_than_15_calls">Mindre end 15 kald er lavet til ressource.</key>
   </area>
 
-
   <area alias="cssminificationanalyzer">
     <key alias="title">CSS minificering analysator</key>
     <key alias="file_not_minified">Filen %0% lader ikke til at være minificeret</key>
@@ -223,5 +221,4 @@
     <key alias="file_not_minified">Filen %0% lader ikke til at være minificeret</key>
     <key alias="all_minified">Alle lokale javascript filer virker til at være minificeret</key>
   </area>
-
 </language>

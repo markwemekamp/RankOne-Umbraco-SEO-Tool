@@ -1,5 +1,4 @@
-﻿using System.Text;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using RankOne.Models;
 using Umbraco.Core.Models;
 
@@ -15,7 +14,6 @@ namespace RankOne.Helpers
             _htmlParser = new HtmlDocument();
             _contentHelper = new TemplateHelper();
         }
-
 
         public HtmlNode GetHtmlNodeFromString(string htmlString)
         {
