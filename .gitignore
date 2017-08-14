@@ -33,4 +33,4 @@ VersionInfo.cs
 *.nupkg
 *.zip
 
-src/RankOne.WebTest/
+src/RankOne.Tests.Web/

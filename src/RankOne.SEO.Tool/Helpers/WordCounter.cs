@@ -25,14 +25,15 @@ namespace RankOne.Helpers
         {
             var occurences = new WordOccurenceCollection();
 
-            var textBlocks = html.Document.SelectNodes("//*[not(self::script) and not(self::style)]]//text()");
+            var textBlocks = html.Document.SelectNodes("//*[not(self::script) and not(self::style)]//text()");
 
             if (textBlocks != null)
             {
-                foreach (var textBlock in textBlocks)
+                var textBlocksWithText = textBlocks.Where(x => !string.IsNullOrWhiteSpace(x.InnerText)).Select(x => x.InnerHtml);
+
+                foreach (var text in textBlocksWithText)
                 {
-                    var textBlockText = textBlock.InnerText;
-                    var occurencesInBlock = CountOccurencesForText(textBlockText);
+                    var occurencesInBlock = CountOccurencesForText(text);
                     occurences = occurences.Merge(occurencesInBlock);
                 }
             }
