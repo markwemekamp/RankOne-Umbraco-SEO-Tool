@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using RankOne.Attributes;
+﻿using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
+using System.Linq;
 
 namespace RankOne.Analyzers.Keywords
 {

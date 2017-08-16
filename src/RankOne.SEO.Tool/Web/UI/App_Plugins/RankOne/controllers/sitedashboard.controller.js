@@ -1,8 +1,6 @@
 ﻿(function () {
-
     // Controller
     function rankOneSiteDashboard($scope, dashboardService, localizationService) {
-
         $scope.analyzeResults = null;
         $scope.filter = null;
         $scope.initialized = false;
@@ -38,7 +36,6 @@
         }
 
         $scope.setData = function (data) {
-
             // Remove the previously added rows from dashboardrow directive
             $('.dashboard-row').remove();
             $scope.pageHierarchy = data;
@@ -85,5 +82,4 @@
 
     // Register the controller
     angular.module("umbraco").controller('rankOneSiteDashboard', rankOneSiteDashboard);
-
 })();

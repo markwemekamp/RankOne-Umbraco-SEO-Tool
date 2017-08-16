@@ -1,8 +1,8 @@
-﻿using System;
-using System.Web.Http;
-using RankOne.Interfaces;
+﻿using RankOne.Interfaces;
 using RankOne.Models;
 using RankOne.Services;
+using System;
+using System.Web.Http;
 using Umbraco.Core.Logging;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;

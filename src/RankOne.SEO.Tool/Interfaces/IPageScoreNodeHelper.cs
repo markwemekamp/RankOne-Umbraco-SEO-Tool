@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using RankOne.Models;
+﻿using RankOne.Models;
+using System.Collections.Generic;
 using Umbraco.Core.Models;
 
 namespace RankOne.Interfaces

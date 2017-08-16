@@ -1,4 +1,4 @@
-﻿using RankOne.Helpers;
+using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System.Collections.Generic;
@@ -33,7 +33,6 @@ namespace RankOne.Controllers
                     Name = summary.Alias,
                     Analyzers = summary.Analyzers.Select(x => x.Alias)
                 });
-
             }
             return structure;
         }

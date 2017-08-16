@@ -1,18 +1,16 @@
-﻿using System;
-using System.Linq;
-using RankOne.Attributes;
-using RankOne.ExtensionMethods;
+﻿using RankOne.Attributes;
 using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 
 namespace RankOne.Analyzers.Keywords
 {
     /// <summary>
     /// Analyzer for checking keyword in title tag related optimizations
-    /// 
+    ///
     /// https://moz.com/learn/seo/title-tag
-    /// 
+    ///
     /// 1. check for title tag - critical
     /// 2. check for multiple title tags - critical
     /// 3. check if title contains keyword - major

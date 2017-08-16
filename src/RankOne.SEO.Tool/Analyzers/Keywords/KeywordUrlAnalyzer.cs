@@ -1,8 +1,8 @@
-﻿using System;
-using RankOne.Attributes;
+﻿using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 
 namespace RankOne.Analyzers.Keywords
 {

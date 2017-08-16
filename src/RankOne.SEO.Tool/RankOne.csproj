@@ -296,6 +296,7 @@
     <Compile Include="Analyzers\Performance\JavascriptMinificationAnalyzer.cs" />
     <Compile Include="Helpers\ByteSizeHelper.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
+    <Compile Include="Helpers\DefinitionHelper.cs" />
     <Compile Include="Helpers\EncodingHelper.cs" />
     <Compile Include="Helpers\HtmlTagHelper.cs" />
     <Compile Include="Helpers\MinificationHelper.cs" />
@@ -303,6 +304,7 @@
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\TableNameHelper.cs" />
     <Compile Include="Interfaces\IConfigurationHelper.cs" />
+    <Compile Include="Interfaces\IDefinitionHelper.cs" />
     <Compile Include="Interfaces\IPageScoreNodeHelper.cs" />
     <Compile Include="Interfaces\ISummary.cs" />
     <Compile Include="Interfaces\ITableNameHelper.cs" />
@@ -361,6 +363,7 @@
     <Compile Include="Services\ScoreService.cs" />
     <Compile Include="Summaries\BaseSummary.cs" />
     <Compile Include="Summaries\KeywordsSummary.cs" />
+    <Compile Include="Summaries\TemplateSummary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web\UI\App_Plugins\RankOne\controllers\sitedashboard.controller.js" />

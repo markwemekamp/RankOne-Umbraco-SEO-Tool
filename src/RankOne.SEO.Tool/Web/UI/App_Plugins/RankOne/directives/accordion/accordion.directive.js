@@ -9,7 +9,6 @@
             filter: '='
         },
         link: function (scope) {
-
             scope.$watch('filter', function () {
                 scope.expanded = scope.result && ((scope.filter === 'error' && scope.result.ErrorCount > 0) ||
                     (scope.filter === 'warning' && scope.result.WarningCount > 0) ||

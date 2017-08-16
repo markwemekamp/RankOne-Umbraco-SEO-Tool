@@ -9,7 +9,6 @@ namespace RankOne.Services
 {
     public class PageAnalysisService
     {
-        
         private readonly ScoreService _scoreService;
         private readonly HtmlHelper _htmlHelper;
         private readonly ByteSizeHelper _byteSizeHelper;

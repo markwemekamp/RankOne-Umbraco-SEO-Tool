@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using RankOne.Models;
+﻿using RankOne.Models;
+using System.Linq;
 
 namespace RankOne.Services
 {
