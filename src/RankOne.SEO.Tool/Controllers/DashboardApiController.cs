@@ -1,4 +1,4 @@
-﻿using RankOne.Models;
+using RankOne.Models;
 using RankOne.Services;
 using System.Collections.Generic;
 using System.Web.Http;

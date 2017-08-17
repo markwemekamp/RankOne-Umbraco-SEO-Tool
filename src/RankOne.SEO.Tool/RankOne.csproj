@@ -295,14 +295,21 @@
     <Compile Include="Analyzers\Performance\HtmlSizeAnalyzer.cs" />
     <Compile Include="Analyzers\Performance\JavascriptMinificationAnalyzer.cs" />
     <Compile Include="Helpers\ByteSizeHelper.cs" />
+    <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="Helpers\EncodingHelper.cs" />
     <Compile Include="Helpers\HtmlTagHelper.cs" />
     <Compile Include="Helpers\MinificationHelper.cs" />
     <Compile Include="Helpers\PageScoreNodeHelper.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\TableNameHelper.cs" />
+    <Compile Include="Interfaces\IConfigurationHelper.cs" />
+    <Compile Include="Interfaces\IDefinitionHelper.cs" />
     <Compile Include="Interfaces\IPageScoreNodeHelper.cs" />
+    <Compile Include="Interfaces\ISummary.cs" />
     <Compile Include="Interfaces\ITableNameHelper.cs" />
+    <Compile Include="Models\Settings\AnalyzerSettings.cs" />
+    <Compile Include="Models\Settings\RankOneSettings.cs" />
+    <Compile Include="Models\Settings\SummarySettings.cs" />
     <Compile Include="Services\DashboardDataService.cs" />
     <Compile Include="Interfaces\IAnalyzeService.cs" />
     <Compile Include="Attributes\Summary.cs" />
@@ -318,7 +325,6 @@
     <Compile Include="Helpers\TemplateHelper.cs" />
     <Compile Include="Helpers\FocusKeywordHelper.cs" />
     <Compile Include="Interfaces\IAnalyzer.cs" />
-    <Compile Include="Interfaces\IDefinitionHelper.cs" />
     <Compile Include="Interfaces\IPageData.cs" />
     <Compile Include="Interfaces\IPageInformationService.cs" />
     <Compile Include="Models\Analysis.cs" />
@@ -353,12 +359,10 @@
     <Compile Include="Repositories\AnalysisCacheRepository.cs" />
     <Compile Include="Services\PageAnalysisService.cs" />
     <Compile Include="Services\PageInformationService.cs" />
-    <Compile Include="Helpers\DefinitionHelper.cs" />
     <Compile Include="Services\ScoreService.cs" />
     <Compile Include="Summaries\BaseSummary.cs" />
-    <Compile Include="Summaries\TemplateSummary.cs" />
     <Compile Include="Summaries\KeywordsSummary.cs" />
-    <Compile Include="Summaries\PerformanceSummary.cs" />
+    <Compile Include="Summaries\TemplateSummary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web\UI\App_Plugins\RankOne\controllers\sitedashboard.controller.js" />
@@ -424,6 +428,7 @@
     <None Include="less\badges.less" />
     <None Include="less\result.less" />
     <None Include="Web\UI\App_Plugins\RankOne\package.manifest" />
+    <None Include="Web\UI\Config\RankOne.config" />
     <None Include="Web\UI\Views\Partials\RankOne - Seo Properties.cshtml" />
   </ItemGroup>
   <ItemGroup />
