@@ -1,19 +1,22 @@
-﻿using System.Linq;
-using RankOne.Helpers;
+﻿using RankOne.Interfaces;
 using RankOne.Models;
+using System.Linq;
 
 namespace RankOne.Summaries
 {
     public class KeywordsSummary : BaseSummary
     {
-        private readonly WordCounter _wordOccurenceHelper;
+        private readonly IWordCounter _wordOccurenceHelper;
 
-        public KeywordsSummary() : this(new WordCounter())
+        public KeywordsSummary() : this(RankOneContext.Instance)
         { }
 
-        public KeywordsSummary(WordCounter wordOccurenceService)
+        public KeywordsSummary(RankOneContext rankOneContext) : this(rankOneContext.WordCounter.Value)
+        { }
+
+        public KeywordsSummary(IWordCounter wordOccurenceHelper)
         {
-            _wordOccurenceHelper = wordOccurenceService;
+            _wordOccurenceHelper = wordOccurenceHelper;
             Name = "Keywords";
         }
 

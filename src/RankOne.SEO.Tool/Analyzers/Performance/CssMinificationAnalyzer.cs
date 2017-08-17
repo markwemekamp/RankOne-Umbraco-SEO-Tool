@@ -1,7 +1,6 @@
 ﻿using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
-using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System;
@@ -14,11 +13,17 @@ namespace RankOne.Analyzers.Performance
     [AnalyzerCategory(SummaryName = "Performance", Alias = "cssminificationanalyzer")]
     public class CssMinificationAnalyzer : BaseAnalyzer
     {
-        private readonly MinificationHelper _minificationHelper;
+        private readonly IMinificationHelper _minificationHelper;
 
-        public CssMinificationAnalyzer()
+        public CssMinificationAnalyzer() : this(RankOneContext.Instance)
+        { }
+
+        public CssMinificationAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.MinificationHelper.Value)
+        { }
+
+        public CssMinificationAnalyzer(IMinificationHelper minificationHelper)
         {
-            _minificationHelper = new MinificationHelper();
+            _minificationHelper = minificationHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)

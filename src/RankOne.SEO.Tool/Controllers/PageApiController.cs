@@ -1,6 +1,5 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
-using RankOne.Services;
 using System;
 using System.Web.Http;
 using Umbraco.Core.Logging;
@@ -14,7 +13,10 @@ namespace RankOne.Controllers
     {
         private readonly IPageInformationService _pageInformationService;
 
-        public PageApiController() : this(new PageInformationService())
+        public PageApiController() : this(RankOneContext.Instance)
+        { }
+
+        public PageApiController(RankOneContext rankOneContext) : this(rankOneContext.PageInformationService.Value)
         { }
 
         public PageApiController(IPageInformationService pageInformationService)

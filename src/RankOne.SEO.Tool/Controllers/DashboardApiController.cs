@@ -1,5 +1,5 @@
+using RankOne.Interfaces;
 using RankOne.Models;
-using RankOne.Services;
 using System.Collections.Generic;
 using System.Web.Http;
 using Umbraco.Web.Mvc;
@@ -10,11 +10,17 @@ namespace RankOne.Controllers
     [PluginController("RankOne")]
     public class DashboardApiController : UmbracoAuthorizedApiController
     {
-        private readonly DashboardDataService _dashboardDataService;
+        private readonly IDashboardDataService _dashboardDataService;
 
-        public DashboardApiController()
+        public DashboardApiController() : this(RankOneContext.Instance)
+        { }
+
+        public DashboardApiController(RankOneContext rankOneContext) : this(rankOneContext.DashboardDataService.Value)
+        { }
+
+        public DashboardApiController(IDashboardDataService dashboardDataService)
         {
-            _dashboardDataService = new DashboardDataService();
+            _dashboardDataService = dashboardDataService;
         }
 
         [HttpGet]

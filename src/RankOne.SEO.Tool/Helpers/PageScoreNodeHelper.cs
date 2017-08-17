@@ -1,11 +1,8 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
-using RankOne.Repositories;
-using RankOne.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Script.Serialization;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
@@ -13,17 +10,23 @@ namespace RankOne.Helpers
 {
     public class PageScoreNodeHelper : IPageScoreNodeHelper
     {
-        private readonly UmbracoHelper _umbracoHelper;
-        private readonly NodeReportRepository _nodeReportRepository;
-        private readonly JavaScriptSerializer _javascriptSerializer;
-        private readonly AnalyzeService _analyzeService;
+        private readonly ITypedPublishedContentQuery _typedPublishedContentQuery;
+        private readonly INodeReportRepository _nodeReportRepository;
+        private readonly IPageScoreSerializer _pagescoreSerializer;
+        private readonly IAnalyzeService _analyzeService;
 
-        public PageScoreNodeHelper()
+        public PageScoreNodeHelper() : this(RankOneContext.Instance)
+        { }
+
+        public PageScoreNodeHelper(RankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.NodeReportRepository.Value, rankOneContext.PageScoreSerializer.Value, rankOneContext.AnalyzeService.Value)
+        { }
+
+        public PageScoreNodeHelper(ITypedPublishedContentQuery typedPublishedContentQuery, INodeReportRepository nodeReportRepository, IPageScoreSerializer pageScoreSerializer, IAnalyzeService analyzeService)
         {
-            _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-            _nodeReportRepository = new NodeReportRepository();
-            _javascriptSerializer = new JavaScriptSerializer();
-            _analyzeService = new AnalyzeService();
+            _typedPublishedContentQuery = typedPublishedContentQuery;
+            _nodeReportRepository = nodeReportRepository;
+            _pagescoreSerializer = pageScoreSerializer;
+            _analyzeService = analyzeService;
         }
 
         public List<PageScoreNode> GetPageHierarchy(IEnumerable<IPublishedContent> nodeCollection, bool useCache)
@@ -71,7 +74,7 @@ namespace RankOne.Helpers
                     node.FocusKeyword = nodeReport.FocusKeyword;
                     try
                     {
-                        node.PageScore = _javascriptSerializer.Deserialize<PageScore>(nodeReport.Report);
+                        node.PageScore = _pagescoreSerializer.Deserialize(nodeReport.Report);
                     }
                     catch (Exception)
                     {
@@ -86,7 +89,7 @@ namespace RankOne.Helpers
         {
             if (node.NodeInformation.TemplateId > 0)
             {
-                var umbracoNode = _umbracoHelper.TypedContent(node.NodeInformation.Id);
+                var umbracoNode = _typedPublishedContentQuery.TypedContent(node.NodeInformation.Id);
                 var analysis = _analyzeService.CreateAnalysis(umbracoNode);
 
                 node.FocusKeyword = analysis.FocusKeyword;

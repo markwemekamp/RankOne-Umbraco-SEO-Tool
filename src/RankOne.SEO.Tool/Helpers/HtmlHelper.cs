@@ -1,26 +1,32 @@
 ﻿using HtmlAgilityPack;
+using RankOne.Interfaces;
 using RankOne.Models;
 using Umbraco.Core.Models;
 
 namespace RankOne.Helpers
 {
-    public class HtmlHelper
+    public class HtmlHelper : IHtmlHelper
     {
-        private readonly HtmlDocument _htmlParser;
-        private readonly TemplateHelper _contentHelper;
+        private readonly ITemplateHelper _contentHelper;
 
-        public HtmlHelper()
+        public HtmlHelper() : this(RankOneContext.Instance)
+        { }
+
+        public HtmlHelper(RankOneContext rankOneContext) : this(rankOneContext.TemplateHelper.Value)
+        { }
+
+        public HtmlHelper(ITemplateHelper templateHelper)
         {
-            _htmlParser = new HtmlDocument();
-            _contentHelper = new TemplateHelper();
+            _contentHelper = templateHelper;
         }
 
         public HtmlNode GetHtmlNodeFromString(string htmlString)
         {
             if (htmlString != null)
             {
-                _htmlParser.LoadHtml(htmlString);
-                return _htmlParser.DocumentNode;
+                var document = new HtmlDocument();
+                document.LoadHtml(htmlString);
+                return document.DocumentNode;
             }
             return null;
         }

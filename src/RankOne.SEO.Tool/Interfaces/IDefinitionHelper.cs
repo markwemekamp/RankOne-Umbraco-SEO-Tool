@@ -1,18 +1,15 @@
-﻿using RankOne.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using RankOne.Models;
 
 namespace RankOne.Interfaces
 {
-    public interface IDefintionHelper
+    public interface IDefinitionHelper
     {
         IEnumerable<SummaryDefinition> GetSummaryDefinitions();
-
         IEnumerable<SummaryDefinition> GetSummaryDefinitionsFromAssembly(Assembly assembly);
-
         IEnumerable<AnalyzerDefinition> GetAnalyzerDefintions();
-
         IEnumerable<AnalyzerDefinition> GetAnalyzerDefintionsFromAssembly(Assembly assembly);
 
         /// <summary>

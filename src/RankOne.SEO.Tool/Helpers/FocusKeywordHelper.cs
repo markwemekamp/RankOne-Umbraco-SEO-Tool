@@ -1,20 +1,23 @@
-﻿using RankOne.Models;
-using System.Web.Script.Serialization;
+using RankOne.Interfaces;
+using RankOne.Models;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace RankOne.Helpers
 {
-    public class FocusKeywordHelper
+    public class FocusKeywordHelper : IFocusKeywordHelper
     {
-        private readonly JavaScriptSerializer _javascriptSerializer;
+        private readonly IDashboardSettingsSerializer _dashboardSettingsSerializer;
 
-        public FocusKeywordHelper() : this(new JavaScriptSerializer())
+        public FocusKeywordHelper() : this(RankOneContext.Instance)
         { }
 
-        public FocusKeywordHelper(JavaScriptSerializer javaScriptSerializer)
+        public FocusKeywordHelper(RankOneContext rankOneContext) : this(rankOneContext.DashboardSettingsSerializer.Value)
+        { }
+
+        public FocusKeywordHelper(IDashboardSettingsSerializer dashboardSettingsSerializer)
         {
-            _javascriptSerializer = javaScriptSerializer;
+            _dashboardSettingsSerializer = dashboardSettingsSerializer;
         }
 
         public string GetFocusKeyword(IPublishedContent node)
@@ -48,7 +51,7 @@ namespace RankOne.Helpers
 
         private string GetFocusKeywordFromDashboardProperty(IPublishedProperty property)
         {
-            var dashboardSettings = _javascriptSerializer.Deserialize<DashboardSettings>(property.Value.ToString());
+            var dashboardSettings = _dashboardSettingsSerializer.Deserialize(property.Value.ToString());
             if (dashboardSettings != null && !string.IsNullOrEmpty(dashboardSettings.FocusKeyword))
             {
                 return dashboardSettings.FocusKeyword;

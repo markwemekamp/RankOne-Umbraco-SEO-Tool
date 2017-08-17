@@ -1,4 +1,4 @@
-﻿using RankOne.Interfaces;
+using RankOne.Interfaces;
 using RankOne.Models;
 using System.Collections.Generic;
 

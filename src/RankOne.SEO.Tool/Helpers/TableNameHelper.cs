@@ -1,12 +1,11 @@
-﻿using RankOne.Interfaces;
-using RankOne.Models;
+using RankOne.Interfaces;
 using System;
 using Umbraco.Core;
 using Umbraco.Core.Persistence;
 
 namespace RankOne.Helpers
 {
-    public class TableNameHelper<T> : ITableNameHelper<T> where T : BaseDatabaseObject
+    public class TableNameHelper<T> : ITableNameHelper<T>
     {
         public string GetTableName()
         {

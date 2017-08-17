@@ -1,6 +1,5 @@
 ﻿using RankOne.Helpers;
 using RankOne.Interfaces;
-using RankOne.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Umbraco.Core;
@@ -8,7 +7,7 @@ using Umbraco.Core.Persistence;
 
 namespace RankOne.Repositories
 {
-    public class BaseRepository<T> where T : BaseDatabaseObject
+    public class BaseRepository<T> : IBaseRepository<T>
     {
         private string _tableName;
         private ITableNameHelper<T> _tableNameHelper;

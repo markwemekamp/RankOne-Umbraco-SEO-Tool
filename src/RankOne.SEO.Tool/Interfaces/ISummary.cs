@@ -11,6 +11,7 @@ namespace RankOne.Interfaces
         HtmlResult HtmlResult { get; set; }
         string Url { get; set; }
         IEnumerable<IAnalyzer> Analyzers { get; set; }
+
         Analysis GetAnalysis();
     }
 }

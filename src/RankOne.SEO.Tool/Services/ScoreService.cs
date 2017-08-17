@@ -1,9 +1,10 @@
-﻿using RankOne.Models;
+using RankOne.Interfaces;
+using RankOne.Models;
 using System.Linq;
 
 namespace RankOne.Services
 {
-    public class ScoreService
+    public class ScoreService : IScoreService
     {
         /// <summary>
         /// Gets the score for a category.
@@ -45,7 +46,7 @@ namespace RankOne.Services
         /// </summary>
         /// <param name="result">The result.</param>
         /// <returns>Score for the analyzer</returns>
-        public int GetResultScore(AnalyzeResult result)
+        private int GetResultScore(AnalyzeResult result)
         {
             var score = 100;
             // If there are any errors, the score is 0

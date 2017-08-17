@@ -1,9 +1,10 @@
-﻿using System;
+﻿using RankOne.Interfaces;
+using System;
 using System.Text;
 
 namespace RankOne.Helpers
 {
-    public class ByteSizeHelper
+    public class ByteSizeHelper : IByteSizeHelper
     {
         private readonly string[] _sizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
 

@@ -1,21 +1,24 @@
-﻿using System;
+﻿using RankOne.Interfaces;
+using RankOne.Models;
+using System;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace RankOne.Helpers
 {
-    public class TemplateHelper
+    public class TemplateHelper : ITemplateHelper
     {
-        private readonly UmbracoHelper _umbracoHelper;
+        private readonly IUmbracoComponentRenderer _umbracoComponentRenderer;
 
-        public TemplateHelper()
-        {
-            _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-        }
+        public TemplateHelper() : this(RankOneContext.Instance)
+        { }
 
-        public TemplateHelper(UmbracoHelper umbracoHelper)
+        public TemplateHelper(RankOneContext rankOneContext) : this(rankOneContext.UmbracoComponentRenderery.Value)
+        { }
+
+        public TemplateHelper(IUmbracoComponentRenderer umbracoComponentRenderer)
         {
-            _umbracoHelper = umbracoHelper;
+            _umbracoComponentRenderer = umbracoComponentRenderer;
         }
 
         public string GetNodeHtml(IPublishedContent content)
@@ -33,7 +36,7 @@ namespace RankOne.Helpers
                 throw new MissingFieldException("The templateId of content is not set");
             }
 
-            var htmlObject = _umbracoHelper.RenderTemplate(content.Id);
+            var htmlObject = _umbracoComponentRenderer.RenderTemplate(content.Id);
             return htmlObject != null ? htmlObject.ToHtmlString() : null;
         }
     }

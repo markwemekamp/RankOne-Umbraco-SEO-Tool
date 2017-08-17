@@ -1,7 +1,6 @@
 ﻿using HtmlAgilityPack;
 using RankOne.Attributes;
 using RankOne.ExtensionMethods;
-using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System.Collections.Generic;
@@ -20,11 +19,17 @@ namespace RankOne.Analyzers.Template
     [AnalyzerCategory(SummaryName = "Template", Alias = "metadescriptionanalyzer")]
     public class MetaDescriptionAnalyzer : BaseAnalyzer
     {
-        private readonly HtmlTagHelper _htmlTagHelper;
+        private readonly IHtmlTagHelper _htmlTagHelper;
 
-        public MetaDescriptionAnalyzer()
+        public MetaDescriptionAnalyzer() : this(RankOneContext.Instance)
+        { }
+
+        public MetaDescriptionAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
+        { }
+
+        public MetaDescriptionAnalyzer(IHtmlTagHelper htmlTagHelper)
         {
-            _htmlTagHelper = new HtmlTagHelper();
+            _htmlTagHelper = htmlTagHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)

@@ -1,12 +1,13 @@
 ﻿using HtmlAgilityPack;
 using RankOne.ExtensionMethods;
+using RankOne.Interfaces;
 using RankOne.Models;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace RankOne.Helpers
 {
-    public class HtmlTagHelper
+    public class HtmlTagHelper : IHtmlTagHelper
     {
         public HtmlNode GetHeadTag(HtmlNode document, AnalyzeResult result)
         {

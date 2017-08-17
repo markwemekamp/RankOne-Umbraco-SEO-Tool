@@ -1,8 +1,6 @@
-﻿using RankOne.Models;
-
-namespace RankOne.Interfaces
+﻿namespace RankOne.Interfaces
 {
-    public interface ITableNameHelper<T> where T : BaseDatabaseObject
+    public interface ITableNameHelper<T>
     {
         string GetTableName();
     }

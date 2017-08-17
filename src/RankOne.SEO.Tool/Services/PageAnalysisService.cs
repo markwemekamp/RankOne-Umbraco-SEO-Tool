@@ -1,4 +1,3 @@
-﻿using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System.Net;
@@ -7,19 +6,25 @@ using Umbraco.Web;
 
 namespace RankOne.Services
 {
-    public class PageAnalysisService
+    public class PageAnalysisService : IPageAnalysisService
     {
-        private readonly ScoreService _scoreService;
-        private readonly HtmlHelper _htmlHelper;
-        private readonly ByteSizeHelper _byteSizeHelper;
+        private readonly IScoreService _scoreService;
+        private readonly IHtmlHelper _htmlHelper;
+        private readonly IByteSizeHelper _byteSizeHelper;
         private readonly IConfigurationHelper _configurationHelper;
 
-        public PageAnalysisService()
+        public PageAnalysisService() : this(RankOneContext.Instance)
+        { }
+
+        public PageAnalysisService(RankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.HtmlHelper.Value, rankOneContext.ByteSizeHelper.Value, rankOneContext.ConfigurationHelper.Value)
+        { }
+
+        public PageAnalysisService(IScoreService scoreService, IHtmlHelper htmlHelper, IByteSizeHelper byteSizeHelper, IConfigurationHelper configurationHelper)
         {
-            _scoreService = new ScoreService();
-            _htmlHelper = new HtmlHelper();     
-            _byteSizeHelper = new ByteSizeHelper();
-            _configurationHelper = new ConfigurationHelper();
+            _scoreService = scoreService;
+            _htmlHelper = htmlHelper;
+            _byteSizeHelper = byteSizeHelper;
+            _configurationHelper = configurationHelper;
         }
 
         public PageAnalysis CreatePageAnalysis(IPublishedContent node, string focusKeyword)

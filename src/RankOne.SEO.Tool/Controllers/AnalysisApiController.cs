@@ -1,6 +1,5 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
-using RankOne.Services;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -16,16 +15,20 @@ namespace RankOne.Controllers
     public class AnalysisApiController : UmbracoAuthorizedApiController
     {
         private readonly IAnalyzeService _analyzeService;
-        private readonly UmbracoHelper _umbracoHelper;
+        private readonly ITypedPublishedContentQuery _typedPublishedContentQuery;
 
-        public AnalysisApiController() : this(new AnalyzeService())
+        public AnalysisApiController() : this(RankOneContext.Instance)
         { }
 
-        public AnalysisApiController(IAnalyzeService analyzeService)
+        public AnalysisApiController(RankOneContext rankOneContext) : this(rankOneContext.AnalyzeService.Value, rankOneContext.TypedPublishedContentQuery.Value)
+        { }
+
+        public AnalysisApiController(IAnalyzeService analyzeService, ITypedPublishedContentQuery typedPublishedContentQuery)
         {
             _analyzeService = analyzeService;
-            _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+            _typedPublishedContentQuery = typedPublishedContentQuery;
         }
+
 
         /// <summary>
         /// Analyzes the node.
@@ -42,7 +45,7 @@ namespace RankOne.Controllers
         {
             try
             {
-                var node = _umbracoHelper.TypedContent(id);
+                var node = _typedPublishedContentQuery.TypedContent(id);
                 return _analyzeService.CreateAnalysis(node, focusKeyword);
             }
             catch (MissingFieldException ex)

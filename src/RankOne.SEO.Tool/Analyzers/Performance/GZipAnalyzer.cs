@@ -1,5 +1,4 @@
 ﻿using RankOne.Attributes;
-using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 
@@ -8,11 +7,17 @@ namespace RankOne.Analyzers.Performance
     [AnalyzerCategory(SummaryName = "Performance", Alias = "gzipanalyzer")]
     public class GZipAnalyzer : BaseAnalyzer
     {
-        private readonly EncodingHelper _encodingHelper;
+        private readonly IEncodingHelper _encodingHelper;
 
-        public GZipAnalyzer()
+        public GZipAnalyzer() : this(RankOneContext.Instance)
+        { }
+
+        public GZipAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.EncodingHelper.Value)
+        { }
+
+        public GZipAnalyzer(IEncodingHelper encodingHelper)
         {
-            _encodingHelper = new EncodingHelper();
+            _encodingHelper = encodingHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
