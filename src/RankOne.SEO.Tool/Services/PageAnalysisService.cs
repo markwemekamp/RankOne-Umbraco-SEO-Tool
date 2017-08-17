@@ -1,7 +1,6 @@
-﻿using RankOne.ExtensionMethods;
-using RankOne.Helpers;
+﻿using RankOne.Helpers;
+using RankOne.Interfaces;
 using RankOne.Models;
-using RankOne.Summaries;
 using System.Net;
 using Umbraco.Core.Models;
 using Umbraco.Web;
@@ -11,18 +10,16 @@ namespace RankOne.Services
     public class PageAnalysisService
     {
         private readonly ScoreService _scoreService;
-
-        private readonly DefinitionHelper _reflectionService;
         private readonly HtmlHelper _htmlHelper;
         private readonly ByteSizeHelper _byteSizeHelper;
+        private readonly IConfigurationHelper _configurationHelper;
 
         public PageAnalysisService()
         {
             _scoreService = new ScoreService();
-
-            _reflectionService = new DefinitionHelper();
-            _htmlHelper = new HtmlHelper();
+            _htmlHelper = new HtmlHelper();     
             _byteSizeHelper = new ByteSizeHelper();
+            _configurationHelper = new ConfigurationHelper();
         }
 
         public PageAnalysis CreatePageAnalysis(IPublishedContent node, string focusKeyword)
@@ -52,20 +49,18 @@ namespace RankOne.Services
 
         private void SetAnalyzerResults(PageAnalysis pageAnalysis, HtmlResult html)
         {
-            // Get all types marked with the Summary attribute
-            var summaryDefinitions = _reflectionService.GetSummaryDefinitions();
+            var summaries = _configurationHelper.GetSummaries();
 
             // Instantiate the types and retrieve te results
-            foreach (var summaryDefinition in summaryDefinitions)
+            foreach (var summary in summaries)
             {
-                var summary = summaryDefinition.Type.GetInstance<BaseSummary>();
                 summary.FocusKeyword = pageAnalysis.FocusKeyword;
                 summary.HtmlResult = html;
                 summary.Url = pageAnalysis.Url;
 
                 var analyzerResult = new AnalyzerResult
                 {
-                    Alias = summaryDefinition.Summary.Alias,
+                    Alias = summary.Alias,
                     Analysis = summary.GetAnalysis()
                 };
 
