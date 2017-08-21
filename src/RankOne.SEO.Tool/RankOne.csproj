@@ -296,7 +296,6 @@
     <Compile Include="Analyzers\Performance\JavascriptMinificationAnalyzer.cs" />
     <Compile Include="Helpers\ByteSizeHelper.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
-    <Compile Include="Helpers\DefinitionHelper.cs" />
     <Compile Include="Helpers\EncodingHelper.cs" />
     <Compile Include="Helpers\HtmlTagHelper.cs" />
     <Compile Include="Helpers\MinificationHelper.cs" />
@@ -310,7 +309,6 @@
     <Compile Include="Interfaces\IConfigurationHelper.cs" />
     <Compile Include="Interfaces\IDashboardDataService.cs" />
     <Compile Include="Interfaces\IDashboardSettingsSerializer.cs" />
-    <Compile Include="Interfaces\IDefinitionHelper.cs" />
     <Compile Include="Interfaces\IEncodingHelper.cs" />
     <Compile Include="Interfaces\IFocusKeywordHelper.cs" />
     <Compile Include="Interfaces\IHtmlHelper.cs" />

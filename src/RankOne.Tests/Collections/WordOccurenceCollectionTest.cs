@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Collections;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RankOne.Tests.Collections
 {

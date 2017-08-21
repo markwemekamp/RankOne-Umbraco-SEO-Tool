@@ -15,9 +15,9 @@ using Umbraco.Core.Persistence.SqlSyntax;
 using Umbraco.Core.Profiling;
 using Umbraco.Core.Services;
 using Umbraco.Web;
-using Umbraco.Web.Models.Fakes;
 using Umbraco.Web.Routing;
 using Umbraco.Web.Security;
+using RankOne.Tests.Mocks;
 
 namespace RankOne.Tests.Helpers
 {
@@ -30,7 +30,7 @@ namespace RankOne.Tests.Helpers
         public void Initialize()
         {
             var databaseContext = new DatabaseContext(Mock.Of<IDatabaseFactory>(), Mock.Of<ILogger>(),
-                new SqlSyntaxProviders(new[] {Mock.Of<ISqlSyntaxProvider>()}));
+                new SqlSyntaxProviders(new[] { Mock.Of<ISqlSyntaxProvider>() }));
 
             var applicationContext = ApplicationContext.EnsureContext(
                 databaseContext,
@@ -52,11 +52,11 @@ namespace RankOne.Tests.Helpers
 
             var urlProvider = new UrlProvider(umbracoContext,
                 Mock.Of<IWebRoutingSection>(section => section.UrlProviderMode == UrlProviderMode.Auto.ToString()),
-                new[] {Mock.Of<IUrlProvider>()});
+                new[] { Mock.Of<IUrlProvider>() });
 
             var membershipHelper = new MembershipHelper(umbracoContext, Mock.Of<MembershipProvider>(), Mock.Of<RoleProvider>());
 
-            _umbracoHelper = new UmbracoHelper(umbracoContext, 
+            _umbracoHelper = new UmbracoHelper(umbracoContext,
                 Mock.Of<IPublishedContent>(),
                 Mock.Of<ITypedPublishedContentQuery>(),
                 Mock.Of<IDynamicPublishedContentQuery>(),
@@ -81,10 +81,10 @@ namespace RankOne.Tests.Helpers
         [ExpectedException(typeof(MissingFieldException))]
         public void GetNodeHtmlFromPublishedContentWithNoTemplateIdReturnsNull()
         {
-            IPublishedContent publishedContent = new StubPublishedContentBase
+            var publishedContent = new PublishedContentMock()
             {
-                TemplateIdGet = () => 0,
-                IdGet = () => 1
+                TemplateId = 0,
+                Id = 1
             };
 
             var contentHelper = new TemplateHelper(_umbracoHelper);
@@ -96,10 +96,10 @@ namespace RankOne.Tests.Helpers
         [ExpectedException(typeof(MissingFieldException))]
         public void GetNodeHtmlFromPublishedContentWithIdReturnsNull()
         {
-            IPublishedContent publishedContent = new StubPublishedContentBase
+            var publishedContent = new PublishedContentMock()
             {
-                TemplateIdGet = () => 1,
-                IdGet = () => 0
+                TemplateId = 1,
+                Id = 0
             };
 
             var contentHelper = new TemplateHelper(_umbracoHelper);
@@ -110,10 +110,10 @@ namespace RankOne.Tests.Helpers
         [TestMethod]
         public void GetNodeHtmlFromPublishedContentWithIdReturnsObject()
         {
-            IPublishedContent publishedContent = new StubPublishedContentBase
+            var publishedContent = new PublishedContentMock()
             {
-                TemplateIdGet = () => 1,
-                IdGet = () => 1
+                TemplateId = 1,
+                Id = 1
             };
 
             var contentHelper = new TemplateHelper(_umbracoHelper);

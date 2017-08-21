@@ -23,7 +23,7 @@ namespace RankOne.Helpers
         public string GetFocusKeyword(IPublishedContent node)
         {
             // Try property focusKeyword
-            if (node.HasProperty("focusKeyword"))
+            if (node.HasValue("focusKeyword"))
             {
                 return node.GetPropertyValue<string>("focusKeyword");
             }
