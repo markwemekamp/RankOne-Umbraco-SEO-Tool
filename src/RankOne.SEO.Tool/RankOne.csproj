@@ -277,6 +277,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Option.cs" />
     <Compile Include="Analyzers\BaseAnalyzer.cs" />
     <Compile Include="Analyzers\Template\DeprecatedTagAnalyzer.cs" />
     <Compile Include="Analyzers\Template\ImageTagAnalyzer.cs" />
@@ -317,6 +318,7 @@
     <Compile Include="Interfaces\IMinificationHelper.cs" />
     <Compile Include="Interfaces\INodeReportHelper.cs" />
     <Compile Include="Interfaces\INodeReportRepository.cs" />
+    <Compile Include="Interfaces\IOption.cs" />
     <Compile Include="Interfaces\IPageAnalysisService.cs" />
     <Compile Include="Interfaces\IPageScoreNodeHelper.cs" />
     <Compile Include="Interfaces\IPageScoreSerializer.cs" />
@@ -326,6 +328,7 @@
     <Compile Include="Interfaces\ITemplateHelper.cs" />
     <Compile Include="Interfaces\IWordCounter.cs" />
     <Compile Include="Models\RankOneContext.cs" />
+    <Compile Include="Models\Settings\AnalyzerOption.cs" />
     <Compile Include="Models\Settings\AnalyzerSettings.cs" />
     <Compile Include="Models\Settings\RankOneSettings.cs" />
     <Compile Include="Models\Settings\SummarySettings.cs" />
@@ -333,8 +336,6 @@
     <Compile Include="Serializers\PageScoreSerializer.cs" />
     <Compile Include="Services\DashboardDataService.cs" />
     <Compile Include="Interfaces\IAnalyzeService.cs" />
-    <Compile Include="Attributes\Summary.cs" />
-    <Compile Include="Attributes\AnalyzerCategory.cs" />
     <Compile Include="Controllers\AnalyzerStructureApiController.cs" />
     <Compile Include="Controllers\DashboardApiController.cs" />
     <Compile Include="Controllers\AnalysisApiController.cs" />
@@ -350,7 +351,6 @@
     <Compile Include="Interfaces\IPageInformationService.cs" />
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisInformation.cs" />
-    <Compile Include="Models\AnalyzerDefinition.cs" />
     <Compile Include="Models\AnalyzeResult.cs" />
     <Compile Include="Models\AnalyzerResult.cs" />
     <Compile Include="Models\AnalyzerStructure.cs" />
@@ -370,7 +370,6 @@
     <Compile Include="Models\ResultType.cs" />
     <Compile Include="Models\SearchResultPreview.cs" />
     <Compile Include="Models\SeoNode.cs" />
-    <Compile Include="Models\SummaryDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />

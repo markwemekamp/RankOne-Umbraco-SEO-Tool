@@ -1,10 +1,8 @@
-﻿using RankOne.Attributes;
-using RankOne.Interfaces;
+﻿using RankOne.Interfaces;
 using RankOne.Models;
 
 namespace RankOne.Analyzers.Performance
 {
-    [AnalyzerCategory(SummaryName = "Performance", Alias = "gzipanalyzer")]
     public class GZipAnalyzer : BaseAnalyzer
     {
         private readonly IEncodingHelper _encodingHelper;

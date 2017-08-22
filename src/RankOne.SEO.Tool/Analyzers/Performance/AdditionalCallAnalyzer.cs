@@ -1,12 +1,10 @@
-﻿using RankOne.Attributes;
-using RankOne.ExtensionMethods;
+﻿using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System.Linq;
 
 namespace RankOne.Analyzers.Performance
 {
-    [AnalyzerCategory(SummaryName = "Performance", Alias = "additionalcallanalyzer")]
     public class AdditionalCallAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(IPageData pageData)

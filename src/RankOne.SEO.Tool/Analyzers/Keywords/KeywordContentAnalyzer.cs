@@ -1,11 +1,9 @@
-﻿using RankOne.Attributes;
-using RankOne.Interfaces;
+﻿using RankOne.Interfaces;
 using RankOne.Models;
 using System.Text.RegularExpressions;
 
 namespace RankOne.Analyzers.Keywords
 {
-    [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordcontentanalyzer")]
     public class KeywordContentAnalyzer : BaseAnalyzer
     {
         private readonly IHtmlTagHelper _htmlTagHelper;

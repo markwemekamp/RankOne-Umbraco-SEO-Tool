@@ -1,5 +1,4 @@
-﻿using RankOne.Attributes;
-using RankOne.Interfaces;
+﻿using RankOne.Interfaces;
 using RankOne.Models;
 using System;
 
@@ -15,7 +14,6 @@ namespace RankOne.Analyzers.Keywords
     /// 3. check if title contains keyword - major
     /// 4. location of the keyword - minor
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordtitleanalyzer")]
     public class KeywordTitleAnalyzer : BaseAnalyzer
     {
         private readonly IHtmlTagHelper _htmlTagHelper;

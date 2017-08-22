@@ -1,5 +1,4 @@
-﻿using RankOne.Attributes;
-using RankOne.ExtensionMethods;
+﻿using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System;
@@ -7,7 +6,6 @@ using System.Linq;
 
 namespace RankOne.Analyzers.Keywords
 {
-    [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordmetadescriptionanalyzer")]
     public class KeywordMetaDescriptionAnalyzer : BaseAnalyzer
     {
         private readonly IHtmlTagHelper _htmlTagHelper;

@@ -1,9 +1,11 @@
 ﻿using RankOne.Interfaces;
+using RankOne.Models;
 using RankOne.Models.Settings;
 using RankOne.Summaries;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 using Umbraco.Core.IO;
 
@@ -19,7 +21,7 @@ namespace RankOne.Helpers
             {
                 var serializer = new XmlSerializer(typeof(RankOneSettings));
 
-                string xml = File.ReadAllText(configFile);
+                var xml = File.ReadAllText(configFile);
                 using (var reader = new StringReader(xml))
                 {
                     return (RankOneSettings)serializer.Deserialize(reader);
@@ -76,6 +78,7 @@ namespace RankOne.Helpers
                 {
                     var analyzer = (IAnalyzer)Activator.CreateInstance(type);
                     analyzer.Alias = analyzerSetting.Alias;
+                    analyzer.Options = analyzerSetting.Options.Select(x => new Option() { Key = x.Key, Value = x.Value });
 
                     analyzers.Add(analyzer);
                 }

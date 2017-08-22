@@ -1,5 +1,4 @@
 ﻿using HtmlAgilityPack;
-using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
@@ -10,7 +9,6 @@ using System.Net;
 
 namespace RankOne.Analyzers.Performance
 {
-    [AnalyzerCategory(SummaryName = "Performance", Alias = "javascriptminificationanalyzer")]
     public class JavascriptMinificationAnalyzer : BaseAnalyzer
     {
         private readonly IMinificationHelper _minificationHelper;

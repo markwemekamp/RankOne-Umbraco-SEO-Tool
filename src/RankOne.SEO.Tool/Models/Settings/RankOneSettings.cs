@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Xml.Serialization;
-
 namespace RankOne.Models.Settings
 {
     public class RankOneSettings

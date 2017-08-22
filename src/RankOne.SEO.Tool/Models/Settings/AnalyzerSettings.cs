@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace RankOne.Models.Settings
 {
@@ -9,5 +10,6 @@ namespace RankOne.Models.Settings
         public string Alias { get; set; }
         [XmlAttribute(AttributeName = "Type")]
         public string Type { get; set; }
+        public List<AnalyzerOption> Options { get; set; }
     }
 }

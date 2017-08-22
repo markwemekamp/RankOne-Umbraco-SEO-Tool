@@ -1,5 +1,4 @@
 ﻿using HtmlAgilityPack;
-using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
@@ -16,7 +15,6 @@ namespace RankOne.Analyzers.Template
     /// check for quotes
     ///
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Template", Alias = "metadescriptionanalyzer")]
     public class MetaDescriptionAnalyzer : BaseAnalyzer
     {
         private readonly IHtmlTagHelper _htmlTagHelper;

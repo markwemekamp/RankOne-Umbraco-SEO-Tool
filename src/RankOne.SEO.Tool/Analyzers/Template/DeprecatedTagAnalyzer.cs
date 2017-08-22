@@ -1,5 +1,4 @@
 ﻿using HtmlAgilityPack;
-using RankOne.Attributes;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
@@ -7,7 +6,6 @@ using System.Linq;
 
 namespace RankOne.Analyzers.Template
 {
-    [AnalyzerCategory(SummaryName = "Template", Alias = "deprecatedtaganalyzer")]
     public class DeprecatedTagAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(IPageData pageData)

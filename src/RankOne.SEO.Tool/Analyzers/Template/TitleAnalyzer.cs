@@ -1,5 +1,4 @@
 ﻿using HtmlAgilityPack;
-using RankOne.Attributes;
 using RankOne.Interfaces;
 using RankOne.Models;
 
@@ -18,7 +17,6 @@ namespace RankOne.Analyzers.Template
     ///     1. longer than 60 - major
     ///     2. shorter than 10 - major
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Template", Alias = "titleanalyzer")]
     public class TitleAnalyzer : BaseAnalyzer
     {
         private readonly IHtmlTagHelper _htmlTagHelper;
