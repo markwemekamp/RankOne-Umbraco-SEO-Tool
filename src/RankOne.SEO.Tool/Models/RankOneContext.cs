@@ -32,6 +32,8 @@ namespace RankOne.Models
         public Lazy<EncodingHelper> EncodingHelper => new Lazy<EncodingHelper>(() => new EncodingHelper());
         public Lazy<WordCounter> WordCounter => new Lazy<WordCounter>(() => new WordCounter());
         public Lazy<OptionHelper> OptionHelper => new Lazy<OptionHelper>(() => new OptionHelper());
+        public Lazy<WebRequestHelper> WebRequestHelper => new Lazy<WebRequestHelper>(() => new WebRequestHelper());
+        
 
         public Lazy<ScoreService> ScoreService => new Lazy<ScoreService>(() => new ScoreService());
         public Lazy<PageAnalysisService> PageAnalysisService => new Lazy<PageAnalysisService>(() => new PageAnalysisService());

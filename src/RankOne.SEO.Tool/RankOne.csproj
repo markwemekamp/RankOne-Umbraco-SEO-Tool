@@ -277,8 +277,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analyzers\Template\BrokenLinkAnalyzer.cs" />
     <Compile Include="Helpers\OptionHelper.cs" />
+    <Compile Include="Helpers\WebRequestHelper.cs" />
     <Compile Include="Interfaces\IOptionHelper.cs" />
+    <Compile Include="Interfaces\IWebRequestHelper.cs" />
     <Compile Include="Models\Option.cs" />
     <Compile Include="Analyzers\BaseAnalyzer.cs" />
     <Compile Include="Analyzers\Template\DeprecatedTagAnalyzer.cs" />

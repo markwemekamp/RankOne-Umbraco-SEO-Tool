@@ -303,4 +303,10 @@
     <key alias="file_not_minified">The file %0% doesn't seem to be minified</key>
     <key alias="all_minified">All local javascript files seem to be minified</key>
   </area>
+
+  <area alias="brokenlinkanalyzer">
+    <key alias="title">Broken links</key>
+    <key alias="all_links_working">All links are working correctly</key>
+    <key alias="broken_link"><![CDATA[Broken link found, click <a href="%0%">here</a>]]></key>
+  </area>
 </language>
