@@ -20,7 +20,7 @@ namespace RankOne.Helpers
         public string GetSizeSuffix(int value)
         {
             if (value < 0) { return "-" + GetSizeSuffix(-value); }
-            if (value == 0) { return "0.0 bytes"; }
+            if (value == 0) { return "0 bytes"; }
 
             var mag = (int)Math.Log(value, 1024);
             var adjustedSize = (decimal)value / (1L << (mag * 10));

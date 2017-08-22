@@ -18,16 +18,57 @@ namespace RankOne.Analyzers.Template
     public class MetaDescriptionAnalyzer : BaseAnalyzer
     {
         private readonly IHtmlTagHelper _htmlTagHelper;
+        private readonly IOptionHelper _optionHelper;
+
+        private int? _maximumLength;
+        private int MaximumLength
+        {
+            get
+            {
+                if (!_maximumLength.HasValue)
+                {
+                    _maximumLength = _optionHelper.GetOptionValue(Options, "MaximumLength", 150);
+                }
+                return _maximumLength.Value;
+            }
+        }
+
+        private int? _minimumLength;
+        private int MinimumLength
+        {
+            get
+            {
+                if (!_minimumLength.HasValue)
+                {
+                    _minimumLength = _optionHelper.GetOptionValue(Options, "MinimumLength", 20);
+                }
+                return _minimumLength.Value;
+            }
+        }
+
+        private int? _acceptableLength;
+        private int AcceptableLength
+        {
+            get
+            {
+                if (!_acceptableLength.HasValue)
+                {
+                    _acceptableLength = _optionHelper.GetOptionValue(Options, "AcceptableLength", 50);
+                }
+                return _acceptableLength.Value;
+            }
+        }
 
         public MetaDescriptionAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public MetaDescriptionAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
+        public MetaDescriptionAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
         { }
 
-        public MetaDescriptionAnalyzer(IHtmlTagHelper htmlTagHelper)
+        public MetaDescriptionAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper)
         {
             _htmlTagHelper = htmlTagHelper;
+            _optionHelper = optionHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
@@ -81,22 +122,22 @@ namespace RankOne.Analyzers.Template
             {
                 descriptionValue = descriptionValue.Trim();
 
-                if (descriptionValue.Length > 150)
+                if (descriptionValue.Length > MaximumLength)
                 {
                     result.AddResultRule("description_too_long", ResultType.Warning);
                 }
 
-                if (descriptionValue.Length < 20)
+                if (descriptionValue.Length < MinimumLength)
                 {
                     result.AddResultRule("description_too_short", ResultType.Warning);
                 }
 
-                if (descriptionValue.Length < 50)
+                if (descriptionValue.Length < AcceptableLength)
                 {
                     result.AddResultRule("description_too_short", ResultType.Hint);
                 }
 
-                if (descriptionValue.Length <= 150 && descriptionValue.Length >= 20)
+                if (descriptionValue.Length <= MaximumLength && descriptionValue.Length >= AcceptableLength)
                 {
                     result.AddResultRule("description_perfect", ResultType.Success);
                 }

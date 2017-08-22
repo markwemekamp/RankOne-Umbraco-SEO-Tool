@@ -2,6 +2,6 @@
 {
     public interface IMinificationHelper
     {
-        bool IsMinified(string content);
+        bool IsMinified(string content, int densityRatio = 200);
     }
 }

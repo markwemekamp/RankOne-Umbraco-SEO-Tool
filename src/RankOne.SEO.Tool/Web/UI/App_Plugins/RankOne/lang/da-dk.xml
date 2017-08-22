@@ -115,15 +115,15 @@
     <key alias="title">Forældede tags</key>
     <key alias="no_deprecated_tags_found">Siden indeholder ingen forældede html tags</key>
     <key alias="acronym_tag_found">Siden indeholder et &lt;acronym&gt; tag, dette betragtes som et forældet html tag</key>
-    <key alias="acronym_tag_found">Siden indeholder et &lt;applet&gt; tag, dette betragtes som et forældet html tag</key>
-    <key alias="acronym_tag_found">Siden indeholder et &lt;basefont&gt; tag, dette betragtes som et forældet html tag</key>
-    <key alias="acronym_tag_found">Siden indeholder et &lt;big&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="acronym_tag_found">Siden indeholder et &lt;center&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="acronym_tag_found">Siden indeholder et &lt;dir&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="acronym_tag_found">Siden indeholder et &lt;font&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="acronym_tag_found">Siden indeholder et &lt;frame&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="acronym_tag_found">Siden indeholder et &lt;strike&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="acronym_tag_found">Siden indeholder et &lt;tt&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="applet_tag_found">Siden indeholder et &lt;applet&gt; tag, dette betragtes som et forældet html tag</key>
+    <key alias="basefont_tag_found">Siden indeholder et &lt;basefont&gt; tag, dette betragtes som et forældet html tag</key>
+    <key alias="big_tag_found">Siden indeholder et &lt;big&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="center_tag_found">Siden indeholder et &lt;center&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="dir_tag_found">Siden indeholder et &lt;dir&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="font_tag_found">Siden indeholder et &lt;font&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="frame_tag_found">Siden indeholder et &lt;frame&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="strike_tag_found">Siden indeholder et &lt;strike&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="tt_tag_found">Siden indeholder et &lt;tt&gt; tag, tag, dette betragtes som et forældet html tag</key>
   </area>
 
   <area alias="imagetaganalyzer">
@@ -205,9 +205,9 @@
 
   <area alias="additionalcallanalyzer">
     <key alias="title">Yderligere kald analysator</key>
-    <key alias="more_than_30_calls">Mere end 30 kald er lavet til ressourcer. Prøv og bundle javascript og css filer.</key>
-    <key alias="more_than_15_calls">Mere end 15 kald er lavet til ressource. Prøv og bundle javascript og css filer.</key>
-    <key alias="less_than_15_calls">Mindre end 15 kald er lavet til ressource.</key>
+    <key alias="more_than_maximum_calls">Mere end 30 kald er lavet til ressourcer. Prøv og bundle javascript og css filer.</key>
+    <key alias="more_than_acceptable_calls">Mere end 15 kald er lavet til ressource. Prøv og bundle javascript og css filer.</key>
+    <key alias="less_than_acceptable_calls">Mindre end 15 kald er lavet til ressource.</key>
   </area>
 
   <area alias="cssminificationanalyzer">

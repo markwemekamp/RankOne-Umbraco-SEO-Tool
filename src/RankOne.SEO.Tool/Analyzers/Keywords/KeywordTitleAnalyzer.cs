@@ -1,6 +1,7 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
 using System;
+using System.Linq;
 
 namespace RankOne.Analyzers.Keywords
 {
@@ -17,16 +18,31 @@ namespace RankOne.Analyzers.Keywords
     public class KeywordTitleAnalyzer : BaseAnalyzer
     {
         private readonly IHtmlTagHelper _htmlTagHelper;
+        private readonly IOptionHelper _optionHelper;
+
+        private int? _idealKeywordPosition;
+        private int IdealKeywordPosition
+        {
+            get
+            {
+                if (!_idealKeywordPosition.HasValue)
+                {
+                    _idealKeywordPosition = _optionHelper.GetOptionValue(Options, "IdealKeywordPosition", 10);
+                }
+                return _idealKeywordPosition.Value;
+            }
+        }
 
         public KeywordTitleAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public KeywordTitleAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
+        public KeywordTitleAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
         { }
 
-        public KeywordTitleAnalyzer(IHtmlTagHelper htmlTagHelper)
+        public KeywordTitleAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper)
         {
             _htmlTagHelper = htmlTagHelper;
+            _optionHelper = optionHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
@@ -41,7 +57,7 @@ namespace RankOne.Analyzers.Keywords
 
                 if (position >= 0)
                 {
-                    if (position < 10)
+                    if (position < IdealKeywordPosition)
                     {
                         result.AddResultRule("title_contains_keyword", ResultType.Success);
                     }

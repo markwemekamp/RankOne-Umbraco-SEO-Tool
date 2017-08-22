@@ -277,6 +277,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\OptionHelper.cs" />
+    <Compile Include="Interfaces\IOptionHelper.cs" />
     <Compile Include="Models\Option.cs" />
     <Compile Include="Analyzers\BaseAnalyzer.cs" />
     <Compile Include="Analyzers\Template\DeprecatedTagAnalyzer.cs" />

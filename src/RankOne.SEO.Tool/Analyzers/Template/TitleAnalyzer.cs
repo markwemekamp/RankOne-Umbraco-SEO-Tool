@@ -20,16 +20,44 @@ namespace RankOne.Analyzers.Template
     public class TitleAnalyzer : BaseAnalyzer
     {
         private readonly IHtmlTagHelper _htmlTagHelper;
+        private readonly IOptionHelper _optionHelper;
+
+        private int? _maximumLength;
+        private int MaximumLength
+        {
+            get
+            {
+                if (!_maximumLength.HasValue)
+                {
+                    _maximumLength = _optionHelper.GetOptionValue(Options, "MaximumLength", 60);
+                }
+                return _maximumLength.Value;
+            }
+        }
+
+        private int? _minimumLength;
+        private int MinimumLength
+        {
+            get
+            {
+                if (!_minimumLength.HasValue)
+                {
+                    _minimumLength = _optionHelper.GetOptionValue(Options, "MinimumLength", 5);
+                }
+                return _minimumLength.Value;
+            }
+        }
 
         public TitleAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public TitleAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
+        public TitleAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
         { }
 
-        public TitleAnalyzer(IHtmlTagHelper htmlTagHelper)
+        public TitleAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper)
         {
             _htmlTagHelper = htmlTagHelper;
+            _optionHelper = optionHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
@@ -68,17 +96,17 @@ namespace RankOne.Analyzers.Template
             {
                 titleValue = titleValue.Trim();
 
-                if (titleValue.Length > 60)
+                if (titleValue.Length > MaximumLength)
                 {
                     result.AddResultRule("title_too_long", ResultType.Warning);
                 }
 
-                if (titleValue.Length < 5)
+                if (titleValue.Length < MinimumLength)
                 {
                     result.AddResultRule("titleanalyzer_title_too_short", ResultType.Hint);
                 }
 
-                if (titleValue.Length <= 60 && titleValue.Length >= 5)
+                if (titleValue.Length <= MaximumLength && titleValue.Length >= MinimumLength)
                 {
                     result.AddResultRule("title_success", ResultType.Success);
                 }
