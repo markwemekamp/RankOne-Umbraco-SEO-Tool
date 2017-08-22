@@ -16,6 +16,7 @@ namespace RankOne.Analyzers.Template
         {
             get
             {
+                if (_deprecatedTags == null)
                 {
                     var keywords = _optionHelper.GetOptionValue(Options, "DeprecatedTags", "acronym, applet, basefont, big, center, dir, font, frame, frameset, noframes, strike, tt");
 
