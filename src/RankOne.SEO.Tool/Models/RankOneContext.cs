@@ -40,6 +40,7 @@ namespace RankOne.Models
         public Lazy<DashboardDataService> DashboardDataService => new Lazy<DashboardDataService>(() => new DashboardDataService());
         public Lazy<PageInformationService> PageInformationService => new Lazy<PageInformationService>(() => new PageInformationService());
         public Lazy<AnalyzeService> AnalyzeService => new Lazy<AnalyzeService>(() => new AnalyzeService());
+        public Lazy<UrlStatusService> UrlStatusService => new Lazy<UrlStatusService>(() => new UrlStatusService());
 
         public Lazy<NodeReportRepository> NodeReportRepository => new Lazy<NodeReportRepository>(() => new NodeReportRepository());
         public Lazy<AnalysisCacheRepository> AnalysisCacheRepository => new Lazy<AnalysisCacheRepository>(() => new AnalysisCacheRepository());

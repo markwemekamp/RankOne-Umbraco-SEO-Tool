@@ -281,6 +281,7 @@
     <Compile Include="Helpers\OptionHelper.cs" />
     <Compile Include="Helpers\WebRequestHelper.cs" />
     <Compile Include="Interfaces\IOptionHelper.cs" />
+    <Compile Include="Interfaces\IUrlStatusService.cs" />
     <Compile Include="Interfaces\IWebRequestHelper.cs" />
     <Compile Include="Models\Option.cs" />
     <Compile Include="Analyzers\BaseAnalyzer.cs" />
@@ -385,6 +386,7 @@
     <Compile Include="Services\PageAnalysisService.cs" />
     <Compile Include="Services\PageInformationService.cs" />
     <Compile Include="Services\ScoreService.cs" />
+    <Compile Include="Services\UrlStatusService.cs" />
     <Compile Include="Summaries\BaseSummary.cs" />
     <Compile Include="Summaries\KeywordsSummary.cs" />
   </ItemGroup>

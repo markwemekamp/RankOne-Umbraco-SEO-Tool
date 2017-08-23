@@ -9,17 +9,17 @@ namespace RankOne.Analyzers.Template
 {
     public class BrokenLinkAnalyzer : BaseAnalyzer
     {
-        private IWebRequestHelper _webRequestHelper;
+        private IUrlStatusService _urlStatusService;
 
         public BrokenLinkAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public BrokenLinkAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.WebRequestHelper.Value)
+        public BrokenLinkAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.UrlStatusService.Value)
         { }
 
-        public BrokenLinkAnalyzer(IWebRequestHelper webRequestHelper)
+        public BrokenLinkAnalyzer(IUrlStatusService urlStatusService)
         {
-            _webRequestHelper = webRequestHelper;
+            _urlStatusService = urlStatusService;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
@@ -31,13 +31,15 @@ namespace RankOne.Analyzers.Template
 
             var url = new Uri(pageData.Url);
 
+            var brokenLinks = new HashSet<string>();
+
             foreach (var anchorTag in anchorTags)
             {
-                if (anchorTag.GetAttribute("href") != null) {
-
+                if (anchorTag.GetAttribute("href") != null)
+                {
                     var hrefValue = anchorTag.GetAttribute("href").Value;
 
-                    if (hrefValue != null && !string.IsNullOrWhiteSpace(hrefValue) && hrefValue != "/" && hrefValue != "#")
+                    if (hrefValue != null && !brokenLinks.Contains(hrefValue) && !string.IsNullOrWhiteSpace(hrefValue) && hrefValue != "/" && hrefValue != "#")
                     {
                         var fullUrl = hrefValue;
                         if (IsLocalLink(hrefValue))
@@ -51,20 +53,23 @@ namespace RankOne.Analyzers.Template
                             fullUrl = string.Format("{0}://{1}{3}{2}", url.Scheme, url.Host, hrefValue, portSegment);
                         }
 
-                        var active = _webRequestHelper.IsActiveUrl(fullUrl);
+                        var active = _urlStatusService.IsActiveUrl(fullUrl);
 
                         if (!active)
                         {
-                            result.ResultRules.Add(new ResultRule() { Alias = "broken_link", Type = ResultType.Warning, Tokens = new List<string>() { hrefValue } });
+                            brokenLinks.Add(hrefValue);
                         }
-
                     }
                 }
             }
 
-            if (!result.ResultRules.Any())
+            if (!brokenLinks.Any())
             {
                 result.AddResultRule("all_links_working", ResultType.Success);
+            }
+            else
+            {
+                result.ResultRules.AddRange(brokenLinks.Select(x => new ResultRule() { Alias = "broken_link", Type = ResultType.Warning, Tokens = new List<string>() { x } }));
             }
 
             return result;
