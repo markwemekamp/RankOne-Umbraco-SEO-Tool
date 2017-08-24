@@ -8,14 +8,14 @@ namespace RankOne.Models
         public string Url { get; set; }
         public string FocusKeyword { get; set; }
         public int Size { get; set; }
-        public List<AnalyzerResult> AnalyzerResults { get; set; }
+        public List<SummaryResult> SummaryResults { get; set; }
         public HttpStatusCode Status { get; set; }
         public PageScore Score { get; set; }
 
         public PageAnalysis()
         {
             Status = HttpStatusCode.OK;
-            AnalyzerResults = new List<AnalyzerResult>();
+            SummaryResults = new List<SummaryResult>();
         }
     }
 }

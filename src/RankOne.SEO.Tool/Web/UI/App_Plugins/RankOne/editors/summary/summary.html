@@ -9,9 +9,9 @@
     </div>
 
     <div ng-show="!loading && !error">
-        <div ng-repeat="analyzerResult in analyzeResults.AnalyzerResults | typeFilter:model.config.typeSelection | analyzerFilter:model.config.analyzerSelection">
-            <h4><localize key="{{analyzerResult.Alias}}_title"></localize></h4>
-            <div class="result-compact" ng-repeat="result in analyzerResult.Analysis.Results | typeFilter:model.config.typeSelection | analyzerFilter:model.config.analyzerSelection">
+        <div ng-repeat="summaryResult in analyzeResults.SummaryResults | typeFilter:model.config.typeSelection | analyzerFilter:model.config.analyzerSelection">
+            <h4><localize key="{{summaryResult.Alias}}_title"></localize></h4>
+            <div class="result-compact" ng-repeat="result in summaryResult.Analysis.Results | typeFilter:model.config.typeSelection | analyzerFilter:model.config.analyzerSelection">
                 <strong><localize key="{{result.Alias}}_title"></localize></strong>
                 <ul>
                     <resultline resultline="resultLine" result="result" ng-repeat="resultLine in result.ResultRules | typeFilter:model.config.typeSelection | orderBy:sortOrder"></resultline>

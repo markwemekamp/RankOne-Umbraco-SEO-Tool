@@ -63,13 +63,13 @@ namespace RankOne.Services
                 summary.HtmlResult = html;
                 summary.Url = pageAnalysis.Url;
 
-                var analyzerResult = new AnalyzerResult
+                var analyzerResult = new SummaryResult
                 {
                     Alias = summary.Alias,
                     Analysis = summary.GetAnalysis()
                 };
 
-                pageAnalysis.AnalyzerResults.Add(analyzerResult);
+                pageAnalysis.SummaryResults.Add(analyzerResult);
             }
         }
     }

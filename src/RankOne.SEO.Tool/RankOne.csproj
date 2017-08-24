@@ -358,7 +358,7 @@
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisInformation.cs" />
     <Compile Include="Models\AnalyzeResult.cs" />
-    <Compile Include="Models\AnalyzerResult.cs" />
+    <Compile Include="Models\SummaryResult.cs" />
     <Compile Include="Models\AnalyzerStructure.cs" />
     <Compile Include="Models\BaseDatabaseObject.cs" />
     <Compile Include="Models\DashboardSettings.cs" />

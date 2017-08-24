@@ -1,6 +1,6 @@
 using RankOne.Interfaces;
 using RankOne.Models;
-using System.Linq;
+using System;
 
 namespace RankOne.Services
 {
@@ -14,31 +14,28 @@ namespace RankOne.Services
         public PageScore GetScore(PageAnalysis pageAnalysis)
         {
             var pageScore = new PageScore();
-            var totalScore = 0;
-            foreach (var analyzerResult in pageAnalysis.AnalyzerResults)
+            var totalScore = 0.0;
+            var totalWeight = 0.0;
+            // loop through summaries
+            foreach (var summaryResult in pageAnalysis.SummaryResults)
             {
-                totalScore += CalculateScore(analyzerResult.Analysis, pageScore);
+                // loop through analyzers
+                foreach (var result in summaryResult.Analysis.Results)
+                {
+                    pageScore.ErrorCount += result.ErrorCount;
+                    pageScore.WarningCount += result.WarningCount;
+                    pageScore.HintCount += result.HintCount;
+                    pageScore.SuccessCount += result.SuccessCount;
+                    var score = GetResultScore(result);
+
+                    totalScore += score;
+                    totalWeight += result.Weight;
+                }
             }
 
-            var numberOfAnalyzers = pageAnalysis.AnalyzerResults.Sum(x => x.Analysis.Results.Count);
-            pageScore.OverallScore = totalScore / numberOfAnalyzers;
+            pageScore.OverallScore = (int)Math.Round(totalScore / (totalWeight / 100.0));
 
             return pageScore;
-        }
-
-        private int CalculateScore(Analysis analysis, PageScore pageScore)
-        {
-            var totalScore = 0;
-            foreach (var result in analysis.Results)
-            {
-                pageScore.ErrorCount += result.ErrorCount;
-                pageScore.WarningCount += result.WarningCount;
-                pageScore.HintCount += result.HintCount;
-                pageScore.SuccessCount += result.SuccessCount;
-                result.Score = GetResultScore(result);
-                totalScore += result.Score;
-            }
-            return totalScore;
         }
 
         /// <summary>

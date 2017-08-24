@@ -24,7 +24,7 @@ namespace RankOne.Analyzers.Template
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
 
             var anchorTags = pageData.Document.GetElements("a");
             var anchorTagCount = anchorTags.Count();

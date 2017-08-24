@@ -22,7 +22,7 @@ namespace RankOne.Analyzers.Performance
         {
             var encoding = _encodingHelper.GetEncodingFromUrl(pageData.Url);
 
-            var result = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
             if (encoding == "gzip")
             {
                 result.AddResultRule("gzip_enabled", ResultType.Success);

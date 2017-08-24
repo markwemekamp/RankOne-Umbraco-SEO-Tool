@@ -2,10 +2,11 @@
 
 namespace RankOne.Models
 {
-    public class AnalyzerResult
+    public class SummaryResult
     {
         public string Alias { get; set; }
         public Analysis Analysis { get; set; }
+        public int Score { get; set; }
 
         public int ErrorCount
         {

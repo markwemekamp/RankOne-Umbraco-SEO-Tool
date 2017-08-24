@@ -29,7 +29,6 @@ namespace RankOne.Controllers
             _typedPublishedContentQuery = typedPublishedContentQuery;
         }
 
-
         /// <summary>
         /// Analyzes the node.
         /// The focus keyword can be given as a parameter here for performance reasons and the check the node

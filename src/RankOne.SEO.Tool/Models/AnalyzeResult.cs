@@ -29,7 +29,10 @@ namespace RankOne.Models
             get { return CountRestultRulesByType(ResultType.Success); }
         }
 
-        public int Score { get; set; }
+        public int Weight
+        {
+            get; set;
+        }
 
         public AnalyzeResult()
         {

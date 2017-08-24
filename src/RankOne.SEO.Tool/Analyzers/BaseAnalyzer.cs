@@ -7,6 +7,7 @@ namespace RankOne.Analyzers
     public abstract class BaseAnalyzer : IAnalyzer
     {
         public string Alias { get; set; }
+        public int Weight { get; set; }
 
         public IEnumerable<IOption> Options { get; set; }
 

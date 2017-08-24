@@ -36,7 +36,7 @@ namespace RankOne.Analyzers.Performance
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var htmlSizeAnalysis = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
 
             var byteCount = _byteSizeHelper.GetByteSize(pageData.Document.InnerHtml);
             var htmlSizeResultRule = new ResultRule();
@@ -53,9 +53,9 @@ namespace RankOne.Analyzers.Performance
             }
             htmlSizeResultRule.Tokens.Add(_byteSizeHelper.GetSizeSuffix(byteCount));
             htmlSizeResultRule.Tokens.Add(_byteSizeHelper.GetSizeSuffix(MaximumSizeInBytes));
-            htmlSizeAnalysis.ResultRules.Add(htmlSizeResultRule);
+            result.ResultRules.Add(htmlSizeResultRule);
 
-            return htmlSizeAnalysis;
+            return result;
         }
     }
 }

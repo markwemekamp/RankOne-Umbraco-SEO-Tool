@@ -41,7 +41,7 @@
                             });
                     },
                     function (message) {
-                        $scope.error = message;
+                        $scope.error = "An error occured";
                         $scope.loading = false;
                     });
             }

@@ -79,7 +79,7 @@ namespace RankOne.Helpers
                     var analyzer = (IAnalyzer)Activator.CreateInstance(type);
                     analyzer.Alias = analyzerSetting.Alias;
                     analyzer.Options = analyzerSetting.Options.Select(x => new Option() { Key = x.Key, Value = x.Value });
-
+                    analyzer.Weight = analyzerSetting.Weight.HasValue ? analyzerSetting.Weight.Value : 100;
                     analyzers.Add(analyzer);
                 }
             }

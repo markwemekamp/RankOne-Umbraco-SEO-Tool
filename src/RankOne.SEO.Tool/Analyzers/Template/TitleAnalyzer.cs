@@ -23,6 +23,8 @@ namespace RankOne.Analyzers.Template
         private readonly IOptionHelper _optionHelper;
 
         private int? _maximumLength;
+        private int? _minimumLength;
+
         private int MaximumLength
         {
             get
@@ -35,7 +37,6 @@ namespace RankOne.Analyzers.Template
             }
         }
 
-        private int? _minimumLength;
         private int MinimumLength
         {
             get
@@ -62,7 +63,7 @@ namespace RankOne.Analyzers.Template
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
 
             var headTag = _htmlTagHelper.GetHeadTag(pageData.Document, result);
 

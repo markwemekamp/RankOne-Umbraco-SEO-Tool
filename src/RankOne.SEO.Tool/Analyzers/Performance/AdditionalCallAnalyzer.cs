@@ -50,7 +50,7 @@ namespace RankOne.Analyzers.Performance
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
 
             var cssFiles = pageData.Document.GetElementsWithAttribute("link", "href").
                 Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));

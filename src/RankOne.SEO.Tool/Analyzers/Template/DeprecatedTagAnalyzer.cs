@@ -39,7 +39,7 @@ namespace RankOne.Analyzers.Template
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
 
             foreach (var deprecatedKeyword in DeprecatedTags)
             {

@@ -21,7 +21,7 @@ namespace RankOne.Analyzers.Keywords
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
 
             var bodyTag = _htmlTagHelper.GetBodyTag(pageData.Document, result);
 
