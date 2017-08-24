@@ -115,9 +115,9 @@
     <key alias="no_title_tag">The page doesn't contain a title tag</key>
     <key alias="multiple_title_tags">The page contains multiple title tags</key>
     <key alias="no_title_value">Title tag is empty</key>
-    <key alias="title_too_long">Title is longer than 60 characters. Anything longer than 60 characters will be truncated.</key>
-    <key alias="title_too_short">Title is shorter than 5 characters.</key>
-    <key alias="title_success">The title is set correctly. The length is between 10 and 60 characters.</key>
+    <key alias="title_too_long">Title is longer than %0% characters. Anything longer than %0% characters will be truncated</key>
+    <key alias="title_too_short">Title is shorter than %1% characters</key>
+    <key alias="title_success">The title is set correctly. The length is between %1%  and %0%  characters</key>
   </area>
 
   <area alias="metadescriptionanalyzer">
@@ -132,9 +132,10 @@
     <key alias="no_meta_description_tag">The page doesnt contain a meta description tag</key>
     <key alias="multiple_meta_description_tags">The page contains multiple meta description tags</key>
     <key alias="no_description_value">The metadiscription tag content is empty</key>
-    <key alias="description_too_short">Description is shorter than 50 characters, the ideal title length is between 50 and 150 characters</key>
-    <key alias="description_too_long">Description is longer than 150 characters, the ideal title length is between 50 and 150 characters</key>
-    <key alias="description_perfect">The meta description has the ideal length, which is between 50 and 150 characters</key>
+    <key alias="description_too_short">Description is shorter than %1% characters, the ideal title length is between %2% and %0% characters</key>
+    <key alias="description_shorter_then_acceptable">Description is shorter than %2% characters, the ideal title length is between %2% and %0% characters</key>
+    <key alias="description_too_long">Description is longer than %0% characters, the ideal title length is between %2% and %0% characters</key>
+    <key alias="description_perfect">The meta description has the ideal length, which is between %2% and %0% characters</key>
   </area>
 
   <area alias="metarobotsanalyzer">

@@ -72,10 +72,10 @@
     <key alias="no_title_tag">Siden indeholder ikke et title tag</key>
     <key alias="multiple_title_tags">Siden indeholdere mere end et title tags</key>
     <key alias="no_title_value">Title tag er ikke udfyldt</key>
-    <key alias="title_too_long">Din titel er længere end 60 karakterer</key>
-    <key alias="title_too_short">Din titel er for kort. Den ideelle længde ligger imellem 40 og 60 karakterer.</key>
-    <key alias="title_less_than_40_characters">Din titel er kortere end 40 karakterer. Den ideelle længde ligger imellem 40 og 60 karakterer.</key>
-    <key alias="title_more_than_40_less_than_60_characters">Din titel har den perfekte længde (imellem 40 og 60 karakterer)</key>
+    <key alias="title_too_long">Din titel er længere end %0% karakterer</key>
+    <key alias="title_too_short">Din titel er for kort. Den ideelle længde ligger imellem %1% og %0% karakterer.</key>
+    <key alias="title_less_than_40_characters">Din titel er kortere end %1% karakterer. Den ideelle længde ligger imellem %1% og %0% karakterer.</key>
+    <key alias="title_more_than_40_less_than_60_characters">Din titel har den perfekte længde (imellem %1% og 60 karakterer)</key>
   </area>
 
   <area alias="metadescriptionanalyzer">
@@ -90,9 +90,10 @@
     <key alias="no_meta_description_tag">Siden indeholder ikke et beskrivelses tag</key>
     <key alias="multiple_meta_description_tags">Siden indeholdere mere end et beskrivelses tags</key>
     <key alias="no_description_value">Beskrivelsestag er ikke udfyldt</key>
-    <key alias="description_too_short">Din beskrivelse er for kort. Den ideelle længde ligger imellem 130 og 155 karakterer.</key>
-    <key alias="description_too_long">Din titel er længere end 160 karakterer. Den ideelle længde ligger imellem 130 og 155 karakterer.</key>
-    <key alias="description_perfect">Din beskrivelse har den perfekte længde (imellem 130 og 155 karakterer)</key>
+    <key alias="description_too_short">Din beskrivelse er for kort. Den ideelle længde ligger imellem %2% og %0% karakterer.</key>
+    <key alias="description_shorter_then_acceptable">Din beskrivelse er for kort. Den ideelle længde ligger imellem %2% og %0% karakterer.</key>
+    <key alias="description_too_long">Din titel er længere end  %0% karakterer. Den ideelle længde ligger imellem %2% og %0% karakterer.</key>
+    <key alias="description_perfect">Din beskrivelse har den perfekte længde (imellem %2% og %0% karakterer)</key>
   </area>
 
   <area alias="metakeywordanalyzer">

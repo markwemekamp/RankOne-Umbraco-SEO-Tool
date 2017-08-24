@@ -114,9 +114,12 @@ namespace RankOne.Analyzers.Template
         {
             var descriptionValue = metaDescriptionAttribute.Value;
 
+            var resultRule = new ResultRule();
+
             if (string.IsNullOrWhiteSpace(descriptionValue))
             {
-                result.AddResultRule("no_description_value", ResultType.Error);
+                resultRule.Alias = "no_description_value";
+                resultRule.Type = ResultType.Error;
             }
             else
             {
@@ -124,24 +127,34 @@ namespace RankOne.Analyzers.Template
 
                 if (descriptionValue.Length > MaximumLength)
                 {
-                    result.AddResultRule("description_too_long", ResultType.Warning);
+                    resultRule.Alias = "description_too_long";
+                    resultRule.Type = ResultType.Warning;
                 }
 
                 if (descriptionValue.Length < MinimumLength)
                 {
-                    result.AddResultRule("description_too_short", ResultType.Warning);
+                    resultRule.Alias = "description_too_short";
+                    resultRule.Type = ResultType.Warning;
                 }
 
                 if (descriptionValue.Length < AcceptableLength)
                 {
-                    result.AddResultRule("description_too_short", ResultType.Hint);
+                    resultRule.Alias = "description_shorter_then_acceptable";
+                    resultRule.Type = ResultType.Hint;
                 }
 
                 if (descriptionValue.Length <= MaximumLength && descriptionValue.Length >= AcceptableLength)
                 {
-                    result.AddResultRule("description_perfect", ResultType.Success);
+                    resultRule.Alias = "description_perfect";
+                    resultRule.Type = ResultType.Success;
                 }
             }
+
+            resultRule.Tokens.Add(MaximumLength.ToString());        // 0
+            resultRule.Tokens.Add(MinimumLength.ToString());        // 1
+            resultRule.Tokens.Add(AcceptableLength.ToString());     // 2
+
+            result.ResultRules.Add(resultRule);
         }
     }
 }

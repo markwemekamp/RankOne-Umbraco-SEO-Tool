@@ -89,9 +89,12 @@ namespace RankOne.Analyzers.Template
         {
             var titleValue = titleTag.InnerText;
 
+            var resultRule = new ResultRule();
+
             if (string.IsNullOrWhiteSpace(titleValue))
             {
-                result.AddResultRule("no_title_value", ResultType.Error);
+                resultRule.Alias = "no_title_value";
+                resultRule.Type = ResultType.Error;
             }
             else
             {
@@ -99,19 +102,27 @@ namespace RankOne.Analyzers.Template
 
                 if (titleValue.Length > MaximumLength)
                 {
-                    result.AddResultRule("title_too_long", ResultType.Warning);
+                    resultRule.Alias = "title_too_long";
+                    resultRule.Type = ResultType.Warning;
                 }
 
                 if (titleValue.Length < MinimumLength)
                 {
-                    result.AddResultRule("titleanalyzer_title_too_short", ResultType.Hint);
+                    resultRule.Alias = "title_too_short";
+                    resultRule.Type = ResultType.Hint;
                 }
 
                 if (titleValue.Length <= MaximumLength && titleValue.Length >= MinimumLength)
                 {
-                    result.AddResultRule("title_success", ResultType.Success);
+                    resultRule.Alias = "title_success";
+                    resultRule.Type = ResultType.Success;
                 }
             }
+
+            resultRule.Tokens.Add(MaximumLength.ToString());        // 0
+            resultRule.Tokens.Add(MinimumLength.ToString());        // 1
+
+            result.ResultRules.Add(resultRule);
         }
     }
 }
