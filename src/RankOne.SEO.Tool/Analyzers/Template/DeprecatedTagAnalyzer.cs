@@ -44,7 +44,7 @@ namespace RankOne.Analyzers.Template
             foreach (var deprecatedKeyword in DeprecatedTags)
             {
                 CheckTag(pageData.Document, deprecatedKeyword, result);
-            } 
+            }
 
             if (!result.ResultRules.Any())
             {
@@ -60,7 +60,14 @@ namespace RankOne.Analyzers.Template
 
             if (acronymTags.Any())
             {
-                result.AddResultRule(string.Format("{0}_tag_found", tagname), ResultType.Warning);
+                var resultRute = new ResultRule()
+                {
+                    Alias = "tag_found",
+                    Type = ResultType.Warning,
+                    Tokens = new List<string>() { tagname }
+                };
+
+                result.ResultRules.Add(resultRute);
             }
         }
     }

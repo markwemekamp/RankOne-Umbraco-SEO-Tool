@@ -114,16 +114,11 @@
   <area alias="deprecatedtaganalyzer">
     <key alias="title">Forældede tags</key>
     <key alias="no_deprecated_tags_found">Siden indeholder ingen forældede html tags</key>
-    <key alias="acronym_tag_found">Siden indeholder et &lt;acronym&gt; tag, dette betragtes som et forældet html tag</key>
-    <key alias="applet_tag_found">Siden indeholder et &lt;applet&gt; tag, dette betragtes som et forældet html tag</key>
-    <key alias="basefont_tag_found">Siden indeholder et &lt;basefont&gt; tag, dette betragtes som et forældet html tag</key>
-    <key alias="big_tag_found">Siden indeholder et &lt;big&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="center_tag_found">Siden indeholder et &lt;center&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="dir_tag_found">Siden indeholder et &lt;dir&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="font_tag_found">Siden indeholder et &lt;font&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="frame_tag_found">Siden indeholder et &lt;frame&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="strike_tag_found">Siden indeholder et &lt;strike&gt; tag, tag, dette betragtes som et forældet html tag</key>
-    <key alias="tt_tag_found">Siden indeholder et &lt;tt&gt; tag, tag, dette betragtes som et forældet html tag</key>
+    <key alias="tag_found">Siden indeholder et &lt;%0%&gt; tag, dette betragtes som et forældet html tag</key>
+
+    <key alias="tag_found">
+      <![CDATA[Siden indeholder et <b>%0%</b> tag, dette betragtes som et forældet html tag]]>
+    </key>
   </area>
 
   <area alias="imagetaganalyzer">

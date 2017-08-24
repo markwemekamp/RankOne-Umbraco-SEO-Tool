@@ -16,6 +16,7 @@ namespace RankOne.Services
             var pageScore = new PageScore();
             var totalScore = 0.0;
             var totalWeight = 0.0;
+
             // loop through summaries
             foreach (var summaryResult in pageAnalysis.SummaryResults)
             {

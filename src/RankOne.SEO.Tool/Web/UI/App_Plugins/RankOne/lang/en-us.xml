@@ -177,16 +177,9 @@
   <area alias="deprecatedtaganalyzer">
     <key alias="title">Deprecated tags</key>
     <key alias="no_deprecated_tags_found">The page doesn't contain any deprecated html tags</key>
-    <key alias="acronym_tag_found">The page contains an &lt;acronym&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="applet_tag_found">The page contains an &lt;applet&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="basefont_tag_found">The page contains an &lt;basefont&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="big_tag_found">The page contains an &lt;big&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="center_tag_found">The page contains an &lt;center&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="dir_tag_found">The page contains an &lt;dir&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="font_tag_found">The page contains an &lt;font&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="frame_tag_found">The page contains an &lt;frame&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="strike_tag_found">The page contains an &lt;strike&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="tt_tag_found">The page contains an &lt;tt&gt; tag, this is considered a deprecated html tag</key>
+    <key alias="tag_found">
+      <![CDATA[The page contains a <b>%0%</b> tag, this is considered a deprecated html tag]]>
+    </key>
   </area>
 
   <area alias="imagetaganalyzer">
