@@ -31,7 +31,7 @@ namespace RankOne.Services
                 throw new MissingFieldException("TemplateId is not set");
             }
 
-            if (!string.IsNullOrEmpty(focusKeyword))
+            if (string.IsNullOrEmpty(focusKeyword))
             {
                 focusKeyword = _focusKeywordHelper.GetFocusKeyword(node);
             }
