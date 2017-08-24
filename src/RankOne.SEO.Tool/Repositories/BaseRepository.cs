@@ -3,6 +3,7 @@ using RankOne.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using Umbraco.Core;
+using Umbraco.Core.Logging;
 using Umbraco.Core.Persistence;
 
 namespace RankOne.Repositories
@@ -11,6 +12,7 @@ namespace RankOne.Repositories
     {
         private string _tableName;
         private ITableNameHelper<T> _tableNameHelper;
+        private bool? _tableExists;
         protected DatabaseContext DatabaseContext;
         protected UmbracoDatabase Database;
 
@@ -39,6 +41,19 @@ namespace RankOne.Repositories
             }
         }
 
+        public bool TableExists
+        {
+            get
+            {
+                if (!_tableExists.HasValue)
+                {
+                    var databaseSchemaHelper = new DatabaseSchemaHelper(Database, LoggerResolver.Current.Logger, DatabaseContext.SqlSyntax);
+                    _tableExists = databaseSchemaHelper.TableExist(TableName);
+                }
+                return _tableExists.Value;
+            }
+        }
+
         public BaseRepository(DatabaseContext context)
         {
             DatabaseContext = context;
@@ -48,7 +63,7 @@ namespace RankOne.Repositories
         public virtual T GetById(int id)
         {
             var query = new Sql().Select("*").From(TableName).Where("Id = @0", id);
-            return Database.Fetch<T>(query).FirstOrDefault();
+            return GetAllByQuery(query).FirstOrDefault();
         }
 
         public virtual IEnumerable<T> GetAll()

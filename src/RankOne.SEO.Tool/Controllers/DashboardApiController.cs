@@ -27,7 +27,7 @@ namespace RankOne.Controllers
         public IEnumerable<PageScoreNode> Initialize()
         {
             _dashboardDataService.Initialize();
-            return _dashboardDataService.GetHierarchy();
+            return _dashboardDataService.GetHierarchy(false);
         }
 
         [HttpGet]

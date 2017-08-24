@@ -5,6 +5,8 @@ namespace RankOne.Interfaces
 {
     public interface IBaseRepository<T>
     {
+        bool TableExists { get; }
+
         T GetById(int id);
 
         IEnumerable<T> GetAll();
