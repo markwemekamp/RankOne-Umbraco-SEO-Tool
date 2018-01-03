@@ -77,7 +77,7 @@ namespace RankOne.Analyzers.Template
 
             var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document, result);
 
-            if (metaTags.Any())
+            if (metaTags != null && metaTags.Any())
             {
                 AnalyzeMetaTags(metaTags, result);
             }
@@ -92,7 +92,7 @@ namespace RankOne.Analyzers.Template
                                   where attribute.Value == "description"
                                   select metaTag.GetAttribute("content");
 
-            if (!attributeValues.Any())
+            if (attributeValues == null || !attributeValues.Any())
             {
                 result.AddResultRule("no_meta_description_tag", ResultType.Error);
             }
