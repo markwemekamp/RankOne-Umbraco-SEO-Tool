@@ -13,9 +13,23 @@ namespace RankOne.Helpers
 {
     public class ConfigurationHelper : IConfigurationHelper
     {
+        public string ConfigFileName { get
+            {
+                return "RankOne.Config";
+            }
+        }
+
+        public string ConfigFilePath
+        {
+            get
+            {
+                return IOHelper.MapPath(Path.Combine(SystemDirectories.Config, ConfigFileName));
+            }
+        }
+
         private RankOneSettings ReadSettings()
         {
-            var configFile = IOHelper.MapPath(Path.Combine(SystemDirectories.Config, "RankOne.Config"));
+            var configFile = ConfigFilePath;
 
             if (File.Exists(configFile))
             {

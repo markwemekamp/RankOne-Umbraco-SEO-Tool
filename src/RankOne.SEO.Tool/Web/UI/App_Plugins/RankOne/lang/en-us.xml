@@ -301,6 +301,6 @@
   <area alias="brokenlinkanalyzer">
     <key alias="title">Broken links</key>
     <key alias="all_links_working">All links are working correctly</key>
-    <key alias="broken_link"><![CDATA[Broken link found, click <a href="%0%">here</a>]]></key>
+    <key alias="broken_link"><![CDATA[Broken link found: <a href="%0%">%1%</a>]]></key>
   </area>
 </language>

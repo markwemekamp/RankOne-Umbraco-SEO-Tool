@@ -346,7 +346,6 @@
     <Compile Include="Controllers\DashboardApiController.cs" />
     <Compile Include="Controllers\AnalysisApiController.cs" />
     <Compile Include="Controllers\PageApiController.cs" />
-    <Compile Include="ExtensionMethods\AssemblyExtensions.cs" />
     <Compile Include="ExtensionMethods\HtmlNodeExtensions.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
     <Compile Include="ExtensionMethods\TypeExtensions.cs" />

@@ -69,7 +69,7 @@ namespace RankOne.Analyzers.Template
             }
             else
             {
-                result.ResultRules.AddRange(brokenLinks.Select(x => new ResultRule() { Alias = "broken_link", Type = ResultType.Warning, Tokens = new List<string>() { x } }));
+                result.ResultRules.AddRange(brokenLinks.Select(link => new ResultRule() { Alias = "broken_link", Type = ResultType.Warning, Tokens = new List<string>() { link, link } }));
             }
 
             return result;
