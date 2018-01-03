@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="pl_PL" intName="Polski (PL)" localName="Polska (PL)" lcid="" culture="pl-PL">
+  <creator>
+    <name>Marek Nowak</name>
+    <link>https://github.com/larrynPL/</link>
+  </creator>
+
+  <area alias="sitedashboard">
+    <key alias="title">Rank One Tablica</key>
+    <key alias="description">
+      Zobacz ocenę wszystkich stron opublikowanych na stronie w jednym miejscu, nawet bez podsumowania na każdej ze stron
+    </key>
+    <key alias="initialize">Inicjalizacja</key>
+    <key alias="intro_text">
+      <![CDATA[
+      Średni wynik wszystkich analizowanych stron to %0%%. Kliknij na wiersz, aby zobaczyć dodatkowe informacje na temat potencjalnych problemów.
+                Aby dodać słowo kluczowe do strony, możesz dodać do niej stronę edytora RankOne Dashboard i ustawić ją na niej lub dodać właściwość o nazwie "keyword" do typu dokumentu.<br/><br/>
+                Dane, które widzisz poniżej, są <strong>w pamięci podręcznej</strong>, aby odświeżyć wynik, kliknij przycisk Odśwież poniżej.
+      ]]>
+    </key>
+    <key alias="refresh">Odśwież</key>
+  </area>
+
+  <area alias="error">
+    <key alias="no_template">Ten element nie ma szablonu</key>
+    <key alias="not_published">Ten element nie jest opublikowany</key>
+    <key alias="page_error">Strona zwróciła %0%</key>
+  </area>
+
+  <area alias="warning">
+    <key alias="changes_pending_title">Zmiany oczekujące</key>
+    <key alias="changes_pending_text">Zmiany zostaną zapisane, gdy węzeł zostanie zapisany</key>
+  </area>
+
+  <area alias="dashboard">
+    <key alias="title">Informacje SEO</key>
+    <key alias="no_results">Brak wyników</key>
+    <key alias="errors">Błądy</key>
+    <key alias="warnings">Ostrzeżenia</key>
+    <key alias="hints">Porady</key>
+    <key alias="passed_checks">Przeprowadzone kontrole</key>
+    <key alias="more_information">Więcej informacji</key>
+    <key alias="read_more">Czytaj więcej</key>
+  </area>
+
+  <area alias="settings">
+    <key alias="title">Ustawienia strony</key>
+    <key alias="description">Ustawienia dla bieżącej strony.</key>
+    <key alias="focus_keyword">Focus keyword</key>
+    <key alias="cancel">Anuluj</key>
+    <key alias="save">Zapisz</key>
+    <key alias="close">Zamknij</key>
+  </area>
+
+  <area alias="summary">
+    <key alias="loading">Ładowanie...</key>
+  </area>
+
+  <area alias="templateanalyzer">
+    <key alias="title">Szablon</key>
+  </area>
+  <area alias="keywordanalyzer">
+    <key alias="title">Słowa kluczowe</key>
+    <key alias="focus_keyword_not_set">
+      <![CDATA[
+      Słowo kluczowe dla tej strony nie jest ustawione. Możesz dodać słowo kluczowe, otwierając okno dialogowe ustawień na górze tego ekranu.
+    ]]>
+    </key>
+    <key alias="top_words">
+      <![CDATA[
+        Nie ma optymalnej ilości słów kluczowych (algorytmy wyszukiwarek ewoluowały i ilość słów kluczowych nie stanowi już ważnego czynnika rankingowego).
+       Warto jednak pamiętać, które słowa kluczowe pojawiają się najczęściej na Twojej stronie i czy odzwierciedlają zamierzony temat Twojej strony.
+       Co ważniejsze, słowa kluczowe na twojej stronie powinny pojawić się w naturalnie brzmiących i gramatycznie poprawnych kopiach.<br/><br/>
+      
+      Słowa kluczowe dla tej strony: <strong>%0%</strong><br/><br/>
+      
+      <strong>Top 3 użyte słowa dla tej strony:</strong><br/>
+      <strong>1.</strong> %1% (%2% razy)<br/>
+      <strong>2.</strong> %3% (%4% razy)<br/>
+      <strong>3.</strong> %5% (%6% razy)<br/>
+    ]]>
+    </key>
+  </area>
+  <area alias="performanceanalyzer">
+    <key alias="title">Wydajność</key>
+  </area>
+
+  <area alias="titleanalyzer">
+    <key alias="title">Tytuł strony (znacznik title)</key>
+    <key alias="guidelines">
+      <![CDATA[
+      <p>
+        <strong>Najlepsze praktyki</strong>
+        <ul>
+          <li>Dokładnie opisz zawartość strony</li>
+          <li>Utwórz unikalne tytuły dla każdej strony</li>
+          <li>Używaj krótkich, ale opisowych tytułów</li>
+        </ul>
+      </p>
+      <p>Wybierz tytuł, który skutecznie komunikuje temat treści strony.</p>
+      <p>Tytuł informuje zarówno użytkowników, jak i wyszukiwarki, o temacie danej strony. <code>&lt;Tytuł&gt;</code> powinien być umieszczony w znaczniku <code>&lt;head&gt;</code> kodu HTML.</p>
+      <p>
+      <img src="/App_Plugins/RankOne/images/title-bar.png" />
+      </p>
+      <p>Każda ze stron powinna zawierać unikatowy Tytuł, który pomoże Google poznać, w jaki sposób strona różni się od innych w Twojej witrynie.</p>
+      <p>Jeśli dokument pojawi się na stronie wyników wyszukiwania, zawartość Tytułu będzie zwykle wyświetlana w pierwszym wierszu wyników wyszukiwania.</p>
+      <p>
+      <img src="/App_Plugins/RankOne/images/search-result.png" />
+      </p>
+      <p>Tytuły powinny być krótkie i informacyjne. Jeśli tytuł jest za długi, wyszukiwarki wyszukują tylko jego część w wynikach wyszukiwania.</p>
+      <p>Tytuł Twojej strony głównej może zawierać nazwę Twojej witryny / firmy i może zawierać inne ważne informacje, takie jak fizyczna lokalizacja firmy lub kilka jej głównych tematów lub ofert.</p>
+      ]]>
+    </key>
+    <key alias="no_head_tag">Strona nie zawiera znacznika Head</key>
+    <key alias="no_title_tag">Strona nie zawiera znacznika Title (Tytuł)</key>
+    <key alias="multiple_title_tags">Strona zawiera wiele znaczników Title (Tytuł)</key>
+    <key alias="no_title_value">Znacznik Title (tytuł) jest pusty</key>
+    <key alias="title_too_long">Title (tytuł) ma więcej niż 60 znaków. Coś dłuższego niż 60 znaków zostanie obciętych.</key>
+    <key alias="title_too_short">Tytuł jest krótszy niż 5 znaków.</key>
+    <key alias="title_success">Długość Tytułu jest prawidłowa. Wynosi od 10 do 60 znaków.</key>
+  </area>
+
+  <area alias="metadescriptionanalyzer">
+    <key alias="title">Opis strony (znacznik Description)</key>
+    <key alias="guidelines">
+      <![CDATA[
+      Napisz opis, który poinformuje i zainteresuje użytkowników, jeśli zobaczą opisu jako fragment tekstu w wynikach wyszukiwania.<br/>
+      Posiadanie innego opisu dla każdej strony pomaga zarówno użytkownikom, jak i Google, zwłaszcza w przypadku wyszukiwań, w których użytkownicy mogą wyświetlać wiele stron w Twojej domenie.<br/>
+      ]]>
+    </key>
+    <key alias="no_meta_tags">Strona nie posiada znaczników meta</key>
+    <key alias="no_meta_description_tag">Strona nie zawiera znacznika Description (opis)</key>
+    <key alias="multiple_meta_description_tags">Strona zawiera wiele znaczników Description (opis)</key>
+    <key alias="no_description_value">Znacznik Description (opis) jest pusty</key>
+    <key alias="description_too_short">Opis jest krótszy niż 50 znaków, idealna długość tytułu wynosi od 50 do 150 znaków</key>
+    <key alias="description_too_long">Opis jest dłuższy niż 150 znaków, idealna długość tytułu wynosi od 50 do 150 znaków</key>
+    <key alias="description_perfect">Opis ma odpowiednią długość, która wynosi od 50 do 150 znaków</key>
+  </area>
+
+  <area alias="metarobotsanalyzer">
+    <key alias="title">Znacznik Robots (meta)</key>
+    <key alias="no_meta_tags">Strona nie posiada znaczników meta</key>
+    <key alias="no_robots_tag">Znacznik Robots lub Googlebot nie został ustawiony, co oznacza, że Twoja strona będzie domyślnie indeksowana</key>
+    <key alias="robots_none">Znacznik Robots ma wartość none, co oznacza, że ta strona nie zostanie zaindeksowana przez wyszukiwarki</key>
+    <key alias="robots_no_index">Znacznik Robots jest ustawiony na noindex, co oznacza, że ta strona nie będzie indeksowana przez wyszukiwarki</key>
+    <key alias="robots_no_follow">Znacznik Robots jest ustawiony na nofollow, co zapobiega wyszukiwaniu linków z tej strony</key>
+    <key alias="robots_no_snippet">Znacznik Robots jest ustawiony na nosnippet, co zapobiega wyświetlaniu snippetów w wynikach wyszukiwania</key>
+    <key alias="robots_no_odp">Znacznik Robots jest ustawiony na noodp, co zapobiega używaniu alternatywnych opisów ODP/DMOZ</key>
+    <key alias="robots_no_archive">Znacznik Robots jest ustawiony na noindex, co zapobiega wyświetlaniu przez wyszukiwarkę linku do wersji strony z cache.</key>
+    <key alias="robots_unavailable_after">Znacznik Robot jest ustawiony na noindex, co zapobiega indeksowaniu tej strony przez wyszukiwarki po ustawionych danych</key>
+    <key alias="robots_no_image_index">Znacznik Robot jest ustawiony na noindex, co uniemożliwia wyszukiwarką wyświetlania strony w wynikach wyszukiwania</key>
+    <key alias="googlebot_none">Znacznik Robot ma wartość none, co oznacza, że ta strona nie zostanie zaindeksowana przez Google</key>
+    <key alias="googlebot_no_index">Znacznik Robot ma wartość noindex, co oznacza, że ta strona nie zostanie zaindeksowana przez Google</key>
+    <key alias="googlebot_no_follow">Znacznik Robot ma ustawioną wartość nofollow, co zapobiega wyświetlaniu przez Google linków z tej strony</key>
+    <key alias="googlebot_no_snippet">Znacznik Robot ma ustawioną wartość nosnippet, co zapobiega wyświetlaniu snippetów w wynikach wyszukiwania Google</key>
+    <key alias="googlebot_no_odp">Znacznik Robots jest ustawiony na noodp, co zapobiega używaniu alternatywnych opisów ODP/DMOZ w Google</key>
+    <key alias="googlebot_no_archive">Znacznik Robots jest ustawiony na noindex, co zapobiega wyświetlaniu przez wyszukiwarkę linku do wersji strony z cache w Google.</key>
+    <key alias="googlebot_unavailable_after">Znacznik Robot jest ustawiony na noindex, co zapobiega indeksowaniu tej strony przez wyszukiwarki po ustawionych danych w Google</key>
+    <key alias="googlebot_no_image_index">Znacznik Robot jest ustawiony na noindex, co uniemożliwia wyszukiwarką wyświetlania strony w wynikach wyszukiwania w Google</key>
+  </area>
+
+  <area alias="metakeywordanalyzer">
+    <key alias="title">Meta keywords</key>
+    <key alias="no_meta_tags">Strona nie posiada znaczników meta</key>
+    <key alias="no_meta_keywords_tag">
+      Strona nie zawiera słów kluczowych. Słowa kluczowe mają niewielki wpływ na wyniki wyszukiwania
+    </key>
+    <key alias="multiple_meta_keywords_tags">Strona zawiera wiele znaczników Keywords (słowa kluczowe)</key>
+    <key alias="no_keywords_value">
+      Strona zawiera wiele znaczników Keywords (słowa kluczowe). Słowa kluczowe mają niewielki wpływ na wyniki wyszukiwania
+    </key>
+    <key alias="keywords_set">Słowa kluczowe są ustawione dla tej strony.</key>
+  </area>
+
+  <area alias="deprecatedtaganalyzer">
+    <key alias="title">Przestarzałe znaczniki</key>
+    <key alias="no_deprecated_tags_found">Strona nie posiada żądnych przestarzałych znaczników</key>
+    <key alias="acronym_tag_found">Strona zawiera znacznik &lt;acronym&gt; ten znacznik jest przestarzały</key>
+    <key alias="acronym_tag_found">Strona zawiera znacznik &lt;applet&gt; ten znacznik jest przestarzały</key>
+    <key alias="acronym_tag_found">Strona zawiera znacznik &lt;basefont&gt; ten znacznik jest przestarzały</key>
+    <key alias="acronym_tag_found">Strona zawiera znacznik &lt;big&gt; ten znacznik jest przestarzały</key>
+    <key alias="acronym_tag_found">Strona zawiera znacznik &lt;center&gt; ten znacznik jest przestarzały</key>
+    <key alias="acronym_tag_found">Strona zawiera znacznik &lt;dir&gt; ten znacznik jest przestarzały</key>
+    <key alias="acronym_tag_found">Strona zawiera znacznik &lt;font&gt; ten znacznik jest przestarzały</key>
+    <key alias="acronym_tag_found">Strona zawiera znacznik &lt;frame&gt; ten znacznik jest przestarzały</key>
+    <key alias="acronym_tag_found">Strona zawiera znacznik &lt;strike&gt; ten znacznik jest przestarzały</key>
+    <key alias="acronym_tag_found">Strona zawiera znacznik &lt;tt&gt; ten znacznik jest przestarzały</key>
+  </area>
+
+  <area alias="imagetaganalyzer">
+    <key alias="title">Znaczniki Image (obraz)</key>
+    <key alias="missing_alt_tags">%0% obraz(y) (img) mają pominiety atrybut ALT (tekst alternatywny)</key>
+    <key alias="missing_title_tags">%0% obraz(y) (img) mają pominięte atrybuty TITLE (tytuł)</key>
+    <key alias="alt_and_title_tags_present">Perfekcyjnie! Wszystkie obrazy zawierają znaczniki Alt i Title</key>
+  </area>
+
+  <area alias="anchorTagAnalyzer">
+    <key alias="title">Znacznik Anchor</key>
+    <key alias="missing_title_tags">%0% znaczniki anchor mają pominięte atrybuty Title (tytuł)</key>
+    <key alias="all_title_tags_present">Wszystkie znaczniki anchor mają atrybuty Title</key>
+  </area>
+
+  <area alias="serverresponseanalyzer">
+    <key alias="title">Czas odpowiedzi serwera</key>
+    <key alias="responsetime">
+      <![CDATA[
+      Czas odpowiedzi serwera wyniosi %0%ms
+    ]]>
+    </key>
+  </area>
+
+  <area alias="htmlsizeanalyzer">
+    <key alias="title">Rozmiar kodu Html</key>
+    <key alias="html_size_small">
+      <![CDATA[
+      Rozmiar Html %0%
+    ]]>
+    </key>
+    <key alias="html_size_too_large">
+      <![CDATA[
+      Rozmiar Html %0%
+    ]]>
+    </key>
+  </area>
+
+  <area alias="keywordtitleanalyzer">
+    <key alias="title">Tytuł strony (znacznik title)</key>
+    <key alias="no_title_tag">Strona nie zawiera znacznika Title (Tytuł)</key>
+    <key alias="multiple_title_tags">Strona zawiera wiele znaczników Title (Tytuł)</key>
+    <key alias="title_doesnt_contain_keyword">Znacznik Title (tytuł) nie zawiera słów kluczowych</key>
+    <key alias="title_not_in_front">Słowo kluczowe nie znajduje się przes Tytułem. Im bliżej tytułu jest słowo kluczowe, tym bardziej będzie ono pomocne w rankingu</key>
+    <key alias="title_contains_keyword">Tytuł zawiera słowo kluczowe (słowa kluczowe) które znajdują się na samym początku znacznika title</key>
+  </area>
+
+  <area alias="keywordmetadescriptionanalyzer">
+    <key alias="title">Znacznik Description (opis strony)</key>
+    <key alias="no_meta_tags">Strona nie posiada znaczników meta</key>
+    <key alias="no_meta_description_tag">Strona nie zawiera znacznika Description (opis)</key>
+    <key alias="multiple_meta_description_tags">Strona zawiera wiele znaczników Description (opis)</key>
+    <key alias="no_description_value">Znacznik Description (opis) jest pusty</key>
+    <key alias="meta_description_doesnt_contain_keyword">Znacznik Description (opis) nie zawiera słów kluczowych</key>
+    <key alias="meta_description_contains_keyword">Znacznik Description (opis) zawiera słowa kluczowe</key>
+  </area>
+
+  <area alias="keywordurlanalyzer">
+    <key alias="title">Słowa kluczowe w adresie URL</key>
+    <key alias="root_node">Page doens't have a sub url, check passed</key>
+    <key alias="url_contains_keyword">Url contains the focus keyword</key>
+    <key alias="url_doesnt_contain_keyword">Url doesn't contain the focus keyword</key>
+  </area>
+
+  <area alias="keywordcontentanalyzer">
+    <key alias="title">Słowa kluczowe w treści</key>
+    <key alias="no_body_tag">Na stronie nie ma znacznika BODY</key>
+    <key alias="multiple_body_tags">Strona zawiera wiele znaczników BODY</key>
+    <key alias="content_doesnt_contain_keyword">Strona nie zawiera w treści słów kluczowych</key>
+    <key alias="content_contains_keyword">
+      Strona zawiera w treści słowa kluczowe, które wystepują <strong>%0%</strong> raz(y)
+    </key>
+  </area>
+
+  <area alias="keywordheadinganalyzer">
+    <key alias="title">Słowa kluiczowe w nagłówkach treści strony</key>
+    <key alias="keyword_used_in_heading">Słowa kluczowe są użyte %0% razy(y) w nagłówkach (znaczniki h1, h2, h3, h4)</key>
+    <key alias="keyword_not_used_in_heading">Słowo kluczowe powinno być użyte przynajmniej raz w nagłówkach (znaczniki h1, h2, h3, h4)</key>
+  </area>
+
+  <area alias="gzipanalyzer">
+    <key alias="title">Kompresja Gzip</key>
+    <key alias="gzip_enabled">Kompresja Gzip jest włącznona na serwerze</key>
+    <key alias="gzip_disabled">Kompresja Gzip nie jest włącznona na serwerze</key>
+    <key alias="guidelines">
+      <![CDATA[
+      <p>
+        Kompresowanie plików html, css i javascript powoduje szybsze ładowanie strony, a to przekłada się na lepsze wrażenia użytkownika, a także lepszy wynik SEO.
+      </p>
+      <strong>Jak włączyć kompresie na serwerze</strong>
+      <p>
+        Aby włączyć kompresję gzip na swoim serwerze, musisz edytować konfigurację serwera. IIS.NET zapewnia dobrze udokumentowany samouczek, jak to zrobić, 
+        możesz go znaleźć <a href="https://www.iis.net/configreference/system.webserver/httpcompression" target="_blank"><u>tutaj</u></a>.
+      </p>
+      ]]>
+    </key>
+  </area>
+
+  <area alias="additionalcallanalyzer">
+    <key alias="title">Dodatkowe połączenia (wywołania)</key>
+    <key alias="more_than_30_calls">%0% dodatkowych połączeń (wywołań) było wywołanych. Spróbuj połączyć pliki javascript oraz css.</key>
+    <key alias="more_than_15_calls">%0% dodatkowych połączeń (wywołań) było wywołanych. Spróbuj połączyć pliki javascript oraz css.</key>
+    <key alias="less_than_15_calls">%0% dodatkowych połączeń (wywołań) było wywołanych.</key>
+  </area>
+
+  <area alias="cssminificationanalyzer">
+    <key alias="title">Minifikacja CSS</key>
+    <key alias="file_not_minified">Plik %0% nie wygląd na zminifikowany (zmiejszony)</key>
+    <key alias="all_minified">Wszystkie pliki CSS wyglądają na zminifikowane (zmniejszone)</key>
+  </area>
+
+  <area alias="javascriptminificationanalyzer">
+    <key alias="title">Minifikacja Javascript</key>
+    <key alias="file_not_minified">Plik %0% nie wygląd na zminifikowany (zmiejszony)</key>
+    <key alias="all_minified">Wszystkie pliki CSS wyglądają na zminifikowane (zmniejszone)</key>
+  </area>
+
+</language>
