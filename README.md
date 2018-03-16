@@ -1,7 +1,6 @@
 # RankOne
 
-# Doc Type Grid Editor
-
+[![Build status](https://ci.appveyor.com/api/projects/status/eux9krndo9bxui51/branch/master?svg=true)](https://ci.appveyor.com/project/markwemekamp/rankone-umbraco-seo-tool/branch/master)
 [![NuGet release](https://img.shields.io/nuget/v/RankOne.svg)](https://www.nuget.org/packages/RankOne)
 [![Our Umbraco project page](https://img.shields.io/badge/our-umbraco-orange.svg)](https://our.umbraco.org/projects/backoffice-extensions/rankone-seo-toolkit)
 
