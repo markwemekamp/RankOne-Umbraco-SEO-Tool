@@ -92,7 +92,7 @@ namespace RankOne.Analyzers.Performance
                 var webClient = new WebClient();
                 return webClient.DownloadString(fullPath);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // ignored
             }

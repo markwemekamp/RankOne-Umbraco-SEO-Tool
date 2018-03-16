@@ -54,7 +54,7 @@ namespace RankOne.Services
                 var nodeCollection = _typedPublishedContentQuery.TypedContentAtRoot();
                 return _pageScoreNodeHelper.UpdatePageScores(nodeCollection);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
