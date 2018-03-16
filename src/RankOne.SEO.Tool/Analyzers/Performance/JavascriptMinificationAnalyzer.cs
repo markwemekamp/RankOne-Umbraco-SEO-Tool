@@ -19,7 +19,13 @@ namespace RankOne.Analyzers.Performance
         public JavascriptMinificationAnalyzer(IMinificationHelper minificationHelper, ICacheHelper cacheHelper, IUrlHelper urlHelper) : base(minificationHelper, cacheHelper, urlHelper)
         { }
 
-        protected override string CacheKeyPrefix => "js_minified_";
+        protected override string CacheKeyPrefix
+        {
+            get
+            {
+                return "js_minified_";
+            }
+        }
 
         protected override HtmlAttribute GetAttribute(HtmlNode node)
         {

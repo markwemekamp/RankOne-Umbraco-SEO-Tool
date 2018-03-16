@@ -1,7 +1,6 @@
 using RankOne.Interfaces;
 using RankOne.Models;
 using System.Collections.Generic;
-using System.Threading;
 using Umbraco.Core.Logging;
 
 namespace RankOne.Summaries
@@ -26,7 +25,7 @@ namespace RankOne.Summaries
                 var result = analyzer.Analyse(pageData);
                 watch.Stop();
                 var elapsedMs = watch.ElapsedMilliseconds;
-                LogHelper.Debug<BaseSummary>($"Finished analysis for {analyzer.Alias}, time: {elapsedMs} ms");
+                LogHelper.Debug<BaseSummary>(string.Format("Finished analysis for {0}, time: {1} ms", analyzer.Alias, elapsedMs));
                 result.Alias = analyzer.Alias;
                 analysis.Results.Add(result);
             }
