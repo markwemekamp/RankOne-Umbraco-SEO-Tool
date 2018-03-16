@@ -1,8 +1,7 @@
-﻿using RankOne.Attributes;
-using RankOne.Helpers;
-using RankOne.Interfaces;
+﻿using RankOne.Interfaces;
 using RankOne.Models;
 using System;
+using System.Linq;
 
 namespace RankOne.Analyzers.Keywords
 {
@@ -16,19 +15,39 @@ namespace RankOne.Analyzers.Keywords
     /// 3. check if title contains keyword - major
     /// 4. location of the keyword - minor
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordtitleanalyzer")]
     public class KeywordTitleAnalyzer : BaseAnalyzer
     {
-        private readonly HtmlTagHelper _htmlTagHelper;
+        private readonly IHtmlTagHelper _htmlTagHelper;
+        private readonly IOptionHelper _optionHelper;
 
-        public KeywordTitleAnalyzer()
+        private int? _idealKeywordPosition;
+        private int IdealKeywordPosition
         {
-            _htmlTagHelper = new HtmlTagHelper();
+            get
+            {
+                if (!_idealKeywordPosition.HasValue)
+                {
+                    _idealKeywordPosition = _optionHelper.GetOptionValue(Options, "IdealKeywordPosition", 10);
+                }
+                return _idealKeywordPosition.Value;
+            }
+        }
+
+        public KeywordTitleAnalyzer() : this(RankOneContext.Instance)
+        { }
+
+        public KeywordTitleAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
+        { }
+
+        public KeywordTitleAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper)
+        {
+            _htmlTagHelper = htmlTagHelper;
+            _optionHelper = optionHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
 
             var titleTag = _htmlTagHelper.GetTitleTag(pageData.Document, result);
             if (titleTag != null)
@@ -38,7 +57,7 @@ namespace RankOne.Analyzers.Keywords
 
                 if (position >= 0)
                 {
-                    if (position < 10)
+                    if (position < IdealKeywordPosition)
                     {
                         result.AddResultRule("title_contains_keyword", ResultType.Success);
                     }

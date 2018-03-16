@@ -1,6 +1,6 @@
 ﻿(function () {
     // Controller
-    function rankOne($scope, webresultService, editorState, dialogService, notificationsService, localizationService) {
+    function rankOne($scope, webresultService, editorState, dialogService, notificationsService, localizationService, analyzeService) {
         $scope.analyzeResults = null;
         $scope.filter = null;
 
@@ -11,9 +11,7 @@
                 $scope.error = localizationService.localize("error_not_published");
                 $scope.loading = false;
             } else {
-                var url = '/umbraco/backoffice/rankone/AnalysisApi/AnalyzeNode?id={id}&focusKeyword=' +
-                    $scope.model.value.focusKeyword;
-                webresultService.GetResultFromEditorState(editorState.current, url)
+                analyzeService.AnalyzeNodeForEditorByKeyword(editorState.current, $scope.model.value.focusKeyword)
                     .then(function (response) {
                         $scope.analyzeResults = response;
 
@@ -41,7 +39,7 @@
                             });
                     },
                     function (message) {
-                        $scope.error = message;
+                        $scope.error = "An error occured";
                         $scope.loading = false;
                     });
             }

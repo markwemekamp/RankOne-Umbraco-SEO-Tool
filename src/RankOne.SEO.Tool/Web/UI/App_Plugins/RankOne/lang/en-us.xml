@@ -115,9 +115,9 @@
     <key alias="no_title_tag">The page doesn't contain a title tag</key>
     <key alias="multiple_title_tags">The page contains multiple title tags</key>
     <key alias="no_title_value">Title tag is empty</key>
-    <key alias="title_too_long">Title is longer than 60 characters. Anything longer than 60 characters will be truncated.</key>
-    <key alias="title_too_short">Title is shorter than 5 characters.</key>
-    <key alias="title_success">The title is set correctly. The length is between 10 and 60 characters.</key>
+    <key alias="title_too_long">Title is longer than %0% characters. Anything longer than %0% characters will be truncated</key>
+    <key alias="title_too_short">Title is shorter than %1% characters</key>
+    <key alias="title_success">The title is set correctly. The length is between %1%  and %0%  characters</key>
   </area>
 
   <area alias="metadescriptionanalyzer">
@@ -132,9 +132,10 @@
     <key alias="no_meta_description_tag">The page doesnt contain a meta description tag</key>
     <key alias="multiple_meta_description_tags">The page contains multiple meta description tags</key>
     <key alias="no_description_value">The metadiscription tag content is empty</key>
-    <key alias="description_too_short">Description is shorter than 50 characters, the ideal title length is between 50 and 150 characters</key>
-    <key alias="description_too_long">Description is longer than 150 characters, the ideal title length is between 50 and 150 characters</key>
-    <key alias="description_perfect">The meta description has the ideal length, which is between 50 and 150 characters</key>
+    <key alias="description_too_short">Description is shorter than %1% characters, the ideal title length is between %2% and %0% characters</key>
+    <key alias="description_shorter_then_acceptable">Description is shorter than %2% characters, the ideal title length is between %2% and %0% characters</key>
+    <key alias="description_too_long">Description is longer than %0% characters, the ideal title length is between %2% and %0% characters</key>
+    <key alias="description_perfect">The meta description has the ideal length, which is between %2% and %0% characters</key>
   </area>
 
   <area alias="metarobotsanalyzer">
@@ -177,16 +178,9 @@
   <area alias="deprecatedtaganalyzer">
     <key alias="title">Deprecated tags</key>
     <key alias="no_deprecated_tags_found">The page doesn't contain any deprecated html tags</key>
-    <key alias="acronym_tag_found">The page contains an &lt;acronym&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="acronym_tag_found">The page contains an &lt;applet&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="acronym_tag_found">The page contains an &lt;basefont&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="acronym_tag_found">The page contains an &lt;big&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="acronym_tag_found">The page contains an &lt;center&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="acronym_tag_found">The page contains an &lt;dir&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="acronym_tag_found">The page contains an &lt;font&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="acronym_tag_found">The page contains an &lt;frame&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="acronym_tag_found">The page contains an &lt;strike&gt; tag, this is considered a deprecated html tag</key>
-    <key alias="acronym_tag_found">The page contains an &lt;tt&gt; tag, this is considered a deprecated html tag</key>
+    <key alias="tag_found">
+      <![CDATA[The page contains a <b>%0%</b> tag, this is considered a deprecated html tag]]>
+    </key>
   </area>
 
   <area alias="imagetaganalyzer">
@@ -215,12 +209,12 @@
     <key alias="title">Html size</key>
     <key alias="html_size_small">
       <![CDATA[
-      Html size %0%
+      Html size %0%, the maximum size is %1%
     ]]>
     </key>
     <key alias="html_size_too_large">
       <![CDATA[
-      Html size %0%
+      Html size %0%, the maximum size is %1%
     ]]>
     </key>
   </area>
@@ -287,9 +281,9 @@
 
   <area alias="additionalcallanalyzer">
     <key alias="title">Additional calls</key>
-    <key alias="more_than_30_calls">%0% calls have been made to resources. Try bundling javascript and css files.</key>
-    <key alias="more_than_15_calls">%0% calls have been made to resources. Try bundling javascript and css files.</key>
-    <key alias="less_than_15_calls">%0% calls have been made to resources.</key>
+    <key alias="more_than_maximum_calls">%0% calls have been made to resources. Try bundling javascript and css files.</key>
+    <key alias="more_than_acceptable_calls">%0% calls have been made to resources. Try bundling javascript and css files.</key>
+    <key alias="less_than_acceptable_calls">%0% calls have been made to resources.</key>
   </area>
 
   <area alias="cssminificationanalyzer">
@@ -302,5 +296,11 @@
     <key alias="title">Javascript Minification</key>
     <key alias="file_not_minified">The file %0% doesn't seem to be minified</key>
     <key alias="all_minified">All local javascript files seem to be minified</key>
+  </area>
+
+  <area alias="brokenlinkanalyzer">
+    <key alias="title">Broken links</key>
+    <key alias="all_links_working">All links are working correctly</key>
+    <key alias="broken_link"><![CDATA[Broken link found: <a href="%0%">%1%</a>]]></key>
   </area>
 </language>

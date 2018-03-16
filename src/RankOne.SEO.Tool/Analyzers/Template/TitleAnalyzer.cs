@@ -1,6 +1,4 @@
 ﻿using HtmlAgilityPack;
-using RankOne.Attributes;
-using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 
@@ -19,19 +17,53 @@ namespace RankOne.Analyzers.Template
     ///     1. longer than 60 - major
     ///     2. shorter than 10 - major
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Template", Alias = "titleanalyzer")]
     public class TitleAnalyzer : BaseAnalyzer
     {
-        private readonly HtmlTagHelper _htmlTagHelper;
+        private readonly IHtmlTagHelper _htmlTagHelper;
+        private readonly IOptionHelper _optionHelper;
 
-        public TitleAnalyzer()
+        private int? _maximumLength;
+        private int? _minimumLength;
+
+        private int MaximumLength
         {
-            _htmlTagHelper = new HtmlTagHelper();
+            get
+            {
+                if (!_maximumLength.HasValue)
+                {
+                    _maximumLength = _optionHelper.GetOptionValue(Options, "MaximumLength", 60);
+                }
+                return _maximumLength.Value;
+            }
+        }
+
+        private int MinimumLength
+        {
+            get
+            {
+                if (!_minimumLength.HasValue)
+                {
+                    _minimumLength = _optionHelper.GetOptionValue(Options, "MinimumLength", 5);
+                }
+                return _minimumLength.Value;
+            }
+        }
+
+        public TitleAnalyzer() : this(RankOneContext.Instance)
+        { }
+
+        public TitleAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
+        { }
+
+        public TitleAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper)
+        {
+            _htmlTagHelper = htmlTagHelper;
+            _optionHelper = optionHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
 
             var headTag = _htmlTagHelper.GetHeadTag(pageData.Document, result);
 
@@ -57,29 +89,40 @@ namespace RankOne.Analyzers.Template
         {
             var titleValue = titleTag.InnerText;
 
+            var resultRule = new ResultRule();
+
             if (string.IsNullOrWhiteSpace(titleValue))
             {
-                result.AddResultRule("no_title_value", ResultType.Error);
+                resultRule.Alias = "no_title_value";
+                resultRule.Type = ResultType.Error;
             }
             else
             {
                 titleValue = titleValue.Trim();
 
-                if (titleValue.Length > 60)
+                if (titleValue.Length > MaximumLength)
                 {
-                    result.AddResultRule("title_too_long", ResultType.Warning);
+                    resultRule.Alias = "title_too_long";
+                    resultRule.Type = ResultType.Warning;
                 }
 
-                if (titleValue.Length < 5)
+                if (titleValue.Length < MinimumLength)
                 {
-                    result.AddResultRule("titleanalyzer_title_too_short", ResultType.Hint);
+                    resultRule.Alias = "title_too_short";
+                    resultRule.Type = ResultType.Hint;
                 }
 
-                if (titleValue.Length <= 60 && titleValue.Length >= 5)
+                if (titleValue.Length <= MaximumLength && titleValue.Length >= MinimumLength)
                 {
-                    result.AddResultRule("title_success", ResultType.Success);
+                    resultRule.Alias = "title_success";
+                    resultRule.Type = ResultType.Success;
                 }
             }
+
+            resultRule.Tokens.Add(MaximumLength.ToString());        // 0
+            resultRule.Tokens.Add(MinimumLength.ToString());        // 1
+
+            result.ResultRules.Add(resultRule);
         }
     }
 }

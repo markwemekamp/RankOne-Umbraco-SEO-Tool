@@ -1,4 +1,3 @@
-using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System.Collections.Generic;
@@ -13,17 +12,20 @@ namespace RankOne.Controllers
     {
         private readonly IConfigurationHelper _configurationHelper;
 
-        public AnalyzerStructureApiController() : this(new ConfigurationHelper())
+        public AnalyzerStructureApiController() : this(RankOneContext.Instance)
         { }
 
-        public AnalyzerStructureApiController(ConfigurationHelper configurationHelper)
+        public AnalyzerStructureApiController(RankOneContext rankOneContext) : this(rankOneContext.ConfigurationHelper.Value)
+        { }
+
+        public AnalyzerStructureApiController(IConfigurationHelper configurationHelper)
         {
             _configurationHelper = configurationHelper;
         }
 
         public IEnumerable<AnalyzerStructure> GetStructure()
         {
-            var summaries = _configurationHelper.GetSummaries();
+            var summaries = _configurationHelper.Summaries;
 
             var structure = new List<AnalyzerStructure>();
             foreach (var summary in summaries)

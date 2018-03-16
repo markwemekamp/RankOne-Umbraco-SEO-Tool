@@ -1,17 +1,16 @@
 ﻿(function () {
     // Controller
-    function analyzerSelectorController($scope, webresultService) {
-        var url = '/umbraco/backoffice/rankone/AnalyzerStructureApi/GetStructure';
-        webresultService.GetResult(url)
+    function analyzerSelectorController($scope, analyzeService) {
+        analyzeService.GetStructure()
             .then(function (response) {
                 $scope.analyzerSummaries = response;
                 $scope.load();
                 $scope.loading = false;
             },
-                function (message) {
-                    $scope.error = message;
-                    $scope.loading = false;
-                });
+            function (message) {
+                $scope.error = message;
+                $scope.loading = false;
+            });
 
         $scope.load = function () {
             var tempObject = [];
@@ -33,17 +32,17 @@
                         };
                     }
                     angular.forEach(analyzerSummary.Analyzers,
-                            function (analyzer) {
-                                var analyzerObject = _.findWhere(analyzerSummaryObject.analyzers, { name: analyzer });
+                        function (analyzer) {
+                            var analyzerObject = _.findWhere(analyzerSummaryObject.analyzers, { name: analyzer });
 
-                                if (!analyzerObject) {
-                                    analyzerObject = {
-                                        name: analyzer,
-                                        checked: firstTime
-                                    }
-                                    analyzerSummaryObject.analyzers.push(analyzerObject);
+                            if (!analyzerObject) {
+                                analyzerObject = {
+                                    name: analyzer,
+                                    checked: firstTime
                                 }
-                            });
+                                analyzerSummaryObject.analyzers.push(analyzerObject);
+                            }
+                        });
 
                     tempObject.push(analyzerSummaryObject);
                 });

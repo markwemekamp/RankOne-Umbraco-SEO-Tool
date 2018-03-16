@@ -1,25 +1,42 @@
-﻿using RankOne.Attributes;
-using RankOne.Helpers;
-using RankOne.Interfaces;
+﻿using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 
 namespace RankOne.Analyzers.Performance
 {
-    [AnalyzerCategory(SummaryName = "Performance", Alias = "gzipanalyzer")]
     public class GZipAnalyzer : BaseAnalyzer
     {
-        private readonly EncodingHelper _encodingHelper;
+        private readonly IEncodingHelper _encodingHelper;
+        private readonly ICacheHelper _cacheHelper;
 
-        public GZipAnalyzer()
+        public GZipAnalyzer() : this(RankOneContext.Instance)
+        { }
+
+        public GZipAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.EncodingHelper.Value, rankOneContext.CacheHelper.Value)
+        { }
+
+        public GZipAnalyzer(IEncodingHelper encodingHelper, ICacheHelper cacheHelper)
         {
-            _encodingHelper = new EncodingHelper();
+            _encodingHelper = encodingHelper;
+            _cacheHelper = cacheHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var encoding = _encodingHelper.GetEncodingFromUrl(pageData.Url);
+            var result = new AnalyzeResult() { Weight = Weight };
+            var uri = new Uri(pageData.Url);
 
-            var result = new AnalyzeResult();
+            var cacheKey = $"encoding_{uri.Authority}";
+
+            if (!_cacheHelper.Exists(cacheKey))
+            {
+                var encodingByUrl = _encodingHelper.GetEncodingByUrl(pageData.Url);
+
+                _cacheHelper.SetValue(cacheKey, encodingByUrl);
+            }
+
+            var encoding = _cacheHelper.GetValue(cacheKey).ToString();
+
             if (encoding == "gzip")
             {
                 result.AddResultRule("gzip_enabled", ResultType.Success);

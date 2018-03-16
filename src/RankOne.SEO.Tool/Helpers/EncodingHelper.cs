@@ -1,10 +1,11 @@
-﻿using System.Net;
+﻿using RankOne.Interfaces;
+using System.Net;
 
 namespace RankOne.Helpers
 {
-    public class EncodingHelper
+    public class EncodingHelper : IEncodingHelper
     {
-        public string GetEncodingFromUrl(string url)
+        public string GetEncodingByUrl(string url)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";

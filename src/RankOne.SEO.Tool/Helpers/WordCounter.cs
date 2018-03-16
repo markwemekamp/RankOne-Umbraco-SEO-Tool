@@ -1,5 +1,6 @@
 ﻿using RankOne.Collections;
 using RankOne.ExtensionMethods;
+using RankOne.Interfaces;
 using RankOne.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace RankOne.Helpers
 {
-    public class WordCounter
+    public class WordCounter : IWordCounter
     {
         public int MinimumWordLength { get; set; }
 

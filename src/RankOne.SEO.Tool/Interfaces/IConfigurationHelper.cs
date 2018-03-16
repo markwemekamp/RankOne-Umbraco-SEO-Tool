@@ -4,6 +4,6 @@ namespace RankOne.Interfaces
 {
     public interface IConfigurationHelper
     {
-        IEnumerable<ISummary> GetSummaries();
+        IEnumerable<ISummary> Summaries { get; }
     }
 }

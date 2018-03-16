@@ -1,7 +1,5 @@
-﻿using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
-using RankOne.Repositories;
 using System;
 using Umbraco.Core.Models;
 
@@ -9,15 +7,21 @@ namespace RankOne.Services
 {
     public class AnalyzeService : IAnalyzeService
     {
-        private readonly FocusKeywordHelper _focusKeywordHelper;
-        private readonly PageAnalysisService _pageAnalysisService;
-        private readonly AnalysisCacheRepository _analysisCacheService;
+        private readonly IFocusKeywordHelper _focusKeywordHelper;
+        private readonly IPageAnalysisService _pageAnalysisService;
+        private readonly IAnalysisCacheRepository _analysisCacheService;
 
-        public AnalyzeService()
+        public AnalyzeService() : this(RankOneContext.Instance)
+        { }
+
+        public AnalyzeService(RankOneContext rankOneContext) : this(rankOneContext.FocusKeywordHelper.Value, rankOneContext.PageAnalysisService.Value, rankOneContext.AnalysisCacheRepository.Value)
+        { }
+
+        public AnalyzeService(IFocusKeywordHelper focusKeywordHelper, IPageAnalysisService pageAnalysisService, IAnalysisCacheRepository analysisCacheRepository)
         {
-            _focusKeywordHelper = new FocusKeywordHelper();
-            _pageAnalysisService = new PageAnalysisService();
-            _analysisCacheService = new AnalysisCacheRepository();
+            _focusKeywordHelper = focusKeywordHelper;
+            _pageAnalysisService = pageAnalysisService;
+            _analysisCacheService = analysisCacheRepository;
         }
 
         public PageAnalysis CreateAnalysis(IPublishedContent node, string focusKeyword = null)
@@ -27,7 +31,7 @@ namespace RankOne.Services
                 throw new MissingFieldException("TemplateId is not set");
             }
 
-            if (!string.IsNullOrEmpty(focusKeyword))
+            if (string.IsNullOrEmpty(focusKeyword))
             {
                 focusKeyword = _focusKeywordHelper.GetFocusKeyword(node);
             }

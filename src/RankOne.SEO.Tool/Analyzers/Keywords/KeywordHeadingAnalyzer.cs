@@ -1,17 +1,15 @@
-﻿using RankOne.Attributes;
-using RankOne.ExtensionMethods;
+﻿using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System.Linq;
 
 namespace RankOne.Analyzers.Keywords
 {
-    [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordheadinganalyzer")]
     public class KeywordHeadingAnalyzer : BaseAnalyzer
     {
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
 
             // Check for h1, h2, h3 and h4
             var headerTagCount = 0;

@@ -277,6 +277,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analyzers\Performance\MinificationAnalyzer.cs" />
+    <Compile Include="Analyzers\Template\BrokenLinkAnalyzer.cs" />
+    <Compile Include="Helpers\CacheHelper.cs" />
+    <Compile Include="Helpers\OptionHelper.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
+    <Compile Include="Helpers\WebRequestHelper.cs" />
+    <Compile Include="Interfaces\ICacheHelper.cs" />
+    <Compile Include="Interfaces\IOptionHelper.cs" />
+    <Compile Include="Interfaces\IUrlHelper.cs" />
+    <Compile Include="Interfaces\IUrlStatusService.cs" />
+    <Compile Include="Interfaces\IWebRequestHelper.cs" />
+    <Compile Include="Models\Option.cs" />
     <Compile Include="Analyzers\BaseAnalyzer.cs" />
     <Compile Include="Analyzers\Template\DeprecatedTagAnalyzer.cs" />
     <Compile Include="Analyzers\Template\ImageTagAnalyzer.cs" />
@@ -299,26 +311,46 @@
     <Compile Include="Helpers\EncodingHelper.cs" />
     <Compile Include="Helpers\HtmlTagHelper.cs" />
     <Compile Include="Helpers\MinificationHelper.cs" />
+    <Compile Include="Helpers\NodeReportHelper.cs" />
     <Compile Include="Helpers\PageScoreNodeHelper.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\TableNameHelper.cs" />
+    <Compile Include="Interfaces\IAnalysisCacheRepository.cs" />
+    <Compile Include="Interfaces\IBaseRepository.cs" />
+    <Compile Include="Interfaces\IByteSizeHelper.cs" />
     <Compile Include="Interfaces\IConfigurationHelper.cs" />
-    <Compile Include="Interfaces\IDefinitionHelper.cs" />
+    <Compile Include="Interfaces\IDashboardDataService.cs" />
+    <Compile Include="Interfaces\IDashboardSettingsSerializer.cs" />
+    <Compile Include="Interfaces\IEncodingHelper.cs" />
+    <Compile Include="Interfaces\IFocusKeywordHelper.cs" />
+    <Compile Include="Interfaces\IHtmlHelper.cs" />
+    <Compile Include="Interfaces\IHtmlTagHelper.cs" />
+    <Compile Include="Interfaces\IJavascriptSerializer.cs" />
+    <Compile Include="Interfaces\IMinificationHelper.cs" />
+    <Compile Include="Interfaces\INodeReportHelper.cs" />
+    <Compile Include="Interfaces\INodeReportRepository.cs" />
+    <Compile Include="Interfaces\IOption.cs" />
+    <Compile Include="Interfaces\IPageAnalysisService.cs" />
     <Compile Include="Interfaces\IPageScoreNodeHelper.cs" />
+    <Compile Include="Interfaces\IPageScoreSerializer.cs" />
+    <Compile Include="Interfaces\IScoreService.cs" />
     <Compile Include="Interfaces\ISummary.cs" />
     <Compile Include="Interfaces\ITableNameHelper.cs" />
+    <Compile Include="Interfaces\ITemplateHelper.cs" />
+    <Compile Include="Interfaces\IWordCounter.cs" />
+    <Compile Include="Models\RankOneContext.cs" />
+    <Compile Include="Models\Settings\AnalyzerOption.cs" />
     <Compile Include="Models\Settings\AnalyzerSettings.cs" />
     <Compile Include="Models\Settings\RankOneSettings.cs" />
     <Compile Include="Models\Settings\SummarySettings.cs" />
+    <Compile Include="Serializers\DashboardSettingsSerializer.cs" />
+    <Compile Include="Serializers\PageScoreSerializer.cs" />
     <Compile Include="Services\DashboardDataService.cs" />
     <Compile Include="Interfaces\IAnalyzeService.cs" />
-    <Compile Include="Attributes\Summary.cs" />
-    <Compile Include="Attributes\AnalyzerCategory.cs" />
     <Compile Include="Controllers\AnalyzerStructureApiController.cs" />
     <Compile Include="Controllers\DashboardApiController.cs" />
     <Compile Include="Controllers\AnalysisApiController.cs" />
     <Compile Include="Controllers\PageApiController.cs" />
-    <Compile Include="ExtensionMethods\AssemblyExtensions.cs" />
     <Compile Include="ExtensionMethods\HtmlNodeExtensions.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
     <Compile Include="ExtensionMethods\TypeExtensions.cs" />
@@ -329,9 +361,8 @@
     <Compile Include="Interfaces\IPageInformationService.cs" />
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisInformation.cs" />
-    <Compile Include="Models\AnalyzerDefinition.cs" />
     <Compile Include="Models\AnalyzeResult.cs" />
-    <Compile Include="Models\AnalyzerResult.cs" />
+    <Compile Include="Models\SummaryResult.cs" />
     <Compile Include="Models\AnalyzerStructure.cs" />
     <Compile Include="Models\BaseDatabaseObject.cs" />
     <Compile Include="Models\DashboardSettings.cs" />
@@ -349,7 +380,6 @@
     <Compile Include="Models\ResultType.cs" />
     <Compile Include="Models\SearchResultPreview.cs" />
     <Compile Include="Models\SeoNode.cs" />
-    <Compile Include="Models\SummaryDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -360,9 +390,9 @@
     <Compile Include="Services\PageAnalysisService.cs" />
     <Compile Include="Services\PageInformationService.cs" />
     <Compile Include="Services\ScoreService.cs" />
+    <Compile Include="Services\UrlStatusService.cs" />
     <Compile Include="Summaries\BaseSummary.cs" />
     <Compile Include="Summaries\KeywordsSummary.cs" />
-    <Compile Include="Summaries\TemplateSummary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web\UI\App_Plugins\RankOne\controllers\sitedashboard.controller.js" />
@@ -402,6 +432,7 @@
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\analyzerSelector\analyzerSelector.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.controller.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\services\analyze.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\dashboard.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\webresult.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.html" />

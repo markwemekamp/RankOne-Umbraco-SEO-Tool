@@ -1,7 +1,5 @@
 ﻿using HtmlAgilityPack;
-using RankOne.Attributes;
 using RankOne.ExtensionMethods;
-using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System.Collections.Generic;
@@ -15,19 +13,24 @@ namespace RankOne.Analyzers.Template
     /// Sources: https://support.google.com/webmasters/answer/79812?hl=en, SEO for 2016 by Sean Odom
     ///
     /// </summary>
-    [AnalyzerCategory(SummaryName = "Template", Alias = "metarobotsanalyzer")]
     public class MetaRobotsAnalyzer : BaseAnalyzer
     {
-        private readonly HtmlTagHelper _htmlTagHelper;
+        private readonly IHtmlTagHelper _htmlTagHelper;
 
-        public MetaRobotsAnalyzer()
+        public MetaRobotsAnalyzer() : this(RankOneContext.Instance)
+        { }
+
+        public MetaRobotsAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
+        { }
+
+        public MetaRobotsAnalyzer(IHtmlTagHelper htmlTagHelper)
         {
-            _htmlTagHelper = new HtmlTagHelper();
+            _htmlTagHelper = htmlTagHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
 
             var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document, result);
 

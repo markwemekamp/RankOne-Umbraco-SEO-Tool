@@ -1,34 +1,43 @@
-﻿using RankOne.Models;
+using RankOne.Interfaces;
+using RankOne.Models;
 using System;
-using System.Web.Script.Serialization;
 
 namespace RankOne.Repositories
 {
-    public class AnalysisCacheRepository
+    public class AnalysisCacheRepository : IAnalysisCacheRepository
     {
-        private readonly NodeReportRepository _nodeReportRepository;
-        private readonly JavaScriptSerializer _javaScriptSerializer;
+        private readonly INodeReportRepository _nodeReportRepository;
+        private readonly IPageScoreSerializer _pageScoreSerializer;
 
-        public AnalysisCacheRepository()
+        public AnalysisCacheRepository() : this(RankOneContext.Instance)
+        { }
+
+        public AnalysisCacheRepository(RankOneContext rankOneContext) : this(rankOneContext.NodeReportRepository.Value, rankOneContext.PageScoreSerializer.Value)
+        { }
+
+        public AnalysisCacheRepository(INodeReportRepository nodeReportRepository, IPageScoreSerializer pageScoreSerializer)
         {
-            _nodeReportRepository = new NodeReportRepository();
-            _javaScriptSerializer = new JavaScriptSerializer();
+            _nodeReportRepository = nodeReportRepository;
+            _pageScoreSerializer = pageScoreSerializer;
         }
 
         public void Save(int id, PageAnalysis pageAnalysis)
         {
-            var scoreReport = _javaScriptSerializer.Serialize(pageAnalysis.Score);
-
-            var nodeReport = new NodeReport
+            if (_nodeReportRepository.TableExists)
             {
-                Id = id,
-                FocusKeyword = pageAnalysis.FocusKeyword,
-                Report = scoreReport,
-                CreatedOn = DateTime.Now,
-                UpdatedOn = DateTime.Now
-            };
+                var scoreReport = _pageScoreSerializer.Serialize(pageAnalysis.Score);
 
-            CreateOrUpdateNodeReport(nodeReport);
+                var nodeReport = new NodeReport
+                {
+                    Id = id,
+                    FocusKeyword = pageAnalysis.FocusKeyword,
+                    Report = scoreReport,
+                    CreatedOn = DateTime.Now,
+                    UpdatedOn = DateTime.Now
+                };
+
+                CreateOrUpdateNodeReport(nodeReport);
+            }
         }
 
         private void CreateOrUpdateNodeReport(NodeReport nodeReport)

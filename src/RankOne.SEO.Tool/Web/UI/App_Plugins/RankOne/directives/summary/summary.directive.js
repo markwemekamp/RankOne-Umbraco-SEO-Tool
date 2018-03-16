@@ -1,4 +1,4 @@
-﻿angular.module('umbraco').directive('summary', function (webresultService) {
+﻿angular.module('umbraco').directive('summary', function (analyzeService) {
     return {
         restrict: 'E',
         replace: true,
@@ -13,16 +13,14 @@
             scope.load = function () {
                 scope.loading = true;
 
-                var url = '/umbraco/backoffice/rankone/AnalysisApi/AnalyzeNode?id=' + scope.nodeId;
-                webresultService.GetResult(url)
-                    .then(function (response) {
-                        scope.analyzeResults = response;
+                analyzeService.AnalyzeNode(scope.nodeId).then(function (response) {
+                    scope.analyzeResults = response;
+                    scope.loading = false;
+                },
+                    function (message) {
+                        scope.error = message;
                         scope.loading = false;
-                    },
-                        function (message) {
-                            scope.error = message;
-                            scope.loading = false;
-                        });
+                    });         
             };
 
             scope.load();

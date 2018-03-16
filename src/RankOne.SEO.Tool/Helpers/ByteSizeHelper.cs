@@ -1,9 +1,10 @@
-﻿using System;
+﻿using RankOne.Interfaces;
+using System;
 using System.Text;
 
 namespace RankOne.Helpers
 {
-    public class ByteSizeHelper
+    public class ByteSizeHelper : IByteSizeHelper
     {
         private readonly string[] _sizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
 
@@ -19,7 +20,7 @@ namespace RankOne.Helpers
         public string GetSizeSuffix(int value)
         {
             if (value < 0) { return "-" + GetSizeSuffix(-value); }
-            if (value == 0) { return "0.0 bytes"; }
+            if (value == 0) { return "0 bytes"; }
 
             var mag = (int)Math.Log(value, 1024);
             var adjustedSize = (decimal)value / (1L << (mag * 10));

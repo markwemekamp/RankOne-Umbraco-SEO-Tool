@@ -1,4 +1,3 @@
-﻿using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System.Net;
@@ -7,19 +6,25 @@ using Umbraco.Web;
 
 namespace RankOne.Services
 {
-    public class PageAnalysisService
+    public class PageAnalysisService : IPageAnalysisService
     {
-        private readonly ScoreService _scoreService;
-        private readonly HtmlHelper _htmlHelper;
-        private readonly ByteSizeHelper _byteSizeHelper;
+        private readonly IScoreService _scoreService;
+        private readonly IHtmlHelper _htmlHelper;
+        private readonly IByteSizeHelper _byteSizeHelper;
         private readonly IConfigurationHelper _configurationHelper;
 
-        public PageAnalysisService()
+        public PageAnalysisService() : this(RankOneContext.Instance)
+        { }
+
+        public PageAnalysisService(RankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.HtmlHelper.Value, rankOneContext.ByteSizeHelper.Value, rankOneContext.ConfigurationHelper.Value)
+        { }
+
+        public PageAnalysisService(IScoreService scoreService, IHtmlHelper htmlHelper, IByteSizeHelper byteSizeHelper, IConfigurationHelper configurationHelper)
         {
-            _scoreService = new ScoreService();
-            _htmlHelper = new HtmlHelper();     
-            _byteSizeHelper = new ByteSizeHelper();
-            _configurationHelper = new ConfigurationHelper();
+            _scoreService = scoreService;
+            _htmlHelper = htmlHelper;
+            _byteSizeHelper = byteSizeHelper;
+            _configurationHelper = configurationHelper;
         }
 
         public PageAnalysis CreatePageAnalysis(IPublishedContent node, string focusKeyword)
@@ -31,7 +36,7 @@ namespace RankOne.Services
                 var htmlString = _htmlHelper.GetTemplateHtml(node);
                 var htmlResult = _htmlHelper.GetHtmlResult(htmlString);
 
-                pageAnalysis.Url = node.UrlAbsolute();
+                pageAnalysis.AbsoluteUrl = node.UrlAbsolute();
                 pageAnalysis.FocusKeyword = focusKeyword;
                 pageAnalysis.Size = _byteSizeHelper.GetByteSize(htmlString);
 
@@ -49,22 +54,22 @@ namespace RankOne.Services
 
         private void SetAnalyzerResults(PageAnalysis pageAnalysis, HtmlResult html)
         {
-            var summaries = _configurationHelper.GetSummaries();
+            var summaries = _configurationHelper.Summaries;
 
             // Instantiate the types and retrieve te results
             foreach (var summary in summaries)
             {
                 summary.FocusKeyword = pageAnalysis.FocusKeyword;
                 summary.HtmlResult = html;
-                summary.Url = pageAnalysis.Url;
+                summary.Url = pageAnalysis.AbsoluteUrl;
 
-                var analyzerResult = new AnalyzerResult
+                var analyzerResult = new SummaryResult
                 {
                     Alias = summary.Alias,
                     Analysis = summary.GetAnalysis()
                 };
 
-                pageAnalysis.AnalyzerResults.Add(analyzerResult);
+                pageAnalysis.SummaryResults.Add(analyzerResult);
             }
         }
     }

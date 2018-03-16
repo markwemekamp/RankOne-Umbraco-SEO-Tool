@@ -1,57 +1,63 @@
-﻿using RankOne.Helpers;
-using RankOne.Interfaces;
+﻿using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using System.Collections.Generic;
+using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Persistence;
 using Umbraco.Web;
 
 namespace RankOne.Services
 {
-    public class DashboardDataService
+    public class DashboardDataService : IDashboardDataService
     {
-        private readonly UmbracoHelper _umbracoHelper;
+        private readonly ITypedPublishedContentQuery _typedPublishedContentQuery;
         private readonly IPageScoreNodeHelper _pageScoreNodeHelper;
-        private readonly TableNameHelper<NodeReport> _tableNameHelper;
+        private readonly DatabaseContext _databaseContext;
 
-        public DashboardDataService()
+        public DashboardDataService() : this(RankOneContext.Instance)
+        { }
+
+        public DashboardDataService(RankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.PageScoreNodeHelper.Value, rankOneContext.DatabaseContext.Value)
+        { }
+
+        public DashboardDataService(ITypedPublishedContentQuery typedPublishedContentQuery, IPageScoreNodeHelper pageScoreNodeHelper, DatabaseContext databaseContext)
         {
-            _pageScoreNodeHelper = new PageScoreNodeHelper();
-            _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-            _tableNameHelper = new TableNameHelper<NodeReport>();
+            _typedPublishedContentQuery = typedPublishedContentQuery;
+            _pageScoreNodeHelper = pageScoreNodeHelper;
+            _databaseContext = databaseContext;
         }
 
         public void Initialize()
         {
-            var tableName = _tableNameHelper.GetTableName();
+            var databaseSchemaHelper = new DatabaseSchemaHelper(_databaseContext.Database, LoggerResolver.Current.Logger, _databaseContext.SqlSyntax);
+            databaseSchemaHelper.CreateTable<NodeReport>(false);
+        }
 
-            var databaseContext = UmbracoContext.Current.Application.DatabaseContext;
-            var databaseSchemaHelper = new DatabaseSchemaHelper(databaseContext.Database, LoggerResolver.Current.Logger, databaseContext.SqlSyntax);
-
-            if (!databaseSchemaHelper.TableExist(tableName))
+        public IEnumerable<PageScoreNode> GetHierarchyFromCache()
+        {
+            try
             {
-                databaseSchemaHelper.CreateTable<NodeReport>(false);
+                var nodeCollection = _typedPublishedContentQuery.TypedContentAtRoot();
+                return _pageScoreNodeHelper.GetPageScoresFromCache(nodeCollection);
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
 
-        /// <summary>
-        /// Gets the hierarchy.
-        /// </summary>
-        /// <param name="useCache">if set to <c>true</c> the score from the database is used, else it will be calculated.</param>
-        /// <returns></returns>
-        public List<PageScoreNode> GetHierarchy(bool useCache = true)
+        public IEnumerable<PageScoreNode> GetUpdatedHierarchy()
         {
-            var tableName = _tableNameHelper.GetTableName();
-
-            var databaseContext = UmbracoContext.Current.Application.DatabaseContext;
-            var databaseSchemaHelper = new DatabaseSchemaHelper(databaseContext.Database, LoggerResolver.Current.Logger, databaseContext.SqlSyntax);
-
-            if (databaseSchemaHelper.TableExist(tableName))
+            try
             {
-                var nodeCollection = _umbracoHelper.TypedContentAtRoot();
-                return _pageScoreNodeHelper.GetPageHierarchy(nodeCollection, useCache);
+                var nodeCollection = _typedPublishedContentQuery.TypedContentAtRoot();
+                return _pageScoreNodeHelper.UpdatePageScores(nodeCollection);
             }
-            return null;
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

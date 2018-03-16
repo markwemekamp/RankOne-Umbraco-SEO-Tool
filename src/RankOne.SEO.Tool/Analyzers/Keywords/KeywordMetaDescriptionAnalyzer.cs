@@ -1,6 +1,4 @@
-﻿using RankOne.Attributes;
-using RankOne.ExtensionMethods;
-using RankOne.Helpers;
+﻿using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System;
@@ -8,19 +6,24 @@ using System.Linq;
 
 namespace RankOne.Analyzers.Keywords
 {
-    [AnalyzerCategory(SummaryName = "Keywords", Alias = "keywordmetadescriptionanalyzer")]
     public class KeywordMetaDescriptionAnalyzer : BaseAnalyzer
     {
-        private readonly HtmlTagHelper _htmlTagHelper;
+        private readonly IHtmlTagHelper _htmlTagHelper;
 
-        public KeywordMetaDescriptionAnalyzer()
+        public KeywordMetaDescriptionAnalyzer() : this(RankOneContext.Instance)
+        { }
+
+        public KeywordMetaDescriptionAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
+        { }
+
+        public KeywordMetaDescriptionAnalyzer(IHtmlTagHelper htmlTagHelper)
         {
-            _htmlTagHelper = new HtmlTagHelper();
+            _htmlTagHelper = htmlTagHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult();
+            var result = new AnalyzeResult() { Weight = Weight };
 
             var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document, result);
 

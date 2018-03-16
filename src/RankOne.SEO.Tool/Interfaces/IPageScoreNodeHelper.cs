@@ -6,6 +6,7 @@ namespace RankOne.Interfaces
 {
     public interface IPageScoreNodeHelper
     {
-        List<PageScoreNode> GetPageHierarchy(IEnumerable<IPublishedContent> nodeCollection, bool useCache);
+        IEnumerable<PageScoreNode> GetPageScoresFromCache(IEnumerable<IPublishedContent> nodeCollection);
+        IEnumerable<PageScoreNode> UpdatePageScores(IEnumerable<IPublishedContent> nodeCollection);
     }
 }

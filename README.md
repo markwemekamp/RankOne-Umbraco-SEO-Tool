@@ -1,5 +1,10 @@
 # RankOne
 
+# Doc Type Grid Editor
+
+[![NuGet release](https://img.shields.io/nuget/v/RankOne.svg)](https://www.nuget.org/packages/RankOne)
+[![Our Umbraco project page](https://img.shields.io/badge/our-umbraco-orange.svg)](https://our.umbraco.org/projects/backoffice-extensions/rankone-seo-toolkit)
+
 RankOne is a collection of SEO tools for Umbraco that aim to optimize your content according to the latest SEO standards.
 
 RankOne currently contains 5 different tools for Umbraco:
