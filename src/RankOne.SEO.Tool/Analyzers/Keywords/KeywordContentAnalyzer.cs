@@ -28,6 +28,7 @@ namespace RankOne.Analyzers.Keywords
             if (bodyTag != null)
             {
                 var bodyText = bodyTag.InnerText.Trim();
+                // replace multiple spaces with 1
                 var text = Regex.Replace(bodyText.ToLower(), @"\s+", " ");
                 var matches = Regex.Matches(text, pageData.Focuskeyword);
 
