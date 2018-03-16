@@ -13,7 +13,11 @@ namespace RankOne.Helpers
 {
     public class ConfigurationHelper : IConfigurationHelper
     {
-        public string ConfigFileName { get
+        private IEnumerable<ISummary> _summaries;
+
+        public string ConfigFileName
+        {
+            get
             {
                 return "RankOne.Config";
             }
@@ -44,7 +48,19 @@ namespace RankOne.Helpers
             return null;
         }
 
-        public IEnumerable<ISummary> GetSummaries()
+        public IEnumerable<ISummary> Summaries
+        {
+            get
+            {
+                if (_summaries == null)
+                {
+                    _summaries = GetSummaries();
+                }
+                return _summaries;
+            }
+        }
+
+        private IEnumerable<ISummary> GetSummaries()
         {
             var settings = ReadSettings();
 
@@ -81,6 +97,8 @@ namespace RankOne.Helpers
 
             return summaries;
         }
+
+
 
         private IEnumerable<IAnalyzer> GetAnalyzers(List<AnalyzerSettings> analyzerSettings)
         {

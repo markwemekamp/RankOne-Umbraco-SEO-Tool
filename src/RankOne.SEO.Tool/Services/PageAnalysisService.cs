@@ -36,7 +36,7 @@ namespace RankOne.Services
                 var htmlString = _htmlHelper.GetTemplateHtml(node);
                 var htmlResult = _htmlHelper.GetHtmlResult(htmlString);
 
-                pageAnalysis.Url = node.UrlAbsolute();
+                pageAnalysis.AbsoluteUrl = node.UrlAbsolute();
                 pageAnalysis.FocusKeyword = focusKeyword;
                 pageAnalysis.Size = _byteSizeHelper.GetByteSize(htmlString);
 
@@ -54,14 +54,14 @@ namespace RankOne.Services
 
         private void SetAnalyzerResults(PageAnalysis pageAnalysis, HtmlResult html)
         {
-            var summaries = _configurationHelper.GetSummaries();
+            var summaries = _configurationHelper.Summaries;
 
             // Instantiate the types and retrieve te results
             foreach (var summary in summaries)
             {
                 summary.FocusKeyword = pageAnalysis.FocusKeyword;
                 summary.HtmlResult = html;
-                summary.Url = pageAnalysis.Url;
+                summary.Url = pageAnalysis.AbsoluteUrl;
 
                 var analyzerResult = new SummaryResult
                 {

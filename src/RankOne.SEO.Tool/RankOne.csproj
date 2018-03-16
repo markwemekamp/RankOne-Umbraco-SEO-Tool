@@ -277,10 +277,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analyzers\Performance\MinificationAnalyzer.cs" />
     <Compile Include="Analyzers\Template\BrokenLinkAnalyzer.cs" />
+    <Compile Include="Helpers\CacheHelper.cs" />
     <Compile Include="Helpers\OptionHelper.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Helpers\WebRequestHelper.cs" />
+    <Compile Include="Interfaces\ICacheHelper.cs" />
     <Compile Include="Interfaces\IOptionHelper.cs" />
+    <Compile Include="Interfaces\IUrlHelper.cs" />
     <Compile Include="Interfaces\IUrlStatusService.cs" />
     <Compile Include="Interfaces\IWebRequestHelper.cs" />
     <Compile Include="Models\Option.cs" />

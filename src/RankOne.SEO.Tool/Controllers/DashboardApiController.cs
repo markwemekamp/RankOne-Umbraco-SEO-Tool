@@ -27,19 +27,19 @@ namespace RankOne.Controllers
         public IEnumerable<PageScoreNode> Initialize()
         {
             _dashboardDataService.Initialize();
-            return _dashboardDataService.GetHierarchy(false);
+            return _dashboardDataService.GetUpdatedHierarchy();
         }
 
         [HttpGet]
         public IEnumerable<PageScoreNode> GetPageHierarchy()
         {
-            return _dashboardDataService.GetHierarchy();
+            return _dashboardDataService.GetHierarchyFromCache();
         }
 
         [HttpGet]
         public IEnumerable<PageScoreNode> UpdateAllPages()
         {
-            return _dashboardDataService.GetHierarchy(false);
+            return _dashboardDataService.GetUpdatedHierarchy();
         }
     }
 }

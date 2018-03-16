@@ -10,16 +10,20 @@ namespace RankOne.Analyzers.Template
     public class BrokenLinkAnalyzer : BaseAnalyzer
     {
         private IUrlStatusService _urlStatusService;
+        private IUrlHelper _urlHelper;
+        private ICacheHelper _cacheHelper;
 
         public BrokenLinkAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public BrokenLinkAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.UrlStatusService.Value)
+        public BrokenLinkAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.UrlStatusService.Value, rankOneContext.UrlHelper.Value, rankOneContext.CacheHelper.Value)
         { }
 
-        public BrokenLinkAnalyzer(IUrlStatusService urlStatusService)
+        public BrokenLinkAnalyzer(IUrlStatusService urlStatusService, IUrlHelper urlHelper, ICacheHelper cacheHelper)
         {
             _urlStatusService = urlStatusService;
+            _urlHelper = urlHelper;
+            _cacheHelper = cacheHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
@@ -41,21 +45,17 @@ namespace RankOne.Analyzers.Template
 
                     if (hrefValue != null && !brokenLinks.Contains(hrefValue) && !string.IsNullOrWhiteSpace(hrefValue) && hrefValue != "/" && hrefValue != "#")
                     {
-                        var fullUrl = hrefValue;
-                        if (IsLocalLink(hrefValue))
-                        {
-                            var portSegment = "";
-                            if (url.Port > 0)
-                            {
-                                portSegment = string.Format(":{0}", url.Port);
-                            }
+                        var fullUrl = _urlHelper.GetFullPath(hrefValue, url);
 
-                            fullUrl = string.Format("{0}://{1}{3}{2}", url.Scheme, url.Host, hrefValue, portSegment);
+                        var cacheKey = $"brokenlink_{fullUrl}";
+
+                        if (!_cacheHelper.Exists(cacheKey))
+                        {
+                            var active = _urlStatusService.IsActiveUrl(fullUrl);
+                            _cacheHelper.SetValue(cacheKey, active.ToString());
                         }
 
-                        var active = _urlStatusService.IsActiveUrl(fullUrl);
-
-                        if (!active)
+                        if (_cacheHelper.GetValue(cacheKey).ToString() != true.ToString())
                         {
                             brokenLinks.Add(hrefValue);
                         }
@@ -73,11 +73,6 @@ namespace RankOne.Analyzers.Template
             }
 
             return result;
-        }
-
-        private bool IsLocalLink(string value)
-        {
-            return value.StartsWith("/");
         }
     }
 }

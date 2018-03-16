@@ -25,7 +25,7 @@ namespace RankOne.Controllers
 
         public IEnumerable<AnalyzerStructure> GetStructure()
         {
-            var summaries = _configurationHelper.GetSummaries();
+            var summaries = _configurationHelper.Summaries;
 
             var structure = new List<AnalyzerStructure>();
             foreach (var summary in summaries)

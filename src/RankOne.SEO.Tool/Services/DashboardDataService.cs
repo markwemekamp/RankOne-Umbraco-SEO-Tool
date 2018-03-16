@@ -34,19 +34,27 @@ namespace RankOne.Services
             databaseSchemaHelper.CreateTable<NodeReport>(false);
         }
 
-        /// <summary>
-        /// Gets the hierarchy.
-        /// </summary>
-        /// <param name="useCache">if set to <c>true</c> the score from the database is used, else it will be calculated.</param>
-        /// <returns></returns>
-        public IEnumerable<PageScoreNode> GetHierarchy(bool useCache = true)
+        public IEnumerable<PageScoreNode> GetHierarchyFromCache()
         {
             try
             {
                 var nodeCollection = _typedPublishedContentQuery.TypedContentAtRoot();
-                return _pageScoreNodeHelper.GetPageHierarchy(nodeCollection, useCache);
+                return _pageScoreNodeHelper.GetPageScoresFromCache(nodeCollection);
             }
             catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public IEnumerable<PageScoreNode> GetUpdatedHierarchy()
+        {
+            try
+            {
+                var nodeCollection = _typedPublishedContentQuery.TypedContentAtRoot();
+                return _pageScoreNodeHelper.UpdatePageScores(nodeCollection);
+            }
+            catch (Exception e)
             {
                 return null;
             }

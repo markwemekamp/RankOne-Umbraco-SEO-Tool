@@ -35,7 +35,7 @@ namespace RankOne.Tests.Helpers
             var applicationContext = ApplicationContext.EnsureContext(
                 databaseContext,
                 new ServiceContext(),
-                CacheHelper.CreateDisabledCacheHelper(),
+                Umbraco.Core.CacheHelper.CreateDisabledCacheHelper(),
                 new ProfilingLogger(
                     Mock.Of<ILogger>(),
                     Mock.Of<IProfiler>()), true);

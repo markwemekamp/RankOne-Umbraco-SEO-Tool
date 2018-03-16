@@ -165,6 +165,22 @@ namespace RankOne.Models
             }
         }
 
+        public Lazy<Helpers.CacheHelper> CacheHelper
+        {
+            get
+            {
+                return new Lazy<Helpers.CacheHelper>(() => new Helpers.CacheHelper());
+            }
+        }
+
+        public Lazy<UrlHelper> UrlHelper
+        {
+            get
+            {
+                return new Lazy<UrlHelper>(() => new UrlHelper());
+            }
+        }
+
         public Lazy<ScoreService> ScoreService
         {
             get

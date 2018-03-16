@@ -2,6 +2,6 @@
 {
     public interface IEncodingHelper
     {
-        string GetEncodingFromUrl(string url);
+        string GetEncodingByUrl(string url);
     }
 }

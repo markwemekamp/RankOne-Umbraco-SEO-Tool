@@ -5,7 +5,7 @@ namespace RankOne.Models
 {
     public class PageAnalysis
     {
-        public string Url { get; set; }
+        public string AbsoluteUrl { get; set; }
         public string FocusKeyword { get; set; }
         public int Size { get; set; }
         public List<SummaryResult> SummaryResults { get; set; }

@@ -2,7 +2,6 @@
 using RankOne.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
@@ -29,35 +28,39 @@ namespace RankOne.Helpers
             _analyzeService = analyzeService;
         }
 
-        public List<PageScoreNode> GetPageHierarchy(IEnumerable<IPublishedContent> nodeCollection, bool useCache)
+        public IEnumerable<PageScoreNode> GetPageScoresFromCache(IEnumerable<IPublishedContent> nodeCollection)
+        {
+            var nodeHierarchy = GetPageHierarchy(nodeCollection);
+            foreach (var node in nodeHierarchy)
+            {
+                SetPageScore(node);
+            }
+            return nodeHierarchy;
+        }
+
+        public IEnumerable<PageScoreNode> UpdatePageScores(IEnumerable<IPublishedContent> nodeCollection)
+        {
+            var nodeHierarchy = GetPageHierarchy(nodeCollection);
+            foreach (var node in nodeHierarchy)
+            {
+                UpdatePageScore(node);
+            }
+            return nodeHierarchy;
+        }
+
+        private IEnumerable<PageScoreNode> GetPageHierarchy(IEnumerable<IPublishedContent> nodeCollection)
         {
             var nodeHiearchyCollection = new List<PageScoreNode>();
             foreach (var node in nodeCollection)
             {
                 var nodeHierarchy = new PageScoreNode
                 {
-                    NodeInformation = new NodeInformation
-                    {
-                        Id = node.Id,
-                        Name = node.Name,
-                        TemplateId = node.TemplateId
-                    },
-                    Children = GetPageHierarchy(node.Children, useCache)
+                    NodeInformation = new NodeInformation(node),
+                    Children = GetPageHierarchy(node.Children)
                 };
-
-                if (useCache)
-                {
-                    SetPageScore(nodeHierarchy);
-                }
-                else
-                {
-                    UpdatePageScore(nodeHierarchy);
-                }
-
                 nodeHiearchyCollection.Add(nodeHierarchy);
             }
-
-            return nodeHiearchyCollection.ToList();
+            return nodeHiearchyCollection;
         }
 
         private void SetPageScore(PageScoreNode node)
@@ -81,6 +84,10 @@ namespace RankOne.Helpers
                         // delete database copy
                         _nodeReportRepository.Delete(nodeReport);
                     }
+                    foreach (var childNode in node.Children)
+                    {
+                        SetPageScore(childNode);
+                    }
                 }
             }
         }
@@ -89,7 +96,7 @@ namespace RankOne.Helpers
         {
             if (node.NodeInformation.TemplateId > 0)
             {
-                var umbracoNode = _typedPublishedContentQuery.TypedContent(node.NodeInformation.Id);
+                var umbracoNode = node.NodeInformation.Node;
                 var analysis = _analyzeService.CreateAnalysis(umbracoNode);
 
                 node.FocusKeyword = analysis.FocusKeyword;
