@@ -1,6 +1,6 @@
 ﻿(function () {
     // Controller
-    function rankOne($scope, editorState, webresultService, localizationService) {
+    function rankOne($scope, editorState, analyzeService, localizationService) {
         $scope.load = function () {
             $scope.loading = true;
 
@@ -8,16 +8,15 @@
                 $scope.error = localizationService.localize("error_not_published");
                 $scope.loading = false;
             } else {
-                var url = '/umbraco/backoffice/rankone/PageApi/GetPageInformation?id={id}';
-                webresultService.GetResultFromEditorState(editorState.current, url)
-                    .then(function(response) {
-                            $scope.result = response;
-                            $scope.loading = false;
-                        },
-                        function(message) {
-                            $scope.error = message;
-                            $scope.loading = false;
-                        });
+                analyzeService.GetPageInformationForEditor(editorState.current)
+                    .then(function (response) {
+                        $scope.result = response;
+                        $scope.loading = false;
+                    },
+                    function (message) {
+                        $scope.error = message;
+                        $scope.loading = false;
+                    });
             }
         }
 

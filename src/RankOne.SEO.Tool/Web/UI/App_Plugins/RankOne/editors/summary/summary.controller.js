@@ -1,6 +1,6 @@
 ﻿(function () {
     // Controller
-    function rankOneSummary($scope, editorState, webresultService, localizationService) {
+    function rankOneSummary($scope, editorState, analyzeService, localizationService) {
         $scope.load = function () {
             $scope.loading = true;
 
@@ -8,8 +8,7 @@
                 $scope.error = localizationService.localize("error_not_published");
                 $scope.loading = false;
             } else {
-                var url = '/umbraco/backoffice/rankone/AnalysisApi/AnalyzeNode?id={id}';
-                webresultService.GetResultFromEditorState(editorState.current, url)
+                analyzeService.AnalyzeNodeForEditor(editorState.current)
                     .then(function (response) {
                         $scope.analyzeResults = response;
                         $scope.loading = false;
