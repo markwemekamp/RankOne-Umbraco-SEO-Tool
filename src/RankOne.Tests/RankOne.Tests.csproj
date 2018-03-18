@@ -240,6 +240,7 @@
     <Compile Include="Analyzers\KeywordContentAnalyzerTest.cs" />
     <Compile Include="Collections\WordOccurenceCollectionTest.cs" />
     <Compile Include="Helpers\ByteSizeHelperTest.cs" />
+    <Compile Include="Helpers\CacheHelperTest.cs" />
     <Compile Include="Helpers\TemplateHelperTest.cs" />
     <Compile Include="Helpers\FocusKeywordHelperTest.cs" />
     <Compile Include="ExtensionMethods\StringExtensionsTest.cs" />
