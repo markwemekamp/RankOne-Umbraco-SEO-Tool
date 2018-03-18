@@ -33,5 +33,6 @@ tmp/
 VersionInfo.cs
 *.nupkg
 *.zip
+TestResults
 
 src/RankOne.Tests.Web/

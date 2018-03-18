@@ -6,7 +6,7 @@ namespace RankOne.Helpers
 {
     public class ByteSizeHelper : IByteSizeHelper
     {
-        private readonly string[] _sizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+        private readonly string[] _sizeSuffixes = { "bytes", "KB", "MB" };
 
         public int GetByteSize(string text)
         {
@@ -23,9 +23,9 @@ namespace RankOne.Helpers
             if (value == 0) { return "0 bytes"; }
 
             var mag = (int)Math.Log(value, 1024);
-            var adjustedSize = (decimal)value / (1L << (mag * 10));
+            var adjustedSize = value / (1L << (mag * 10));
 
-            return $"{adjustedSize:n1} {_sizeSuffixes[mag]}";
+            return $"{adjustedSize} {_sizeSuffixes[mag]}";
         }
     }
 }

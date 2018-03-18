@@ -1,7 +1,6 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
 using System;
-using System.Linq;
 
 namespace RankOne.Analyzers.Keywords
 {
@@ -21,6 +20,7 @@ namespace RankOne.Analyzers.Keywords
         private readonly IOptionHelper _optionHelper;
 
         private int? _idealKeywordPosition;
+
         private int IdealKeywordPosition
         {
             get
@@ -41,6 +41,9 @@ namespace RankOne.Analyzers.Keywords
 
         public KeywordTitleAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper)
         {
+            if (htmlTagHelper == null) throw new ArgumentNullException(nameof(htmlTagHelper));
+            if (optionHelper == null) throw new ArgumentNullException(nameof(optionHelper));
+
             _htmlTagHelper = htmlTagHelper;
             _optionHelper = optionHelper;
         }

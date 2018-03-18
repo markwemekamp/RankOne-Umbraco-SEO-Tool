@@ -21,7 +21,6 @@ namespace RankOne.Helpers
                 }
 
                 path = $"{url.Scheme}://{url.Host}{portSegment}{path}";
-
             }
 
             return path;

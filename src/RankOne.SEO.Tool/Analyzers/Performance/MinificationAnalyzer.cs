@@ -81,7 +81,6 @@ namespace RankOne.Analyzers.Performance
                     resultRule.Tokens.Add(fullPath);
                     result.ResultRules.Add(resultRule);
                 }
-
             }
         }
 
@@ -100,6 +99,7 @@ namespace RankOne.Analyzers.Performance
         }
 
         protected abstract HtmlAttribute GetAttribute(HtmlNode node);
+
         protected abstract IEnumerable<HtmlNode> GetFiles(IPageData pageData, Uri url);
     }
 }

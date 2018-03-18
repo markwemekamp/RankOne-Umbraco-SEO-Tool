@@ -1,5 +1,6 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using System.Text.RegularExpressions;
 
 namespace RankOne.Analyzers.Keywords
@@ -16,11 +17,15 @@ namespace RankOne.Analyzers.Keywords
 
         public KeywordContentAnalyzer(IHtmlTagHelper htmlTagHelper)
         {
+            if (htmlTagHelper == null) throw new ArgumentNullException(nameof(htmlTagHelper));
+
             _htmlTagHelper = htmlTagHelper;
         }
 
         public override AnalyzeResult Analyse(IPageData pageData)
         {
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
+
             var result = new AnalyzeResult() { Weight = Weight };
 
             var bodyTag = _htmlTagHelper.GetBodyTag(pageData.Document, result);
