@@ -1,8 +1,10 @@
 ﻿using RankOne.Helpers;
+using RankOne.Interfaces;
 using RankOne.Repositories;
 using RankOne.Serializers;
 using RankOne.Services;
 using System;
+using System.Collections.Generic;
 using Umbraco.Core;
 using Umbraco.Web;
 
@@ -12,6 +14,15 @@ namespace RankOne.Models
     {
         private static volatile RankOneContext instance;
         private static object syncRoot = new object();
+
+        public Lazy<IEnumerable<ISummary>> Summaries
+        {
+            get
+            {
+                return new Lazy<IEnumerable<ISummary>>(() => ConfigurationHelper.Value.GetSummaries());
+            }
+
+        }
 
         public Lazy<UmbracoHelper> UmbracoHelper
         {

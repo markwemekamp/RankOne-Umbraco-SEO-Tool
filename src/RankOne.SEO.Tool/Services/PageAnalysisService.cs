@@ -1,5 +1,6 @@
 using RankOne.Interfaces;
 using RankOne.Models;
+using System.Collections.Generic;
 using System.Net;
 using Umbraco.Core.Models;
 using Umbraco.Web;
@@ -8,23 +9,23 @@ namespace RankOne.Services
 {
     public class PageAnalysisService : IPageAnalysisService
     {
+        private readonly IEnumerable<ISummary> _summaries;
         private readonly IScoreService _scoreService;
         private readonly IHtmlHelper _htmlHelper;
         private readonly IByteSizeHelper _byteSizeHelper;
-        private readonly IConfigurationHelper _configurationHelper;
 
         public PageAnalysisService() : this(RankOneContext.Instance)
         { }
 
-        public PageAnalysisService(RankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.HtmlHelper.Value, rankOneContext.ByteSizeHelper.Value, rankOneContext.ConfigurationHelper.Value)
+        public PageAnalysisService(RankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.HtmlHelper.Value, rankOneContext.ByteSizeHelper.Value, rankOneContext.Summaries.Value)
         { }
 
-        public PageAnalysisService(IScoreService scoreService, IHtmlHelper htmlHelper, IByteSizeHelper byteSizeHelper, IConfigurationHelper configurationHelper)
+        public PageAnalysisService(IScoreService scoreService, IHtmlHelper htmlHelper, IByteSizeHelper byteSizeHelper, IEnumerable<ISummary> summaries)
         {
             _scoreService = scoreService;
             _htmlHelper = htmlHelper;
             _byteSizeHelper = byteSizeHelper;
-            _configurationHelper = configurationHelper;
+            _summaries = summaries;
         }
 
         public PageAnalysis CreatePageAnalysis(IPublishedContent node, string focusKeyword)
@@ -54,10 +55,8 @@ namespace RankOne.Services
 
         private void SetAnalyzerResults(PageAnalysis pageAnalysis, HtmlResult html)
         {
-            var summaries = _configurationHelper.Summaries;
-
             // Instantiate the types and retrieve te results
-            foreach (var summary in summaries)
+            foreach (var summary in _summaries)
             {
                 summary.FocusKeyword = pageAnalysis.FocusKeyword;
                 summary.HtmlResult = html;

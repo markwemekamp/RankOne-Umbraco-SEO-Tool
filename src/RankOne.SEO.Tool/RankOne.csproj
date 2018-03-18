@@ -356,7 +356,6 @@
     <Compile Include="Controllers\PageApiController.cs" />
     <Compile Include="ExtensionMethods\HtmlNodeExtensions.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
-    <Compile Include="ExtensionMethods\TypeExtensions.cs" />
     <Compile Include="Helpers\TemplateHelper.cs" />
     <Compile Include="Helpers\FocusKeywordHelper.cs" />
     <Compile Include="Interfaces\IAnalyzer.cs" />

@@ -7,14 +7,26 @@ namespace RankOne.Tests.Helpers
     [TestClass]
     public class WordCounterTest
     {
+        private WordCounter _wordCounter;
+
+        [TestInitialize]
+        public void TestInit()
+        {
+            _wordCounter = new WordCounter();
+        }
+
+        [TestMethod]
+        public void MinimumWordLength_OnGet_DefaultValueIs4()
+        {
+            Assert.AreEqual(4, _wordCounter.MinimumWordLength);
+        }
+
         [TestMethod]
         public void CountOccurencesForText_OnExecute_ReturnsOccurenceOfWordInText()
         {
-            var wordCounter = new WordCounter();
-
             var text = "test1 test2 test3 test4 test5 test6 test1 test2";
 
-            var result = wordCounter.CountOccurencesForText(text);
+            var result = _wordCounter.CountOccurencesForText(text);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
@@ -30,11 +42,9 @@ namespace RankOne.Tests.Helpers
         [TestMethod]
         public void GetWordCount_OnExecuteWithNotOccuringWord_ReturnsZero()
         {
-            var wordCounter = new WordCounter();
-
             var text = "test1 test2 test3 test4 test5 test6";
 
-            var result = wordCounter.CountOccurencesForText(text);
+            var result = _wordCounter.CountOccurencesForText(text);
 
             Assert.AreEqual(0, result.GetWordCount("test7"));
         }
@@ -42,11 +52,9 @@ namespace RankOne.Tests.Helpers
         [TestMethod]
         public void CountOccurencesForText_OnExecuteWithShortWords_SkipsWordsThatAre3CharactersOrShorter()
         {
-            var wordCounter = new WordCounter();
-
             var text = "test test test tes tes tes tes";
 
-            var result = wordCounter.CountOccurencesForText(text);
+            var result = _wordCounter.CountOccurencesForText(text);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
@@ -77,13 +85,11 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
-        public void GetKeywords_OnExecute_ReturnsOccurencesOfWords()
+        public void CountOccurencesForText_OnExecute_ReturnsOccurencesOfWords()
         {
-            var wordCounter = new WordCounter();
-
             var text = "test1 test2 test3 test4 test5 test6 test1 test2 test3";
 
-            var result = wordCounter.GetKeywords(text);
+            var result = _wordCounter.CountOccurencesForText(text);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(6, result.Count());

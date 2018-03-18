@@ -61,9 +61,16 @@ namespace RankOne.Tests.ExtensionMethods
             Assert.AreEqual("test", result);
         }
 
+        [TestMethod]
+        public void UrlFriendly_OnExecute_TrimsStringsLongerThan45Characters()
+        {
+            var longString = "stringthatislongerthan45charactersstringthatislongerthan45charactersstringthatislongerthan45charactersstringthatislongerthan45characters";
+            Assert.IsTrue(longString.Length > 45);
+            var result = longString.UrlFriendly();
+            Assert.IsTrue(result.Length == 45);
+        }
+
         #endregion UrlFriendly
-
-
 
         #region Simplify
 

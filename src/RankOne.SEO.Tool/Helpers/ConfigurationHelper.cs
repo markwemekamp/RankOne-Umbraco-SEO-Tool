@@ -13,9 +13,7 @@ namespace RankOne.Helpers
 {
     public class ConfigurationHelper : IConfigurationHelper
     {
-        private IEnumerable<ISummary> _summaries;
-
-        public string ConfigFileName
+        public virtual string ConfigFileName
         {
             get
             {
@@ -23,7 +21,7 @@ namespace RankOne.Helpers
             }
         }
 
-        public string ConfigFilePath
+        public virtual string ConfigFilePath
         {
             get
             {
@@ -31,90 +29,89 @@ namespace RankOne.Helpers
             }
         }
 
-        protected RankOneSettings ReadSettings()
+        public IEnumerable<ISummary> GetSummaries()
         {
-            var configFile = ConfigFilePath;
+            var settings = ReadSettingsFromFile(ConfigFilePath);
 
-            if (File.Exists(configFile))
+            var summaries = new List<ISummary>();
+
+            return settings.Summaries.Select(CreateSummary);
+        }
+
+        protected RankOneSettings ReadSettingsFromFile(string filePath)
+        {
+            if (!File.Exists(filePath)) throw new FileNotFoundException("Could not find file", filePath);
+
+            var serializer = new XmlSerializer(typeof(RankOneSettings));
+
+            var xml = File.ReadAllText(ConfigFilePath);
+            using (var reader = new StringReader(xml))
             {
-                var serializer = new XmlSerializer(typeof(RankOneSettings));
+                return (RankOneSettings)serializer.Deserialize(reader);
+            }
+        }
 
-                var xml = File.ReadAllText(configFile);
-                using (var reader = new StringReader(xml))
-                {
-                    return (RankOneSettings)serializer.Deserialize(reader);
-                }
+        private ISummary CreateSummary(SummarySettings settings)
+        {
+            var summary = CreateSummaryObject(settings);
+            if (summary != null)
+            {
+                summary.Analyzers = GetAnalyzers(settings.Analyzers);
+            }
+            return summary;
+        }
+
+        private ISummary CreateSummaryObject(SummarySettings settings)
+        {
+            if (string.IsNullOrEmpty(settings.Type))
+            {
+                return CreateBaseSummary(settings);
+            }
+            else
+            {
+                return CreateSummaryByType(settings);
+            }
+        }
+
+        private ISummary CreateBaseSummary(SummarySettings settings)
+        {
+            return new BaseSummary()
+            {
+                Name = settings.Name,
+                Alias = settings.Alias
+            };
+        }
+
+        private ISummary CreateSummaryByType(SummarySettings settings)
+        {
+            var type = Type.GetType(settings.Type);
+            if (type != null)
+            {
+                var summary = (ISummary)Activator.CreateInstance(type);
+                summary.Name = settings.Name;
+                summary.Alias = settings.Alias;
+                return summary;
             }
             return null;
         }
 
-        public IEnumerable<ISummary> Summaries
-        {
-            get
-            {
-                if (_summaries == null)
-                {
-                    _summaries = GetSummaries();
-                }
-                return _summaries;
-            }
-        }
-
-        protected IEnumerable<ISummary> GetSummaries()
-        {
-            var settings = ReadSettings();
-
-            var summaries = new List<ISummary>();
-
-            foreach (var summarySetting in settings.Summaries)
-            {
-                ISummary summary = null;
-                if (string.IsNullOrEmpty(summarySetting.Type))
-                {
-                    summary = new BaseSummary()
-                    {
-                        Name = summarySetting.Name,
-                        Alias = summarySetting.Alias
-                    };
-                }
-                else
-                {
-                    var type = Type.GetType(summarySetting.Type);
-                    if (type != null)
-                    {
-                        summary = (ISummary)Activator.CreateInstance(type);
-                        summary.Name = summarySetting.Name;
-                        summary.Alias = summarySetting.Alias;
-                    }
-                }
-
-                if (summary != null)
-                {
-                    summary.Analyzers = GetAnalyzers(summarySetting.Analyzers);
-                    summaries.Add(summary);
-                }
-            }
-
-            return summaries;
-        }
-
         protected IEnumerable<IAnalyzer> GetAnalyzers(List<AnalyzerSettings> analyzerSettings)
         {
-            var analyzers = new List<IAnalyzer>();
-            foreach (var analyzerSetting in analyzerSettings)
-            {
-                var type = Type.GetType(analyzerSetting.Type);
-                if (type != null)
-                {
-                    var analyzer = (IAnalyzer)Activator.CreateInstance(type);
-                    analyzer.Alias = analyzerSetting.Alias;
-                    analyzer.Options = analyzerSetting.Options.Select(x => new Option() { Key = x.Key, Value = x.Value });
-                    analyzer.Weight = analyzerSetting.Weight.HasValue ? analyzerSetting.Weight.Value : 100;
-                    analyzers.Add(analyzer);
-                }
-            }
+            return analyzerSettings.Select(CreateAnalyzer);
+        }
 
-            return analyzers;
+        private IAnalyzer CreateAnalyzer(AnalyzerSettings settings)
+        {
+            var type = Type.GetType(settings.Type);
+            if (type != null)
+            {
+                var analyzer = (IAnalyzer)Activator.CreateInstance(type);
+                analyzer.Alias = settings.Alias;
+                analyzer.Options = settings.Options.Select(x => new Option() { Key = x.Key, Value = x.Value });
+                analyzer.Weight = settings.Weight ?? 100;
+                return analyzer;
+            }
+            return null;
         }
     }
 }

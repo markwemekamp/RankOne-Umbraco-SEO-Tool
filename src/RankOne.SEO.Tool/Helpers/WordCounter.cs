@@ -17,7 +17,7 @@ namespace RankOne.Helpers
             MinimumWordLength = 4;
         }
 
-        public IEnumerable<KeyValuePair<string, int>> GetKeywords(string text)
+        private IEnumerable<KeyValuePair<string, int>> GetKeywords(string text)
         {
             if (text == null) throw new ArgumentNullException(nameof(text));
 

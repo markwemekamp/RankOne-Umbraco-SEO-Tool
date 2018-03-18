@@ -10,25 +10,23 @@ namespace RankOne.Controllers
     [PluginController("RankOne")]
     public class AnalyzerStructureApiController : UmbracoAuthorizedApiController
     {
-        private readonly IConfigurationHelper _configurationHelper;
+        private readonly IEnumerable<ISummary> _summaries;
 
         public AnalyzerStructureApiController() : this(RankOneContext.Instance)
         { }
 
-        public AnalyzerStructureApiController(RankOneContext rankOneContext) : this(rankOneContext.ConfigurationHelper.Value)
+        public AnalyzerStructureApiController(RankOneContext rankOneContext) : this(rankOneContext.Summaries.Value)
         { }
 
-        public AnalyzerStructureApiController(IConfigurationHelper configurationHelper)
+        public AnalyzerStructureApiController(IEnumerable<ISummary> summaries)
         {
-            _configurationHelper = configurationHelper;
+            _summaries = summaries;
         }
 
         public IEnumerable<AnalyzerStructure> GetStructure()
         {
-            var summaries = _configurationHelper.Summaries;
-
             var structure = new List<AnalyzerStructure>();
-            foreach (var summary in summaries)
+            foreach (var summary in _summaries)
             {
                 structure.Add(new AnalyzerStructure
                 {
