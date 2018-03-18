@@ -17,10 +17,10 @@ namespace RankOne.Helpers
                 var portSegment = "";
                 if (url.Port > 0)
                 {
-                    portSegment = string.Format(":{0}", url.Port);
+                    portSegment = $":{url.Port}";
                 }
 
-                path = string.Format("{0}://{1}{3}{2}", url.Scheme, url.Host, path, portSegment);
+                path = $"{url.Scheme}://{url.Host}{portSegment}{path}";
 
             }
 

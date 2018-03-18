@@ -47,7 +47,7 @@ namespace RankOne.Analyzers.Template
                     {
                         var fullUrl = _urlHelper.GetFullPath(hrefValue, url);
 
-                        var cacheKey = string.Format("brokenlink_{0}", fullUrl);
+                        var cacheKey = "brokenlink_{fullUrl}";
 
                         if (!_cacheHelper.Exists(cacheKey))
                         {

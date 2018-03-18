@@ -57,7 +57,7 @@ namespace RankOne.Analyzers.Performance
             if (address != null)
             {
                 var fullPath = _urlHelper.GetFullPath(address.Value, url);
-                var cacheKey = string.Format("{0}{1}", CacheKeyPrefix, fullPath);
+                var cacheKey = $"{CacheKeyPrefix}{fullPath}";
 
                 if (!_cacheHelper.Exists(cacheKey))
                 {

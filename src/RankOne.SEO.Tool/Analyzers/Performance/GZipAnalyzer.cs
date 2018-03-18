@@ -26,7 +26,7 @@ namespace RankOne.Analyzers.Performance
             var result = new AnalyzeResult() { Weight = Weight };
             var uri = new Uri(pageData.Url);
 
-            var cacheKey = string.Format("encoding_{0}", uri.Authority);
+            var cacheKey = $"encoding_{uri.Authority}";
 
             if (!_cacheHelper.Exists(cacheKey))
             {
