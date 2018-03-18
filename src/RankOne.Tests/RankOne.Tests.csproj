@@ -267,6 +267,7 @@
     <Compile Include="Mocks\PublishedPropertyMock.cs" />
     <Compile Include="Models\Exceptions\NoElementFoundExceptionTest.cs" />
     <Compile Include="Models\Exceptions\MultipleElementsFoundExceptionTest.cs" />
+    <Compile Include="Models\Settings\SettingsModelsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\TableNameHelperTest.cs" />
   </ItemGroup>
