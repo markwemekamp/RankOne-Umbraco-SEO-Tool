@@ -1,4 +1,5 @@
 ﻿using RankOne.Interfaces;
+using System;
 using System.Net;
 
 namespace RankOne.Helpers
@@ -7,6 +8,8 @@ namespace RankOne.Helpers
     {
         public string GetEncodingByUrl(string url)
         {
+            if (url == null) throw new ArgumentNullException(nameof(url));
+
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
             request.Headers.Add("Accept-Encoding", "gzip,deflate");

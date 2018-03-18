@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using Umbraco.Core.Models;
 
 namespace RankOne.Helpers
@@ -17,11 +18,15 @@ namespace RankOne.Helpers
 
         public HtmlHelper(ITemplateHelper templateHelper)
         {
+            if (templateHelper == null) throw new ArgumentNullException(nameof(templateHelper));
+
             _contentHelper = templateHelper;
         }
 
         public HtmlNode GetHtmlNodeFromString(string htmlString)
         {
+            if (htmlString == null) throw new ArgumentNullException(nameof(htmlString));
+
             if (htmlString != null)
             {
                 var document = new HtmlDocument();
@@ -33,6 +38,8 @@ namespace RankOne.Helpers
 
         public HtmlResult GetHtmlResult(string htmlString)
         {
+            if (htmlString == null) throw new ArgumentNullException(nameof(htmlString));
+
             var htmlNode = GetHtmlNodeFromString(htmlString);
             var htmlResult = new HtmlResult
             {
@@ -44,6 +51,8 @@ namespace RankOne.Helpers
 
         public string GetTemplateHtml(IPublishedContent node)
         {
+            if (node == null) throw new ArgumentNullException(nameof(node));
+
             return _contentHelper.GetNodeHtml(node);
         }
     }

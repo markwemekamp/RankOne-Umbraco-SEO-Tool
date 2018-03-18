@@ -19,11 +19,15 @@ namespace RankOne.Helpers
 
         public IEnumerable<KeyValuePair<string, int>> GetKeywords(string text)
         {
+            if (text == null) throw new ArgumentNullException(nameof(text));
+
             return CountOccurencesForText(text).OrderByDescending(x => x.Value);
         }
 
         public IEnumerable<KeyValuePair<string, int>> GetKeywords(HtmlResult html)
         {
+            if (html == null) throw new ArgumentNullException(nameof(html));
+
             var occurences = new WordOccurenceCollection();
 
             var textBlocks = html.Document.SelectNodes("//*[not(self::script) and not(self::style)]//text()");
@@ -43,6 +47,8 @@ namespace RankOne.Helpers
 
         public WordOccurenceCollection CountOccurencesForText(string textBlockText)
         {
+            if (textBlockText == null) throw new ArgumentNullException(nameof(textBlockText));
+
             var occurences = new WordOccurenceCollection();
 
             // Split text to words

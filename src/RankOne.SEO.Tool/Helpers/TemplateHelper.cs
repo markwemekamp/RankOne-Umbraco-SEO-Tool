@@ -18,23 +18,16 @@ namespace RankOne.Helpers
 
         public TemplateHelper(IUmbracoComponentRenderer umbracoComponentRenderer)
         {
+            if (umbracoComponentRenderer == null) throw new ArgumentNullException(nameof(umbracoComponentRenderer));
+
             _umbracoComponentRenderer = umbracoComponentRenderer;
         }
 
         public string GetNodeHtml(IPublishedContent content)
         {
-            if (content == null)
-            {
-                throw new ArgumentNullException("content", "Content parameter cannot be null");
-            }
-            if (content.Id == 0)
-            {
-                throw new MissingFieldException("The Id of content is not set");
-            }
-            if (content.TemplateId == 0)
-            {
-                throw new MissingFieldException("The templateId of content is not set");
-            }
+            if (content == null)  throw new ArgumentNullException("content", "Content parameter cannot be null");
+            if (content.Id == 0)  throw new MissingFieldException("The Id of content is not set");
+            if (content.TemplateId == 0) throw new MissingFieldException("The templateId of content is not set");
 
             var htmlObject = _umbracoComponentRenderer.RenderTemplate(content.Id);
             return htmlObject != null ? htmlObject.ToHtmlString() : null;

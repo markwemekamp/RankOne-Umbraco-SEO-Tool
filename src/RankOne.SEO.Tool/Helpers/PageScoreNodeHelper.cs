@@ -17,11 +17,18 @@ namespace RankOne.Helpers
         public PageScoreNodeHelper() : this(RankOneContext.Instance)
         { }
 
-        public PageScoreNodeHelper(RankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.NodeReportRepository.Value, rankOneContext.PageScoreSerializer.Value, rankOneContext.AnalyzeService.Value)
+        public PageScoreNodeHelper(RankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.NodeReportRepository.Value, 
+            rankOneContext.PageScoreSerializer.Value, rankOneContext.AnalyzeService.Value)
         { }
 
-        public PageScoreNodeHelper(ITypedPublishedContentQuery typedPublishedContentQuery, INodeReportRepository nodeReportRepository, IPageScoreSerializer pageScoreSerializer, IAnalyzeService analyzeService)
+        public PageScoreNodeHelper(ITypedPublishedContentQuery typedPublishedContentQuery, INodeReportRepository nodeReportRepository, 
+            IPageScoreSerializer pageScoreSerializer, IAnalyzeService analyzeService)
         {
+            if (typedPublishedContentQuery == null) throw new ArgumentNullException(nameof(typedPublishedContentQuery));
+            if (nodeReportRepository == null) throw new ArgumentNullException(nameof(nodeReportRepository));
+            if (pageScoreSerializer == null) throw new ArgumentNullException(nameof(pageScoreSerializer));
+            if (analyzeService == null) throw new ArgumentNullException(nameof(analyzeService));
+
             _typedPublishedContentQuery = typedPublishedContentQuery;
             _nodeReportRepository = nodeReportRepository;
             _pagescoreSerializer = pageScoreSerializer;
@@ -30,6 +37,8 @@ namespace RankOne.Helpers
 
         public IEnumerable<PageScoreNode> GetPageScoresFromCache(IEnumerable<IPublishedContent> nodeCollection)
         {
+            if (nodeCollection == null) throw new ArgumentNullException(nameof(nodeCollection));
+
             var nodeHierarchy = GetPageHierarchy(nodeCollection);
             foreach (var node in nodeHierarchy)
             {
@@ -40,6 +49,8 @@ namespace RankOne.Helpers
 
         public IEnumerable<PageScoreNode> UpdatePageScores(IEnumerable<IPublishedContent> nodeCollection)
         {
+            if (nodeCollection == null) throw new ArgumentNullException(nameof(nodeCollection));
+
             var nodeHierarchy = GetPageHierarchy(nodeCollection);
             foreach (var node in nodeHierarchy)
             {
@@ -50,6 +61,8 @@ namespace RankOne.Helpers
 
         private IEnumerable<PageScoreNode> GetPageHierarchy(IEnumerable<IPublishedContent> nodeCollection)
         {
+            if (nodeCollection == null) throw new ArgumentNullException(nameof(nodeCollection));
+
             var nodeHiearchyCollection = new List<PageScoreNode>();
             foreach (var node in nodeCollection)
             {
@@ -65,6 +78,8 @@ namespace RankOne.Helpers
 
         private void SetPageScore(PageScoreNode node)
         {
+            if (node == null) throw new ArgumentNullException(nameof(node));
+
             var nodeReport = _nodeReportRepository.GetById(node.NodeInformation.Id);
             if (nodeReport != null)
             {
@@ -94,6 +109,8 @@ namespace RankOne.Helpers
 
         private void UpdatePageScore(PageScoreNode node)
         {
+            if (node == null) throw new ArgumentNullException(nameof(node));
+
             if (node.NodeInformation.TemplateId > 0)
             {
                 var umbracoNode = node.NodeInformation.Node;

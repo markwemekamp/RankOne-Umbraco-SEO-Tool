@@ -31,7 +31,7 @@ namespace RankOne.Helpers
             }
         }
 
-        private RankOneSettings ReadSettings()
+        protected RankOneSettings ReadSettings()
         {
             var configFile = ConfigFilePath;
 
@@ -60,7 +60,7 @@ namespace RankOne.Helpers
             }
         }
 
-        private IEnumerable<ISummary> GetSummaries()
+        protected IEnumerable<ISummary> GetSummaries()
         {
             var settings = ReadSettings();
 
@@ -98,7 +98,7 @@ namespace RankOne.Helpers
             return summaries;
         }
 
-        private IEnumerable<IAnalyzer> GetAnalyzers(List<AnalyzerSettings> analyzerSettings)
+        protected IEnumerable<IAnalyzer> GetAnalyzers(List<AnalyzerSettings> analyzerSettings)
         {
             var analyzers = new List<IAnalyzer>();
             foreach (var analyzerSetting in analyzerSettings)
