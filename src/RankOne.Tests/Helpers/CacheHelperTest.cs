@@ -66,5 +66,28 @@ namespace RankOne.Tests.Helpers
         {
             _cacheHelper.SetValue(null, null);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SetValue_OnExecuteWithNewKey_AddsValue()
+        {
+            _cacheHelper.SetValue("newkey", "new_keyvalue");
+            var value = _cacheHelper.GetValue("newkey");
+            Assert.IsNotNull(value);
+            Assert.AreEqual("new_keyvalue", value);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SetValue_OnExecuteWithExistingKey_OverwritesValue()
+        {
+            var value = _cacheHelper.GetValue("existing");
+            Assert.IsNotNull(value);
+            Assert.AreEqual("I exist", value);
+            _cacheHelper.SetValue("existing", "new_keyvalue_for_existing");
+            value = _cacheHelper.GetValue("existing");
+            Assert.IsNotNull(value);
+            Assert.AreEqual("new_keyvalue_for_existing", value);
+        }
     }
 }
