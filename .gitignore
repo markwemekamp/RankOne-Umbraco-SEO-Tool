@@ -34,5 +34,6 @@ VersionInfo.cs
 *.nupkg
 *.zip
 TestResults
+.sonarqube
 
 src/RankOne.Tests.Web/
