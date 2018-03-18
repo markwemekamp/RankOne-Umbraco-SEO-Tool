@@ -68,7 +68,6 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetValue_OnExecuteWithNewKey_AddsValue()
         {
             _cacheHelper.SetValue("newkey", "new_keyvalue");
@@ -78,7 +77,6 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void SetValue_OnExecuteWithExistingKey_OverwritesValue()
         {
             var value = _cacheHelper.GetValue("existing");
