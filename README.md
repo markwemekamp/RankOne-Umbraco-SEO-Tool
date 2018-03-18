@@ -62,18 +62,15 @@ RankOne currently contains 5 different tools for Umbraco:
 ## Supported versions ##
 Umbraco 7.4+
 
-## Changelog ##
-
-1.2 Added seo doctype composition, removed headinganalyzer, minor bug and localization fixes
-
 ### Install Dependencies ###
 *Requires Node.js to be installed and in your system path*
 
-    npm install -g grunt-cli && npm install -g grunt
+    npm install -g gulp-cli
+    npm install -g gulp
     npm install
 
 ### Build ###
-    grunt
+    gulp
 
    Builds the project to `/dist/`.  These files can be dropped into an Umbraco 7 site, or you can build directly to a site using:
 
