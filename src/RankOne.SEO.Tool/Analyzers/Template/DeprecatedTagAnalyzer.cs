@@ -2,6 +2,7 @@
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,29 +34,29 @@ namespace RankOne.Analyzers.Template
         public DeprecatedTagAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.OptionHelper.Value)
         { }
 
-        public DeprecatedTagAnalyzer(IOptionHelper optionHelper)
+        public DeprecatedTagAnalyzer(IOptionHelper optionHelper) : base()
         {
+            if (optionHelper == null) throw new ArgumentNullException(nameof(optionHelper));
+
             _optionHelper = optionHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
             foreach (var deprecatedKeyword in DeprecatedTags)
             {
-                CheckTag(pageData.Document, deprecatedKeyword, result);
+                CheckTag(pageData.Document, deprecatedKeyword);
             }
 
-            if (!result.ResultRules.Any())
+            if (!AnalyzeResult.ResultRules.Any())
             {
-                result.AddResultRule("no_deprecated_tags_found", ResultType.Success);
+                AddResultRule("no_deprecated_tags_found", ResultType.Success);
             }
-
-            return result;
         }
 
-        private void CheckTag(HtmlNode htmlNode, string tagname, AnalyzeResult result)
+        private void CheckTag(HtmlNode htmlNode, string tagname)
         {
             var acronymTags = htmlNode.GetElements(tagname);
 
@@ -68,7 +69,7 @@ namespace RankOne.Analyzers.Template
                     Tokens = new List<string>() { tagname }
                 };
 
-                result.ResultRules.Add(resultRute);
+                AddResultRule(resultRute);
             }
         }
     }

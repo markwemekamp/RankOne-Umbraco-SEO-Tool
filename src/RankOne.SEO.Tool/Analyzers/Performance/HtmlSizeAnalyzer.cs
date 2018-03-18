@@ -1,5 +1,6 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 
 namespace RankOne.Analyzers.Performance
 {
@@ -28,15 +29,18 @@ namespace RankOne.Analyzers.Performance
         public HtmlSizeAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.ByteSizeHelper.Value, rankOneContext.OptionHelper.Value)
         { }
 
-        public HtmlSizeAnalyzer(IByteSizeHelper byteSizeHelper, IOptionHelper optionHelper)
+        public HtmlSizeAnalyzer(IByteSizeHelper byteSizeHelper, IOptionHelper optionHelper) : base()
         {
+            if (byteSizeHelper == null) throw new ArgumentNullException(nameof(byteSizeHelper));
+            if (optionHelper == null) throw new ArgumentNullException(nameof(optionHelper));
+
             _byteSizeHelper = byteSizeHelper;
             _optionHelper = optionHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
             var byteCount = _byteSizeHelper.GetByteSize(pageData.Document.InnerHtml);
             var htmlSizeResultRule = new ResultRule();
@@ -53,9 +57,7 @@ namespace RankOne.Analyzers.Performance
             }
             htmlSizeResultRule.Tokens.Add(_byteSizeHelper.GetSizeSuffix(byteCount));
             htmlSizeResultRule.Tokens.Add(_byteSizeHelper.GetSizeSuffix(MaximumSizeInBytes));
-            result.ResultRules.Add(htmlSizeResultRule);
-
-            return result;
+            AddResultRule(htmlSizeResultRule);
         }
     }
 }

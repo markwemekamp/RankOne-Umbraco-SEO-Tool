@@ -2,6 +2,7 @@
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Models.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,76 +11,68 @@ namespace RankOne.Helpers
 {
     public class HtmlTagHelper : IHtmlTagHelper
     {
-        public HtmlNode GetHeadTag(HtmlNode document, AnalyzeResult result)
+        public HtmlNode GetHeadTag(HtmlNode document)
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
-            if (result == null) throw new ArgumentNullException(nameof(result));
 
-            return GetSingleTag(document, result, "head");
+            return GetSingleTag(document, "head");
         }
 
-        public HtmlNode GetBodyTag(HtmlNode document, AnalyzeResult result)
+        public HtmlNode GetBodyTag(HtmlNode document)
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
-            if (result == null) throw new ArgumentNullException(nameof(result));
 
-            return GetSingleTag(document, result, "body");
+            return GetSingleTag(document, "body");
         }
 
-        public HtmlNode GetTitleTag(HtmlNode document, AnalyzeResult result)
+        public HtmlNode GetTitleTag(HtmlNode document)
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
-            if (result == null) throw new ArgumentNullException(nameof(result));
 
-            return GetSingleTag(document, result, "title");
+            return GetSingleTag(document, "title");
         }
 
-        public IEnumerable<HtmlNode> GetMetaTags(HtmlNode document, AnalyzeResult result)
+        public IEnumerable<HtmlNode> GetMetaTags(HtmlNode document)
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
-            if (result == null) throw new ArgumentNullException(nameof(result));
 
-            return GetMultipleTags(document, result, "meta");
+            return GetMultipleTags(document, "meta");
         }
 
-        private HtmlNode GetSingleTag(HtmlNode document, AnalyzeResult result, string tagName)
+        private HtmlNode GetSingleTag(HtmlNode document, string tagName)
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
-            if (result == null) throw new ArgumentNullException(nameof(result));
             if (tagName == null) throw new ArgumentNullException(nameof(tagName));
 
             var tags = document.GetElements(tagName);
             if (!tags.Any())
             {
-                result.AddResultRule("no_" + tagName + "_tag", ResultType.Error);
+                throw new NoElementFoundException(tagName);
             }
             else if (tags.Count() > 1)
             {
-                result.AddResultRule("multiple_" + tagName + "_tags", ResultType.Error);
+                throw new MultipleElementsFoundException(tagName);
             }
             else
             {
                 return tags.FirstOrDefault();
             }
-            return null;
         }
 
-        private IEnumerable<HtmlNode> GetMultipleTags(HtmlNode document, AnalyzeResult result, string tagName)
+        private IEnumerable<HtmlNode> GetMultipleTags(HtmlNode document, string tagName)
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
-            if (result == null) throw new ArgumentNullException(nameof(result));
             if (tagName == null) throw new ArgumentNullException(nameof(tagName));
 
             var tags = document.GetElements(tagName);
             if (!tags.Any())
             {
-                result.AddResultRule("no_" + tagName + "_tags", ResultType.Error);
+                throw new NoElementFoundException(tagName);
             }
             else
             {
                 return tags;
             }
-            return null;
         }
     }
 }

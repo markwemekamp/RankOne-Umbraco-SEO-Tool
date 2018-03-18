@@ -15,15 +15,19 @@ namespace RankOne.Analyzers.Performance
         public GZipAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.EncodingHelper.Value, rankOneContext.CacheHelper.Value)
         { }
 
-        public GZipAnalyzer(IEncodingHelper encodingHelper, ICacheHelper cacheHelper)
+        public GZipAnalyzer(IEncodingHelper encodingHelper, ICacheHelper cacheHelper) : base()
         {
+            if (encodingHelper == null) throw new ArgumentNullException(nameof(encodingHelper));
+            if (cacheHelper == null) throw new ArgumentNullException(nameof(cacheHelper));
+
             _encodingHelper = encodingHelper;
             _cacheHelper = cacheHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
+
             var uri = new Uri(pageData.Url);
 
             var cacheKey = $"encoding_{uri.Authority}";
@@ -39,14 +43,12 @@ namespace RankOne.Analyzers.Performance
 
             if (encoding == "gzip")
             {
-                result.AddResultRule("gzip_enabled", ResultType.Success);
+                AddResultRule("gzip_enabled", ResultType.Success);
             }
             else
             {
-                result.AddResultRule("gzip_disabled", ResultType.Hint);
+                AddResultRule("gzip_disabled", ResultType.Hint);
             }
-
-            return result;
         }
     }
 }

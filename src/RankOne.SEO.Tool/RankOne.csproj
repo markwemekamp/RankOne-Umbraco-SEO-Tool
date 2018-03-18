@@ -291,6 +291,9 @@
     <Compile Include="Interfaces\IUrlHelper.cs" />
     <Compile Include="Interfaces\IUrlStatusService.cs" />
     <Compile Include="Interfaces\IWebRequestHelper.cs" />
+    <Compile Include="Models\Exceptions\ElementException.cs" />
+    <Compile Include="Models\Exceptions\MultipleElementsFoundException.cs" />
+    <Compile Include="Models\Exceptions\NoElementFoundException.cs" />
     <Compile Include="Models\Option.cs" />
     <Compile Include="Analyzers\BaseAnalyzer.cs" />
     <Compile Include="Analyzers\Template\DeprecatedTagAnalyzer.cs" />

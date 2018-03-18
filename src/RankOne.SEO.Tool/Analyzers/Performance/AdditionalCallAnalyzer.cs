@@ -1,6 +1,7 @@
 ﻿using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using System.Linq;
 
 namespace RankOne.Analyzers.Performance
@@ -43,14 +44,16 @@ namespace RankOne.Analyzers.Performance
         public AdditionalCallAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.OptionHelper.Value)
         { }
 
-        public AdditionalCallAnalyzer(IOptionHelper optionHelper)
+        public AdditionalCallAnalyzer(IOptionHelper optionHelper) : base()
         {
+            if (optionHelper == null) throw new ArgumentNullException(nameof(optionHelper));
+
             _optionHelper = optionHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
             var cssFiles = pageData.Document.GetElementsWithAttribute("link", "href").
                 Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));
@@ -86,9 +89,7 @@ namespace RankOne.Analyzers.Performance
             resultRule.Tokens.Add(MaximumAdditionalCalls.ToString());       // 5
             resultRule.Tokens.Add(AcceptableAdditionalCalls.ToString());    // 6
 
-            result.ResultRules.Add(resultRule);
-
-            return result;
+            AddResultRule(resultRule);
         }
     }
 }

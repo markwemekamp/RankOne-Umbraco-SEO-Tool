@@ -239,12 +239,24 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Analyzers\TitleAnalyzerTest.cs" />
+    <Compile Include="Analyzers\MetaRobotsAnalyzerTest.cs" />
+    <Compile Include="Analyzers\MetaKeywordAnalyzerTest.cs" />
+    <Compile Include="Analyzers\MetaDescriptionAnalyzerTest.cs" />
+    <Compile Include="Analyzers\DeprecatedTagAnalyzerTest.cs" />
+    <Compile Include="Analyzers\BrokenLinkAnalyzerTest.cs" />
+    <Compile Include="Analyzers\HtmlSizeAnalyzerTest.cs" />
+    <Compile Include="Analyzers\GZipAnalyzerTest.cs" />
+    <Compile Include="Analyzers\AdditionalCallAnalyzerTest.cs" />
+    <Compile Include="Analyzers\KeywordTitleAnalyzerTest.cs" />
+    <Compile Include="Analyzers\KeywordMetaDescriptionAnalyzerTest.cs" />
     <Compile Include="Analyzers\KeywordContentAnalyzerTest.cs" />
     <Compile Include="Collections\WordOccurenceCollectionTest.cs" />
     <Compile Include="ExtensionMethods\HtmlNodeExtensionsTest.cs" />
     <Compile Include="Helpers\ByteSizeHelperTest.cs" />
     <Compile Include="Helpers\CacheHelperTest.cs" />
     <Compile Include="Helpers\ConfigurationHelperTest.cs" />
+    <Compile Include="Helpers\HtmlTagHelperTest.cs" />
     <Compile Include="Helpers\UrlHelperTest.cs" />
     <Compile Include="Helpers\EncodingHelperTest.cs" />
     <Compile Include="Helpers\TemplateHelperTest.cs" />

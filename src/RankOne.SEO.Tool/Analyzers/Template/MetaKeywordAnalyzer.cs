@@ -2,6 +2,8 @@
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Models.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,25 +19,38 @@ namespace RankOne.Analyzers.Template
         public MetaKeywordAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
         { }
 
-        public MetaKeywordAnalyzer(IHtmlTagHelper htmlTagHelper)
+        public MetaKeywordAnalyzer(IHtmlTagHelper htmlTagHelper) : base()
         {
+            if (htmlTagHelper == null) throw new ArgumentNullException(nameof(htmlTagHelper));
+
             _htmlTagHelper = htmlTagHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
-            var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document, result);
-
-            if (metaTags.Any())
+            try
             {
-                AnalyzeMetaTags(metaTags, result);
+                var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document);
+
+                if (metaTags.Any())
+                {
+                    AnalyzeMetaTags(metaTags);
+                }
             }
-            return result;
+            catch (NoElementFoundException e)
+            {
+                AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
+
+            }
+            catch (MultipleElementsFoundException e)
+            {
+                AddResultRule("multiple_" + e.ElementName + "_tags", ResultType.Error);
+            }
         }
 
-        private void AnalyzeMetaTags(IEnumerable<HtmlNode> metaTags, AnalyzeResult result)
+        private void AnalyzeMetaTags(IEnumerable<HtmlNode> metaTags)
         {
             var attributeValues = from metaTag in metaTags
                                   let attribute = metaTag.GetAttribute("name")
@@ -45,33 +60,33 @@ namespace RankOne.Analyzers.Template
 
             if (!attributeValues.Any())
             {
-                result.AddResultRule("no_meta_keywords_tag", ResultType.Hint);
+                AddResultRule("no_meta_keywords_tag", ResultType.Hint);
             }
             else if (attributeValues.Count() > 1)
             {
-                result.AddResultRule("multiple_meta_keywords_tags", ResultType.Warning);
+                AddResultRule("multiple_meta_keywords_tags", ResultType.Warning);
             }
             else
             {
                 var firstMetaKeywordsTag = attributeValues.FirstOrDefault();
                 if (firstMetaKeywordsTag != null)
                 {
-                    AnalyzeMetaKeywordsAttribute(firstMetaKeywordsTag, result);
+                    AnalyzeMetaKeywordsAttribute(firstMetaKeywordsTag);
                 }
             }
         }
 
-        private void AnalyzeMetaKeywordsAttribute(HtmlAttribute metaKeywordsTag, AnalyzeResult result)
+        private void AnalyzeMetaKeywordsAttribute(HtmlAttribute metaKeywordsTag)
         {
             var keywordsValue = metaKeywordsTag.Value;
 
             if (string.IsNullOrWhiteSpace(keywordsValue))
             {
-                result.AddResultRule("no_keywords_value", ResultType.Hint);
+                AddResultRule("no_keywords_value", ResultType.Hint);
             }
             else
             {
-                result.AddResultRule("keywords_set", ResultType.Success);
+                AddResultRule("keywords_set", ResultType.Success);
             }
         }
     }

@@ -5,12 +5,6 @@ namespace RankOne.Helpers
 {
     public class UrlHelper : IUrlHelper
     {
-        private bool IsLocalLink(string path)
-        {
-            if (path == null) throw new ArgumentNullException(nameof(path));
-
-            return path.StartsWith("/");
-        }
 
         public string GetFullPath(string path, Uri url)
         {
@@ -20,7 +14,7 @@ namespace RankOne.Helpers
             if (IsLocalLink(path))
             {
                 var portSegment = "";
-                if (url.Port > 0)
+                if (url.Port > 0 && url.Port != 80)
                 {
                     portSegment = $":{url.Port}";
                 }
@@ -29,6 +23,13 @@ namespace RankOne.Helpers
             }
 
             return path;
+        }
+
+        public bool IsLocalLink(string path)
+        {
+            if (path == null) throw new ArgumentNullException(nameof(path));
+
+            return path.StartsWith("/") || path.StartsWith("./");
         }
     }
 }

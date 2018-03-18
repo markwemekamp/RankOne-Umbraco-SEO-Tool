@@ -16,19 +16,24 @@ namespace RankOne.Analyzers.Template
         public BrokenLinkAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public BrokenLinkAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.UrlStatusService.Value, rankOneContext.UrlHelper.Value, rankOneContext.CacheHelper.Value)
+        public BrokenLinkAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.UrlStatusService.Value, rankOneContext.UrlHelper.Value,
+            rankOneContext.CacheHelper.Value)
         { }
 
-        public BrokenLinkAnalyzer(IUrlStatusService urlStatusService, IUrlHelper urlHelper, ICacheHelper cacheHelper)
+        public BrokenLinkAnalyzer(IUrlStatusService urlStatusService, IUrlHelper urlHelper, ICacheHelper cacheHelper) : base()
         {
+            if (urlStatusService == null) throw new ArgumentNullException(nameof(urlStatusService));
+            if (urlHelper == null) throw new ArgumentNullException(nameof(urlHelper));
+            if (cacheHelper == null) throw new ArgumentNullException(nameof(cacheHelper));
+
             _urlStatusService = urlStatusService;
             _urlHelper = urlHelper;
             _cacheHelper = cacheHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
             var anchorTags = pageData.Document.GetElements("a");
             var anchorTagCount = anchorTags.Count();
@@ -65,14 +70,21 @@ namespace RankOne.Analyzers.Template
 
             if (!brokenLinks.Any())
             {
-                result.AddResultRule("all_links_working", ResultType.Success);
+                AddResultRule("all_links_working", ResultType.Success);
             }
             else
             {
-                result.ResultRules.AddRange(brokenLinks.Select(link => new ResultRule() { Alias = "broken_link", Type = ResultType.Warning, Tokens = new List<string>() { link, link } }));
+                foreach (var brokenLink in brokenLinks)
+                {
+                    var resultRule = new ResultRule()
+                    {
+                        Alias = "broken_link",
+                        Type = ResultType.Warning,
+                        Tokens = new List<string>() { brokenLink, brokenLink }
+                    };
+                    AddResultRule(resultRule);
+                }
             }
-
-            return result;
         }
     }
 }

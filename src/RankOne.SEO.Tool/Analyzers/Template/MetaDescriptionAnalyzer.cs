@@ -2,6 +2,8 @@
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Models.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -68,26 +70,40 @@ namespace RankOne.Analyzers.Template
         public MetaDescriptionAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
         { }
 
-        public MetaDescriptionAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper)
+        public MetaDescriptionAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper) : base()
         {
+            if (htmlTagHelper == null) throw new ArgumentNullException(nameof(htmlTagHelper));
+            if (_optionHelper == null) throw new ArgumentNullException(nameof(_optionHelper));
+
             _htmlTagHelper = htmlTagHelper;
             _optionHelper = optionHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
-            var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document, result);
-
-            if (metaTags != null && metaTags.Any())
+            try
             {
-                AnalyzeMetaTags(metaTags, result);
+                var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document);
+
+                if (metaTags != null && metaTags.Any())
+                {
+                    AnalyzeMetaTags(metaTags);
+                }
             }
-            return result;
+            catch (NoElementFoundException e)
+            {
+                AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
+
+            }
+            catch (MultipleElementsFoundException e)
+            {
+                AddResultRule("multiple_" + e.ElementName + "_tags", ResultType.Error);
+            }
         }
 
-        private void AnalyzeMetaTags(IEnumerable<HtmlNode> metaTags, AnalyzeResult result)
+        private void AnalyzeMetaTags(IEnumerable<HtmlNode> metaTags)
         {
             var attributeValues = from metaTag in metaTags
                                   let attribute = metaTag.GetAttribute("name")
@@ -97,23 +113,23 @@ namespace RankOne.Analyzers.Template
 
             if (attributeValues == null || !attributeValues.Any())
             {
-                result.AddResultRule("no_meta_description_tag", ResultType.Error);
+                AddResultRule("no_meta_description_tag", ResultType.Error);
             }
             else if (attributeValues.Count() > 1)
             {
-                result.AddResultRule("multiple_meta_description_tags", ResultType.Error);
+                AddResultRule("multiple_meta_description_tags", ResultType.Error);
             }
             else
             {
                 var firstMetaDescriptionAttribute = attributeValues.FirstOrDefault();
                 if (firstMetaDescriptionAttribute != null)
                 {
-                    AnalyzeMetaDescriptionAttribute(firstMetaDescriptionAttribute, result);
+                    AnalyzeMetaDescriptionAttribute(firstMetaDescriptionAttribute);
                 }
             }
         }
 
-        private void AnalyzeMetaDescriptionAttribute(HtmlAttribute metaDescriptionAttribute, AnalyzeResult result)
+        private void AnalyzeMetaDescriptionAttribute(HtmlAttribute metaDescriptionAttribute)
         {
             var descriptionValue = metaDescriptionAttribute.Value;
 
@@ -157,7 +173,7 @@ namespace RankOne.Analyzers.Template
             resultRule.Tokens.Add(MinimumLength.ToString());        // 1
             resultRule.Tokens.Add(AcceptableLength.ToString());     // 2
 
-            result.ResultRules.Add(resultRule);
+            AddResultRule(resultRule);
         }
     }
 }

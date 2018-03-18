@@ -1,5 +1,6 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Models.Exceptions;
 using System;
 
 namespace RankOne.Analyzers.Keywords
@@ -39,7 +40,7 @@ namespace RankOne.Analyzers.Keywords
         public KeywordTitleAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
         { }
 
-        public KeywordTitleAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper)
+        public KeywordTitleAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper) : base()
         {
             if (htmlTagHelper == null) throw new ArgumentNullException(nameof(htmlTagHelper));
             if (optionHelper == null) throw new ArgumentNullException(nameof(optionHelper));
@@ -48,34 +49,45 @@ namespace RankOne.Analyzers.Keywords
             _optionHelper = optionHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
-            var titleTag = _htmlTagHelper.GetTitleTag(pageData.Document, result);
-            if (titleTag != null)
+            try
             {
-                var titleText = titleTag.InnerText;
-                var position = titleText.IndexOf(pageData.Focuskeyword, StringComparison.InvariantCultureIgnoreCase);
-
-                if (position >= 0)
+                var titleTag = _htmlTagHelper.GetTitleTag(pageData.Document);
+                if (titleTag != null)
                 {
-                    if (position < IdealKeywordPosition)
+                    var titleText = titleTag.InnerText;
+                    var position = titleText.IndexOf(pageData.Focuskeyword, StringComparison.InvariantCultureIgnoreCase);
+
+                    if (position >= 0)
                     {
-                        result.AddResultRule("title_contains_keyword", ResultType.Success);
+                        if (position < IdealKeywordPosition)
+                        {
+                            AddResultRule("title_contains_keyword", ResultType.Success);
+                        }
+                        else
+                        {
+                            AddResultRule("title_not_in_front", ResultType.Hint);
+                        }
                     }
                     else
                     {
-                        result.AddResultRule("title_not_in_front", ResultType.Hint);
+                        AddResultRule("title_doesnt_contain_keyword", ResultType.Warning);
                     }
                 }
-                else
-                {
-                    result.AddResultRule("title_doesnt_contain_keyword", ResultType.Warning);
-                }
-            }
 
-            return result;
+            }
+            catch (NoElementFoundException e)
+            {
+                AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
+
+            }
+            catch (MultipleElementsFoundException e)
+            {
+                AddResultRule("multiple_" + e.ElementName + "_tags", ResultType.Error);
+            }
         }
     }
 }

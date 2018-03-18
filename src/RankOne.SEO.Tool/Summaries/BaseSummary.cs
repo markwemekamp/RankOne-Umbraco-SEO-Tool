@@ -22,12 +22,11 @@ namespace RankOne.Summaries
             foreach (var analyzer in Analyzers)
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
-                var result = analyzer.Analyse(pageData);
+                analyzer.Analyse(pageData);
                 watch.Stop();
                 var elapsedMs = watch.ElapsedMilliseconds;
                 LogHelper.Debug<BaseSummary>($"Finished analysis for {analyzer.Alias}, time: {elapsedMs} ms");
-                result.Alias = analyzer.Alias;
-                analysis.Results.Add(result);
+                analysis.Results.Add(analyzer.AnalyzeResult);
             }
 
             return analysis;

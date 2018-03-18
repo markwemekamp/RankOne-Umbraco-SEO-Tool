@@ -13,8 +13,9 @@ namespace RankOne.Tests.Helpers
         public void GetTableName_OnExecute_IsCorreclyResolvedWhenTableNameAttributeIsSet()
         {
             var testDatabaseObjectRepository = new TableNameHelper<TestDatabaseObject>();
+            var result = testDatabaseObjectRepository.GetTableName();
 
-            Assert.AreEqual("Test", testDatabaseObjectRepository.GetTableName());
+            Assert.AreEqual("Test", result);
         }
 
         [TestMethod]

@@ -1,15 +1,16 @@
 ﻿using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using System.Linq;
 
 namespace RankOne.Analyzers.Keywords
 {
     public class KeywordHeadingAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
             // Check for h1, h2, h3 and h4
             var headerTagCount = 0;
@@ -27,14 +28,12 @@ namespace RankOne.Analyzers.Keywords
                     Type = ResultType.Success
                 };
                 resultRule.Tokens.Add(headerTagCount.ToString());
-                result.ResultRules.Add(resultRule);
+                AddResultRule(resultRule);
             }
             else
             {
-                result.AddResultRule("keyword_not_used_in_heading", ResultType.Hint);
+                AddResultRule("keyword_not_used_in_heading", ResultType.Hint);
             }
-
-            return result;
         }
     }
 }

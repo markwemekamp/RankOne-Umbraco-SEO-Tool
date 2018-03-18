@@ -1,6 +1,8 @@
 ﻿using HtmlAgilityPack;
 using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Models.Exceptions;
+using System;
 
 namespace RankOne.Analyzers.Template
 {
@@ -55,37 +57,62 @@ namespace RankOne.Analyzers.Template
         public TitleAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
         { }
 
-        public TitleAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper)
+        public TitleAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper) : base()
         {
+            if (htmlTagHelper == null) throw new ArgumentNullException(nameof(htmlTagHelper));
+            if (optionHelper == null) throw new ArgumentNullException(nameof(optionHelper));
+
             _htmlTagHelper = htmlTagHelper;
             _optionHelper = optionHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
-            var headTag = _htmlTagHelper.GetHeadTag(pageData.Document, result);
-
-            if (headTag != null)
+            try
             {
-                AnalyzeHeadTag(headTag, result);
-            }
+                var headTag = _htmlTagHelper.GetHeadTag(pageData.Document);
 
-            return result;
+                if (headTag != null)
+                {
+                    AnalyzeHeadTag(headTag);
+                }
+            }
+            catch (NoElementFoundException e)
+            {
+                AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
+
+            }
+            catch (MultipleElementsFoundException e)
+            {
+                AddResultRule("multiple_" + e.ElementName + "_tags", ResultType.Error);
+            }
         }
 
-        private void AnalyzeHeadTag(HtmlNode headTag, AnalyzeResult result)
+        private void AnalyzeHeadTag(HtmlNode headTag)
         {
-            var titleTag = _htmlTagHelper.GetTitleTag(headTag, result);
-
-            if (titleTag != null)
+            try
             {
-                AnalyzeTitleTag(titleTag, result);
+                var titleTag = _htmlTagHelper.GetTitleTag(headTag);
+
+                if (titleTag != null)
+                {
+                    AnalyzeTitleTag(titleTag);
+                }
+            }
+            catch (NoElementFoundException e)
+            {
+                AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
+
+            }
+            catch (MultipleElementsFoundException e)
+            {
+                AddResultRule("multiple_" + e.ElementName + "_tags", ResultType.Error);
             }
         }
 
-        private void AnalyzeTitleTag(HtmlNode titleTag, AnalyzeResult result)
+        private void AnalyzeTitleTag(HtmlNode titleTag)
         {
             var titleValue = titleTag.InnerText;
 
@@ -122,7 +149,7 @@ namespace RankOne.Analyzers.Template
             resultRule.Tokens.Add(MaximumLength.ToString());        // 0
             resultRule.Tokens.Add(MinimumLength.ToString());        // 1
 
-            result.ResultRules.Add(resultRule);
+            AddResultRule(resultRule);
         }
     }
 }

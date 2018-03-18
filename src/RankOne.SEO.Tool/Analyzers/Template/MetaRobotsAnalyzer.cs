@@ -2,6 +2,8 @@
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Models.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,45 +25,58 @@ namespace RankOne.Analyzers.Template
         public MetaRobotsAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
         { }
 
-        public MetaRobotsAnalyzer(IHtmlTagHelper htmlTagHelper)
+        public MetaRobotsAnalyzer(IHtmlTagHelper htmlTagHelper) : base()
         {
+            if (htmlTagHelper == null) throw new ArgumentNullException(nameof(htmlTagHelper));
+
             _htmlTagHelper = htmlTagHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
-            var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document, result);
-
-            if (metaTags.Any())
+            try
             {
-                AnalyzeMetaTags(metaTags, result);
+                var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document);
+
+                if (metaTags.Any())
+                {
+                    AnalyzeMetaTags(metaTags);
+                }
             }
-            return result;
+            catch (NoElementFoundException e)
+            {
+                AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
+
+            }
+            catch (MultipleElementsFoundException e)
+            {
+                AddResultRule("multiple_" + e.ElementName + "_tags", ResultType.Error);
+            }
         }
 
-        private void AnalyzeMetaTags(IEnumerable<HtmlNode> metaTags, AnalyzeResult result)
+        private void AnalyzeMetaTags(IEnumerable<HtmlNode> metaTags)
         {
             var robots = GetContentAttributeFromMetaTag(metaTags, "robots");
             var googlebot = GetContentAttributeFromMetaTag(metaTags, "googlebots");
 
             if (!robots.Any() && !googlebot.Any())
             {
-                result.AddResultRule("no_robots_tag", ResultType.Success);
+                AddResultRule("no_robots_tag", ResultType.Success);
             }
             else
             {
                 var firstRobotTag = robots.FirstOrDefault();
                 if (firstRobotTag != null)
                 {
-                    AnalyzeRobotTag(firstRobotTag, result);
+                    AnalyzeRobotTag(firstRobotTag);
                 }
 
                 var firstGooglebotTag = googlebot.FirstOrDefault();
                 if (firstGooglebotTag != null)
                 {
-                    AnalyzeGoogleBotTag(firstGooglebotTag, result);
+                    AnalyzeGoogleBotTag(firstGooglebotTag);
                 }
             }
         }
@@ -75,49 +90,49 @@ namespace RankOne.Analyzers.Template
                    select metaTag.GetAttribute("content");
         }
 
-        private void AnalyzeRobotTag(HtmlAttribute robotTag, AnalyzeResult result)
+        private void AnalyzeRobotTag(HtmlAttribute robotTag)
         {
-            AnalyzeTag(robotTag.Value, result, "robots");
+            AnalyzeTag(robotTag.Value, "robots");
         }
 
-        private void AnalyzeGoogleBotTag(HtmlAttribute googleBotTag, AnalyzeResult result)
+        private void AnalyzeGoogleBotTag(HtmlAttribute googleBotTag)
         {
-            AnalyzeTag(googleBotTag.Value, result, "googlebot");
+            AnalyzeTag(googleBotTag.Value, "googlebot");
         }
 
-        private void AnalyzeTag(string tagValue, AnalyzeResult result, string tag)
+        private void AnalyzeTag(string tagValue, string tag)
         {
             if (tagValue.Contains("none"))
             {
-                result.AddResultRule(tag + "_none", ResultType.Error);
+                AddResultRule(tag + "_none", ResultType.Error);
             }
             if (tagValue.Contains("noindex"))
             {
-                result.AddResultRule(tag + "_no_index", ResultType.Error);
+                AddResultRule(tag + "_no_index", ResultType.Error);
             }
             if (tagValue.Contains("nofollow"))
             {
-                result.AddResultRule(tag + "_no_follow", ResultType.Warning);
+                AddResultRule(tag + "_no_follow", ResultType.Warning);
             }
             if (tagValue.Contains("nosnippet"))
             {
-                result.AddResultRule(tag + "_no_snippet", ResultType.Information);
+                AddResultRule(tag + "_no_snippet", ResultType.Information);
             }
             if (tagValue.Contains("noodp"))
             {
-                result.AddResultRule(tag + "_no_odp", ResultType.Information);
+                AddResultRule(tag + "_no_odp", ResultType.Information);
             }
             if (tagValue.Contains("noarchive"))
             {
-                result.AddResultRule(tag + "_no_archive", ResultType.Information);
+                AddResultRule(tag + "_no_archive", ResultType.Information);
             }
             if (tagValue.Contains("unavailable_after"))
             {
-                result.AddResultRule(tag + "_unavailable_after", ResultType.Information);
+                AddResultRule(tag + "_unavailable_after", ResultType.Information);
             }
             if (tagValue.Contains("noimageindex"))
             {
-                result.AddResultRule(tag + "_no_image_index", ResultType.Information);
+                AddResultRule(tag + "_no_image_index", ResultType.Information);
             }
         }
     }

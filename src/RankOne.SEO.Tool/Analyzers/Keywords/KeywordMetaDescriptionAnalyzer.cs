@@ -1,6 +1,7 @@
 ﻿using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Models.Exceptions;
 using System;
 using System.Linq;
 
@@ -16,52 +17,60 @@ namespace RankOne.Analyzers.Keywords
         public KeywordMetaDescriptionAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
         { }
 
-        public KeywordMetaDescriptionAnalyzer(IHtmlTagHelper htmlTagHelper)
+        public KeywordMetaDescriptionAnalyzer(IHtmlTagHelper htmlTagHelper) : base()
         {
+            if (htmlTagHelper == null) throw new ArgumentNullException(nameof(htmlTagHelper));
+
             _htmlTagHelper = htmlTagHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
-            var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document, result);
-
-            if (metaTags.Any())
+            try
             {
-                var attributeValues = from metaTag in metaTags
-                                      let attribute = metaTag.GetAttribute("name")
-                                      where attribute != null
-                                      where attribute.Value == "description"
-                                      select metaTag.GetAttribute("content");
+                var metaTags = _htmlTagHelper.GetMetaTags(pageData.Document);
 
-                if (!attributeValues.Any())
+                if (metaTags.Any())
                 {
-                    result.AddResultRule("no_meta_description_tag", ResultType.Warning);
-                }
-                else if (attributeValues.Count() > 1)
-                {
-                    result.AddResultRule("multiple_meta_description_tags", ResultType.Warning);
-                }
-                else
-                {
-                    var firstMetaDescriptionTag = attributeValues.FirstOrDefault();
-                    if (firstMetaDescriptionTag != null)
+                    var attributeValues = from metaTag in metaTags
+                                          let attribute = metaTag.GetAttribute("name")
+                                          where attribute != null
+                                          where attribute.Value == "description"
+                                          select metaTag.GetAttribute("content");
+
+                    if (!attributeValues.Any())
                     {
-                        var descriptionValue = firstMetaDescriptionTag.Value;
+                        AddResultRule("no_meta_description_tag", ResultType.Warning);
+                    }
+                    else if (attributeValues.Count() > 1)
+                    {
+                        AddResultRule("multiple_meta_description_tags", ResultType.Warning);
+                    }
+                    else
+                    {
+                        var firstMetaDescriptionTag = attributeValues.FirstOrDefault();
+                        if (firstMetaDescriptionTag != null)
+                        {
+                            var descriptionValue = firstMetaDescriptionTag.Value;
 
-                        if (descriptionValue.IndexOf(pageData.Focuskeyword, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                        {
-                            result.AddResultRule("meta_description_contains_keyword", ResultType.Success);
-                        }
-                        else
-                        {
-                            result.AddResultRule("meta_description_doesnt_contain_keyword", ResultType.Hint);
+                            if (descriptionValue.IndexOf(pageData.Focuskeyword, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                            {
+                                AddResultRule("meta_description_contains_keyword", ResultType.Success);
+                            }
+                            else
+                            {
+                                AddResultRule("meta_description_doesnt_contain_keyword", ResultType.Hint);
+                            }
                         }
                     }
                 }
             }
-            return result;
+            catch (NoElementFoundException e)
+            {
+                AddResultRule("no_" + e.ElementName + "_tag", ResultType.Warning);
+            }
         }
     }
 }

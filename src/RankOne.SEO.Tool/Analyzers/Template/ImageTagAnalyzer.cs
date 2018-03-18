@@ -2,6 +2,7 @@
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,25 +10,23 @@ namespace RankOne.Analyzers.Template
 {
     public class ImageTagAnalyzer : BaseAnalyzer
     {
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
             var imageTags = pageData.Document.GetElements("img");
             var imageTagCount = imageTags.Count();
 
-            CheckImagesForAttribute(imageTags, imageTagCount, result, "alt");
-            CheckImagesForAttribute(imageTags, imageTagCount, result, "title");
+            CheckImagesForAttribute(imageTags, imageTagCount, "alt");
+            CheckImagesForAttribute(imageTags, imageTagCount, "title");
 
-            if (!result.ResultRules.Any())
+            if (!AnalyzeResult.ResultRules.Any())
             {
-                result.AddResultRule("alt_and_title_tags_present", ResultType.Success);
+                AddResultRule("alt_and_title_tags_present", ResultType.Success);
             }
-
-            return result;
         }
 
-        private void CheckImagesForAttribute(IEnumerable<HtmlNode> imageTags, int imageTagCount, AnalyzeResult result, string attributeName)
+        private void CheckImagesForAttribute(IEnumerable<HtmlNode> imageTags, int imageTagCount, string attributeName)
         {
             var imagesWithAttributeCount =
                 imageTags.Count(x => x.GetAttribute(attributeName) != null && !string.IsNullOrWhiteSpace(x.GetAttribute(attributeName).Value));
@@ -41,7 +40,7 @@ namespace RankOne.Analyzers.Template
                 };
                 var numberOfTagsMissingAttribute = imageTagCount - imagesWithAttributeCount;
                 resultRule.Tokens.Add(numberOfTagsMissingAttribute.ToString());
-                result.ResultRules.Add(resultRule);
+                AddResultRule(resultRule);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
+using RankOne.Models.Exceptions;
 using System;
 using System.Text.RegularExpressions;
 
@@ -15,45 +16,53 @@ namespace RankOne.Analyzers.Keywords
         public KeywordContentAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
         { }
 
-        public KeywordContentAnalyzer(IHtmlTagHelper htmlTagHelper)
+        public KeywordContentAnalyzer(IHtmlTagHelper htmlTagHelper) : base()
         {
             if (htmlTagHelper == null) throw new ArgumentNullException(nameof(htmlTagHelper));
 
             _htmlTagHelper = htmlTagHelper;
         }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
             if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
-            var result = new AnalyzeResult() { Weight = Weight };
-
-            var bodyTag = _htmlTagHelper.GetBodyTag(pageData.Document, result);
-
-            if (bodyTag != null)
+            try
             {
-                var bodyText = bodyTag.InnerText.Trim();
-                // replace multiple spaces with 1
-                var text = Regex.Replace(bodyText.ToLower(), @"\s+", " ");
-                var matches = Regex.Matches(text, pageData.Focuskeyword);
+                var bodyTag = _htmlTagHelper.GetBodyTag(pageData.Document);
 
-                if (matches.Count == 0)
+                if (bodyTag != null)
                 {
-                    result.AddResultRule("content_doesnt_contain_keyword", ResultType.Warning);
-                }
-                else
-                {
-                    var resultRule = new ResultRule
+                    var bodyText = bodyTag.InnerText.Trim();
+                    // replace multiple spaces with 1
+                    var text = Regex.Replace(bodyText.ToLower(), @"\s+", " ");
+                    var matches = Regex.Matches(text, pageData.Focuskeyword);
+
+                    if (matches.Count == 0)
                     {
-                        Alias = "content_contains_keyword",
-                        Type = ResultType.Success
-                    };
-                    resultRule.Tokens.Add(matches.Count.ToString());
-                    result.ResultRules.Add(resultRule);
+                        AddResultRule("content_doesnt_contain_keyword", ResultType.Warning);
+                    }
+                    else
+                    {
+                        var resultRule = new ResultRule
+                        {
+                            Alias = "content_contains_keyword",
+                            Type = ResultType.Success
+                        };
+                        resultRule.Tokens.Add(matches.Count.ToString());
+                        AddResultRule(resultRule);
+                    }
                 }
             }
+            catch (NoElementFoundException e)
+            {
+                AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
 
-            return result;
+            }
+            catch (MultipleElementsFoundException e)
+            {
+                AddResultRule("multiple_" + e.ElementName + "_tags", ResultType.Error);
+            }
         }
     }
 }

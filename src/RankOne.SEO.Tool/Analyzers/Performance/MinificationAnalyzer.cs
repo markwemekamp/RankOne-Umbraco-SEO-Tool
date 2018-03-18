@@ -17,11 +17,16 @@ namespace RankOne.Analyzers.Performance
         public MinificationAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public MinificationAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.MinificationHelper.Value, rankOneContext.CacheHelper.Value, rankOneContext.UrlHelper.Value)
+        public MinificationAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.MinificationHelper.Value, rankOneContext.CacheHelper.Value, 
+            rankOneContext.UrlHelper.Value)
         { }
 
-        public MinificationAnalyzer(IMinificationHelper minificationHelper, ICacheHelper cacheHelper, IUrlHelper urlHelper)
+        public MinificationAnalyzer(IMinificationHelper minificationHelper, ICacheHelper cacheHelper, IUrlHelper urlHelper) : base()
         {
+            if (minificationHelper == null) throw new ArgumentNullException(nameof(minificationHelper));
+            if (cacheHelper == null) throw new ArgumentNullException(nameof(cacheHelper));
+            if (urlHelper == null) throw new ArgumentNullException(nameof(urlHelper));
+
             _minificationHelper = minificationHelper;
             _cacheHelper = cacheHelper;
             _urlHelper = urlHelper;
@@ -29,9 +34,9 @@ namespace RankOne.Analyzers.Performance
 
         protected abstract string CacheKeyPrefix { get; }
 
-        public override AnalyzeResult Analyse(IPageData pageData)
+        public override void Analyse(IPageData pageData)
         {
-            var result = new AnalyzeResult() { Weight = Weight };
+            if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
             var url = new Uri(pageData.Url);
 
@@ -39,18 +44,16 @@ namespace RankOne.Analyzers.Performance
 
             foreach (var file in files)
             {
-                CheckFile(file, url, result);
+                CheckFile(file, url);
             }
 
-            if (!result.ResultRules.Any())
+            if (!AnalyzeResult.ResultRules.Any())
             {
-                result.AddResultRule("all_minified", ResultType.Success);
+                AnalyzeResult.AddResultRule("all_minified", ResultType.Success);
             }
-
-            return result;
         }
 
-        private void CheckFile(HtmlNode file, Uri url, AnalyzeResult result)
+        private void CheckFile(HtmlNode file, Uri url)
         {
             var address = GetAttribute(file);
 
@@ -79,7 +82,7 @@ namespace RankOne.Analyzers.Performance
                         Type = ResultType.Hint
                     };
                     resultRule.Tokens.Add(fullPath);
-                    result.ResultRules.Add(resultRule);
+                    AddResultRule(resultRule);
                 }
             }
         }
