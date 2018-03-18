@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Helpers;
 using RankOne.Models;
+using System;
 using Umbraco.Core.Persistence;
 
 namespace RankOne.Tests.Helpers
@@ -29,7 +29,6 @@ namespace RankOne.Tests.Helpers
         [TableName("Test")]
         public class TestDatabaseObject : BaseDatabaseObject
         { }
-
 
         public class TestDatabaseObjectWithoutTableName : BaseDatabaseObject
         { }

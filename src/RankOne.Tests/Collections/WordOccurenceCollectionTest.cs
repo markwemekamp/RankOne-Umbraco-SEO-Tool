@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Collections;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace RankOne.Tests.Collections
 {
@@ -31,9 +31,8 @@ namespace RankOne.Tests.Collections
         [TestMethod]
         public void Merge_OnExecute_ReturnsNewMergedCollection()
         {
-            var wordOccurendeCollection = new WordOccurenceCollection {"word", "word"};
-            var wordOccurendeCollection2 = new WordOccurenceCollection {"word", "word"};
-
+            var wordOccurendeCollection = new WordOccurenceCollection { "word", "word" };
+            var wordOccurendeCollection2 = new WordOccurenceCollection { "word", "word" };
 
             var mergedCollection = wordOccurendeCollection.Merge(wordOccurendeCollection2);
 

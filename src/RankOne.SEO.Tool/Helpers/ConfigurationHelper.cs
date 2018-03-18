@@ -98,8 +98,6 @@ namespace RankOne.Helpers
             return summaries;
         }
 
-
-
         private IEnumerable<IAnalyzer> GetAnalyzers(List<AnalyzerSettings> analyzerSettings)
         {
             var analyzers = new List<IAnalyzer>();

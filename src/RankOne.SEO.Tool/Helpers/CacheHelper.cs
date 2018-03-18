@@ -33,6 +33,5 @@ namespace RankOne.Helpers
                 _cachedItems.Add(key, value);
             }
         }
-
     }
 }

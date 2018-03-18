@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Helpers;
+using System.Linq;
 
 namespace RankOne.Tests.Helpers
 {

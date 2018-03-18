@@ -20,7 +20,7 @@
                     function (message) {
                         scope.error = message;
                         scope.loading = false;
-                    });         
+                    });
             };
 
             scope.load();

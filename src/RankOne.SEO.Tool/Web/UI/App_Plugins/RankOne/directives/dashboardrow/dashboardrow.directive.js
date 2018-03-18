@@ -22,7 +22,7 @@
                 $compile(nextrow)(scope);
             }
 
-            scope.viewDetails = function(row) {
+            scope.viewDetails = function (row) {
                 dialogService.open({
                     template: "/App_Plugins/RankOne/dialogs/pageinformation/pageinformation.html",
                     show: true,

@@ -1,6 +1,5 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
-using System.Linq;
 
 namespace RankOne.Analyzers.Performance
 {
@@ -10,6 +9,7 @@ namespace RankOne.Analyzers.Performance
         private readonly IOptionHelper _optionHelper;
 
         private int? _maximumSizeInBytes;
+
         private int MaximumSizeInBytes
         {
             get

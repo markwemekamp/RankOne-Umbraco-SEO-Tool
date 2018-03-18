@@ -10,7 +10,7 @@
                             filteredItems.push(item);
                             added = true;
                         } else if (analyzer.analyzers.length > 0) {
-                            angular.forEach(analyzer.analyzers, function(subAnalyzer) {
+                            angular.forEach(analyzer.analyzers, function (subAnalyzer) {
                                 if (!added) {
                                     if (subAnalyzer.checked && item.Alias === subAnalyzer.name) {
                                         filteredItems.push(item);

@@ -4,7 +4,7 @@
             var filteredItems = [];
             angular.forEach(items, function (item) {
                 var added = false;
-                angular.forEach(types, function(type) {
+                angular.forEach(types, function (type) {
                     if (!added && type.checked) {
                         if (type.name === "Error" && (item.ErrorCount > 0 || item.Type === "error")) {
                             filteredItems.push(item);

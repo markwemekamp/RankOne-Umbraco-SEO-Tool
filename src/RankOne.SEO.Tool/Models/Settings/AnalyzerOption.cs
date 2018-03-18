@@ -7,6 +7,7 @@ namespace RankOne.Models.Settings
     {
         [XmlAttribute(AttributeName = "Key")]
         public string Key { get; set; }
+
         [XmlAttribute(AttributeName = "Value")]
         public string Value { get; set; }
     }

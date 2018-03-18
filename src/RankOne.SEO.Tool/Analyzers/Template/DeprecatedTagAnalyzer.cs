@@ -12,6 +12,7 @@ namespace RankOne.Analyzers.Template
         private readonly IOptionHelper _optionHelper;
 
         private IEnumerable<string> _deprecatedTags;
+
         private IEnumerable<string> DeprecatedTags
         {
             get

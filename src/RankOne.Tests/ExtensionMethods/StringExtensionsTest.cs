@@ -61,12 +61,9 @@ namespace RankOne.Tests.ExtensionMethods
             Assert.AreEqual("test", result);
         }
 
-        #endregion
-
-        #region RemoveAccents
+        #endregion UrlFriendly
 
 
-        #endregion
 
         #region Simplify
 
@@ -124,6 +121,6 @@ namespace RankOne.Tests.ExtensionMethods
             Assert.AreEqual("test", result);
         }
 
-        #endregion
+        #endregion Simplify
     }
 }

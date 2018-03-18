@@ -13,10 +13,10 @@
                         $scope.analyzeResults = response;
                         $scope.loading = false;
                     },
-                        function (message) {
-                            $scope.error = message;
-                            $scope.loading = false;
-                        });
+                    function (message) {
+                        $scope.error = message;
+                        $scope.loading = false;
+                    });
             }
         };
 

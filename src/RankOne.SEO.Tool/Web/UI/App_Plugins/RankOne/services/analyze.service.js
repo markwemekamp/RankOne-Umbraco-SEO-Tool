@@ -21,5 +21,4 @@
                 var url = umbRequestHelper.getApiUrl("AnalyzerStructureApi", "GetStructure");
                 return webresultService.GetResult(url);
             };
-
     });

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using RankOne.Helpers;
+using RankOne.Tests.Mocks;
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using RankOne.Helpers;
 using Umbraco.Core;
 using Umbraco.Core.Configuration.UmbracoSettings;
 using Umbraco.Core.Dictionary;
@@ -17,7 +18,6 @@ using Umbraco.Core.Services;
 using Umbraco.Web;
 using Umbraco.Web.Routing;
 using Umbraco.Web.Security;
-using RankOne.Tests.Mocks;
 
 namespace RankOne.Tests.Helpers
 {

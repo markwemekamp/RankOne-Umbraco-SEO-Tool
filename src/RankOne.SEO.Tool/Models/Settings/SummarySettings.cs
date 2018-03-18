@@ -8,10 +8,13 @@ namespace RankOne.Models.Settings
     {
         [XmlAttribute(AttributeName = "Name")]
         public string Name { get; set; }
+
         [XmlAttribute(AttributeName = "Alias")]
         public string Alias { get; set; }
+
         [XmlAttribute(AttributeName = "Type")]
         public string Type { get; set; }
+
         public List<AnalyzerSettings> Analyzers { get; set; }
     }
 }
