@@ -3,6 +3,7 @@ using Moq;
 using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Tests.Mocks;
+using System;
 using System.Collections.Generic;
 using Umbraco.Core.Models;
 
@@ -11,6 +12,22 @@ namespace RankOne.Tests.Helpers
     [TestClass]
     public class FocusKeywordHelperTest
     {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Constructor_OnExecuteWithNullParameter_ThrowsException()
+        {
+            new FocusKeywordHelper((IDashboardSettingsSerializer)null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetFocusKeyword_OnExectureWithNullParameter_ThrowsException()
+        {
+            var dashboardSettingsSerializerMock = new Mock<IDashboardSettingsSerializer>();
+            var focusKeywordHelper = new FocusKeywordHelper(dashboardSettingsSerializerMock.Object);
+            focusKeywordHelper.GetFocusKeyword(null);
+        }
+
         [TestMethod]
         public void GetFocusKeywordReturnsFocusKeywordProperty()
         {
