@@ -3,7 +3,6 @@ using Moq;
 using RankOne.Interfaces;
 using RankOne.Repositories;
 using RankOne.Serializers;
-using RankOne.Services;
 using System;
 
 namespace RankOne.Tests.Repositories

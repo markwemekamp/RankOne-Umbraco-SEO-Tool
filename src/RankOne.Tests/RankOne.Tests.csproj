@@ -240,6 +240,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Models\OptionTest.cs" />
+    <Compile Include="Models\PageInformationTest.cs" />
+    <Compile Include="Models\PageScoreTest.cs" />
+    <Compile Include="Models\RankOneContextTest.cs" />
     <Compile Include="Models\ResultRuleTest.cs" />
     <Compile Include="Models\HtmlResultTest.cs" />
     <Compile Include="Models\DashboardSettingsTest.cs" />
@@ -276,6 +280,7 @@
     <Compile Include="Models\Exceptions\NoElementFoundExceptionTest.cs" />
     <Compile Include="Models\Exceptions\MultipleElementsFoundExceptionTest.cs" />
     <Compile Include="Models\Settings\SettingsModelsTest.cs" />
+    <Compile Include="Models\SummaryResultTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\TableNameHelperTest.cs" />
     <Compile Include="Repositories\AnalysisCacheRepositoryTest.cs" />
