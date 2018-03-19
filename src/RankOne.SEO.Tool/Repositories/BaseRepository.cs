@@ -1,97 +1,44 @@
-﻿using RankOne.Helpers;
-using RankOne.Interfaces;
+﻿using RankOne.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using Umbraco.Core;
-using Umbraco.Core.Logging;
-using Umbraco.Core.Persistence;
 
 namespace RankOne.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T>
     {
-        private string _tableName;
-        private ITableNameHelper<T> _tableNameHelper;
-        private bool? _tableExists;
-        protected DatabaseContext DatabaseContext;
-        protected UmbracoDatabase Database;
+        private IDatabaseService<T> _databaseService;
 
-        public ITableNameHelper<T> TableNameHelper
-        {
-            get
-            {
-                if (_tableNameHelper == null)
-                {
-                    _tableNameHelper = new TableNameHelper<T>();
-                }
-                return _tableNameHelper;
-            }
-            set { _tableNameHelper = value; }
-        }
+        public string TableName => _databaseService.TableName;
 
-        public string TableName
-        {
-            get
-            {
-                if (_tableName == null)
-                {
-                    _tableName = TableNameHelper.GetTableName();
-                }
-                return _tableName;
-            }
-        }
+        public bool TableExists => _databaseService.TableExists;
 
-        public bool TableExists
+        public BaseRepository(IDatabaseService<T> databaseService)
         {
-            get
-            {
-                if (!_tableExists.HasValue)
-                {
-                    var databaseSchemaHelper = new DatabaseSchemaHelper(Database, LoggerResolver.Current.Logger, DatabaseContext.SqlSyntax);
-                    _tableExists = databaseSchemaHelper.TableExist(TableName);
-                }
-                return _tableExists.Value;
-            }
-        }
-
-        public BaseRepository(DatabaseContext context)
-        {
-            DatabaseContext = context;
-            Database = context.Database;
+            _databaseService = databaseService;
         }
 
         public virtual T GetById(int id)
         {
-            var query = new Sql().Select("*").From(TableName).Where("Id = @0", id);
-            return GetAllByQuery(query).FirstOrDefault();
+            return _databaseService.GetById(id);
         }
 
         public virtual IEnumerable<T> GetAll()
         {
-            var query = new Sql().Select("*").From(TableName);
-            return GetAllByQuery(query);
-        }
-
-        public virtual IEnumerable<T> GetAllByQuery(Sql query)
-        {
-            return Database.Fetch<T>(query);
+            return _databaseService.GetAll();
         }
 
         public virtual T Insert(T dbEntity)
         {
-            Database.Insert(dbEntity);
-            return dbEntity;
+            return _databaseService.Insert(dbEntity);
         }
 
         public virtual T Update(T dbEntity)
         {
-            Database.Update(dbEntity);
-            return dbEntity;
+            return _databaseService.Update(dbEntity);
         }
 
         public virtual void Delete(T dbEntity)
         {
-            Database.Delete(dbEntity);
+            _databaseService.Delete(dbEntity);
         }
     }
 }

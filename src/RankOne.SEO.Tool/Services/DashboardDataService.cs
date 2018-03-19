@@ -13,25 +13,25 @@ namespace RankOne.Services
     {
         private readonly ITypedPublishedContentQuery _typedPublishedContentQuery;
         private readonly IPageScoreNodeHelper _pageScoreNodeHelper;
-        private readonly DatabaseContext _databaseContext;
+        private readonly INodeReportService _nodeReportService;
 
         public DashboardDataService() : this(RankOneContext.Instance)
         { }
 
-        public DashboardDataService(RankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.PageScoreNodeHelper.Value, rankOneContext.DatabaseContext.Value)
+        public DashboardDataService(RankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.PageScoreNodeHelper.Value, 
+            rankOneContext.NodeReportService.Value)
         { }
 
-        public DashboardDataService(ITypedPublishedContentQuery typedPublishedContentQuery, IPageScoreNodeHelper pageScoreNodeHelper, DatabaseContext databaseContext)
+        public DashboardDataService(ITypedPublishedContentQuery typedPublishedContentQuery, IPageScoreNodeHelper pageScoreNodeHelper, INodeReportService nodeReportService)
         {
             _typedPublishedContentQuery = typedPublishedContentQuery;
             _pageScoreNodeHelper = pageScoreNodeHelper;
-            _databaseContext = databaseContext;
+            _nodeReportService = nodeReportService;
         }
 
         public void Initialize()
         {
-            var databaseSchemaHelper = new DatabaseSchemaHelper(_databaseContext.Database, LoggerResolver.Current.Logger, _databaseContext.SqlSyntax);
-            databaseSchemaHelper.CreateTable<NodeReport>(false);
+            _nodeReportService.CreateTable();
         }
 
         public IEnumerable<PageScoreNode> GetHierarchyFromCache()

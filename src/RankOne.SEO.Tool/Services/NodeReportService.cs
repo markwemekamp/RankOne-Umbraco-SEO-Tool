@@ -2,16 +2,10 @@
 using RankOne.Models;
 using System;
 
-namespace RankOne.Repositories
+namespace RankOne.Services
 {
-    public class NodeReportRepository : BaseRepository<NodeReport>, INodeReportRepository
+    public class NodeReportService : UmbracoDatabaseService<NodeReport>, INodeReportService
     {
-        public NodeReportRepository() : this(RankOneContext.Instance)
-        { }
-
-        public NodeReportRepository(RankOneContext rankOneContext) : base(rankOneContext.DatabaseContext.Value)
-        { }
-
         public override NodeReport Insert(NodeReport dbEntity)
         {
             dbEntity.CreatedOn = DateTime.Now;

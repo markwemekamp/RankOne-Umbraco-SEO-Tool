@@ -6,24 +6,30 @@ namespace RankOne.Repositories
 {
     public class AnalysisCacheRepository : IAnalysisCacheRepository
     {
-        private readonly INodeReportRepository _nodeReportRepository;
+        private readonly INodeReportService _nodeReportService;
         private readonly IPageScoreSerializer _pageScoreSerializer;
 
         public AnalysisCacheRepository() : this(RankOneContext.Instance)
         { }
 
-        public AnalysisCacheRepository(RankOneContext rankOneContext) : this(rankOneContext.NodeReportRepository.Value, rankOneContext.PageScoreSerializer.Value)
+        public AnalysisCacheRepository(RankOneContext rankOneContext) : this(rankOneContext.NodeReportService.Value, rankOneContext.PageScoreSerializer.Value)
         { }
 
-        public AnalysisCacheRepository(INodeReportRepository nodeReportRepository, IPageScoreSerializer pageScoreSerializer)
+        public AnalysisCacheRepository(INodeReportService nodeReportService, IPageScoreSerializer pageScoreSerializer)
         {
-            _nodeReportRepository = nodeReportRepository;
+            if (nodeReportService == null) throw new ArgumentNullException(nameof(nodeReportService));
+            if (pageScoreSerializer == null) throw new ArgumentNullException(nameof(pageScoreSerializer));
+
+            _nodeReportService = nodeReportService;
             _pageScoreSerializer = pageScoreSerializer;
         }
 
         public void Save(int id, PageAnalysis pageAnalysis)
         {
-            if (_nodeReportRepository.TableExists)
+            if (id < 0) throw new ArgumentException(nameof(id));
+            if (pageAnalysis == null) throw new ArgumentNullException(nameof(pageAnalysis));
+
+            if (_nodeReportService.TableExists)
             {
                 var scoreReport = _pageScoreSerializer.Serialize(pageAnalysis.Score);
 
@@ -42,10 +48,10 @@ namespace RankOne.Repositories
 
         private void CreateOrUpdateNodeReport(NodeReport nodeReport)
         {
-            var dbNodeReport = _nodeReportRepository.GetById(nodeReport.Id);
+            var dbNodeReport = _nodeReportService.GetById(nodeReport.Id);
             if (dbNodeReport == null)
             {
-                _nodeReportRepository.Insert(nodeReport);
+                _nodeReportService.Insert(nodeReport);
             }
             else
             {
@@ -53,7 +59,7 @@ namespace RankOne.Repositories
                 dbNodeReport.Report = nodeReport.Report;
                 dbNodeReport.UpdatedOn = nodeReport.UpdatedOn;
 
-                _nodeReportRepository.Update(nodeReport);
+                _nodeReportService.Update(nodeReport);
             }
         }
     }

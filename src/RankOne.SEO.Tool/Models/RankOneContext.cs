@@ -5,7 +5,6 @@ using RankOne.Serializers;
 using RankOne.Services;
 using System;
 using System.Collections.Generic;
-using Umbraco.Core;
 using Umbraco.Web;
 
 namespace RankOne.Models
@@ -21,14 +20,21 @@ namespace RankOne.Models
             {
                 return new Lazy<IEnumerable<ISummary>>(() => ConfigurationHelper.Value.GetSummaries());
             }
-
         }
 
         public Lazy<UmbracoHelper> UmbracoHelper
         {
             get
             {
-                return new Lazy<UmbracoHelper>(() => new UmbracoHelper(UmbracoContext.Current));
+                return new Lazy<UmbracoHelper>(() => new UmbracoHelper(UmbracoContext.Value));
+            }
+        }
+
+        public Lazy<UmbracoContext> UmbracoContext
+        {
+            get
+            {
+                return new Lazy<UmbracoContext>(() => Umbraco.Web.UmbracoContext.Current);
             }
         }
 
@@ -56,19 +62,19 @@ namespace RankOne.Models
             }
         }
 
-        public Lazy<DatabaseContext> DatabaseContext
-        {
-            get
-            {
-                return new Lazy<DatabaseContext>(() => UmbracoContext.Current.Application.DatabaseContext);
-            }
-        }
-
         public Lazy<DashboardSettingsSerializer> DashboardSettingsSerializer
         {
             get
             {
                 return new Lazy<DashboardSettingsSerializer>(() => new DashboardSettingsSerializer());
+            }
+        }
+
+        public Lazy<NodeReportService> NodeReportService
+        {
+            get
+            {
+                return new Lazy<NodeReportService>(() => new NodeReportService());
             }
         }
 
@@ -237,14 +243,6 @@ namespace RankOne.Models
             get
             {
                 return new Lazy<UrlStatusService>(() => new UrlStatusService());
-            }
-        }
-
-        public Lazy<NodeReportRepository> NodeReportRepository
-        {
-            get
-            {
-                return new Lazy<NodeReportRepository>(() => new NodeReportRepository());
             }
         }
 
