@@ -9,9 +9,10 @@ namespace RankOne.Helpers
     {
         public string GetOptionValue(IEnumerable<IOption> options, string name, string defaultValue)
         {
-            if (options == null) throw new ArgumentNullException(nameof(options));
             if (name == null) throw new ArgumentNullException(nameof(name));
             if (defaultValue == null) throw new ArgumentNullException(nameof(defaultValue));
+
+            if (options == null) return defaultValue;
 
             var option = options.FirstOrDefault(x => x.Key == name);
             var optionValue = option.Value;
@@ -24,9 +25,10 @@ namespace RankOne.Helpers
 
         public int GetOptionValue(IEnumerable<IOption> options, string name, int defaultValue = 0)
         {
-            if (options == null) throw new ArgumentNullException(nameof(options));
             if (name == null) throw new ArgumentNullException(nameof(name));
             if (defaultValue < 0) throw new ArgumentException(nameof(defaultValue));
+
+            if (options == null) return defaultValue;
 
             var option = options.FirstOrDefault(x => x.Key == name);
             var optionValue = 0;

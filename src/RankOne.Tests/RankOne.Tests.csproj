@@ -241,6 +241,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Analyzers\KeywordHeadingAnalyzerTest.cs" />
+    <Compile Include="Analyzers\KeywordUrlAnalyzerTest.cs" />
     <Compile Include="Models\OptionTest.cs" />
     <Compile Include="Models\PageInformationTest.cs" />
     <Compile Include="Models\PageScoreTest.cs" />
