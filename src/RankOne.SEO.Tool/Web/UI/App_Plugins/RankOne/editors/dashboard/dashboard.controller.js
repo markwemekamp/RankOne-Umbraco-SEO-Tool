@@ -64,18 +64,18 @@
                     configuration: $scope.model.value
                 }
             });
-        };
+        }
 
         $scope.setFilter = function (filter) {
             $scope.filter = filter;
-        };
+        }
 
         $scope.$on("formSubmitted", function () {
             $scope.load();
         });
 
         $scope.load();
-    };
+    }
 
     // Register the controller
     angular.module("umbraco").controller('rankOneDashboard', rankOne);

@@ -49,7 +49,7 @@
 
             $scope.model.value = tempObject;
         }
-    };
+    }
 
     // Register the controller
     angular.module("umbraco").controller('analyzerSelectorController', analyzerSelectorController);

@@ -63,6 +63,8 @@ namespace RankOne.Tests.Models.Settings
             Assert.IsNull(instance.WeightValue);
             instance.WeightValue = "test";
             Assert.AreEqual(0, instance.Weight);
+            instance.WeightValue = null;
+            Assert.IsNull(instance.Weight);
         }
 
         [TestMethod]

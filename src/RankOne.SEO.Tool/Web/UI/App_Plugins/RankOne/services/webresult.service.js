@@ -17,19 +17,19 @@
                 });
 
             return deferred.promise;
-        },
-            this.GetResultFromEditorState = function (editorState, url) {
-                var deferred = $q.defer();
+        }
+        this.GetResultFromEditorState = function (editorState, url) {
+            var deferred = $q.defer();
 
-                url = url.replace("{id}", editorState.id);
+            url = url.replace("{id}", editorState.id);
 
-                this.GetResult(url)
-                    .then(function (response) {
-                        deferred.resolve(response);
-                    },
-                    function (response) {
-                        deferred.reject(response);
-                    });
-                return deferred.promise;
-            };
+            this.GetResult(url)
+                .then(function (response) {
+                    deferred.resolve(response);
+                },
+                function (response) {
+                    deferred.reject(response);
+                });
+            return deferred.promise;
+        }
     });

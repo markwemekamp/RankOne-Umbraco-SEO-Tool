@@ -78,7 +78,7 @@
         };
 
         $scope.load();
-    };
+    }
 
     // Register the controller
     angular.module("umbraco").controller('rankOneSiteDashboard', rankOneSiteDashboard);
