@@ -21,7 +21,7 @@ namespace RankOne.Tests.Analyzers
         public void Analyse_OnExecuteWithNullParameter_ThrowArgumentNullException()
         {
             var analyzer = new KeywordMetaDescriptionAnalyzer(new HtmlTagHelper());
-            analyzer.Analyse(null); ;
+            analyzer.Analyse(null);
         }
     }
 }

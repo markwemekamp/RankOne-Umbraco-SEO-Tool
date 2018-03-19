@@ -28,7 +28,7 @@ namespace RankOne.Tests.Analyzers
         public void Analyse_OnExecuteWithNullParameter_ThrowArgumentNullException()
         {
             var analyzer = new GZipAnalyzer(new EncodingHelper(), new CacheHelper());
-            analyzer.Analyse(null); ;
+            analyzer.Analyse(null);
         }
     }
 }

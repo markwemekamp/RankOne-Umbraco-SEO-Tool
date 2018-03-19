@@ -24,7 +24,7 @@ namespace RankOne.Analyzers
 
         public void AddResultRule(ResultRule resultRule)
         {
-            AddResultRule(resultRule);
+            AnalyzeResult.ResultRules.Add(resultRule);
         }
 
         public abstract void Analyse(IPageData pageData);

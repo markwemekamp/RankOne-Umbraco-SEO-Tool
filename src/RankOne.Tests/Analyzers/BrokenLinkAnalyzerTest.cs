@@ -37,7 +37,7 @@ namespace RankOne.Tests.Analyzers
         public void Analyse_OnExecuteWithNullParameter_ThrowArgumentNullException()
         {
             var analyzer = new BrokenLinkAnalyzer(new UrlStatusService(RankOneContext.Instance), new UrlHelper(), new CacheHelper());
-            analyzer.Analyse(null); ;
+            analyzer.Analyse(null);
         }
     }
 }
