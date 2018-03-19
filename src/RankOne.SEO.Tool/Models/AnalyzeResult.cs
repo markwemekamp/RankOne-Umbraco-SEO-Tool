@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RankOne.Models
@@ -41,11 +42,16 @@ namespace RankOne.Models
 
         public void AddResultRule(string code, string type)
         {
+            if (code == null) throw new ArgumentNullException(nameof(code));
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
             ResultRules.Add(new ResultRule { Alias = code, Type = type });
         }
 
         public int CountRestultRulesByType(string type)
         {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
             return ResultRules.Count(x => x.Type == type);
         }
     }

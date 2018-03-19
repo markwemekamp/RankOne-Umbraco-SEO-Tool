@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using Umbraco.Core.Models;
 
 namespace RankOne.Models
@@ -7,6 +8,8 @@ namespace RankOne.Models
     {
         public NodeInformation(IPublishedContent node)
         {
+            if (node == null) throw new ArgumentNullException(nameof(node));
+
             Node = node;
         }
 

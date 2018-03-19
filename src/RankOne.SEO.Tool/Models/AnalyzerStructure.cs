@@ -6,5 +6,10 @@ namespace RankOne.Models
     {
         public string Name { get; set; }
         public IEnumerable<string> Analyzers { get; set; }
+
+        public AnalyzerStructure()
+        {
+            Analyzers = new List<string>();
+        }
     }
 }

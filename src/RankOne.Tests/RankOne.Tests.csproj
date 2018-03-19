@@ -239,6 +239,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Models\HtmlResultTest.cs" />
+    <Compile Include="Models\DashboardSettingsTest.cs" />
     <Compile Include="Analyzers\TitleAnalyzerTest.cs" />
     <Compile Include="Analyzers\MetaRobotsAnalyzerTest.cs" />
     <Compile Include="Analyzers\MetaKeywordAnalyzerTest.cs" />
@@ -265,6 +267,10 @@
     <Compile Include="Helpers\WordCounterTest.cs" />
     <Compile Include="Mocks\PublishedContentMock.cs" />
     <Compile Include="Mocks\PublishedPropertyMock.cs" />
+    <Compile Include="Models\AnalysisInformationTest.cs" />
+    <Compile Include="Models\AnalyzerStructureTest.cs" />
+    <Compile Include="Models\AnalysisTest.cs" />
+    <Compile Include="Models\AnalyzeResultTest.cs" />
     <Compile Include="Models\Exceptions\NoElementFoundExceptionTest.cs" />
     <Compile Include="Models\Exceptions\MultipleElementsFoundExceptionTest.cs" />
     <Compile Include="Models\Settings\SettingsModelsTest.cs" />
@@ -287,6 +293,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
