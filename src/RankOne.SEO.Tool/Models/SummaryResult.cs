@@ -6,7 +6,6 @@ namespace RankOne.Models
     {
         public string Alias { get; set; }
         public Analysis Analysis { get; set; }
-        public int Score { get; set; }
 
         public int ErrorCount
         {

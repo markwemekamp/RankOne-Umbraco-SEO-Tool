@@ -5,6 +5,6 @@ namespace RankOne.Interfaces
 {
     public interface IPageAnalysisService
     {
-        PageAnalysis CreatePageAnalysis(IPublishedContent node, string focusKeyword);
+        PageAnalysis CreatePageAnalysis(IPublishedContent node, string focusKeyword = null);
     }
 }

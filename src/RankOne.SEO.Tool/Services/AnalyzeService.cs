@@ -27,10 +27,8 @@ namespace RankOne.Services
 
         public PageAnalysis CreateAnalysis(IPublishedContent node, string focusKeyword = null)
         {
-            if (node.TemplateId == 0)
-            {
-                throw new MissingFieldException("TemplateId is not set");
-            }
+            if (node == null) throw new ArgumentNullException(nameof(node));
+            if (node.TemplateId == 0) throw new MissingFieldException("TemplateId is not set");
 
             if (string.IsNullOrEmpty(focusKeyword))
             {

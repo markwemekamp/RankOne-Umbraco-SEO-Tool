@@ -1,5 +1,6 @@
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using Umbraco.Core.Models;
@@ -28,8 +29,10 @@ namespace RankOne.Services
             _summaries = summaries;
         }
 
-        public PageAnalysis CreatePageAnalysis(IPublishedContent node, string focusKeyword)
+        public PageAnalysis CreatePageAnalysis(IPublishedContent node, string focusKeyword = null)
         {
+            if (node == null) throw new ArgumentNullException(nameof(node));
+
             var pageAnalysis = new PageAnalysis();
 
             try

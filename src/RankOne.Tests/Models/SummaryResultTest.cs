@@ -44,22 +44,6 @@ namespace RankOne.Tests.Models
         }
 
         [TestMethod]
-        public void Scoreroperty_OnSet_SetsTheValue()
-        {
-            var summaryResult = new SummaryResult();
-            summaryResult.Score = 100;
-            Assert.AreEqual(100, summaryResult.Score);
-        }
-
-        [TestMethod]
-        public void ScoreProperty_OnSet_SetsTheValueTo0()
-        {
-            var summaryResult = new SummaryResult();
-            summaryResult.Score = 0;
-            Assert.AreEqual(0, summaryResult.Score);
-        }
-
-        [TestMethod]
         public void ErrorCountProperty_OnGet_GetsTheNumberOfErrors()
         {
             var summaryResult = new SummaryResult

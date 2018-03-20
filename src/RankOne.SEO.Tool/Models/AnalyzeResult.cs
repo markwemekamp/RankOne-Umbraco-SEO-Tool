@@ -38,6 +38,7 @@ namespace RankOne.Models
         public AnalyzeResult()
         {
             ResultRules = new List<ResultRule>();
+            Weight = 100;
         }
 
         public void AddResultRule(string code, string type)
