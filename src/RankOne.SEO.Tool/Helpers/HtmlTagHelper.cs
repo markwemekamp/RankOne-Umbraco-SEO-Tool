@@ -40,9 +40,6 @@ namespace RankOne.Helpers
 
         private HtmlNode GetSingleTag(HtmlNode document, string tagName)
         {
-            if (document == null) throw new ArgumentNullException(nameof(document));
-            if (tagName == null) throw new ArgumentNullException(nameof(tagName));
-
             var tags = document.GetElements(tagName);
             if (!tags.Any())
             {
@@ -60,9 +57,6 @@ namespace RankOne.Helpers
 
         private IEnumerable<HtmlNode> GetMultipleTags(HtmlNode document, string tagName)
         {
-            if (document == null) throw new ArgumentNullException(nameof(document));
-            if (tagName == null) throw new ArgumentNullException(nameof(tagName));
-
             var tags = document.GetElements(tagName);
             if (!tags.Any())
             {

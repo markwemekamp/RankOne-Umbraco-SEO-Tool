@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Helpers;
 using RankOne.Models.Exceptions;
+using System;
 using System.Linq;
 
 namespace RankOne.Tests.Helpers
@@ -20,6 +21,14 @@ namespace RankOne.Tests.Helpers
 
             Assert.IsNotNull(headTag);
             Assert.AreEqual("<title>Title</title>", headTag.InnerHtml);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetHeadTag_OnExecuteWithNullParameter_ThrowsException()
+        {
+            var htmlTagHelper = new HtmlTagHelper();
+            htmlTagHelper.GetHeadTag(null);
         }
 
         [TestMethod]
@@ -42,6 +51,14 @@ namespace RankOne.Tests.Helpers
 
             var htmlTagHelper = new HtmlTagHelper();
             htmlTagHelper.GetHeadTag(doc.DocumentNode);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetBodyTag_OnExecuteWithNullParameter_ThrowsException()
+        {
+            var htmlTagHelper = new HtmlTagHelper();
+            htmlTagHelper.GetBodyTag(null);
         }
 
         [TestMethod]
@@ -93,6 +110,14 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetTitleTag_OnExecuteWithNullParameter_ThrowsException()
+        {
+            var htmlTagHelper = new HtmlTagHelper();
+            htmlTagHelper.GetTitleTag(null);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(NoElementFoundException))]
         public void GetTitleTag_OnExecuteWithNoTitleTag_ThrowsException()
         {
@@ -125,6 +150,14 @@ namespace RankOne.Tests.Helpers
 
             Assert.IsNotNull(metaTags);
             Assert.AreEqual(2, metaTags.Count());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetMetaTags_OnExecuteWithNullParameter_ThrowsException()
+        {
+            var htmlTagHelper = new HtmlTagHelper();
+            htmlTagHelper.GetMetaTags(null);
         }
 
         [TestMethod]

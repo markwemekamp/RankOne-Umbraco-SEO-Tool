@@ -73,7 +73,7 @@ namespace RankOne.Analyzers.Template
         public MetaDescriptionAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper) : base()
         {
             if (htmlTagHelper == null) throw new ArgumentNullException(nameof(htmlTagHelper));
-            if (_optionHelper == null) throw new ArgumentNullException(nameof(_optionHelper));
+            if (optionHelper == null) throw new ArgumentNullException(nameof(optionHelper));
 
             _htmlTagHelper = htmlTagHelper;
             _optionHelper = optionHelper;

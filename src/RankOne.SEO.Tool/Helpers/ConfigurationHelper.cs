@@ -13,20 +13,18 @@ namespace RankOne.Helpers
 {
     public class ConfigurationHelper : IConfigurationHelper
     {
-        public virtual string ConfigFileName
+        public virtual string ConfigFilePath { get; set; }
+
+        public ConfigurationHelper()
         {
-            get
-            {
-                return "RankOne.Config";
-            }
+            ConfigFilePath = IOHelper.MapPath(Path.Combine(SystemDirectories.Config, "RankOne.Config"));
         }
 
-        public virtual string ConfigFilePath
+        public ConfigurationHelper(string filePath)
         {
-            get
-            {
-                return IOHelper.MapPath(Path.Combine(SystemDirectories.Config, ConfigFileName));
-            }
+            if (filePath == null) throw new ArgumentNullException(nameof(filePath));
+
+            ConfigFilePath = filePath;
         }
 
         public IEnumerable<ISummary> GetSummaries()

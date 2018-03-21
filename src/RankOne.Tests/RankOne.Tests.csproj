@@ -302,6 +302,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Files\RankOne.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
