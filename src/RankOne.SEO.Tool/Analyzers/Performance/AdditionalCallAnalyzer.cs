@@ -55,11 +55,10 @@ namespace RankOne.Analyzers.Performance
         {
             if (pageData == null) throw new ArgumentNullException(nameof(pageData));
 
-            var cssFiles = pageData.Document.GetElementsWithAttribute("link", "href").
-                Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));
+            var cssFiles = pageData.Document.GetElementsWithAttribute("link", "href").Where(x => x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet"));
             var scriptFiles = pageData.Document.GetElementsWithAttribute("script", "src");
             var images = pageData.Document.GetElementsWithAttribute("img", "src");
-            var objects = pageData.Document.GetElementsWithAttribute("object ", "data");
+            var objects = pageData.Document.GetElementsWithAttribute("object", "data");
 
             var total = cssFiles.Count() + scriptFiles.Count() + images.Count() + objects.Count();
 
