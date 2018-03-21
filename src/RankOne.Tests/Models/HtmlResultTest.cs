@@ -4,6 +4,7 @@ using RankOne.Models;
 
 namespace RankOne.Tests.Models
 {
+    [TestClass]
     public class HtmlResultTest
     {
         [TestMethod]
