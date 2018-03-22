@@ -39,7 +39,7 @@ namespace RankOne.Analyzers.Performance
             return pageData.Document.GetElementsWithAttribute("link", "href").
                 Where(x =>
                         x.Attributes.Any(y => y.Name == "rel" && y.Value == "stylesheet") &&
-                        x.Attributes.Any(y => y.Name == "href" && ((y.Value.StartsWith("/") && !y.Value.StartsWith("//"))
+                        x.Attributes.Any(y => y.Name == "href" && (((y.Value.StartsWith("/") || y.Value.StartsWith("../")) && !y.Value.StartsWith("//"))
                             || y.Value.StartsWith(url.Host)
                         ))
                 );

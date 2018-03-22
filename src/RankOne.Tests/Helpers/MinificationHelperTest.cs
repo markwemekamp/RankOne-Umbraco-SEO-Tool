@@ -17,7 +17,7 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
-        public void IsMinified_OnExecuteUnminifiedCode_ReturnsFalse()
+        public void IsMinified_OnExecuteUnminifiedJs_ReturnsFalse()
         {
             var input = File.ReadAllText("../../files/unminified.js");
             var minificationHelper = new MinificationHelper();
@@ -27,9 +27,29 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
-        public void IsMinified_OnExecuteWithMinifiedCode_ReturnsTrue()
+        public void IsMinified_OnExecuteWithMinifiedJs_ReturnsTrue()
         {
             var input = File.ReadAllText("../../files/minified.js");
+            var minificationHelper = new MinificationHelper();
+            var minified = minificationHelper.IsMinified(input);
+
+            Assert.IsTrue(minified);
+        }
+
+        [TestMethod]
+        public void IsMinified_OnExecuteUnminifiedCss_ReturnsFalse()
+        {
+            var input = File.ReadAllText("../../files/unminified.css");
+            var minificationHelper = new MinificationHelper();
+            var minified = minificationHelper.IsMinified(input);
+
+            Assert.IsFalse(minified);
+        }
+
+        [TestMethod]
+        public void IsMinified_OnExecuteWithMinifiedCss_ReturnsTrue()
+        {
+            var input = File.ReadAllText("../../files/minified.css");
             var minificationHelper = new MinificationHelper();
             var minified = minificationHelper.IsMinified(input);
 

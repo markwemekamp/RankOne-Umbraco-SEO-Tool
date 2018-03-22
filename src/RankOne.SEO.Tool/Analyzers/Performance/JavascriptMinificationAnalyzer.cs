@@ -38,7 +38,7 @@ namespace RankOne.Analyzers.Performance
         {
             return pageData.Document.GetElementsWithAttribute("script", "src").
                 Where(x =>
-                    x.Attributes.Any(y => y.Name == "src" && y.Value.EndsWith("js") && ((y.Value.StartsWith("/") && !y.Value.StartsWith("//"))
+                    x.Attributes.Any(y => y.Name == "src" && y.Value.EndsWith("js") && (((y.Value.StartsWith("/") || y.Value.StartsWith("../")) && !y.Value.StartsWith("//"))
                                                                                         || y.Value.StartsWith(url.Host)
                         ))
                 );
