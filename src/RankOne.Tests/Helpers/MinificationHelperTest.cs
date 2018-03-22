@@ -17,9 +17,10 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
+        [DeploymentItem("../../files/unminified.js", "files")]
         public void IsMinified_OnExecuteUnminifiedJs_ReturnsFalse()
         {
-            var input = File.ReadAllText("../../files/unminified.js");
+            var input = File.ReadAllText("./files/unminified.js");
             var minificationHelper = new MinificationHelper();
             var minified = minificationHelper.IsMinified(input);
 
@@ -27,9 +28,10 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
+        [DeploymentItem("../../files/minified.js", "files")]
         public void IsMinified_OnExecuteWithMinifiedJs_ReturnsTrue()
         {
-            var input = File.ReadAllText("../../files/minified.js");
+            var input = File.ReadAllText("./files/minified.js");
             var minificationHelper = new MinificationHelper();
             var minified = minificationHelper.IsMinified(input);
 
@@ -37,9 +39,10 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
+        [DeploymentItem("../../files/unminified.css", "files")]
         public void IsMinified_OnExecuteUnminifiedCss_ReturnsFalse()
         {
-            var input = File.ReadAllText("../../files/unminified.css");
+            var input = File.ReadAllText("./files/unminified.css");
             var minificationHelper = new MinificationHelper();
             var minified = minificationHelper.IsMinified(input);
 
@@ -47,9 +50,10 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
+        [DeploymentItem("../../files/minified.css", "files")]
         public void IsMinified_OnExecuteWithMinifiedCss_ReturnsTrue()
         {
-            var input = File.ReadAllText("../../files/minified.css");
+            var input = File.ReadAllText("./files/minified.css");
             var minificationHelper = new MinificationHelper();
             var minified = minificationHelper.IsMinified(input);
 

@@ -21,14 +21,14 @@ namespace RankOne.Tests.Repositories
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_OnExectureWithNullForPageScoreSerializer_ThrowsException()
         {
-            new AnalysisCacheRepository(Mock.Of<INodeReportService>(), null);
+            new AnalysisCacheRepository(Moq.Mock.Of<INodeReportService>(), null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Save_OnExectureWithMinus1ForId_ThrowsException()
         {
-            var analysisCacheRepository = new AnalysisCacheRepository(Mock.Of<INodeReportService>(), new PageScoreSerializer());
+            var analysisCacheRepository = new AnalysisCacheRepository(Moq.Mock.Of<INodeReportService>(), new PageScoreSerializer());
             analysisCacheRepository.Save(-1, new RankOne.Models.PageAnalysis());
         }
 
@@ -36,7 +36,7 @@ namespace RankOne.Tests.Repositories
         [ExpectedException(typeof(ArgumentNullException))]
         public void Save_OnExectureWithNullForPageAnalysis_ThrowsException()
         {
-            var analysisCacheRepository = new AnalysisCacheRepository(Mock.Of<INodeReportService>(), new PageScoreSerializer());
+            var analysisCacheRepository = new AnalysisCacheRepository(Moq.Mock.Of<INodeReportService>(), new PageScoreSerializer());
             analysisCacheRepository.Save(1, null);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Helpers;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -8,6 +9,13 @@ namespace RankOne.Tests.Helpers
     [TestClass]
     public class ConfigurationHelperTest
     {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Constructor_OnExecuteWithNullParameter_ThrowsException()
+        {
+            new ConfigurationHelper(null);
+        }
+
         [TestMethod]
         public void ConfigFilePath_OnSet_SetsConfigFilePath()
         {
@@ -35,11 +43,12 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
+        [DeploymentItem("../../files/RankOne.config", "files")]
         public void GetSummaries_OnExecute_ReadsConfigFile()
         {
             var configurationHelper = new ConfigurationHelper()
             {
-                ConfigFilePath = Umbraco.Core.IO.IOHelper.MapPath("/Files/RankOne.Config")
+                ConfigFilePath = "./files/RankOne.Config"
             };
             var summaries = configurationHelper.GetSummaries();
 

@@ -4,7 +4,7 @@ using System.Linq;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 
-namespace RankOne.Tests.Mocks
+namespace RankOne.Tests.Mock
 {
     public class PublishedContentMock : IPublishedContent
     {

@@ -1,11 +1,11 @@
 ﻿using RankOne.Interfaces;
 using System;
+using System.Net;
 
 namespace RankOne.Helpers
 {
     public class UrlHelper : IUrlHelper
     {
-
         public string GetFullPath(string path, Uri url)
         {
             if (path == null) throw new ArgumentNullException(nameof(path));
@@ -30,6 +30,20 @@ namespace RankOne.Helpers
             if (path == null) throw new ArgumentNullException(nameof(path));
 
             return path.StartsWith("/") || path.StartsWith("./");
+        }
+
+        public string GetContent(string fullPath)
+        {
+            try
+            {
+                var webClient = new WebClient();
+                return webClient.DownloadString(fullPath);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+            return null;
         }
     }
 }

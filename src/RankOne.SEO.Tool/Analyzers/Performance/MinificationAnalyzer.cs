@@ -65,7 +65,7 @@ namespace RankOne.Analyzers.Performance
                 if (!_cacheHelper.Exists(cacheKey))
                 {
                     var isMinified = false;
-                    var content = GetContent(fullPath);
+                    var content = _urlHelper.GetContent(fullPath);
                     if (content != null)
                     {
                         isMinified = _minificationHelper.IsMinified(content);
@@ -85,20 +85,6 @@ namespace RankOne.Analyzers.Performance
                     AddResultRule(resultRule);
                 }
             }
-        }
-
-        private string GetContent(string fullPath)
-        {
-            try
-            {
-                var webClient = new WebClient();
-                return webClient.DownloadString(fullPath);
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
-            return null;
         }
 
         protected abstract HtmlAttribute GetAttribute(HtmlNode node);

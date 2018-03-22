@@ -2,7 +2,7 @@
 using Moq;
 using RankOne.Helpers;
 using RankOne.Interfaces;
-using RankOne.Tests.Mocks;
+using RankOne.Tests.Mock;
 using System;
 using System.Collections.Generic;
 using Umbraco.Core.Models;

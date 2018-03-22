@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RankOne.Helpers;
-using RankOne.Tests.Mocks;
+using RankOne.Tests.Mock;
 using System;
 using System.Collections.Generic;
 using System.Web;
@@ -29,41 +29,41 @@ namespace RankOne.Tests.Helpers
         [TestInitialize]
         public void Initialize()
         {
-            var databaseContext = new DatabaseContext(Mock.Of<IDatabaseFactory>(), Mock.Of<ILogger>(),
-                new SqlSyntaxProviders(new[] { Mock.Of<ISqlSyntaxProvider>() }));
+            var databaseContext = new DatabaseContext(Moq.Mock.Of<IDatabaseFactory>(), Moq.Mock.Of<ILogger>(),
+                new SqlSyntaxProviders(new[] { Moq.Mock.Of<ISqlSyntaxProvider>() }));
 
             var applicationContext = ApplicationContext.EnsureContext(
                 databaseContext,
                 new ServiceContext(),
                 Umbraco.Core.CacheHelper.CreateDisabledCacheHelper(),
                 new ProfilingLogger(
-                    Mock.Of<ILogger>(),
-                    Mock.Of<IProfiler>()), true);
+                    Moq.Mock.Of<ILogger>(),
+                    Moq.Mock.Of<IProfiler>()), true);
 
             var umbracoContext = UmbracoContext.EnsureContext(
-                Mock.Of<HttpContextBase>(),
+                Moq.Mock.Of<HttpContextBase>(),
                 applicationContext,
                 new Mock<WebSecurity>(null, null).Object,
-                Mock.Of<IUmbracoSettingsSection>(),
+                Moq.Mock.Of<IUmbracoSettingsSection>(),
                 new List<IUrlProvider>(), true);
 
             var mockedComponentRenderer = new Mock<IUmbracoComponentRenderer>();
             mockedComponentRenderer.Setup(x => x.RenderTemplate(1, null)).Returns(new HtmlString("<html>test</html>"));
 
             var urlProvider = new UrlProvider(umbracoContext,
-                Mock.Of<IWebRoutingSection>(section => section.UrlProviderMode == UrlProviderMode.Auto.ToString()),
-                new[] { Mock.Of<IUrlProvider>() });
+                Moq.Mock.Of<IWebRoutingSection>(section => section.UrlProviderMode == UrlProviderMode.Auto.ToString()),
+                new[] { Moq.Mock.Of<IUrlProvider>() });
 
-            var membershipHelper = new MembershipHelper(umbracoContext, Mock.Of<MembershipProvider>(), Mock.Of<RoleProvider>());
+            var membershipHelper = new MembershipHelper(umbracoContext, Moq.Mock.Of<MembershipProvider>(), Moq.Mock.Of<RoleProvider>());
 
             _umbracoHelper = new UmbracoHelper(umbracoContext,
-                Mock.Of<IPublishedContent>(),
-                Mock.Of<ITypedPublishedContentQuery>(),
-                Mock.Of<IDynamicPublishedContentQuery>(),
-                Mock.Of<ITagQuery>(),
-                Mock.Of<IDataTypeService>(),
+                Moq.Mock.Of<IPublishedContent>(),
+                Moq.Mock.Of<ITypedPublishedContentQuery>(),
+                Moq.Mock.Of<IDynamicPublishedContentQuery>(),
+                Moq.Mock.Of<ITagQuery>(),
+                Moq.Mock.Of<IDataTypeService>(),
                 urlProvider,
-                Mock.Of<ICultureDictionary>(),
+                Moq.Mock.Of<ICultureDictionary>(),
                 mockedComponentRenderer.Object,
                 membershipHelper);
         }

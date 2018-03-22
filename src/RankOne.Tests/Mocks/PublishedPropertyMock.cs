@@ -1,7 +1,7 @@
 ﻿using System;
 using Umbraco.Core.Models;
 
-namespace RankOne.Tests.Mocks
+namespace RankOne.Tests.Mock
 {
     public class PublishedPropertyMock : IPublishedProperty
     {
