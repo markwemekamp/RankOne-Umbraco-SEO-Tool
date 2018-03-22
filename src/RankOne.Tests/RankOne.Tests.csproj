@@ -244,6 +244,7 @@
     <Compile Include="Analyzers\CssMinificationAnalyzerTest.cs" />
     <Compile Include="Analyzers\KeywordHeadingAnalyzerTest.cs" />
     <Compile Include="Analyzers\KeywordUrlAnalyzerTest.cs" />
+    <Compile Include="Helpers\MinificationHelperTest.cs" />
     <Compile Include="Helpers\PageScoreNodeHelperTest.cs" />
     <Compile Include="Models\OptionTest.cs" />
     <Compile Include="Models\PageInformationTest.cs" />
