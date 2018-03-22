@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Helpers;
 using System;
+using System.IO;
 
 namespace RankOne.Tests.Helpers
 {
@@ -18,12 +19,7 @@ namespace RankOne.Tests.Helpers
         [TestMethod]
         public void IsMinified_OnExecuteUnminifiedCode_ReturnsFalse()
         {
-            var input = @"<script>
-                            alert('test');
-                            </script>";
-
-
-
+            var input = File.ReadAllText("../../files/unminified.js");
             var minificationHelper = new MinificationHelper();
             var minified = minificationHelper.IsMinified(input);
 
@@ -33,7 +29,7 @@ namespace RankOne.Tests.Helpers
         [TestMethod]
         public void IsMinified_OnExecuteWithMinifiedCode_ReturnsTrue()
         {
-
+            var input = File.ReadAllText("../../files/minified.js");
             var minificationHelper = new MinificationHelper();
             var minified = minificationHelper.IsMinified(input);
 
