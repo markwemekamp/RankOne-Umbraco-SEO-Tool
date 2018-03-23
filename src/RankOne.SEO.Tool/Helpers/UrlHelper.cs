@@ -29,11 +29,13 @@ namespace RankOne.Helpers
         {
             if (path == null) throw new ArgumentNullException(nameof(path));
 
-            return path.StartsWith("/") || path.StartsWith("./");
+            return path.StartsWith("/") || path.StartsWith("./") || path.StartsWith("../");
         }
 
         public string GetContent(string fullPath)
         {
+            if (fullPath == null) throw new ArgumentNullException(nameof(fullPath));
+
             try
             {
                 var webClient = new WebClient();

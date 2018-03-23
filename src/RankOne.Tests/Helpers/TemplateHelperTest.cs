@@ -70,7 +70,7 @@ namespace RankOne.Tests.Helpers
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void GetNodeHtmlFromNullReturnsNull()
+        public void GetNodeHtml_OnExecuteWithNullParameter_ThrowsException()
         {
             var contentHelper = new TemplateHelper(_umbracoHelper);
 
@@ -79,7 +79,7 @@ namespace RankOne.Tests.Helpers
 
         [TestMethod]
         [ExpectedException(typeof(MissingFieldException))]
-        public void GetNodeHtmlFromPublishedContentWithNoTemplateIdReturnsNull()
+        public void GetNodeHtml_OnExecuteWithPublishedContentWithNoTemplateId_ReturnsNull()
         {
             var publishedContent = new PublishedContentMock()
             {
@@ -94,7 +94,7 @@ namespace RankOne.Tests.Helpers
 
         [TestMethod]
         [ExpectedException(typeof(MissingFieldException))]
-        public void GetNodeHtmlFromPublishedContentWithIdReturnsNull()
+        public void GetNodeHtml_OnExecuteWithPublishedContentWithId_ReturnsNull()
         {
             var publishedContent = new PublishedContentMock()
             {
@@ -108,7 +108,7 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
-        public void GetNodeHtmlFromPublishedContentWithIdReturnsObject()
+        public void GetNodeHtml_WithPublishedContentWithId_ReturnsObject()
         {
             var publishedContent = new PublishedContentMock()
             {

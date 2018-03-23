@@ -12,7 +12,7 @@ namespace RankOne.Analyzers.Performance
 
         private int? _maximumAdditionalCalls;
 
-        private int MaximumAdditionalCalls
+        public int MaximumAdditionalCalls
         {
             get
             {
@@ -26,7 +26,7 @@ namespace RankOne.Analyzers.Performance
 
         private int? _acceptableAdditionalCalls;
 
-        private int AcceptableAdditionalCalls
+        public int AcceptableAdditionalCalls
         {
             get
             {

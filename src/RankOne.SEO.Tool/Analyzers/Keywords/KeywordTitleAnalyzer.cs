@@ -22,7 +22,7 @@ namespace RankOne.Analyzers.Keywords
 
         private int? _idealKeywordPosition;
 
-        private int IdealKeywordPosition
+        public int IdealKeywordPosition
         {
             get
             {

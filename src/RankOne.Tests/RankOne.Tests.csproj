@@ -309,7 +309,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Files\minified.css" />
     <Content Include="Files\minified.js" />
+    <Content Include="Files\unminified.css" />
     <Content Include="Files\unminified.js" />
   </ItemGroup>
   <ItemGroup>

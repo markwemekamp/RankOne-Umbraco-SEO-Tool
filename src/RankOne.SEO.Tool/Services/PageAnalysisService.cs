@@ -14,19 +14,23 @@ namespace RankOne.Services
         private readonly IScoreService _scoreService;
         private readonly IHtmlHelper _htmlHelper;
         private readonly IByteSizeHelper _byteSizeHelper;
+        private readonly ITemplateHelper _templateHelper;
 
         public PageAnalysisService() : this(RankOneContext.Instance)
         { }
 
-        public PageAnalysisService(RankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.HtmlHelper.Value, rankOneContext.ByteSizeHelper.Value, rankOneContext.Summaries.Value)
+        public PageAnalysisService(RankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.HtmlHelper.Value, 
+            rankOneContext.ByteSizeHelper.Value, rankOneContext.Summaries.Value, rankOneContext.TemplateHelper.Value)
         { }
 
-        public PageAnalysisService(IScoreService scoreService, IHtmlHelper htmlHelper, IByteSizeHelper byteSizeHelper, IEnumerable<ISummary> summaries)
+        public PageAnalysisService(IScoreService scoreService, IHtmlHelper htmlHelper, IByteSizeHelper byteSizeHelper, IEnumerable<ISummary> summaries, 
+            ITemplateHelper templateHelper)
         {
             _scoreService = scoreService;
             _htmlHelper = htmlHelper;
             _byteSizeHelper = byteSizeHelper;
             _summaries = summaries;
+            _templateHelper = templateHelper;
         }
 
         public PageAnalysis CreatePageAnalysis(IPublishedContent node, string focusKeyword = null)
@@ -37,7 +41,7 @@ namespace RankOne.Services
 
             try
             {
-                var htmlString = _htmlHelper.GetTemplateHtml(node);
+                var htmlString = _templateHelper.GetNodeHtml(node);
                 var htmlResult = _htmlHelper.GetHtmlResult(htmlString);
 
                 pageAnalysis.AbsoluteUrl = node.UrlAbsolute();

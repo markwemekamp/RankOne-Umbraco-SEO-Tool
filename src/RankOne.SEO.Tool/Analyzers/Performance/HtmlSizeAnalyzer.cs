@@ -11,7 +11,7 @@ namespace RankOne.Analyzers.Performance
 
         private int? _maximumSizeInBytes;
 
-        private int MaximumSizeInBytes
+        public int MaximumSizeInBytes
         {
             get
             {

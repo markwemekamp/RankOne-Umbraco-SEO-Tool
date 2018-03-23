@@ -14,7 +14,7 @@ namespace RankOne.Analyzers.Template
 
         private IEnumerable<string> _deprecatedTags;
 
-        private IEnumerable<string> DeprecatedTags
+        public IEnumerable<string> DeprecatedTags
         {
             get
             {

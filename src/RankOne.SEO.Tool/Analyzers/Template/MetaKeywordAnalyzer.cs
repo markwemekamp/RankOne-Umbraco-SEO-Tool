@@ -44,10 +44,6 @@ namespace RankOne.Analyzers.Template
                 AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
 
             }
-            catch (MultipleElementsFoundException e)
-            {
-                AddResultRule("multiple_" + e.ElementName + "_tags", ResultType.Error);
-            }
         }
 
         private void AnalyzeMetaTags(IEnumerable<HtmlNode> metaTags)

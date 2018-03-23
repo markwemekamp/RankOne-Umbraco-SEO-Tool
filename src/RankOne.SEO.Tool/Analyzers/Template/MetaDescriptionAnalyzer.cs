@@ -24,7 +24,7 @@ namespace RankOne.Analyzers.Template
 
         private int? _maximumLength;
 
-        private int MaximumLength
+        public int MaximumLength
         {
             get
             {
@@ -38,7 +38,7 @@ namespace RankOne.Analyzers.Template
 
         private int? _minimumLength;
 
-        private int MinimumLength
+        public int MinimumLength
         {
             get
             {
@@ -52,7 +52,7 @@ namespace RankOne.Analyzers.Template
 
         private int? _acceptableLength;
 
-        private int AcceptableLength
+        public int AcceptableLength
         {
             get
             {
@@ -96,10 +96,6 @@ namespace RankOne.Analyzers.Template
             {
                 AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
 
-            }
-            catch (MultipleElementsFoundException e)
-            {
-                AddResultRule("multiple_" + e.ElementName + "_tags", ResultType.Error);
             }
         }
 
@@ -155,8 +151,7 @@ namespace RankOne.Analyzers.Template
                     resultRule.Alias = "description_too_short";
                     resultRule.Type = ResultType.Warning;
                 }
-
-                if (descriptionValue.Length < AcceptableLength)
+                else if (descriptionValue.Length < AcceptableLength)
                 {
                     resultRule.Alias = "description_shorter_then_acceptable";
                     resultRule.Type = ResultType.Hint;

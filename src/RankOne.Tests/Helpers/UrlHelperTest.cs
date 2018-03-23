@@ -17,9 +17,16 @@ namespace RankOne.Tests.Helpers
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void GetFullPath_OnExecuteWithNullPathParameter_ThrowsException()
+        public void GetFullPath_OnExecuteWithNullPathParameterForPath_ThrowsException()
         {
             _urlHelper.GetFullPath(null, new Uri("http://www.google.com:80"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetFullPath_OnExecuteWithNullPathParameterForUrl_ThrowsException()
+        {
+            _urlHelper.GetFullPath("", null);
         }
 
         [TestMethod]
@@ -61,13 +68,6 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
-        public void IsLocalLink_OnExecuteWithLocalLinkDotStyleNotation_ReturnsTrue()
-        {
-            var result = _urlHelper.IsLocalLink("./style.css");
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
         public void IsLocalLink_OnExecuteWithLocalLink_ReturnsTrue()
         {
             var result = _urlHelper.IsLocalLink("/style.css");
@@ -75,10 +75,31 @@ namespace RankOne.Tests.Helpers
         }
 
         [TestMethod]
-        public void IsLocalLink_OnExecuteWithAbsoluateUrl_ReturnsFalse()
+        public void IsLocalLink_OnExecuteWithLocalLinkDotStyleNotation_ReturnsTrue()
+        {
+            var result = _urlHelper.IsLocalLink("./style.css");
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsLocalLink_OnExecuteWithLocalLinkDotDotStyleNotation_ReturnsTrue()
+        {
+            var result = _urlHelper.IsLocalLink("../style.css");
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsLocalLink_OnExecuteWithAbsoluteUrl_ReturnsFalse()
         {
             var result = _urlHelper.IsLocalLink("http://www.google.com/style.css");
             Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetContent_OnExecuteWithNullPathParameter_ThrowsException()
+        {
+            _urlHelper.GetContent(null);
         }
     }
 }

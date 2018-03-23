@@ -25,9 +25,8 @@ namespace RankOne.Analyzers.Template
         private readonly IOptionHelper _optionHelper;
 
         private int? _maximumLength;
-        private int? _minimumLength;
 
-        private int MaximumLength
+        public int MaximumLength
         {
             get
             {
@@ -39,7 +38,9 @@ namespace RankOne.Analyzers.Template
             }
         }
 
-        private int MinimumLength
+        private int? _minimumLength;
+
+        public int MinimumLength
         {
             get
             {
