@@ -240,6 +240,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Analyzers\ImageTagAnalyzerTest.cs" />
     <Compile Include="Analyzers\JavascriptMinificationAnalyzerTest.cs" />
     <Compile Include="Analyzers\CssMinificationAnalyzerTest.cs" />
     <Compile Include="Analyzers\KeywordHeadingAnalyzerTest.cs" />
@@ -292,6 +293,8 @@
     <Compile Include="Helpers\TableNameHelperTest.cs" />
     <Compile Include="Repositories\AnalysisCacheRepositoryTest.cs" />
     <Compile Include="Services\ScoreServiceTest.cs" />
+    <Compile Include="Utils\UtilsTest.cs" />
+    <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RankOne.SEO.Tool\RankOne.csproj">

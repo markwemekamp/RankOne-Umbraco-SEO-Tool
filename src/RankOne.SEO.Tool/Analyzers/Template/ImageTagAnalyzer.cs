@@ -22,7 +22,7 @@ namespace RankOne.Analyzers.Template
 
             if (!AnalyzeResult.ResultRules.Any())
             {
-                AddResultRule("alt_and_title_tags_present", ResultType.Success);
+                AddResultRule("alt_and_title_attributes_present", ResultType.Success);
             }
         }
 
@@ -35,7 +35,7 @@ namespace RankOne.Analyzers.Template
             {
                 var resultRule = new ResultRule
                 {
-                    Alias = "missing_" + attributeName + "_tags",
+                    Alias = "missing_" + attributeName + "_attribute",
                     Type = ResultType.Hint
                 };
                 var numberOfTagsMissingAttribute = imageTagCount - imagesWithAttributeCount;

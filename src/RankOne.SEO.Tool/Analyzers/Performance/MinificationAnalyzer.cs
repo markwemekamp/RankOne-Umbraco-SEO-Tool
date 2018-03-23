@@ -14,13 +14,6 @@ namespace RankOne.Analyzers.Performance
         private readonly ICacheHelper _cacheHelper;
         private readonly IUrlHelper _urlHelper;
 
-        public MinificationAnalyzer() : this(RankOneContext.Instance)
-        { }
-
-        public MinificationAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.MinificationHelper.Value, rankOneContext.CacheHelper.Value, 
-            rankOneContext.UrlHelper.Value)
-        { }
-
         public MinificationAnalyzer(IMinificationHelper minificationHelper, ICacheHelper cacheHelper, IUrlHelper urlHelper) : base()
         {
             if (minificationHelper == null) throw new ArgumentNullException(nameof(minificationHelper));

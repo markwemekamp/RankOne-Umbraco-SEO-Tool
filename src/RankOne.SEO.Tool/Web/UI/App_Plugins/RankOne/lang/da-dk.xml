@@ -124,9 +124,9 @@
 
   <area alias="imagetaganalyzer">
     <key alias="title">Billede tags</key>
-    <key alias="missing_alt_tags">Ikke alle billeder har en alternativ-tekst</key>
-    <key alias="missing_title_tags">Ikke alle billeder har en title-tekst</key>
-    <key alias="alt_and_title_tags_present">Perfekt! Alle billederne indeholder både alt og title tekster</key>
+    <key alias="missing_alt_attributes">Ikke alle billeder har en alternativ-tekst</key>
+    <key alias="missing_title_attributes">Ikke alle billeder har en title-tekst</key>
+    <key alias="alt_and_title_attributes_present">Perfekt! Alle billederne indeholder både alt og title tekster</key>
   </area>
 
   <area alias="anchorTagAnalyzer">

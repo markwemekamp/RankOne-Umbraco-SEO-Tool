@@ -52,7 +52,7 @@ namespace RankOne.Analyzers.Performance
             }
             else
             {
-                htmlSizeResultRule.Alias = "htmlsizeanalyzer_html_size_too_large";
+                htmlSizeResultRule.Alias = "html_size_too_large";
                 htmlSizeResultRule.Type = ResultType.Warning;
             }
             htmlSizeResultRule.Tokens.Add(_byteSizeHelper.GetSizeSuffix(byteCount));

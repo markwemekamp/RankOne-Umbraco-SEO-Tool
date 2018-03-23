@@ -185,9 +185,9 @@
 
   <area alias="imagetaganalyzer">
     <key alias="title">Image tags</key>
-    <key alias="missing_alt_tags">%0% images are missing an alternative text</key>
-    <key alias="missing_title_tags">%0% images are missing a title text</key>
-    <key alias="alt_and_title_tags_present">Perfect! All the image tags contain an alternative and title text</key>
+    <key alias="missing_alt_attributes">%0% images are missing an alternative text</key>
+    <key alias="missing_title_attributes">%0% images are missing a title text</key>
+    <key alias="alt_and_title_attributes_present">Perfect! All the image tags contain an alternative and title text</key>
   </area>
 
   <area alias="anchorTagAnalyzer">
