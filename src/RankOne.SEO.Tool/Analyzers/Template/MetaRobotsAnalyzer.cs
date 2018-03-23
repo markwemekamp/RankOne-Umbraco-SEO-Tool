@@ -50,30 +50,34 @@ namespace RankOne.Analyzers.Template
                 AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
 
             }
-            catch (MultipleElementsFoundException e)
-            {
-                AddResultRule("multiple_" + e.ElementName + "_tags", ResultType.Error);
-            }
         }
 
         private void AnalyzeMetaTags(IEnumerable<HtmlNode> metaTags)
         {
-            var robots = GetContentAttributeFromMetaTag(metaTags, "robots");
-            var googlebot = GetContentAttributeFromMetaTag(metaTags, "googlebots");
+            var robotTags = GetContentAttributeFromMetaTag(metaTags, "robots");
+            var googlebotTags = GetContentAttributeFromMetaTag(metaTags, "googlebot");
 
-            if (!robots.Any() && !googlebot.Any())
+            if (!robotTags.Any() && !googlebotTags.Any())
             {
                 AddResultRule("no_robots_tag", ResultType.Success);
             }
+            if (robotTags.Count() > 1)
+            {
+                AddResultRule("multiple_robots_tags", ResultType.Error);
+            }
+            if (googlebotTags.Count() > 1)
+            {
+                AddResultRule("multiple_googlebot_tags", ResultType.Error);
+            }
             else
             {
-                var firstRobotTag = robots.FirstOrDefault();
+                var firstRobotTag = robotTags.FirstOrDefault();
                 if (firstRobotTag != null)
                 {
                     AnalyzeRobotTag(firstRobotTag);
                 }
 
-                var firstGooglebotTag = googlebot.FirstOrDefault();
+                var firstGooglebotTag = googlebotTags.FirstOrDefault();
                 if (firstGooglebotTag != null)
                 {
                     AnalyzeGoogleBotTag(firstGooglebotTag);
