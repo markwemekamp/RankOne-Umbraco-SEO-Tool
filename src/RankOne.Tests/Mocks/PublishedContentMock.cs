@@ -18,10 +18,7 @@ namespace RankOne.Tests.Mock
 
         public IEnumerable<IPublishedContent> Children
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get; set;
         }
 
         public IEnumerable<IPublishedContent> ContentSet
@@ -105,10 +102,7 @@ namespace RankOne.Tests.Mock
 
         public string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get; set;
         }
 
         public IPublishedContent Parent

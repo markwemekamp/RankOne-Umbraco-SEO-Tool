@@ -68,9 +68,12 @@ namespace RankOne.Helpers
             {
                 var nodeHierarchy = new PageScoreNode
                 {
-                    NodeInformation = new NodeInformation(node),
-                    Children = GetPageHierarchy(node.Children)
+                    NodeInformation = new NodeInformation(node)
                 };
+                if (node.Children != null)
+                {
+                    nodeHierarchy.Children = GetPageHierarchy(node.Children);
+                }
                 nodeHiearchyCollection.Add(nodeHierarchy);
             }
             return nodeHiearchyCollection;
