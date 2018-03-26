@@ -1,4 +1,5 @@
-﻿using RankOne.ExtensionMethods;
+﻿using HtmlAgilityPack;
+using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System;
@@ -12,6 +13,7 @@ namespace RankOne.Analyzers.Template
         private IUrlStatusService _urlStatusService;
         private IUrlHelper _urlHelper;
         private ICacheHelper _cacheHelper;
+        private HashSet<string> _brokenLinks;
 
         public BrokenLinkAnalyzer() : this(RankOneContext.Instance)
         { }
@@ -29,6 +31,7 @@ namespace RankOne.Analyzers.Template
             _urlStatusService = urlStatusService;
             _urlHelper = urlHelper;
             _cacheHelper = cacheHelper;
+            _brokenLinks = new HashSet<string>();
         }
 
         public override void Analyse(IPageData pageData)
@@ -40,41 +43,18 @@ namespace RankOne.Analyzers.Template
 
             var url = new Uri(pageData.Url);
 
-            var brokenLinks = new HashSet<string>();
-
             foreach (var anchorTag in anchorTags)
             {
-                if (anchorTag.GetAttribute("href") != null)
-                {
-                    var hrefValue = anchorTag.GetAttribute("href").Value;
-
-                    if (hrefValue != null && !brokenLinks.Contains(hrefValue) && !string.IsNullOrWhiteSpace(hrefValue) && hrefValue != "/" && hrefValue != "#")
-                    {
-                        var fullUrl = _urlHelper.GetFullPath(hrefValue, url);
-
-                        var cacheKey = "brokenlink_{fullUrl}";
-
-                        if (!_cacheHelper.Exists(cacheKey))
-                        {
-                            var active = _urlStatusService.IsActiveUrl(fullUrl);
-                            _cacheHelper.SetValue(cacheKey, active.ToString());
-                        }
-
-                        if (_cacheHelper.GetValue(cacheKey).ToString() != true.ToString())
-                        {
-                            brokenLinks.Add(hrefValue);
-                        }
-                    }
-                }
+                CheckAnchor(anchorTag, url);
             }
 
-            if (!brokenLinks.Any())
+            if (!_brokenLinks.Any())
             {
                 AddResultRule("all_links_working", ResultType.Success);
             }
             else
             {
-                foreach (var brokenLink in brokenLinks)
+                foreach (var brokenLink in _brokenLinks)
                 {
                     var resultRule = new ResultRule()
                     {
@@ -84,6 +64,37 @@ namespace RankOne.Analyzers.Template
                     };
                     AddResultRule(resultRule);
                 }
+            }
+        }
+
+        private void CheckAnchor(HtmlNode anchorTag, Uri url)
+        {
+            if (anchorTag.GetAttribute("href") != null)
+            {
+                var hrefValue = anchorTag.GetAttribute("href").Value;
+
+                if (hrefValue != null && !_brokenLinks.Contains(hrefValue) && !string.IsNullOrWhiteSpace(hrefValue) && hrefValue != "/" && hrefValue != "#")
+                {
+                    CheckUrl(hrefValue, url);
+                }
+            }
+        }
+
+        private void CheckUrl(string hrefValue, Uri url)
+        {
+            var fullUrl = _urlHelper.GetFullPath(hrefValue, url);
+
+            var cacheKey = "brokenlink_{fullUrl}";
+
+            if (!_cacheHelper.Exists(cacheKey))
+            {
+                var active = _urlStatusService.IsActiveUrl(fullUrl);
+                _cacheHelper.SetValue(cacheKey, active.ToString());
+            }
+
+            if (_cacheHelper.GetValue(cacheKey).ToString() != true.ToString())
+            {
+                _brokenLinks.Add(hrefValue);
             }
         }
     }

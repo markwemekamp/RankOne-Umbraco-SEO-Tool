@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using HtmlAgilityPack;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Analyzers.Template;
 using RankOne.Helpers;
 using RankOne.Interfaces;
@@ -49,6 +50,51 @@ namespace RankOne.Tests.Analyzers
 
             Assert.IsTrue(analyzer.DeprecatedTags.Contains("div"));
             Assert.AreEqual(1, analyzer.DeprecatedTags.Count());
+        }
+
+        [TestMethod]
+        public void Analyse_OnExecuteWithDeprecatedTag_SetsResult()
+        { 
+            var analyzer = new DeprecatedTagAnalyzer(new OptionHelper());
+
+            var doc = new HtmlDocument();
+            doc.LoadHtml("<body><center>focus</center></body>");
+
+            var pageData = new PageData()
+            {
+                Document = doc.DocumentNode
+            };
+
+            analyzer.Analyse(pageData);
+            var result = analyzer.AnalyzeResult;
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.ResultRules.Count == 1);
+            Assert.AreEqual(ResultType.Warning, result.ResultRules.First().Type);
+            Assert.AreEqual("tag_found", result.ResultRules.First().Alias);
+            Assert.AreEqual("center", result.ResultRules.First().Tokens.First());
+        }
+
+        [TestMethod]
+        public void Analyse_OnExecuteWithNoDeprecatedTag_SetsResult()
+        {
+            var analyzer = new DeprecatedTagAnalyzer(new OptionHelper());
+
+            var doc = new HtmlDocument();
+            doc.LoadHtml("<body><div>focus</div></body>");
+
+            var pageData = new PageData()
+            {
+                Document = doc.DocumentNode
+            };
+
+            analyzer.Analyse(pageData);
+            var result = analyzer.AnalyzeResult;
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.ResultRules.Count == 1);
+            Assert.AreEqual(ResultType.Success, result.ResultRules.First().Type);
+            Assert.AreEqual("no_deprecated_tags_found", result.ResultRules.First().Alias);
         }
     }
 }

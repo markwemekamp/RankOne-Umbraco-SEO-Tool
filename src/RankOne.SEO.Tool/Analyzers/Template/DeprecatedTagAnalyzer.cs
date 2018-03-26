@@ -58,9 +58,9 @@ namespace RankOne.Analyzers.Template
 
         private void CheckTag(HtmlNode htmlNode, string tagname)
         {
-            var acronymTags = htmlNode.GetElements(tagname);
+            var foundElements = htmlNode.GetElements(tagname);
 
-            if (acronymTags.Any())
+            if (foundElements.Any())
             {
                 var resultRute = new ResultRule()
                 {
