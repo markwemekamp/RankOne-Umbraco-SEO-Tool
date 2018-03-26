@@ -15,7 +15,7 @@ namespace RankOne.Controllers
         public DashboardApiController() : this(RankOneContext.Instance)
         { }
 
-        public DashboardApiController(RankOneContext rankOneContext) : this(rankOneContext.DashboardDataService.Value)
+        public DashboardApiController(IRankOneContext rankOneContext) : this(rankOneContext.DashboardDataService.Value)
         { }
 
         public DashboardApiController(IDashboardDataService dashboardDataService)

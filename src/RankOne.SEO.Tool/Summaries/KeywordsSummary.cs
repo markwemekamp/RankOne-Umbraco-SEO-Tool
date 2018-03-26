@@ -11,7 +11,7 @@ namespace RankOne.Summaries
         public KeywordsSummary() : this(RankOneContext.Instance)
         { }
 
-        public KeywordsSummary(RankOneContext rankOneContext) : this(rankOneContext.WordCounter.Value)
+        public KeywordsSummary(IRankOneContext rankOneContext) : this(rankOneContext.WordCounter.Value)
         { }
 
         public KeywordsSummary(IWordCounter wordOccurenceHelper)

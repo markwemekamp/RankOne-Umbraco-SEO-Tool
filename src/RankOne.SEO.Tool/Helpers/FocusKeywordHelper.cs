@@ -13,7 +13,7 @@ namespace RankOne.Helpers
         public FocusKeywordHelper() : this(RankOneContext.Instance)
         { }
 
-        public FocusKeywordHelper(RankOneContext rankOneContext) : this(rankOneContext.DashboardSettingsSerializer.Value)
+        public FocusKeywordHelper(IRankOneContext rankOneContext) : this(rankOneContext.DashboardSettingsSerializer.Value)
         { }
 
         public FocusKeywordHelper(IDashboardSettingsSerializer dashboardSettingsSerializer)

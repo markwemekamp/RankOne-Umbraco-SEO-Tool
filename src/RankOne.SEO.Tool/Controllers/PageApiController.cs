@@ -16,7 +16,7 @@ namespace RankOne.Controllers
         public PageApiController() : this(RankOneContext.Instance)
         { }
 
-        public PageApiController(RankOneContext rankOneContext) : this(rankOneContext.PageInformationService.Value)
+        public PageApiController(IRankOneContext rankOneContext) : this(rankOneContext.PageInformationService.Value)
         { }
 
         public PageApiController(IPageInformationService pageInformationService)

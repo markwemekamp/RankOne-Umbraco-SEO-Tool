@@ -41,7 +41,7 @@ namespace RankOne.Analyzers.Performance
         public AdditionalCallAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public AdditionalCallAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.OptionHelper.Value)
+        public AdditionalCallAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.OptionHelper.Value)
         { }
 
         public AdditionalCallAnalyzer(IOptionHelper optionHelper) : base()

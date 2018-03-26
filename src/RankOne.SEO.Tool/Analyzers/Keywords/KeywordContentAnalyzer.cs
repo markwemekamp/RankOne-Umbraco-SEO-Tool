@@ -13,7 +13,7 @@ namespace RankOne.Analyzers.Keywords
         public KeywordContentAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public KeywordContentAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
+        public KeywordContentAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
         { }
 
         public KeywordContentAnalyzer(IHtmlTagHelper htmlTagHelper) : base()

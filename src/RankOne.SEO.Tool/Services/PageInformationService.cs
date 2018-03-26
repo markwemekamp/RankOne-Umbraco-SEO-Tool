@@ -16,7 +16,7 @@ namespace RankOne.Services
         public PageInformationService() : this(RankOneContext.Instance)
         { }
 
-        public PageInformationService(RankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.UmbracoComponentRenderery.Value)
+        public PageInformationService(IRankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.UmbracoComponentRenderery.Value)
         { }
 
         public PageInformationService(ITypedPublishedContentQuery typedPublishedContentQuery, IUmbracoComponentRenderer umbracoComponentRenderer)

@@ -55,7 +55,7 @@ namespace RankOne.Analyzers.Template
         public TitleAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public TitleAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
+        public TitleAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
         { }
 
         public TitleAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper) : base()

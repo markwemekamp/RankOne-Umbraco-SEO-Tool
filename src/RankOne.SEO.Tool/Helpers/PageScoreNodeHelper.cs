@@ -17,7 +17,7 @@ namespace RankOne.Helpers
         public PageScoreNodeHelper() : this(RankOneContext.Instance)
         { }
 
-        public PageScoreNodeHelper(RankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.NodeReportService.Value,
+        public PageScoreNodeHelper(IRankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.NodeReportService.Value,
             rankOneContext.PageScoreSerializer.Value, rankOneContext.AnalyzeService.Value)
         { }
 
@@ -61,8 +61,6 @@ namespace RankOne.Helpers
 
         private IEnumerable<PageScoreNode> GetPageHierarchy(IEnumerable<IPublishedContent> nodeCollection)
         {
-            if (nodeCollection == null) throw new ArgumentNullException(nameof(nodeCollection));
-
             var nodeHiearchyCollection = new List<PageScoreNode>();
             foreach (var node in nodeCollection)
             {
@@ -81,8 +79,6 @@ namespace RankOne.Helpers
 
         private void SetPageScore(PageScoreNode node)
         {
-            if (node == null) throw new ArgumentNullException(nameof(node));
-
             var nodeReport = _nodeReportService.GetById(node.NodeInformation.Id);
             if (nodeReport != null)
             {
@@ -112,8 +108,6 @@ namespace RankOne.Helpers
 
         private void UpdatePageScore(PageScoreNode node)
         {
-            if (node == null) throw new ArgumentNullException(nameof(node));
-
             if (node.NodeInformation.TemplateId > 0)
             {
                 var umbracoNode = node.NodeInformation.Node;

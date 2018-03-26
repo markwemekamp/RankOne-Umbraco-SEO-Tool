@@ -12,7 +12,7 @@ namespace RankOne.Analyzers.Performance
         public GZipAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public GZipAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.EncodingHelper.Value, rankOneContext.CacheHelper.Value)
+        public GZipAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.EncodingHelper.Value, rankOneContext.CacheHelper.Value)
         { }
 
         public GZipAnalyzer(IEncodingHelper encodingHelper, ICacheHelper cacheHelper) : base()

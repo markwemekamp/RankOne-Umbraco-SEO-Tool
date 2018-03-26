@@ -14,7 +14,7 @@ namespace RankOne.Services
         public AnalyzeService() : this(RankOneContext.Instance)
         { }
 
-        public AnalyzeService(RankOneContext rankOneContext) : this(rankOneContext.FocusKeywordHelper.Value, rankOneContext.PageAnalysisService.Value, 
+        public AnalyzeService(IRankOneContext rankOneContext) : this(rankOneContext.FocusKeywordHelper.Value, rankOneContext.PageAnalysisService.Value, 
             rankOneContext.AnalysisCacheRepository.Value)
         { }
 

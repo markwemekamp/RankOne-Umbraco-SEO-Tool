@@ -16,7 +16,7 @@ namespace RankOne.Analyzers.Template
         public MetaKeywordAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public MetaKeywordAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
+        public MetaKeywordAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
         { }
 
         public MetaKeywordAnalyzer(IHtmlTagHelper htmlTagHelper) : base()

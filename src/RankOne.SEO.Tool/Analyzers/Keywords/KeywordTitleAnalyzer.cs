@@ -37,7 +37,7 @@ namespace RankOne.Analyzers.Keywords
         public KeywordTitleAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public KeywordTitleAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
+        public KeywordTitleAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
         { }
 
         public KeywordTitleAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper) : base()

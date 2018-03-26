@@ -13,7 +13,7 @@ namespace RankOne.Services
         public UrlStatusService() : this(RankOneContext.Instance)
         { }
 
-        public UrlStatusService(RankOneContext rankOneContext) : this(rankOneContext.WebRequestHelper.Value)
+        public UrlStatusService(IRankOneContext rankOneContext) : this(rankOneContext.WebRequestHelper.Value)
         { }
 
         public UrlStatusService(IWebRequestHelper webRequestHelper)

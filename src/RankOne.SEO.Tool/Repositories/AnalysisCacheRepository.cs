@@ -12,7 +12,7 @@ namespace RankOne.Repositories
         public AnalysisCacheRepository() : this(RankOneContext.Instance)
         { }
 
-        public AnalysisCacheRepository(RankOneContext rankOneContext) : this(rankOneContext.NodeReportService.Value, rankOneContext.PageScoreSerializer.Value)
+        public AnalysisCacheRepository(IRankOneContext rankOneContext) : this(rankOneContext.NodeReportService.Value, rankOneContext.PageScoreSerializer.Value)
         { }
 
         public AnalysisCacheRepository(INodeReportService nodeReportService, IPageScoreSerializer pageScoreSerializer)

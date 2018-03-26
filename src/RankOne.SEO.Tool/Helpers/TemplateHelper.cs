@@ -13,7 +13,7 @@ namespace RankOne.Helpers
         public TemplateHelper() : this(RankOneContext.Instance)
         { }
 
-        public TemplateHelper(RankOneContext rankOneContext) : this(rankOneContext.UmbracoComponentRenderery.Value)
+        public TemplateHelper(IRankOneContext rankOneContext) : this(rankOneContext.UmbracoComponentRenderery.Value)
         { }
 
         public TemplateHelper(IUmbracoComponentRenderer umbracoComponentRenderer)

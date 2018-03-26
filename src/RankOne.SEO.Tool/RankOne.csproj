@@ -290,6 +290,7 @@
     <Compile Include="Interfaces\IDatabaseService.cs" />
     <Compile Include="Interfaces\INodeReportService.cs" />
     <Compile Include="Interfaces\IOptionHelper.cs" />
+    <Compile Include="Interfaces\IRankOneContext.cs" />
     <Compile Include="Interfaces\IUrlHelper.cs" />
     <Compile Include="Interfaces\IUrlStatusService.cs" />
     <Compile Include="Interfaces\IWebRequestHelper.cs" />

@@ -32,6 +32,7 @@ namespace RankOne.Tests.Helpers
             _nodeReportServiceMock.Setup(x => x.GetById(12)).Returns(new NodeReport() { Id = 12, FocusKeyword = "focus", Report = "" });
             _pageScoreSerializerMock = new Mock<IPageScoreSerializer>();
             _analyzeServiceMock = new Mock<IAnalyzeService>();
+            _analyzeServiceMock.Setup(x => x.CreateAnalysis(It.Is<IPublishedContent>(y => y.Id == 1), null)).Returns(new PageAnalysis() { FocusKeyword = "focus", Score = new PageScore() { OverallScore = 75 } });
 
             _mockedPageScoreNodeHelper = new PageScoreNodeHelper(_typedPublishedContentQueryMock.Object, _nodeReportServiceMock.Object, _pageScoreSerializerMock.Object,
                 _analyzeServiceMock.Object);

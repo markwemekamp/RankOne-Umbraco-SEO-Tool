@@ -67,7 +67,7 @@ namespace RankOne.Analyzers.Template
         public MetaDescriptionAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public MetaDescriptionAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
+        public MetaDescriptionAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value, rankOneContext.OptionHelper.Value)
         { }
 
         public MetaDescriptionAnalyzer(IHtmlTagHelper htmlTagHelper, IOptionHelper optionHelper) : base()

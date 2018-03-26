@@ -14,7 +14,7 @@ namespace RankOne.Analyzers.Keywords
         public KeywordMetaDescriptionAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public KeywordMetaDescriptionAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
+        public KeywordMetaDescriptionAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
         { }
 
         public KeywordMetaDescriptionAnalyzer(IHtmlTagHelper htmlTagHelper) : base()

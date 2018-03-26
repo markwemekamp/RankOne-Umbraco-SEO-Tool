@@ -31,7 +31,7 @@ namespace RankOne.Analyzers.Template
         public DeprecatedTagAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public DeprecatedTagAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.OptionHelper.Value)
+        public DeprecatedTagAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.OptionHelper.Value)
         { }
 
         public DeprecatedTagAnalyzer(IOptionHelper optionHelper) : base()

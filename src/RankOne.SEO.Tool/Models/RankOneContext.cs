@@ -9,7 +9,7 @@ using Umbraco.Web;
 
 namespace RankOne.Models
 {
-    public sealed class RankOneContext
+    public sealed class RankOneContext : IRankOneContext
     {
         private static volatile RankOneContext instance;
         private static object syncRoot = new object();

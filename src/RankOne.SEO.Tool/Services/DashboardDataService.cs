@@ -18,7 +18,7 @@ namespace RankOne.Services
         public DashboardDataService() : this(RankOneContext.Instance)
         { }
 
-        public DashboardDataService(RankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.PageScoreNodeHelper.Value, 
+        public DashboardDataService(IRankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.PageScoreNodeHelper.Value, 
             rankOneContext.NodeReportService.Value)
         { }
 

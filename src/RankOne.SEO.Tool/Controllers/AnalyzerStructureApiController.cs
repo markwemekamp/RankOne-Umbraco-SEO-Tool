@@ -15,7 +15,7 @@ namespace RankOne.Controllers
         public AnalyzerStructureApiController() : this(RankOneContext.Instance)
         { }
 
-        public AnalyzerStructureApiController(RankOneContext rankOneContext) : this(rankOneContext.Summaries.Value)
+        public AnalyzerStructureApiController(IRankOneContext rankOneContext) : this(rankOneContext.Summaries.Value)
         { }
 
         public AnalyzerStructureApiController(IEnumerable<ISummary> summaries)

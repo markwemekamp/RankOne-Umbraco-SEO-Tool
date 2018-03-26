@@ -26,7 +26,7 @@ namespace RankOne.Analyzers.Performance
         public HtmlSizeAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public HtmlSizeAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.ByteSizeHelper.Value, rankOneContext.OptionHelper.Value)
+        public HtmlSizeAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.ByteSizeHelper.Value, rankOneContext.OptionHelper.Value)
         { }
 
         public HtmlSizeAnalyzer(IByteSizeHelper byteSizeHelper, IOptionHelper optionHelper) : base()

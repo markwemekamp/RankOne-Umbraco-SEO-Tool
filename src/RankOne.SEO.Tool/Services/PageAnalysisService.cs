@@ -19,7 +19,7 @@ namespace RankOne.Services
         public PageAnalysisService() : this(RankOneContext.Instance)
         { }
 
-        public PageAnalysisService(RankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.HtmlHelper.Value, 
+        public PageAnalysisService(IRankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.HtmlHelper.Value, 
             rankOneContext.ByteSizeHelper.Value, rankOneContext.Summaries.Value, rankOneContext.TemplateHelper.Value)
         { }
 

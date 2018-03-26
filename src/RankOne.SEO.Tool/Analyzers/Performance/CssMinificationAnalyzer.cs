@@ -13,7 +13,7 @@ namespace RankOne.Analyzers.Performance
         public CssMinificationAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public CssMinificationAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.MinificationHelper.Value, rankOneContext.CacheHelper.Value, 
+        public CssMinificationAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.MinificationHelper.Value, rankOneContext.CacheHelper.Value, 
             rankOneContext.UrlHelper.Value)
         { }
 

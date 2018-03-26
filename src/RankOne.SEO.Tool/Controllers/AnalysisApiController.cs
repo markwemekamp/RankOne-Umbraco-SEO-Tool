@@ -20,7 +20,7 @@ namespace RankOne.Controllers
         public AnalysisApiController() : this(RankOneContext.Instance)
         { }
 
-        public AnalysisApiController(RankOneContext rankOneContext) : this(rankOneContext.AnalyzeService.Value, rankOneContext.TypedPublishedContentQuery.Value)
+        public AnalysisApiController(IRankOneContext rankOneContext) : this(rankOneContext.AnalyzeService.Value, rankOneContext.TypedPublishedContentQuery.Value)
         { }
 
         public AnalysisApiController(IAnalyzeService analyzeService, ITypedPublishedContentQuery typedPublishedContentQuery)

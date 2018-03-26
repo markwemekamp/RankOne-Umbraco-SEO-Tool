@@ -16,7 +16,7 @@ namespace RankOne.Analyzers.Template
         public BrokenLinkAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public BrokenLinkAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.UrlStatusService.Value, rankOneContext.UrlHelper.Value,
+        public BrokenLinkAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.UrlStatusService.Value, rankOneContext.UrlHelper.Value,
             rankOneContext.CacheHelper.Value)
         { }
 

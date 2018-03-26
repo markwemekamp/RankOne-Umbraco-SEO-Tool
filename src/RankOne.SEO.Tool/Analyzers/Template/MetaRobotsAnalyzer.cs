@@ -22,7 +22,7 @@ namespace RankOne.Analyzers.Template
         public MetaRobotsAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public MetaRobotsAnalyzer(RankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
+        public MetaRobotsAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.HtmlTagHelper.Value)
         { }
 
         public MetaRobotsAnalyzer(IHtmlTagHelper htmlTagHelper) : base()
