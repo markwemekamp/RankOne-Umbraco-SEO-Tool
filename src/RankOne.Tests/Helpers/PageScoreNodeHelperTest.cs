@@ -113,5 +113,40 @@ namespace RankOne.Tests.Helpers
         {
             _mockedPageScoreNodeHelper.UpdatePageScores(null);
         }
+
+        [TestMethod]
+        public void UpdatePageScores_OnExecute_ReturnsPageScoreNode()
+        {
+            var nodes = new List<IPublishedContent>()
+            {
+                new PublishedContentMock(){
+                    Id = 1,
+                    Name = "node 1",
+                    TemplateId = 99,
+                    Children = new List<IPublishedContent> ()
+                    {
+                        new PublishedContentMock(){
+                            Id = 11,
+                            Name = "node 11",
+                            TemplateId = 0,
+                        },
+                        new PublishedContentMock(){
+                            Id = 12,
+                            Name = "node 12",
+                            TemplateId = 99,
+                        }
+                    }
+                }
+            };
+
+            var result = _mockedPageScoreNodeHelper.UpdatePageScores(nodes);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual(2, result.First().Children.Count());
+            _analyzeServiceMock.Verify(x => x.CreateAnalysis(It.Is<IPublishedContent>(y => y.Id == 1), null), Times.Once);
+            _analyzeServiceMock.Verify(x => x.CreateAnalysis(It.Is<IPublishedContent>(y => y.Id == 11), null), Times.Never);
+            _analyzeServiceMock.Verify(x => x.CreateAnalysis(It.Is<IPublishedContent>(y => y.Id == 12), null), Times.Once);
+        }
     }
 }

@@ -17,11 +17,11 @@ namespace RankOne.Helpers
         public PageScoreNodeHelper() : this(RankOneContext.Instance)
         { }
 
-        public PageScoreNodeHelper(RankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.NodeReportService.Value, 
+        public PageScoreNodeHelper(RankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.NodeReportService.Value,
             rankOneContext.PageScoreSerializer.Value, rankOneContext.AnalyzeService.Value)
         { }
 
-        public PageScoreNodeHelper(ITypedPublishedContentQuery typedPublishedContentQuery, INodeReportService nodeReportService, 
+        public PageScoreNodeHelper(ITypedPublishedContentQuery typedPublishedContentQuery, INodeReportService nodeReportService,
             IPageScoreSerializer pageScoreSerializer, IAnalyzeService analyzeService)
         {
             if (typedPublishedContentQuery == null) throw new ArgumentNullException(nameof(typedPublishedContentQuery));
@@ -119,8 +119,11 @@ namespace RankOne.Helpers
                 var umbracoNode = node.NodeInformation.Node;
                 var analysis = _analyzeService.CreateAnalysis(umbracoNode);
 
-                node.FocusKeyword = analysis.FocusKeyword;
-                node.PageScore = analysis.Score;
+                if (analysis != null)
+                {
+                    node.FocusKeyword = analysis.FocusKeyword;
+                    node.PageScore = analysis.Score;
+                }
             }
             foreach (var childNode in node.Children)
             {
