@@ -44,7 +44,7 @@ namespace RankOne.Summaries
 
         private AnalysisInformation GetAnalysisInformation(string focusKeyword)
         {
-            var topwords = _wordOccurenceHelper.GetKeywords(HtmlResult).Take(10);
+            var topwords = _wordOccurenceHelper.GetKeywords(Document).OrderByDescending(x => x.Value).Take(10);
 
             var information = new AnalysisInformation { Alias = "keywordanalyzer_top_words" };
             information.Tokens.Add(focusKeyword);

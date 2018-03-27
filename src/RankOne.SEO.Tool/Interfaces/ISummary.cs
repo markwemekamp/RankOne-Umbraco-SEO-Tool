@@ -1,4 +1,5 @@
-﻿using RankOne.Models;
+﻿using HtmlAgilityPack;
+using RankOne.Models;
 using System.Collections.Generic;
 
 namespace RankOne.Interfaces
@@ -8,7 +9,7 @@ namespace RankOne.Interfaces
         string Name { get; set; }
         string Alias { get; set; }
         string FocusKeyword { get; set; }
-        HtmlResult HtmlResult { get; set; }
+        HtmlNode Document { get; set; }
         string Url { get; set; }
         IEnumerable<IAnalyzer> Analyzers { get; set; }
 

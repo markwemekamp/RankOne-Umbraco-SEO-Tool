@@ -86,14 +86,6 @@ namespace RankOne.Models
             }
         }
 
-        public Lazy<HtmlHelper> HtmlHelper
-        {
-            get
-            {
-                return new Lazy<HtmlHelper>(() => new HtmlHelper());
-            }
-        }
-
         public Lazy<ByteSizeHelper> ByteSizeHelper
         {
             get

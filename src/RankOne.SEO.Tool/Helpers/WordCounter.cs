@@ -1,4 +1,5 @@
-﻿using RankOne.Collections;
+﻿using HtmlAgilityPack;
+using RankOne.Collections;
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
@@ -17,20 +18,13 @@ namespace RankOne.Helpers
             MinimumWordLength = 4;
         }
 
-        private IEnumerable<KeyValuePair<string, int>> GetKeywords(string text)
+        public WordOccurenceCollection GetKeywords(HtmlNode htmlNode)
         {
-            if (text == null) throw new ArgumentNullException(nameof(text));
-
-            return CountOccurencesForText(text).OrderByDescending(x => x.Value);
-        }
-
-        public IEnumerable<KeyValuePair<string, int>> GetKeywords(HtmlResult html)
-        {
-            if (html == null) throw new ArgumentNullException(nameof(html));
+            if (htmlNode == null) throw new ArgumentNullException(nameof(htmlNode));
 
             var occurences = new WordOccurenceCollection();
 
-            var textBlocks = html.Document.SelectNodes("//*[not(self::script) and not(self::style)]//text()");
+            var textBlocks = htmlNode.SelectNodes("//*[not(self::script) and not(self::style)]//text()");
 
             if (textBlocks != null)
             {
@@ -42,10 +36,10 @@ namespace RankOne.Helpers
                     occurences = occurences.Merge(occurencesInBlock);
                 }
             }
-            return occurences.OrderByDescending(x => x.Value);
+            return occurences;
         }
 
-        public WordOccurenceCollection CountOccurencesForText(string textBlockText)
+        private WordOccurenceCollection CountOccurencesForText(string textBlockText)
         {
             if (textBlockText == null) throw new ArgumentNullException(nameof(textBlockText));
 

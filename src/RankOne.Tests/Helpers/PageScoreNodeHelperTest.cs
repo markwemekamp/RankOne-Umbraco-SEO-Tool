@@ -21,6 +21,7 @@ namespace RankOne.Tests.Helpers
         private Mock<IPageScoreSerializer>  _pageScoreSerializerMock;
         private Mock<IAnalyzeService> _analyzeServiceMock;
         private PageScoreNodeHelper _mockedPageScoreNodeHelper;
+        private List<IPublishedContent> _nodes;
 
         [TestInitialize]
         public void Initialize()
@@ -36,6 +37,28 @@ namespace RankOne.Tests.Helpers
 
             _mockedPageScoreNodeHelper = new PageScoreNodeHelper(_typedPublishedContentQueryMock.Object, _nodeReportServiceMock.Object, _pageScoreSerializerMock.Object,
                 _analyzeServiceMock.Object);
+
+            _nodes = new List<IPublishedContent>()
+            {
+                new PublishedContentMock(){
+                    Id = 1,
+                    Name = "node 1",
+                    TemplateId = 99,
+                    Children = new List<IPublishedContent> ()
+                    {
+                        new PublishedContentMock(){
+                            Id = 11,
+                            Name = "node 11",
+                            TemplateId = 0,
+                        },
+                        new PublishedContentMock(){
+                            Id = 12,
+                            Name = "node 12",
+                            TemplateId = 99,
+                        }
+                    }
+                }
+            };
         }
 
         [TestMethod]
@@ -76,29 +99,7 @@ namespace RankOne.Tests.Helpers
         [TestMethod]
         public void GetPageScoresFromCache_OnExecute_ReturnsPageScoreNode()
         {
-            var nodes = new List<IPublishedContent>()
-            {
-                new PublishedContentMock(){
-                    Id = 1,
-                    Name = "node 1",
-                    TemplateId = 99,
-                    Children = new List<IPublishedContent> ()
-                    {
-                        new PublishedContentMock(){
-                            Id = 11,
-                            Name = "node 11",
-                            TemplateId = 0,
-                        },
-                        new PublishedContentMock(){
-                            Id = 12,
-                            Name = "node 12",
-                            TemplateId = 99,
-                        }
-                    }
-                }
-            };
-
-            var result = _mockedPageScoreNodeHelper.GetPageScoresFromCache(nodes);
+            var result = _mockedPageScoreNodeHelper.GetPageScoresFromCache(_nodes);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count());
@@ -118,29 +119,7 @@ namespace RankOne.Tests.Helpers
         [TestMethod]
         public void UpdatePageScores_OnExecute_ReturnsPageScoreNode()
         {
-            var nodes = new List<IPublishedContent>()
-            {
-                new PublishedContentMock(){
-                    Id = 1,
-                    Name = "node 1",
-                    TemplateId = 99,
-                    Children = new List<IPublishedContent> ()
-                    {
-                        new PublishedContentMock(){
-                            Id = 11,
-                            Name = "node 11",
-                            TemplateId = 0,
-                        },
-                        new PublishedContentMock(){
-                            Id = 12,
-                            Name = "node 12",
-                            TemplateId = 99,
-                        }
-                    }
-                }
-            };
-
-            var result = _mockedPageScoreNodeHelper.UpdatePageScores(nodes);
+            var result = _mockedPageScoreNodeHelper.UpdatePageScores(_nodes);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count());

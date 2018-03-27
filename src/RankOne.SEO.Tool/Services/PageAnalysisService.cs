@@ -1,3 +1,4 @@
+using HtmlAgilityPack;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System;
@@ -12,22 +13,20 @@ namespace RankOne.Services
     {
         private readonly IEnumerable<ISummary> _summaries;
         private readonly IScoreService _scoreService;
-        private readonly IHtmlHelper _htmlHelper;
         private readonly IByteSizeHelper _byteSizeHelper;
         private readonly ITemplateHelper _templateHelper;
 
         public PageAnalysisService() : this(RankOneContext.Instance)
         { }
 
-        public PageAnalysisService(IRankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.HtmlHelper.Value, 
-            rankOneContext.ByteSizeHelper.Value, rankOneContext.Summaries.Value, rankOneContext.TemplateHelper.Value)
+        public PageAnalysisService(IRankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.ByteSizeHelper.Value, 
+            rankOneContext.Summaries.Value, rankOneContext.TemplateHelper.Value)
         { }
 
-        public PageAnalysisService(IScoreService scoreService, IHtmlHelper htmlHelper, IByteSizeHelper byteSizeHelper, IEnumerable<ISummary> summaries, 
+        public PageAnalysisService(IScoreService scoreService, IByteSizeHelper byteSizeHelper, IEnumerable<ISummary> summaries, 
             ITemplateHelper templateHelper)
         {
             _scoreService = scoreService;
-            _htmlHelper = htmlHelper;
             _byteSizeHelper = byteSizeHelper;
             _summaries = summaries;
             _templateHelper = templateHelper;
@@ -42,13 +41,13 @@ namespace RankOne.Services
             try
             {
                 var htmlString = _templateHelper.GetNodeHtml(node);
-                var htmlResult = _htmlHelper.GetHtmlResult(htmlString);
 
+                
                 pageAnalysis.AbsoluteUrl = node.UrlAbsolute();
                 pageAnalysis.FocusKeyword = focusKeyword;
                 pageAnalysis.Size = _byteSizeHelper.GetByteSize(htmlString);
 
-                SetAnalyzerResults(pageAnalysis, htmlResult);
+                SetAnalyzerResults(pageAnalysis, htmlString);
             }
             catch (WebException ex)
             {
@@ -60,13 +59,15 @@ namespace RankOne.Services
             return pageAnalysis;
         }
 
-        private void SetAnalyzerResults(PageAnalysis pageAnalysis, HtmlResult html)
+        private void SetAnalyzerResults(PageAnalysis pageAnalysis, string html)
         {
+            var htmlNode = CreateHtmlNode(html);
+
             // Instantiate the types and retrieve te results
             foreach (var summary in _summaries)
             {
                 summary.FocusKeyword = pageAnalysis.FocusKeyword;
-                summary.HtmlResult = html;
+                summary.Document = htmlNode;
                 summary.Url = pageAnalysis.AbsoluteUrl;
 
                 var analyzerResult = new SummaryResult
@@ -77,6 +78,13 @@ namespace RankOne.Services
 
                 pageAnalysis.SummaryResults.Add(analyzerResult);
             }
+        }
+
+        private HtmlNode CreateHtmlNode(string html)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+            return doc.DocumentNode;
         }
     }
 }

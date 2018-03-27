@@ -26,7 +26,7 @@ namespace RankOne.Collections
         {
             if (!ContainsKey(word))
             {
-                base.Add(word, 1);
+                base.Add(word, increment);
             }
             else
             {

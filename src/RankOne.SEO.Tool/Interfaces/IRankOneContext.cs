@@ -29,8 +29,6 @@ namespace RankOne.Interfaces
 
         Lazy<FocusKeywordHelper> FocusKeywordHelper { get; }
 
-        Lazy<HtmlHelper> HtmlHelper { get; }
-
         Lazy<ByteSizeHelper> ByteSizeHelper { get; }
 
         Lazy<ConfigurationHelper> ConfigurationHelper { get; }

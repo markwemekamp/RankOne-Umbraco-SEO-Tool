@@ -1,3 +1,4 @@
+using HtmlAgilityPack;
 using RankOne.Interfaces;
 using RankOne.Models;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ namespace RankOne.Summaries
 {
     public class BaseSummary : ISummary
     {
-        public HtmlResult HtmlResult { get; set; }
+        public HtmlNode Document { get; set; }
         public string Name { get; set; }
         public string Alias { get; set; }
         public string Url { get; set; }
@@ -36,7 +37,7 @@ namespace RankOne.Summaries
         {
             return new PageData
             {
-                Document = HtmlResult.Document,
+                Document = Document,
                 Focuskeyword = FocusKeyword,
                 Url = Url
             };

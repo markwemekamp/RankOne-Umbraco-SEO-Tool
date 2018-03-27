@@ -322,7 +322,6 @@
     <Compile Include="Helpers\MinificationHelper.cs" />
     <Compile Include="Helpers\NodeReportHelper.cs" />
     <Compile Include="Helpers\PageScoreNodeHelper.cs" />
-    <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\TableNameHelper.cs" />
     <Compile Include="Interfaces\IAnalysisCacheRepository.cs" />
     <Compile Include="Interfaces\IBaseRepository.cs" />
@@ -332,7 +331,6 @@
     <Compile Include="Interfaces\IDashboardSettingsSerializer.cs" />
     <Compile Include="Interfaces\IEncodingHelper.cs" />
     <Compile Include="Interfaces\IFocusKeywordHelper.cs" />
-    <Compile Include="Interfaces\IHtmlHelper.cs" />
     <Compile Include="Interfaces\IHtmlTagHelper.cs" />
     <Compile Include="Interfaces\IJavascriptSerializer.cs" />
     <Compile Include="Interfaces\IMinificationHelper.cs" />
