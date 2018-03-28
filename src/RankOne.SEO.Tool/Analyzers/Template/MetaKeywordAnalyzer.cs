@@ -42,7 +42,6 @@ namespace RankOne.Analyzers.Template
             catch (NoElementFoundException e)
             {
                 AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
-
             }
         }
 

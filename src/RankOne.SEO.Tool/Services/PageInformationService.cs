@@ -2,6 +2,7 @@
 using RankOne.ExtensionMethods;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using System.Linq;
 using System.Web;
 using Umbraco.Web;
@@ -11,18 +12,21 @@ namespace RankOne.Services
     public class PageInformationService : IPageInformationService
     {
         private readonly ITypedPublishedContentQuery _typedPublishedContentQuery;
-        private readonly IUmbracoComponentRenderer _umbracoComponentRenderer;
+        private readonly ITemplateHelper _templateHelper;
 
         public PageInformationService() : this(RankOneContext.Instance)
         { }
 
-        public PageInformationService(IRankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.UmbracoComponentRenderery.Value)
+        public PageInformationService(IRankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.TemplateHelper.Value)
         { }
 
-        public PageInformationService(ITypedPublishedContentQuery typedPublishedContentQuery, IUmbracoComponentRenderer umbracoComponentRenderer)
+        public PageInformationService(ITypedPublishedContentQuery typedPublishedContentQuery, ITemplateHelper templateHelper)
         {
+            if (typedPublishedContentQuery == null) throw new ArgumentNullException(nameof(typedPublishedContentQuery));
+            if (templateHelper == null) throw new ArgumentNullException(nameof(templateHelper));
+
             _typedPublishedContentQuery = typedPublishedContentQuery;
-            _umbracoComponentRenderer = umbracoComponentRenderer;
+            _templateHelper = templateHelper;
         }
 
         public PageInformation GetpageInformation(int id)
@@ -30,9 +34,7 @@ namespace RankOne.Services
             var pageInformation = new PageInformation();
 
             var content = _typedPublishedContentQuery.TypedContent(id);
-            var htmlObject = _umbracoComponentRenderer.RenderTemplate(id);
-
-            var html = htmlObject.ToHtmlString();
+            var html = _templateHelper.GetNodeHtml(content);
 
             var htmlParser = new HtmlDocument();
             htmlParser.LoadHtml(HttpUtility.HtmlDecode(html));

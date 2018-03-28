@@ -13,11 +13,11 @@ namespace RankOne.Analyzers.Performance
         public CssMinificationAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public CssMinificationAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.MinificationHelper.Value, rankOneContext.CacheHelper.Value, 
+        public CssMinificationAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.MinificationHelper.Value, rankOneContext.CacheHelper.Value,
             rankOneContext.UrlHelper.Value)
         { }
 
-        public CssMinificationAnalyzer(IMinificationHelper minificationHelper, ICacheHelper cacheHelper, IUrlHelper urlHelper) : 
+        public CssMinificationAnalyzer(IMinificationHelper minificationHelper, ICacheHelper cacheHelper, IUrlHelper urlHelper) :
             base(minificationHelper, cacheHelper, urlHelper)
         { }
 

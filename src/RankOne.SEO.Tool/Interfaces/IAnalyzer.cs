@@ -8,7 +8,7 @@ namespace RankOne.Interfaces
         string Alias { get; set; }
         IEnumerable<IOption> Options { get; set; }
         AnalyzeResult AnalyzeResult { get; }
-    int Weight { get; set; }
+        int Weight { get; set; }
 
         void Analyse(IPageData pageData);
     }

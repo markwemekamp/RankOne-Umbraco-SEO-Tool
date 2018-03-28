@@ -2,9 +2,6 @@
 using RankOne.Models;
 using System;
 using System.Collections.Generic;
-using Umbraco.Core;
-using Umbraco.Core.Logging;
-using Umbraco.Core.Persistence;
 using Umbraco.Web;
 
 namespace RankOne.Services
@@ -18,12 +15,16 @@ namespace RankOne.Services
         public DashboardDataService() : this(RankOneContext.Instance)
         { }
 
-        public DashboardDataService(IRankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.PageScoreNodeHelper.Value, 
+        public DashboardDataService(IRankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.PageScoreNodeHelper.Value,
             rankOneContext.NodeReportService.Value)
         { }
 
         public DashboardDataService(ITypedPublishedContentQuery typedPublishedContentQuery, IPageScoreNodeHelper pageScoreNodeHelper, INodeReportService nodeReportService)
         {
+            if (typedPublishedContentQuery == null) throw new ArgumentNullException(nameof(typedPublishedContentQuery));
+            if (pageScoreNodeHelper == null) throw new ArgumentNullException(nameof(pageScoreNodeHelper));
+            if (nodeReportService == null) throw new ArgumentNullException(nameof(nodeReportService));
+
             _typedPublishedContentQuery = typedPublishedContentQuery;
             _pageScoreNodeHelper = pageScoreNodeHelper;
             _nodeReportService = nodeReportService;

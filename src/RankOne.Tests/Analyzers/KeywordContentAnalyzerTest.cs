@@ -32,7 +32,7 @@ namespace RankOne.Tests.Analyzers
         {
             var doc = new HtmlDocument();
             doc.LoadHtml("<body><div>focus</div></body>");
-            
+
             var pageData = new PageData()
             {
                 Document = doc.DocumentNode,

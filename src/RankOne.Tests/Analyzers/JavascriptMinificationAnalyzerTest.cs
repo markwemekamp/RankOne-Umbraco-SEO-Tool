@@ -45,7 +45,6 @@ namespace RankOne.Tests.Analyzers
             new JavascriptMinificationAnalyzer(new MinificationHelper(), new CacheHelper(), null);
         }
 
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Analyse_OnExecuteWithNullParameter_ThrowArgumentNullException()

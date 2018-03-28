@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Umbraco.Web;
 
-
 namespace RankOne.Interfaces
 {
     public interface IRankOneContext

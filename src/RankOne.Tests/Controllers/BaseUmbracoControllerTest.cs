@@ -23,11 +23,11 @@ namespace RankOne.Tests.Controllers
 
         public void EnsureUmbracoContext()
         {
-            var appContext = ApplicationContext.EnsureContext(new DatabaseContext(Moq.Mock.Of<IDatabaseFactory2>(), Moq.Mock.Of<ILogger>(), 
+            var appContext = ApplicationContext.EnsureContext(new DatabaseContext(Moq.Mock.Of<IDatabaseFactory2>(), Moq.Mock.Of<ILogger>(),
                 new SqlSyntaxProviders(new[] { Moq.Mock.Of<ISqlSyntaxProvider>() })), new ServiceContext(), CacheHelper.CreateDisabledCacheHelper(), new ProfilingLogger(
                     Moq.Mock.Of<ILogger>(), Moq.Mock.Of<IProfiler>()), true);
 
-            var context = UmbracoContext.EnsureContext(Moq.Mock.Of<HttpContextBase>(), appContext, new Mock<WebSecurity>(null, null).Object, Moq.Mock.Of<IUmbracoSettingsSection>(), 
+            var context = UmbracoContext.EnsureContext(Moq.Mock.Of<HttpContextBase>(), appContext, new Mock<WebSecurity>(null, null).Object, Moq.Mock.Of<IUmbracoSettingsSection>(),
                 Enumerable.Empty<IUrlProvider>(), true);
         }
     }

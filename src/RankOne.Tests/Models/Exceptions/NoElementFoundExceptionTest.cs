@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Models.Exceptions;
 using System;
+
 namespace RankOne.Tests.Models.Exceptions
 {
     [TestClass]

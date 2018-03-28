@@ -1,6 +1,7 @@
 ﻿using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Umbraco.Core;
@@ -64,6 +65,8 @@ namespace RankOne.Services
 
         public UmbracoDatabaseService(UmbracoContext umbracoContext)
         {
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
+
             DatabaseContext = umbracoContext.Application.DatabaseContext;
             Database = DatabaseContext.Database;
         }

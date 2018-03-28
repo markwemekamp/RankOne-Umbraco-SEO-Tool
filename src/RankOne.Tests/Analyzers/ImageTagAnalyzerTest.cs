@@ -155,6 +155,5 @@ namespace RankOne.Tests.Analyzers
             Assert.AreEqual("missing_title_attribute", result.ResultRules[1].Alias);
             Assert.AreEqual("1", result.ResultRules[1].Tokens[0]);
         }
-
     }
 }

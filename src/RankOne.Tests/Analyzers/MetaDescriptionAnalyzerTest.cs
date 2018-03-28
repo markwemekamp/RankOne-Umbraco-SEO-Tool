@@ -48,8 +48,6 @@ namespace RankOne.Tests.Analyzers
         [TestMethod]
         public void Options_OnGetWithOverridenValues_ReturnOverridenValues()
         {
-
-
             var analyzer = new MetaDescriptionAnalyzer(new HtmlTagHelper(), new OptionHelper())
             {
                 Options = new List<IOption>()

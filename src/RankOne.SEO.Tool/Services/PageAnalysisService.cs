@@ -19,13 +19,18 @@ namespace RankOne.Services
         public PageAnalysisService() : this(RankOneContext.Instance)
         { }
 
-        public PageAnalysisService(IRankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.ByteSizeHelper.Value, 
+        public PageAnalysisService(IRankOneContext rankOneContext) : this(rankOneContext.ScoreService.Value, rankOneContext.ByteSizeHelper.Value,
             rankOneContext.Summaries.Value, rankOneContext.TemplateHelper.Value)
         { }
 
-        public PageAnalysisService(IScoreService scoreService, IByteSizeHelper byteSizeHelper, IEnumerable<ISummary> summaries, 
+        public PageAnalysisService(IScoreService scoreService, IByteSizeHelper byteSizeHelper, IEnumerable<ISummary> summaries,
             ITemplateHelper templateHelper)
         {
+            if (scoreService == null) throw new ArgumentNullException(nameof(scoreService));
+            if (byteSizeHelper == null) throw new ArgumentNullException(nameof(byteSizeHelper));
+            if (summaries == null) throw new ArgumentNullException(nameof(summaries));
+            if (templateHelper == null) throw new ArgumentNullException(nameof(templateHelper));
+
             _scoreService = scoreService;
             _byteSizeHelper = byteSizeHelper;
             _summaries = summaries;
@@ -42,7 +47,6 @@ namespace RankOne.Services
             {
                 var htmlString = _templateHelper.GetNodeHtml(node);
 
-                
                 pageAnalysis.AbsoluteUrl = node.UrlAbsolute();
                 pageAnalysis.FocusKeyword = focusKeyword;
                 pageAnalysis.Size = _byteSizeHelper.GetByteSize(htmlString);

@@ -14,12 +14,16 @@ namespace RankOne.Services
         public AnalyzeService() : this(RankOneContext.Instance)
         { }
 
-        public AnalyzeService(IRankOneContext rankOneContext) : this(rankOneContext.FocusKeywordHelper.Value, rankOneContext.PageAnalysisService.Value, 
+        public AnalyzeService(IRankOneContext rankOneContext) : this(rankOneContext.FocusKeywordHelper.Value, rankOneContext.PageAnalysisService.Value,
             rankOneContext.AnalysisCacheRepository.Value)
         { }
 
         public AnalyzeService(IFocusKeywordHelper focusKeywordHelper, IPageAnalysisService pageAnalysisService, IAnalysisCacheRepository analysisCacheRepository)
         {
+            if (focusKeywordHelper == null) throw new ArgumentNullException(nameof(focusKeywordHelper));
+            if (focusKeywordHelper == null) throw new ArgumentNullException(nameof(focusKeywordHelper));
+            if (analysisCacheRepository == null) throw new ArgumentNullException(nameof(analysisCacheRepository));
+
             _focusKeywordHelper = focusKeywordHelper;
             _pageAnalysisService = pageAnalysisService;
             _analysisCacheService = analysisCacheRepository;

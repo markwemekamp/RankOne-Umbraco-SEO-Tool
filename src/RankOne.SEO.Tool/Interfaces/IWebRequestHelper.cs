@@ -1,11 +1,7 @@
-﻿using System.Net;
-
-namespace RankOne.Interfaces
+﻿namespace RankOne.Interfaces
 {
     public interface IWebRequestHelper
     {
-        HttpStatusCode GetStatus(string url);
-
         bool IsActiveUrl(string url);
     }
 }

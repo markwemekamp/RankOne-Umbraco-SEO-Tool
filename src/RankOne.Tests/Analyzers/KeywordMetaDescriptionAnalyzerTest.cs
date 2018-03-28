@@ -26,7 +26,7 @@ namespace RankOne.Tests.Analyzers
             var analyzer = new KeywordMetaDescriptionAnalyzer(new HtmlTagHelper());
             analyzer.Analyse(null);
         }
-        
+
         [TestMethod]
         public void Analyse_OnExecuteWithKeywordPresent_SetsAnalyzeResult()
         {

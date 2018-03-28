@@ -77,12 +77,10 @@ namespace RankOne.Analyzers.Keywords
                         AddResultRule("title_doesnt_contain_keyword", ResultType.Warning);
                     }
                 }
-
             }
             catch (NoElementFoundException e)
             {
                 AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
-
             }
             catch (MultipleElementsFoundException e)
             {

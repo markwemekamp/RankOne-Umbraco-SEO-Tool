@@ -18,7 +18,7 @@ namespace RankOne.Tests.Helpers
     {
         private Mock<ITypedPublishedContentQuery> _typedPublishedContentQueryMock;
         private Mock<INodeReportService> _nodeReportServiceMock;
-        private Mock<IPageScoreSerializer>  _pageScoreSerializerMock;
+        private Mock<IPageScoreSerializer> _pageScoreSerializerMock;
         private Mock<IAnalyzeService> _analyzeServiceMock;
         private PageScoreNodeHelper _mockedPageScoreNodeHelper;
         private List<IPublishedContent> _nodes;

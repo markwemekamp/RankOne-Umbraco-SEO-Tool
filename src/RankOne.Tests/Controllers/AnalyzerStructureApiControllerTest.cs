@@ -32,7 +32,6 @@ namespace RankOne.Tests.Controllers
             Assert.IsTrue(!((OkNegotiatedContentResult<List<AnalyzerStructure>>)result).Content.Any());
         }
 
-
         [TestMethod]
         public void GetStructure_OnExecuteWithFilledList_ReturnsOk()
         {

@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using RankOne.Interfaces;
 using RankOne.Repositories;
 using RankOne.Serializers;

@@ -6,10 +6,8 @@ namespace RankOne.Helpers
 {
     public class WebRequestHelper : IWebRequestHelper
     {
-        public HttpStatusCode GetStatus(string url)
+        private HttpStatusCode GetStatus(string url)
         {
-            if (url == null) throw new ArgumentNullException(nameof(url));
-
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Timeout = 15000;
             request.Method = "HEAD";

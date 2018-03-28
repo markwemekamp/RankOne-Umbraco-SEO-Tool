@@ -83,7 +83,6 @@ namespace RankOne.Analyzers.Template
             catch (NoElementFoundException e)
             {
                 AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
-
             }
             catch (MultipleElementsFoundException e)
             {
@@ -105,7 +104,6 @@ namespace RankOne.Analyzers.Template
             catch (NoElementFoundException e)
             {
                 AddResultRule("no_" + e.ElementName + "_tag", ResultType.Error);
-
             }
             catch (MultipleElementsFoundException e)
             {

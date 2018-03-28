@@ -1,9 +1,6 @@
-﻿
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Analyzers.Keywords;
-using RankOne.Helpers;
-using RankOne.Interfaces;
 using RankOne.Models;
 using System;
 using System.Linq;
@@ -26,7 +23,7 @@ namespace RankOne.Tests.Analyzers
         {
             var doc = new HtmlDocument();
             doc.LoadHtml("<body><h1>focus</h1></body>");
-            
+
             var pageData = new PageData()
             {
                 Document = doc.DocumentNode,

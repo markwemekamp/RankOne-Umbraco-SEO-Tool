@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Analyzers.Template;
 using RankOne.Helpers;
-using RankOne.Interfaces;
 using RankOne.Models;
 using RankOne.Services;
 using System;

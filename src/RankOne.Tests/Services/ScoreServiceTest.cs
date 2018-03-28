@@ -138,7 +138,6 @@ namespace RankOne.Tests.Services
             Assert.AreEqual(0, result.HintCount);
             Assert.AreEqual(0, result.SuccessCount);
             Assert.AreEqual(50, result.OverallScore);
-
         }
 
         [TestMethod]
@@ -178,7 +177,6 @@ namespace RankOne.Tests.Services
             Assert.AreEqual(1, result.HintCount);
             Assert.AreEqual(0, result.SuccessCount);
             Assert.AreEqual(75, result.OverallScore);
-
         }
 
         [TestMethod]
@@ -234,7 +232,6 @@ namespace RankOne.Tests.Services
             Assert.AreEqual(5, result.HintCount);
             Assert.AreEqual(0, result.SuccessCount);
             Assert.AreEqual(0, result.OverallScore);
-
         }
     }
 }

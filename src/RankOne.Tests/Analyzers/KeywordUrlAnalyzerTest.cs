@@ -1,8 +1,6 @@
 ﻿using HtmlAgilityPack;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RankOne.Analyzers.Keywords;
-using RankOne.Helpers;
-using RankOne.Interfaces;
 using RankOne.Models;
 using System;
 using System.Linq;
@@ -12,7 +10,6 @@ namespace RankOne.Tests.Analyzers
     [TestClass]
     public class KeywordUrlAnalyzerTest
     {
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Analyse_OnExecuteWithNullParameter_ThrowArgumentNullException()

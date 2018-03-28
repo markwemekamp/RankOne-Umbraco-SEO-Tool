@@ -13,11 +13,11 @@ namespace RankOne.Analyzers.Performance
         public JavascriptMinificationAnalyzer() : this(RankOneContext.Instance)
         { }
 
-        public JavascriptMinificationAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.MinificationHelper.Value, rankOneContext.CacheHelper.Value, 
+        public JavascriptMinificationAnalyzer(IRankOneContext rankOneContext) : this(rankOneContext.MinificationHelper.Value, rankOneContext.CacheHelper.Value,
             rankOneContext.UrlHelper.Value)
         { }
 
-        public JavascriptMinificationAnalyzer(IMinificationHelper minificationHelper, ICacheHelper cacheHelper, IUrlHelper urlHelper) : 
+        public JavascriptMinificationAnalyzer(IMinificationHelper minificationHelper, ICacheHelper cacheHelper, IUrlHelper urlHelper) :
             base(minificationHelper, cacheHelper, urlHelper)
         { }
 

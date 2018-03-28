@@ -54,7 +54,7 @@ namespace RankOne.Tests.Analyzers
 
         [TestMethod]
         public void Analyse_OnExecuteWithDeprecatedTag_SetsResult()
-        { 
+        {
             var analyzer = new DeprecatedTagAnalyzer(new OptionHelper());
 
             var doc = new HtmlDocument();
