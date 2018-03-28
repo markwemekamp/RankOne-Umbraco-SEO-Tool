@@ -14,9 +14,9 @@ using Umbraco.Web.Security;
 
 namespace RankOne.Tests.Controllers
 {
-    public class BaseUmbracoTestController
+    public class BaseUmbracoControllerTest
     {
-        public BaseUmbracoTestController()
+        public BaseUmbracoControllerTest()
         {
             EnsureUmbracoContext();
         }

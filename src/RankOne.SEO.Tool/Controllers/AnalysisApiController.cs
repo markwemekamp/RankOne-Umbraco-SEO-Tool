@@ -48,7 +48,8 @@ namespace RankOne.Controllers
             try
             {
                 var node = _typedPublishedContentQuery.TypedContent(id);
-                return Ok(_analyzeService.CreateAnalysis(node, focusKeyword));
+                var analysis = _analyzeService.CreateAnalysis(node, focusKeyword);
+                return Ok(analysis);
             }
             catch (MissingFieldException ex)
             {
