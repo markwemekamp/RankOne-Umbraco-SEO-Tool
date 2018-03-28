@@ -54,195 +54,195 @@ namespace RankOne.Models
             }
         }
 
-        public Lazy<TemplateHelper> TemplateHelper
+        public Lazy<ITemplateHelper> TemplateHelper
         {
             get
             {
-                return new Lazy<TemplateHelper>(() => new TemplateHelper(UmbracoComponentRenderery.Value));
+                return new Lazy<ITemplateHelper>(() => new TemplateHelper(UmbracoComponentRenderery.Value));
             }
         }
 
-        public Lazy<DashboardSettingsSerializer> DashboardSettingsSerializer
+        public Lazy<IDashboardSettingsSerializer> DashboardSettingsSerializer
         {
             get
             {
-                return new Lazy<DashboardSettingsSerializer>(() => new DashboardSettingsSerializer());
+                return new Lazy<IDashboardSettingsSerializer>(() => new DashboardSettingsSerializer());
             }
         }
 
-        public Lazy<NodeReportService> NodeReportService
+        public Lazy<INodeReportService> NodeReportService
         {
             get
             {
-                return new Lazy<NodeReportService>(() => new NodeReportService());
+                return new Lazy<INodeReportService>(() => new NodeReportService());
             }
         }
 
-        public Lazy<FocusKeywordHelper> FocusKeywordHelper
+        public Lazy<IFocusKeywordHelper> FocusKeywordHelper
         {
             get
             {
-                return new Lazy<FocusKeywordHelper>(() => new FocusKeywordHelper());
+                return new Lazy<IFocusKeywordHelper>(() => new FocusKeywordHelper());
             }
         }
 
-        public Lazy<ByteSizeHelper> ByteSizeHelper
+        public Lazy<IByteSizeHelper> ByteSizeHelper
         {
             get
             {
-                return new Lazy<ByteSizeHelper>(() => new ByteSizeHelper());
+                return new Lazy<IByteSizeHelper>(() => new ByteSizeHelper());
             }
         }
 
-        public Lazy<ConfigurationHelper> ConfigurationHelper
+        public Lazy<IConfigurationHelper> ConfigurationHelper
         {
             get
             {
-                return new Lazy<ConfigurationHelper>(() => new ConfigurationHelper());
+                return new Lazy<IConfigurationHelper>(() => new ConfigurationHelper());
             }
         }
 
-        public Lazy<PageScoreSerializer> PageScoreSerializer
+        public Lazy<IPageScoreSerializer> PageScoreSerializer
         {
             get
             {
-                return new Lazy<PageScoreSerializer>(() => new PageScoreSerializer());
+                return new Lazy<IPageScoreSerializer>(() => new PageScoreSerializer());
             }
         }
 
-        public Lazy<PageScoreNodeHelper> PageScoreNodeHelper
+        public Lazy<IPageScoreNodeHelper> PageScoreNodeHelper
         {
             get
             {
-                return new Lazy<PageScoreNodeHelper>(() => new PageScoreNodeHelper());
+                return new Lazy<IPageScoreNodeHelper>(() => new PageScoreNodeHelper());
             }
         }
 
-        public Lazy<NodeReportTableHelper> NodeReportTableHelper
+        public Lazy<INodeReportTableHelper> NodeReportTableHelper
         {
             get
             {
-                return new Lazy<NodeReportTableHelper>(() => new NodeReportTableHelper());
+                return new Lazy<INodeReportTableHelper>(() => new NodeReportTableHelper());
             }
         }
 
-        public Lazy<HtmlTagHelper> HtmlTagHelper
+        public Lazy<IHtmlTagHelper> HtmlTagHelper
         {
             get
             {
-                return new Lazy<HtmlTagHelper>(() => new HtmlTagHelper());
+                return new Lazy<IHtmlTagHelper>(() => new HtmlTagHelper());
             }
         }
 
-        public Lazy<MinificationHelper> MinificationHelper
+        public Lazy<IMinificationHelper> MinificationHelper
         {
             get
             {
-                return new Lazy<MinificationHelper>(() => new MinificationHelper());
+                return new Lazy<IMinificationHelper>(() => new MinificationHelper());
             }
         }
 
-        public Lazy<EncodingHelper> EncodingHelper
+        public Lazy<IEncodingHelper> EncodingHelper
         {
             get
             {
-                return new Lazy<EncodingHelper>(() => new EncodingHelper());
+                return new Lazy<IEncodingHelper>(() => new EncodingHelper());
             }
         }
 
-        public Lazy<WordCounter> WordCounter
+        public Lazy<IWordCounter> WordCounter
         {
             get
             {
-                return new Lazy<WordCounter>(() => new WordCounter());
+                return new Lazy<IWordCounter>(() => new WordCounter());
             }
         }
 
-        public Lazy<OptionHelper> OptionHelper
+        public Lazy<IOptionHelper> OptionHelper
         {
             get
             {
-                return new Lazy<OptionHelper>(() => new OptionHelper());
+                return new Lazy<IOptionHelper>(() => new OptionHelper());
             }
         }
 
-        public Lazy<WebRequestHelper> WebRequestHelper
+        public Lazy<IWebRequestHelper> WebRequestHelper
         {
             get
             {
-                return new Lazy<WebRequestHelper>(() => new WebRequestHelper());
+                return new Lazy<IWebRequestHelper>(() => new WebRequestHelper());
             }
         }
 
-        public Lazy<Helpers.CacheHelper> CacheHelper
+        public Lazy<ICacheHelper> CacheHelper
         {
             get
             {
-                return new Lazy<Helpers.CacheHelper>(() => new Helpers.CacheHelper());
+                return new Lazy<ICacheHelper>(() => new CacheHelper());
             }
         }
 
-        public Lazy<UrlHelper> UrlHelper
+        public Lazy<IUrlHelper> UrlHelper
         {
             get
             {
-                return new Lazy<UrlHelper>(() => new UrlHelper());
+                return new Lazy<IUrlHelper>(() => new UrlHelper());
             }
         }
 
-        public Lazy<ScoreService> ScoreService
+        public Lazy<IScoreService> ScoreService
         {
             get
             {
-                return new Lazy<ScoreService>(() => new ScoreService());
+                return new Lazy<IScoreService>(() => new ScoreService());
             }
         }
 
-        public Lazy<PageAnalysisService> PageAnalysisService
+        public Lazy<IPageAnalysisService> PageAnalysisService
         {
             get
             {
-                return new Lazy<PageAnalysisService>(() => new PageAnalysisService());
+                return new Lazy<IPageAnalysisService>(() => new PageAnalysisService());
             }
         }
 
-        public Lazy<DashboardDataService> DashboardDataService
+        public Lazy<IDashboardDataService> DashboardDataService
         {
             get
             {
-                return new Lazy<DashboardDataService>(() => new DashboardDataService());
+                return new Lazy<IDashboardDataService>(() => new DashboardDataService());
             }
         }
 
-        public Lazy<PageInformationService> PageInformationService
+        public Lazy<IPageInformationService> PageInformationService
         {
             get
             {
-                return new Lazy<PageInformationService>(() => new PageInformationService());
+                return new Lazy<IPageInformationService>(() => new PageInformationService());
             }
         }
 
-        public Lazy<AnalyzeService> AnalyzeService
+        public Lazy<IAnalyzeService> AnalyzeService
         {
             get
             {
-                return new Lazy<AnalyzeService>(() => new AnalyzeService());
+                return new Lazy<IAnalyzeService>(() => new AnalyzeService());
             }
         }
 
-        public Lazy<UrlStatusService> UrlStatusService
+        public Lazy<IUrlStatusService> UrlStatusService
         {
             get
             {
-                return new Lazy<UrlStatusService>(() => new UrlStatusService());
+                return new Lazy<IUrlStatusService>(() => new UrlStatusService());
             }
         }
 
-        public Lazy<AnalysisCacheRepository> AnalysisCacheRepository
+        public Lazy<IAnalysisCacheRepository> AnalysisCacheRepository
         {
             get
             {
-                return new Lazy<AnalysisCacheRepository>(() => new AnalysisCacheRepository());
+                return new Lazy<IAnalysisCacheRepository>(() => new AnalysisCacheRepository());
             }
         }
 

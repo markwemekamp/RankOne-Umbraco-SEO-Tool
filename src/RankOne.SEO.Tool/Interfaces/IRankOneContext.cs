@@ -1,8 +1,4 @@
-﻿using RankOne.Helpers;
-using RankOne.Repositories;
-using RankOne.Serializers;
-using RankOne.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Umbraco.Web;
 
@@ -21,52 +17,52 @@ namespace RankOne.Interfaces
 
         Lazy<IUmbracoComponentRenderer> UmbracoComponentRenderery { get; }
 
-        Lazy<TemplateHelper> TemplateHelper { get; }
+        Lazy<ITemplateHelper> TemplateHelper { get; }
 
-        Lazy<DashboardSettingsSerializer> DashboardSettingsSerializer { get; }
+        Lazy<IDashboardSettingsSerializer> DashboardSettingsSerializer { get; }
 
-        Lazy<NodeReportService> NodeReportService { get; }
+        Lazy<INodeReportService> NodeReportService { get; }
 
-        Lazy<FocusKeywordHelper> FocusKeywordHelper { get; }
+        Lazy<IFocusKeywordHelper> FocusKeywordHelper { get; }
 
-        Lazy<ByteSizeHelper> ByteSizeHelper { get; }
+        Lazy<IByteSizeHelper> ByteSizeHelper { get; }
 
-        Lazy<ConfigurationHelper> ConfigurationHelper { get; }
+        Lazy<IConfigurationHelper> ConfigurationHelper { get; }
 
-        Lazy<PageScoreSerializer> PageScoreSerializer { get; }
+        Lazy<IPageScoreSerializer> PageScoreSerializer { get; }
 
-        Lazy<PageScoreNodeHelper> PageScoreNodeHelper { get; }
+        Lazy<IPageScoreNodeHelper> PageScoreNodeHelper { get; }
 
-        Lazy<NodeReportTableHelper> NodeReportTableHelper { get; }
+        Lazy<INodeReportTableHelper> NodeReportTableHelper { get; }
 
-        Lazy<HtmlTagHelper> HtmlTagHelper { get; }
+        Lazy<IHtmlTagHelper> HtmlTagHelper { get; }
 
-        Lazy<MinificationHelper> MinificationHelper { get; }
+        Lazy<IMinificationHelper> MinificationHelper { get; }
 
-        Lazy<EncodingHelper> EncodingHelper { get; }
+        Lazy<IEncodingHelper> EncodingHelper { get; }
 
-        Lazy<WordCounter> WordCounter { get; }
+        Lazy<IWordCounter> WordCounter { get; }
 
-        Lazy<OptionHelper> OptionHelper { get; }
+        Lazy<IOptionHelper> OptionHelper { get; }
 
-        Lazy<WebRequestHelper> WebRequestHelper { get; }
+        Lazy<IWebRequestHelper> WebRequestHelper { get; }
 
-        Lazy<CacheHelper> CacheHelper { get; }
+        Lazy<ICacheHelper> CacheHelper { get; }
 
-        Lazy<UrlHelper> UrlHelper { get; }
+        Lazy<IUrlHelper> UrlHelper { get; }
 
-        Lazy<ScoreService> ScoreService { get; }
+        Lazy<IScoreService> ScoreService { get; }
 
-        Lazy<PageAnalysisService> PageAnalysisService { get; }
+        Lazy<IPageAnalysisService> PageAnalysisService { get; }
 
-        Lazy<DashboardDataService> DashboardDataService { get; }
+        Lazy<IDashboardDataService> DashboardDataService { get; }
 
-        Lazy<PageInformationService> PageInformationService { get; }
+        Lazy<IPageInformationService> PageInformationService { get; }
 
-        Lazy<AnalyzeService> AnalyzeService { get; }
+        Lazy<IAnalyzeService> AnalyzeService { get; }
 
-        Lazy<UrlStatusService> UrlStatusService { get; }
+        Lazy<IUrlStatusService> UrlStatusService { get; }
 
-        Lazy<AnalysisCacheRepository> AnalysisCacheRepository { get; }
+        Lazy<IAnalysisCacheRepository> AnalysisCacheRepository { get; }
     }
 }

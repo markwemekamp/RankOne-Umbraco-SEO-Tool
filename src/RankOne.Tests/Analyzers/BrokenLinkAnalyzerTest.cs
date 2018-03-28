@@ -15,21 +15,21 @@ namespace RankOne.Tests.Analyzers
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_OnExecuteWithNullParameterForUrlStatusService_ThrowArgumentNullException()
         {
-            new BrokenLinkAnalyzer((IUrlStatusService)null, new UrlHelper(), new CacheHelper());
+            new BrokenLinkAnalyzer(null, new UrlHelper(), new CacheHelper());
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_OnExecuteWithNullParameterForUrlHelper_ThrowArgumentNullException()
         {
-            new BrokenLinkAnalyzer(new UrlStatusService(RankOneContext.Instance), (IUrlHelper)null, new CacheHelper());
+            new BrokenLinkAnalyzer(new UrlStatusService(RankOneContext.Instance), null, new CacheHelper());
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_OnExecuteWithNullParameterForCacheHelper_ThrowArgumentNullException()
         {
-            new BrokenLinkAnalyzer(new UrlStatusService(RankOneContext.Instance), new UrlHelper(), (ICacheHelper)null);
+            new BrokenLinkAnalyzer(new UrlStatusService(RankOneContext.Instance), new UrlHelper(), null);
         }
 
         [TestMethod]

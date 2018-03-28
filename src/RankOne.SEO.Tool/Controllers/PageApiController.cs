@@ -21,20 +21,24 @@ namespace RankOne.Controllers
 
         public PageApiController(IPageInformationService pageInformationService)
         {
+            if (pageInformationService == null) throw new ArgumentNullException(nameof(pageInformationService));
+
             _pageInformationService = pageInformationService;
         }
 
         [HttpGet]
-        public PageInformation GetPageInformation(int id)
+        public IHttpActionResult GetPageInformation(int id)
         {
+            if (id < 1) return BadRequest();
+
             try
             {
-                return _pageInformationService.GetpageInformation(id);
+                return Ok(_pageInformationService.GetpageInformation(id));
             }
             catch (Exception ex)
             {
                 LogHelper.Error(typeof(AnalysisApiController), "RankOne GetPageInformation Exception", ex);
-                throw;
+                return InternalServerError(ex);
             }
         }
     }

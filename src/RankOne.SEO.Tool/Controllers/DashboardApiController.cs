@@ -1,6 +1,6 @@
 using RankOne.Interfaces;
 using RankOne.Models;
-using System.Collections.Generic;
+using System;
 using System.Web.Http;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
@@ -20,26 +20,28 @@ namespace RankOne.Controllers
 
         public DashboardApiController(IDashboardDataService dashboardDataService)
         {
+            if (dashboardDataService == null) throw new ArgumentNullException(nameof(dashboardDataService));
+
             _dashboardDataService = dashboardDataService;
         }
 
         [HttpGet]
-        public IEnumerable<PageScoreNode> Initialize()
+        public IHttpActionResult Initialize()
         {
             _dashboardDataService.Initialize();
-            return _dashboardDataService.GetUpdatedHierarchy();
+            return UpdateAllPages();
         }
 
         [HttpGet]
-        public IEnumerable<PageScoreNode> GetPageHierarchy()
+        public IHttpActionResult GetPageHierarchy()
         {
-            return _dashboardDataService.GetHierarchyFromCache();
+            return Ok(_dashboardDataService.GetHierarchyFromCache());
         }
 
         [HttpGet]
-        public IEnumerable<PageScoreNode> UpdateAllPages()
+        public IHttpActionResult UpdateAllPages()
         {
-            return _dashboardDataService.GetUpdatedHierarchy();
+            return Ok(_dashboardDataService.GetUpdatedHierarchy());
         }
     }
 }

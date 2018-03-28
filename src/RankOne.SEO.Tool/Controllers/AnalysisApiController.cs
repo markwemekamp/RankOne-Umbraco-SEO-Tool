@@ -1,8 +1,6 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
 using System;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Umbraco.Core.Logging;
 using Umbraco.Web;
@@ -25,6 +23,9 @@ namespace RankOne.Controllers
 
         public AnalysisApiController(IAnalyzeService analyzeService, ITypedPublishedContentQuery typedPublishedContentQuery)
         {
+            if (analyzeService == null) throw new ArgumentNullException(nameof(analyzeService));
+            if (typedPublishedContentQuery == null) throw new ArgumentNullException(nameof(typedPublishedContentQuery));
+
             _analyzeService = analyzeService;
             _typedPublishedContentQuery = typedPublishedContentQuery;
         }
@@ -40,25 +41,23 @@ namespace RankOne.Controllers
         /// <param name="focusKeyword">The focus keyword.</param>
         /// <returns></returns>
         [HttpGet]
-        public PageAnalysis AnalyzeNode(int id, string focusKeyword = null)
+        public IHttpActionResult AnalyzeNode(int id, string focusKeyword = null)
         {
+            if (id < 1) return BadRequest();
+
             try
             {
                 var node = _typedPublishedContentQuery.TypedContent(id);
-                return _analyzeService.CreateAnalysis(node, focusKeyword);
+                return Ok(_analyzeService.CreateAnalysis(node, focusKeyword));
             }
             catch (MissingFieldException ex)
             {
-                var message = new HttpResponseMessage(HttpStatusCode.BadRequest)
-                {
-                    Content = new StringContent(ex.Message)
-                };
-                throw new HttpResponseException(message);
+                return InternalServerError(ex);
             }
             catch (Exception ex)
             {
                 LogHelper.Error(typeof(AnalysisApiController), "RankOne AnalyzeNode Exception", ex);
-                throw new HttpResponseException(HttpStatusCode.InternalServerError);
+                return InternalServerError(ex);
             }
         }
     }

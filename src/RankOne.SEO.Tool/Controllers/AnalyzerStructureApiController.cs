@@ -1,7 +1,9 @@
 using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Http;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 
@@ -20,10 +22,12 @@ namespace RankOne.Controllers
 
         public AnalyzerStructureApiController(IEnumerable<ISummary> summaries)
         {
+            if (summaries == null) throw new ArgumentNullException(nameof(summaries));
+
             _summaries = summaries;
         }
 
-        public IEnumerable<AnalyzerStructure> GetStructure()
+        public IHttpActionResult GetStructure()
         {
             var structure = new List<AnalyzerStructure>();
             foreach (var summary in _summaries)
@@ -34,7 +38,7 @@ namespace RankOne.Controllers
                     Analyzers = summary.Analyzers.Select(x => x.Alias)
                 });
             }
-            return structure;
+            return Ok(structure);
         }
     }
 }
