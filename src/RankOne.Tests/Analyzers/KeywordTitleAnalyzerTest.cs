@@ -58,6 +58,29 @@ namespace RankOne.Tests.Analyzers
         }
 
         [TestMethod]
+        public void Analyse_OnExecuteWithKeywordPresentButNotInFront_SetsAnalyzeResult()
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml("<head><title>test test test focus</title></head>");
+
+            var pageData = new PageData()
+            {
+                Document = doc.DocumentNode,
+                Focuskeyword = "focus",
+                Url = "http://www.google.com"
+            };
+
+            var analyzer = new KeywordTitleAnalyzer(new HtmlTagHelper(), new OptionHelper());
+            analyzer.Analyse(pageData);
+            var result = analyzer.AnalyzeResult;
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.ResultRules.Count == 1);
+            Assert.AreEqual(ResultType.Hint, result.ResultRules.First().Type);
+            Assert.AreEqual("title_not_in_front", result.ResultRules.First().Alias);
+        }
+
+        [TestMethod]
         public void Analyse_OnExecuteWithKeywordNotPresent_SetsAnalyzeResult()
         {
             var doc = new HtmlDocument();

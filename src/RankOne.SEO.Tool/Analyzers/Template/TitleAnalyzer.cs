@@ -74,11 +74,7 @@ namespace RankOne.Analyzers.Template
             try
             {
                 var headTag = _htmlTagHelper.GetHeadTag(pageData.Document);
-
-                if (headTag != null)
-                {
-                    AnalyzeHeadTag(headTag);
-                }
+                AnalyzeHeadTag(headTag);
             }
             catch (NoElementFoundException e)
             {
@@ -95,11 +91,7 @@ namespace RankOne.Analyzers.Template
             try
             {
                 var titleTag = _htmlTagHelper.GetTitleTag(headTag);
-
-                if (titleTag != null)
-                {
-                    AnalyzeTitleTag(titleTag);
-                }
+                AnalyzeTitleTag(titleTag);
             }
             catch (NoElementFoundException e)
             {

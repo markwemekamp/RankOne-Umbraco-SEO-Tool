@@ -56,26 +56,23 @@ namespace RankOne.Analyzers.Keywords
             try
             {
                 var titleTag = _htmlTagHelper.GetTitleTag(pageData.Document);
-                if (titleTag != null)
-                {
-                    var titleText = titleTag.InnerText;
-                    var position = titleText.IndexOf(pageData.Focuskeyword, StringComparison.InvariantCultureIgnoreCase);
+                var titleText = titleTag.InnerText;
+                var position = titleText.IndexOf(pageData.Focuskeyword, StringComparison.InvariantCultureIgnoreCase);
 
-                    if (position >= 0)
+                if (position >= 0)
+                {
+                    if (position < IdealKeywordPosition)
                     {
-                        if (position < IdealKeywordPosition)
-                        {
-                            AddResultRule("title_contains_keyword", ResultType.Success);
-                        }
-                        else
-                        {
-                            AddResultRule("title_not_in_front", ResultType.Hint);
-                        }
+                        AddResultRule("title_contains_keyword", ResultType.Success);
                     }
                     else
                     {
-                        AddResultRule("title_doesnt_contain_keyword", ResultType.Warning);
+                        AddResultRule("title_not_in_front", ResultType.Hint);
                     }
+                }
+                else
+                {
+                    AddResultRule("title_doesnt_contain_keyword", ResultType.Warning);
                 }
             }
             catch (NoElementFoundException e)

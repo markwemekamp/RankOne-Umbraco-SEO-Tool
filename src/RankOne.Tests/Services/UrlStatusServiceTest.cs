@@ -38,6 +38,13 @@ namespace RankOne.Tests.Services
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsActiveUrl_OnExecuteWithNull_ThrowsException()
+        {
+            _urlStatusService.IsActiveUrl(null);
+        }
+
+        [TestMethod]
         public void IsActiveUrl_OnExecuteWithActiveUrl_GetsStatusOfUrl()
         {
             var result = _urlStatusService.IsActiveUrl("http://www.google.com");

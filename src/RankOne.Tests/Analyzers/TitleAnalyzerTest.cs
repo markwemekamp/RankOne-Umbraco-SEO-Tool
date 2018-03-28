@@ -153,6 +153,31 @@ namespace RankOne.Tests.Analyzers
         }
 
         [TestMethod]
+        public void Analyse_OnExecuteWithEmptyTitle_SetsAnalyzeResult()
+        {
+            var title = Utils.GenerateString(61);
+
+            var doc = new HtmlDocument();
+            doc.LoadHtml($"<head><title></title></head>");
+
+            var pageData = new PageData()
+            {
+                Document = doc.DocumentNode,
+                Focuskeyword = "focus",
+                Url = "http://www.google.com"
+            };
+
+            var analyzer = new TitleAnalyzer(new HtmlTagHelper(), new OptionHelper());
+            analyzer.Analyse(pageData);
+            var result = analyzer.AnalyzeResult;
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.ResultRules.Count == 1);
+            Assert.AreEqual(ResultType.Error, result.ResultRules.First().Type);
+            Assert.AreEqual("no_title_value", result.ResultRules.First().Alias);
+        }
+
+        [TestMethod]
         public void Analyse_OnExecuteWithShortTitle_SetsAnalyzeResult()
         {
             var doc = new HtmlDocument();
