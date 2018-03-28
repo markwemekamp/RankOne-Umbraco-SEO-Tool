@@ -300,6 +300,8 @@
     <Compile Include="Repositories\AnalysisCacheRepositoryTest.cs" />
     <Compile Include="Services\ScoreServiceTest.cs" />
     <Compile Include="Services\UrlStatusServiceTest.cs" />
+    <Compile Include="Summaries\BaseSummaryTest.cs" />
+    <Compile Include="Summaries\KeywordsSummaryTest.cs" />
     <Compile Include="Utils\UtilsTest.cs" />
     <Compile Include="Utils\Utils.cs" />
   </ItemGroup>

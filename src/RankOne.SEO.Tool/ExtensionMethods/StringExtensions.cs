@@ -35,7 +35,7 @@ namespace RankOne.ExtensionMethods
             var htmlRegex = new Regex("<.*?>", RegexOptions.Compiled);
             text = htmlRegex.Replace(text, string.Empty);
 
-            var rgx = new Regex("[^a-z0-9-]");
+            var rgx = new Regex("[^a-z0-9-_]");
             text = rgx.Replace(text, string.Empty);
 
             return text;

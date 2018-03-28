@@ -120,6 +120,15 @@ namespace RankOne.Tests.ExtensionMethods
         }
 
         [TestMethod]
+        public void Simplify_OnExecute_LeavesUnderscores()
+        {
+            var hyphenedWord = "test_test";
+            var result = hyphenedWord.Simplify();
+
+            Assert.AreEqual("test_test", result);
+        }
+
+        [TestMethod]
         public void Simplify_OnExecute_ReplacesEncodedHtmlTags()
         {
             var specialCharacters = "&lt;span&gt;test&lt;/span&gt;";

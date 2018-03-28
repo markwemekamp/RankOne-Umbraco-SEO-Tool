@@ -15,6 +15,11 @@ namespace RankOne.Summaries
         public string FocusKeyword { get; set; }
         public IEnumerable<IAnalyzer> Analyzers { get; set; }
 
+        public BaseSummary()
+        {
+            Analyzers = new List<IAnalyzer>();
+        }
+
         public virtual Analysis GetAnalysis()
         {
             var analysis = new Analysis();

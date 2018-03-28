@@ -1,5 +1,6 @@
 ﻿using RankOne.Interfaces;
 using RankOne.Models;
+using System;
 using System.Linq;
 
 namespace RankOne.Summaries
@@ -16,6 +17,8 @@ namespace RankOne.Summaries
 
         public KeywordsSummary(IWordCounter wordOccurenceHelper)
         {
+            if (wordOccurenceHelper == null) throw new ArgumentNullException(nameof(wordOccurenceHelper));
+
             _wordOccurenceHelper = wordOccurenceHelper;
             Name = "Keywords";
         }
@@ -44,14 +47,17 @@ namespace RankOne.Summaries
 
         private AnalysisInformation GetAnalysisInformation(string focusKeyword)
         {
-            var topwords = _wordOccurenceHelper.GetKeywords(Document).OrderByDescending(x => x.Value).Take(10);
-
             var information = new AnalysisInformation { Alias = "keywordanalyzer_top_words" };
-            information.Tokens.Add(focusKeyword);
-            foreach (var wordOccurence in topwords)
+            if (Document != null)
             {
-                information.Tokens.Add(wordOccurence.Key);
-                information.Tokens.Add(wordOccurence.Value.ToString());
+                var topwords = _wordOccurenceHelper.GetKeywords(Document).OrderByDescending(x => x.Value).Take(10);
+
+                information.Tokens.Add(focusKeyword);
+                foreach (var wordOccurence in topwords)
+                {
+                    information.Tokens.Add(wordOccurence.Key);
+                    information.Tokens.Add(wordOccurence.Value.ToString());
+                }
             }
             return information;
         }
