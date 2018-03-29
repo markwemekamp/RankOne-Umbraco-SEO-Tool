@@ -1,24 +1,24 @@
 ﻿angular.module('umbraco')
     .service('analyzeService',
-    function (webresultService, umbRequestHelper) {
+    function (webresultService, rankOneRequestHelper) {
         this.AnalyzeNode = function (nodeId) {
-            var url = '/umbraco/backoffice/rankone/AnalysisApi/AnalyzeNode?id=' + nodeId;
+            var url = rankOneRequestHelper.GetApiUrl("AnalysisApi", "AnalyzeNode", "id={nodeId}");
             return webresultService.GetResult(url);
         }
         this.AnalyzeNodeForEditor = function (editor) {
-            var url = umbRequestHelper.getApiUrl("AnalysisApi", "AnalyzeNode", "id={id}");
+            var url = rankOneRequestHelper.GetApiUrl("AnalysisApi", "AnalyzeNode", "id={id}");
             return webresultService.GetResultFromEditorState(editorState, url)
         }
-        this.AnalyzeNodeForEditorByKeyword = function (editor, focuskeyword) {
-            var url = umbRequestHelper.getApiUrl("AnalysisApi", "AnalyzeNode", "id={id}&focusKeyword=" + focuskeyword);
-            return webresultService.GetResultFromEditorState(editorState, url)
+        this.AnalyzeNodeForEditorByKeyword = function (editorState, focuskeyword) {
+            var url = rankOneRequestHelper.GetApiUrl("AnalysisApi", "AnalyzeNode", "id={id}&focusKeyword=" + focuskeyword);
+            return webresultService.GetResultFromEditorState(editorState, url);
         }
-        this.GetPageInformationForEditor = function (editor) {
-            var url = umbRequestHelper.getApiUrl("PageApi", "GetPageInformation", "id={id}");
-            return webresultService.GetResultFromEditorState(editorState, url)
+        this.GetPageInformationForEditor = function (editorState) {
+            var url = rankOneRequestHelper.GetApiUrl("PageApi", "GetPageInformation", "id={id}");
+            return webresultService.GetResultFromEditorState(editorState, url);
         }
-        this.GetStructure = function (editor) {
-            var url = umbRequestHelper.getApiUrl("AnalyzerStructureApi", "GetStructure");
+        this.GetStructure = function () {
+            var url = rankOneRequestHelper.GetApiUrl("AnalyzerStructureApi", "GetStructure");
             return webresultService.GetResult(url);
         }
     });

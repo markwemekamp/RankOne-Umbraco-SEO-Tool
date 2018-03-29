@@ -282,6 +282,7 @@
   <ItemGroup>
     <Compile Include="Analyzers\Performance\MinificationAnalyzer.cs" />
     <Compile Include="Analyzers\Template\BrokenLinkAnalyzer.cs" />
+    <Compile Include="Events\ParsingApplicationEventHandler.cs" />
     <Compile Include="Helpers\CacheHelper.cs" />
     <Compile Include="Helpers\OptionHelper.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
@@ -437,6 +438,7 @@
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\analyze.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\dashboard.service.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\services\rankonerequesthelper.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\webresult.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.js" />
