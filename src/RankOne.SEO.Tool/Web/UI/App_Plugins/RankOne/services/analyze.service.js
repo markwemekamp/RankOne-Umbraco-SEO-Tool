@@ -2,10 +2,10 @@
     .service('analyzeService',
     function (webresultService, rankOneRequestHelper) {
         this.AnalyzeNode = function (nodeId) {
-            var url = rankOneRequestHelper.GetApiUrl("AnalysisApi", "AnalyzeNode", "id={nodeId}");
+            var url = rankOneRequestHelper.GetApiUrl("AnalysisApi", "AnalyzeNode", "id=" + nodeId);
             return webresultService.GetResult(url);
         }
-        this.AnalyzeNodeForEditor = function (editor) {
+        this.AnalyzeNodeForEditor = function (editorState) {
             var url = rankOneRequestHelper.GetApiUrl("AnalysisApi", "AnalyzeNode", "id={id}");
             return webresultService.GetResultFromEditorState(editorState, url)
         }
