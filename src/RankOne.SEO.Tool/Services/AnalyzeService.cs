@@ -9,16 +9,16 @@ namespace RankOne.Services
     {
         private readonly IFocusKeywordHelper _focusKeywordHelper;
         private readonly IPageAnalysisService _pageAnalysisService;
-        private readonly IAnalysisCacheRepository _analysisCacheService;
+        private readonly IAnalysisCacheService _analysisCacheService;
 
         public AnalyzeService() : this(RankOneContext.Instance)
         { }
 
         public AnalyzeService(IRankOneContext rankOneContext) : this(rankOneContext.FocusKeywordHelper.Value, rankOneContext.PageAnalysisService.Value,
-            rankOneContext.AnalysisCacheRepository.Value)
+            rankOneContext.AnalysisCacheService.Value)
         { }
 
-        public AnalyzeService(IFocusKeywordHelper focusKeywordHelper, IPageAnalysisService pageAnalysisService, IAnalysisCacheRepository analysisCacheRepository)
+        public AnalyzeService(IFocusKeywordHelper focusKeywordHelper, IPageAnalysisService pageAnalysisService, IAnalysisCacheService analysisCacheRepository)
         {
             if (focusKeywordHelper == null) throw new ArgumentNullException(nameof(focusKeywordHelper));
             if (focusKeywordHelper == null) throw new ArgumentNullException(nameof(focusKeywordHelper));

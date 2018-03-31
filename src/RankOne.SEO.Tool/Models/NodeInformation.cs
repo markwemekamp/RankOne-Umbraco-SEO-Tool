@@ -24,8 +24,10 @@ namespace RankOne.Models
 
         [DataMember]
         public int Id { get; private set; }
+
         [DataMember]
-        public int TemplateId { get;  private set; }
+        public int TemplateId { get; private set; }
+
         [DataMember]
         public string Name { get; private set; }
     }

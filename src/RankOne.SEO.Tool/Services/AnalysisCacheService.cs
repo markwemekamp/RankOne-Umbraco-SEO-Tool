@@ -2,25 +2,25 @@ using RankOne.Interfaces;
 using RankOne.Models;
 using System;
 
-namespace RankOne.Repositories
+namespace RankOne.Services
 {
-    public class AnalysisCacheRepository : IAnalysisCacheRepository
+    public class AnalysisCacheService : IAnalysisCacheService
     {
-        private readonly INodeReportService _nodeReportService;
+        private readonly INodeReportRepository _nodeReportRepository;
         private readonly IPageScoreSerializer _pageScoreSerializer;
 
-        public AnalysisCacheRepository() : this(RankOneContext.Instance)
+        public AnalysisCacheService() : this(RankOneContext.Instance)
         { }
 
-        public AnalysisCacheRepository(IRankOneContext rankOneContext) : this(rankOneContext.NodeReportService.Value, rankOneContext.PageScoreSerializer.Value)
+        public AnalysisCacheService(IRankOneContext rankOneContext) : this(rankOneContext.NodeReportRepository.Value, rankOneContext.PageScoreSerializer.Value)
         { }
 
-        public AnalysisCacheRepository(INodeReportService nodeReportService, IPageScoreSerializer pageScoreSerializer)
+        public AnalysisCacheService(INodeReportRepository nodeReportService, IPageScoreSerializer pageScoreSerializer)
         {
             if (nodeReportService == null) throw new ArgumentNullException(nameof(nodeReportService));
             if (pageScoreSerializer == null) throw new ArgumentNullException(nameof(pageScoreSerializer));
 
-            _nodeReportService = nodeReportService;
+            _nodeReportRepository = nodeReportService;
             _pageScoreSerializer = pageScoreSerializer;
         }
 
@@ -29,7 +29,7 @@ namespace RankOne.Repositories
             if (id < 0) throw new ArgumentException(nameof(id));
             if (pageAnalysis == null) throw new ArgumentNullException(nameof(pageAnalysis));
 
-            if (_nodeReportService.TableExists)
+            if (_nodeReportRepository.TableExists)
             {
                 var scoreReport = _pageScoreSerializer.Serialize(pageAnalysis.Score);
 
@@ -42,16 +42,16 @@ namespace RankOne.Repositories
                     UpdatedOn = DateTime.Now
                 };
 
-                CreateOrUpdateNodeReport(nodeReport);
+                Save(nodeReport);
             }
         }
 
-        private void CreateOrUpdateNodeReport(NodeReport nodeReport)
+        private void Save(NodeReport nodeReport)
         {
-            var dbNodeReport = _nodeReportService.GetById(nodeReport.Id);
+            var dbNodeReport = _nodeReportRepository.GetById(nodeReport.Id);
             if (dbNodeReport == null)
             {
-                _nodeReportService.Insert(nodeReport);
+                _nodeReportRepository.Insert(nodeReport);
             }
             else
             {
@@ -59,7 +59,7 @@ namespace RankOne.Repositories
                 dbNodeReport.Report = nodeReport.Report;
                 dbNodeReport.UpdatedOn = nodeReport.UpdatedOn;
 
-                _nodeReportService.Update(nodeReport);
+                _nodeReportRepository.Update(nodeReport);
             }
         }
     }

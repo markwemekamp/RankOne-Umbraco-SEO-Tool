@@ -10,29 +10,30 @@ namespace RankOne.Services
     {
         private readonly ITypedPublishedContentQuery _typedPublishedContentQuery;
         private readonly IPageScoreNodeHelper _pageScoreNodeHelper;
-        private readonly INodeReportService _nodeReportService;
+        private readonly INodeReportRepository _nodeReportRepository;
 
         public DashboardDataService() : this(RankOneContext.Instance)
         { }
 
         public DashboardDataService(IRankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.PageScoreNodeHelper.Value,
-            rankOneContext.NodeReportService.Value)
+            rankOneContext.NodeReportRepository.Value)
         { }
 
-        public DashboardDataService(ITypedPublishedContentQuery typedPublishedContentQuery, IPageScoreNodeHelper pageScoreNodeHelper, INodeReportService nodeReportService)
+        public DashboardDataService(ITypedPublishedContentQuery typedPublishedContentQuery, IPageScoreNodeHelper pageScoreNodeHelper, 
+            INodeReportRepository nodeReportRepository)
         {
             if (typedPublishedContentQuery == null) throw new ArgumentNullException(nameof(typedPublishedContentQuery));
             if (pageScoreNodeHelper == null) throw new ArgumentNullException(nameof(pageScoreNodeHelper));
-            if (nodeReportService == null) throw new ArgumentNullException(nameof(nodeReportService));
+            if (nodeReportRepository == null) throw new ArgumentNullException(nameof(nodeReportRepository));
 
             _typedPublishedContentQuery = typedPublishedContentQuery;
             _pageScoreNodeHelper = pageScoreNodeHelper;
-            _nodeReportService = nodeReportService;
+            _nodeReportRepository = nodeReportRepository;
         }
 
         public void Initialize()
         {
-            _nodeReportService.CreateTable();
+            _nodeReportRepository.CreateTable();
         }
 
         public IEnumerable<PageScoreNode> GetHierarchyFromCache()

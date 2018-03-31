@@ -2,9 +2,9 @@
 using RankOne.Models;
 using System;
 
-namespace RankOne.Services
+namespace RankOne.Repositories
 {
-    public class NodeReportService : UmbracoDatabaseService<NodeReport>, INodeReportService
+    public class NodeReportRepository : UmbracoDatabaseRepository<NodeReport>, INodeReportRepository
     {
         public override NodeReport Insert(NodeReport dbEntity)
         {

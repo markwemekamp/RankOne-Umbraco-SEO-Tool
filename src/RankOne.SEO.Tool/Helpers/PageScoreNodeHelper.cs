@@ -10,27 +10,27 @@ namespace RankOne.Helpers
     public class PageScoreNodeHelper : IPageScoreNodeHelper
     {
         private readonly ITypedPublishedContentQuery _typedPublishedContentQuery;
-        private readonly INodeReportService _nodeReportService;
+        private readonly INodeReportRepository _nodeReportRepository;
         private readonly IPageScoreSerializer _pagescoreSerializer;
         private readonly IAnalyzeService _analyzeService;
 
         public PageScoreNodeHelper() : this(RankOneContext.Instance)
         { }
 
-        public PageScoreNodeHelper(IRankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.NodeReportService.Value,
+        public PageScoreNodeHelper(IRankOneContext rankOneContext) : this(rankOneContext.TypedPublishedContentQuery.Value, rankOneContext.NodeReportRepository.Value,
             rankOneContext.PageScoreSerializer.Value, rankOneContext.AnalyzeService.Value)
         { }
 
-        public PageScoreNodeHelper(ITypedPublishedContentQuery typedPublishedContentQuery, INodeReportService nodeReportService,
+        public PageScoreNodeHelper(ITypedPublishedContentQuery typedPublishedContentQuery, INodeReportRepository nodeReportRepository,
             IPageScoreSerializer pageScoreSerializer, IAnalyzeService analyzeService)
         {
             if (typedPublishedContentQuery == null) throw new ArgumentNullException(nameof(typedPublishedContentQuery));
-            if (nodeReportService == null) throw new ArgumentNullException(nameof(nodeReportService));
+            if (nodeReportRepository == null) throw new ArgumentNullException(nameof(nodeReportRepository));
             if (pageScoreSerializer == null) throw new ArgumentNullException(nameof(pageScoreSerializer));
             if (analyzeService == null) throw new ArgumentNullException(nameof(analyzeService));
 
             _typedPublishedContentQuery = typedPublishedContentQuery;
-            _nodeReportService = nodeReportService;
+            _nodeReportRepository = nodeReportRepository;
             _pagescoreSerializer = pageScoreSerializer;
             _analyzeService = analyzeService;
         }
@@ -79,12 +79,12 @@ namespace RankOne.Helpers
 
         private void SetPageScore(PageScoreNode node)
         {
-            var nodeReport = _nodeReportService.GetById(node.NodeInformation.Id);
+            var nodeReport = _nodeReportRepository.GetById(node.NodeInformation.Id);
             if (nodeReport != null)
             {
                 if (node.NodeInformation.TemplateId == 0)
                 {
-                    _nodeReportService.Delete(nodeReport);
+                    _nodeReportRepository.Delete(nodeReport);
                 }
                 if (node.NodeInformation.TemplateId > 0 || node.HasChildrenWithTemplate)
                 {
@@ -96,7 +96,7 @@ namespace RankOne.Helpers
                     catch (Exception)
                     {
                         // delete database copy
-                        _nodeReportService.Delete(nodeReport);
+                        _nodeReportRepository.Delete(nodeReport);
                     }
                     foreach (var childNode in node.Children)
                     {
