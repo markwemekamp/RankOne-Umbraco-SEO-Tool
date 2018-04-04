@@ -63,5 +63,7 @@ namespace RankOne.Interfaces
         Lazy<IUrlStatusService> UrlStatusService { get; }
 
         Lazy<IAnalysisCacheRepository> AnalysisCacheRepository { get; }
+
+        Lazy<IHttpWebRequestFactory> WebRequestFactory { get; }
     }
 }

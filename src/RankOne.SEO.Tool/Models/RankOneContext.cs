@@ -1,4 +1,5 @@
-﻿using RankOne.Helpers;
+﻿using RankOne.Factories;
+using RankOne.Helpers;
 using RankOne.Interfaces;
 using RankOne.Repositories;
 using RankOne.Serializers;
@@ -243,6 +244,14 @@ namespace RankOne.Models
             get
             {
                 return new Lazy<IAnalysisCacheRepository>(() => new AnalysisCacheRepository());
+            }
+        }
+
+        public Lazy<IHttpWebRequestFactory> WebRequestFactory
+        {
+            get
+            {
+                return new Lazy<IHttpWebRequestFactory>(() => new WebRequestFactory());
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using RankOne.Interfaces;
+using RankOne.Models;
 using System;
 using System.Net;
 
@@ -6,9 +7,24 @@ namespace RankOne.Helpers
 {
     public class WebRequestHelper : IWebRequestHelper
     {
+        private IHttpWebRequestFactory _webRequestFactory;
+
+        public WebRequestHelper() : this(RankOneContext.Instance)
+        { }
+
+        public WebRequestHelper(IRankOneContext rankOneContext) : this(rankOneContext.WebRequestFactory.Value)
+        { }
+
+        public WebRequestHelper(IHttpWebRequestFactory webRequestFactory)
+        {
+            if (webRequestFactory == null) throw new ArgumentNullException(nameof(webRequestFactory));
+
+            _webRequestFactory = webRequestFactory;
+        }
+
         private HttpStatusCode GetStatus(string url)
         {
-            var request = (HttpWebRequest)WebRequest.Create(url);
+            var request = _webRequestFactory.Create(url);
             request.Timeout = 15000;
             request.Method = "HEAD";
             try
