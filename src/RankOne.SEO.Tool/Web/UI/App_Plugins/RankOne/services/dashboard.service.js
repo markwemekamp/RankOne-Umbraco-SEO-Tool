@@ -1,16 +1,16 @@
 ﻿angular.module('umbraco')
     .service('dashboardService',
-    function (webresultService, umbRequestHelper) {
+    function (webresultService, rankOneRequestHelper) {
         this.GetPageHierarchy = function () {
-            var url = umbRequestHelper.getApiUrl("DashboardApi", "GetPageHierarchy");
+            var url = rankOneRequestHelper.GetApiUrl("DashboardApi", "GetPageHierarchy");
             return webresultService.GetResult(url);
         }
         this.UpdateAllPages = function () {
-            var url = umbRequestHelper.getApiUrl("DashboardApi", "UpdateAllPages");
+            var url = rankOneRequestHelper.GetApiUrl("DashboardApi", "UpdateAllPages");
             return webresultService.GetResult(url);
         }
         this.Initialize = function () {
-            var url = umbRequestHelper.getApiUrl("DashboardApi", "Initialize");
+            var url = rankOneRequestHelper.GetApiUrl("DashboardApi", "Initialize");
             return webresultService.GetResult(url);
         }
     });

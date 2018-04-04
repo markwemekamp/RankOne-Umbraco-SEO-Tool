@@ -22,7 +22,7 @@
         </span>
     </div>
 
-    <div class="segment">
+    <div class="segment" ng-class="(!row.FocusKeyword || row.FocusKeyword == 'undefined') ? 'keyword-not-set' : ''">
         <span ng-if="row.FocusKeyword && row.FocusKeyword != 'undefined'">{{row.FocusKeyword}}</span>
         <span ng-if="!row.FocusKeyword || row.FocusKeyword == 'undefined'">No focuskeyword set</span>
     </div>

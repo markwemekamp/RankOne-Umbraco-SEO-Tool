@@ -20,7 +20,7 @@ namespace RankOne.Interfaces
 
         Lazy<IDashboardSettingsSerializer> DashboardSettingsSerializer { get; }
 
-        Lazy<INodeReportService> NodeReportService { get; }
+        Lazy<INodeReportRepository> NodeReportRepository { get; }
 
         Lazy<IFocusKeywordHelper> FocusKeywordHelper { get; }
 
@@ -62,8 +62,8 @@ namespace RankOne.Interfaces
 
         Lazy<IUrlStatusService> UrlStatusService { get; }
 
-        Lazy<IAnalysisCacheRepository> AnalysisCacheRepository { get; }
-
         Lazy<IHttpWebRequestFactory> WebRequestFactory { get; }
+
+        Lazy<IAnalysisCacheService> AnalysisCacheService { get; }
     }
 }

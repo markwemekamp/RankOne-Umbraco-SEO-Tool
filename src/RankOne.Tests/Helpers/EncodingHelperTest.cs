@@ -32,26 +32,26 @@ namespace RankOne.Tests.Helpers
             _encodingHelper.GetEncodingByUrl(null);
         }
 
-        [TestMethod]
-        public void Test()
-        {
-            var response = new Mock<HttpWebResponse>();
-            response.Setup(x => x.ContentEncoding).Returns("gzip");
+        //[TestMethod]
+        //public void Test()
+        //{
+        //    var response = new Mock<HttpWebResponse>();
+        //    response.Setup(x => x.ContentEncoding).Returns("gzip");
 
-            var request = new Mock<HttpWebRequest>();
-            request.Setup(x => x.GetResponse()).Returns(response.Object);
-            request.Setup(x => x.Headers).Returns(new WebHeaderCollection());
+        //    var request = new Mock<HttpWebRequest>();
+        //    request.Setup(x => x.GetResponse()).Returns(response.Object);
+        //    request.Setup(x => x.Headers).Returns(new WebHeaderCollection());
 
-            var factory = new Mock<IHttpWebRequestFactory>();
-            factory.Setup(x => x.Create(It.IsAny<string>())).Returns(request.Object);
+        //    var factory = new Mock<IHttpWebRequestFactory>();
+        //    factory.Setup(x => x.Create(It.IsAny<string>())).Returns(request.Object);
 
-            var encodingHelper = new EncodingHelper(factory.Object);
+        //    var encodingHelper = new EncodingHelper(factory.Object);
 
-            encodingHelper.GetEncodingByUrl("http://www.test.com");
+        //    encodingHelper.GetEncodingByUrl("http://www.test.com");
 
-            request.Verify(x => x.Method == "Get");
-            request.Verify(x => x.Headers.Count >= 1);
-            request.Verify(x => x.Headers["Accept-Encoding"] == "gzip,deflate");
-        }
+        //    request.Verify(x => x.Method == "Get");
+        //    request.Verify(x => x.Headers.Count >= 1);
+        //    request.Verify(x => x.Headers["Accept-Encoding"] == "gzip,deflate");
+        //}
     }
 }

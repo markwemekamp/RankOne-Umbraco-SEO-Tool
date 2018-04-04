@@ -17,7 +17,7 @@ namespace RankOne.Tests.Helpers
     public class PageScoreNodeHelperTest
     {
         private Mock<ITypedPublishedContentQuery> _typedPublishedContentQueryMock;
-        private Mock<INodeReportService> _nodeReportServiceMock;
+        private Mock<INodeReportRepository> _nodeReportRepositoryMock;
         private Mock<IPageScoreSerializer> _pageScoreSerializerMock;
         private Mock<IAnalyzeService> _analyzeServiceMock;
         private PageScoreNodeHelper _mockedPageScoreNodeHelper;
@@ -27,15 +27,15 @@ namespace RankOne.Tests.Helpers
         public void Initialize()
         {
             _typedPublishedContentQueryMock = new Mock<ITypedPublishedContentQuery>();
-            _nodeReportServiceMock = new Mock<INodeReportService>();
-            _nodeReportServiceMock.Setup(x => x.GetById(1)).Returns(new NodeReport() { Id = 1, FocusKeyword = "focus", Report = "" });
-            _nodeReportServiceMock.Setup(x => x.GetById(11)).Returns((NodeReport)null);
-            _nodeReportServiceMock.Setup(x => x.GetById(12)).Returns(new NodeReport() { Id = 12, FocusKeyword = "focus", Report = "" });
+            _nodeReportRepositoryMock = new Mock<INodeReportRepository>();
+            _nodeReportRepositoryMock.Setup(x => x.GetById(1)).Returns(new NodeReport() { Id = 1, FocusKeyword = "focus", Report = "" });
+            _nodeReportRepositoryMock.Setup(x => x.GetById(11)).Returns((NodeReport)null);
+            _nodeReportRepositoryMock.Setup(x => x.GetById(12)).Returns(new NodeReport() { Id = 12, FocusKeyword = "focus", Report = "" });
             _pageScoreSerializerMock = new Mock<IPageScoreSerializer>();
             _analyzeServiceMock = new Mock<IAnalyzeService>();
             _analyzeServiceMock.Setup(x => x.CreateAnalysis(It.Is<IPublishedContent>(y => y.Id == 1), null)).Returns(new PageAnalysis() { FocusKeyword = "focus", Score = new PageScore() { OverallScore = 75 } });
 
-            _mockedPageScoreNodeHelper = new PageScoreNodeHelper(_typedPublishedContentQueryMock.Object, _nodeReportServiceMock.Object, _pageScoreSerializerMock.Object,
+            _mockedPageScoreNodeHelper = new PageScoreNodeHelper(_typedPublishedContentQueryMock.Object, _nodeReportRepositoryMock.Object, _pageScoreSerializerMock.Object,
                 _analyzeServiceMock.Object);
 
             _nodes = new List<IPublishedContent>()
@@ -65,7 +65,7 @@ namespace RankOne.Tests.Helpers
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_OnExecuteWithNullParameterForTypedPublishedContentQuery_ThrowsException()
         {
-            new PageScoreNodeHelper(null, new Mock<INodeReportService>().Object, new PageScoreSerializer(), new Mock<IAnalyzeService>().Object);
+            new PageScoreNodeHelper(null, new Mock<INodeReportRepository>().Object, new PageScoreSerializer(), new Mock<IAnalyzeService>().Object);
         }
 
         [TestMethod]
@@ -79,14 +79,14 @@ namespace RankOne.Tests.Helpers
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_OnExecuteWithNullParameterForPageScoreSerializer_ThrowsException()
         {
-            new PageScoreNodeHelper(new Mock<ITypedPublishedContentQuery>().Object, new Mock<INodeReportService>().Object, null, new Mock<IAnalyzeService>().Object);
+            new PageScoreNodeHelper(new Mock<ITypedPublishedContentQuery>().Object, new Mock<INodeReportRepository>().Object, null, new Mock<IAnalyzeService>().Object);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_OnExecuteWithNullParameterForAnalyzeService_ThrowsException()
         {
-            new PageScoreNodeHelper(new Mock<ITypedPublishedContentQuery>().Object, new Mock<INodeReportService>().Object, new PageScoreSerializer(), null);
+            new PageScoreNodeHelper(new Mock<ITypedPublishedContentQuery>().Object, new Mock<INodeReportRepository>().Object, new PageScoreSerializer(), null);
         }
 
         [TestMethod]
@@ -104,9 +104,9 @@ namespace RankOne.Tests.Helpers
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count());
             Assert.AreEqual(2, result.First().Children.Count());
-            _nodeReportServiceMock.Verify(x => x.GetById(1), Times.Once);
-            _nodeReportServiceMock.Verify(x => x.GetById(11), Times.Once);
-            _nodeReportServiceMock.Verify(x => x.GetById(12), Times.Once);
+            _nodeReportRepositoryMock.Verify(x => x.GetById(1), Times.Once);
+            _nodeReportRepositoryMock.Verify(x => x.GetById(11), Times.Once);
+            _nodeReportRepositoryMock.Verify(x => x.GetById(12), Times.Once);
         }
 
         [TestMethod]

@@ -2,7 +2,7 @@
 
 namespace RankOne.Interfaces
 {
-    public interface IAnalysisCacheRepository
+    public interface IAnalysisCacheService
     {
         void Save(int id, PageAnalysis pageAnalysis);
     }

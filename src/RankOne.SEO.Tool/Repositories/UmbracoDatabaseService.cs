@@ -9,9 +9,9 @@ using Umbraco.Core.Logging;
 using Umbraco.Core.Persistence;
 using Umbraco.Web;
 
-namespace RankOne.Services
+namespace RankOne.Repositories
 {
-    public class UmbracoDatabaseService<T> : IDatabaseService<T>
+    public class UmbracoDatabaseRepository<T> : IDatabaseRepository<T>
     {
         protected DatabaseContext DatabaseContext;
         protected UmbracoDatabase Database;
@@ -57,13 +57,13 @@ namespace RankOne.Services
             }
         }
 
-        public UmbracoDatabaseService() : this(RankOneContext.Instance)
+        public UmbracoDatabaseRepository() : this(RankOneContext.Instance)
         { }
 
-        public UmbracoDatabaseService(RankOneContext instance) : this(instance.UmbracoContext.Value)
+        public UmbracoDatabaseRepository(RankOneContext instance) : this(instance.UmbracoContext.Value)
         { }
 
-        public UmbracoDatabaseService(UmbracoContext umbracoContext)
+        public UmbracoDatabaseRepository(UmbracoContext umbracoContext)
         {
             if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
 

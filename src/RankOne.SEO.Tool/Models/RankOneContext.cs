@@ -71,11 +71,11 @@ namespace RankOne.Models
             }
         }
 
-        public Lazy<INodeReportService> NodeReportService
+        public Lazy<INodeReportRepository> NodeReportRepository
         {
             get
             {
-                return new Lazy<INodeReportService>(() => new NodeReportService());
+                return new Lazy<INodeReportRepository>(() => new NodeReportRepository());
             }
         }
 
@@ -239,11 +239,11 @@ namespace RankOne.Models
             }
         }
 
-        public Lazy<IAnalysisCacheRepository> AnalysisCacheRepository
+        public Lazy<IAnalysisCacheService> AnalysisCacheService
         {
             get
             {
-                return new Lazy<IAnalysisCacheRepository>(() => new AnalysisCacheRepository());
+                return new Lazy<IAnalysisCacheService>(() => new AnalysisCacheService());
             }
         }
 

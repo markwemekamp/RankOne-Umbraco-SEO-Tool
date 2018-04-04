@@ -2,7 +2,7 @@
 
 namespace RankOne.Interfaces
 {
-    public interface IDatabaseService<T>
+    public interface IDatabaseRepository<T>
     {
         string TableName { get; }
         bool TableExists { get; }

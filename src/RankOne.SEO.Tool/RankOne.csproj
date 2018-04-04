@@ -195,6 +195,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Threading.Tasks.Dataflow, Version=4.6.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Dataflow.4.7.0\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
       <Private>True</Private>
@@ -284,13 +285,15 @@
     <Compile Include="Analyzers\Template\BrokenLinkAnalyzer.cs" />
     <Compile Include="Factories\WebRequestFactory.cs" />
     <Compile Include="Interfaces\IHttpWebRequestFactory.cs" />
+    <Compile Include="Events\ParsingApplicationEventHandler.cs" />
     <Compile Include="Helpers\CacheHelper.cs" />
     <Compile Include="Helpers\OptionHelper.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Helpers\WebRequestHelper.cs" />
     <Compile Include="Interfaces\ICacheHelper.cs" />
+    <Compile Include="Interfaces\IDashboardDataService.cs" />
     <Compile Include="Interfaces\IDatabaseService.cs" />
-    <Compile Include="Interfaces\INodeReportService.cs" />
+    <Compile Include="Interfaces\INodeReportRepository.cs" />
     <Compile Include="Interfaces\IOptionHelper.cs" />
     <Compile Include="Interfaces\IRankOneContext.cs" />
     <Compile Include="Interfaces\IUrlHelper.cs" />
@@ -325,11 +328,10 @@
     <Compile Include="Helpers\NodeReportHelper.cs" />
     <Compile Include="Helpers\PageScoreNodeHelper.cs" />
     <Compile Include="Helpers\TableNameHelper.cs" />
-    <Compile Include="Interfaces\IAnalysisCacheRepository.cs" />
-    <Compile Include="Interfaces\IBaseRepository.cs" />
+    <Compile Include="Interfaces\IAnalysisCacheService.cs" />
     <Compile Include="Interfaces\IByteSizeHelper.cs" />
     <Compile Include="Interfaces\IConfigurationHelper.cs" />
-    <Compile Include="Interfaces\IDashboardDataService.cs" />
+    <Compile Include="Interfaces\IDatabaseRepository.cs" />
     <Compile Include="Interfaces\IDashboardSettingsSerializer.cs" />
     <Compile Include="Interfaces\IEncodingHelper.cs" />
     <Compile Include="Interfaces\IFocusKeywordHelper.cs" />
@@ -386,12 +388,11 @@
     <Compile Include="Models\ResultType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
-    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Services\AnalyzeService.cs" />
     <Compile Include="Helpers\WordCounter.cs" />
-    <Compile Include="Repositories\AnalysisCacheRepository.cs" />
-    <Compile Include="Services\NodeReportService.cs" />
-    <Compile Include="Services\UmbracoDatabaseService.cs" />
+    <Compile Include="Services\AnalysisCacheService.cs" />
+    <Compile Include="Repositories\NodeReportService.cs" />
+    <Compile Include="Repositories\UmbracoDatabaseService.cs" />
     <Compile Include="Services\PageAnalysisService.cs" />
     <Compile Include="Services\PageInformationService.cs" />
     <Compile Include="Services\ScoreService.cs" />
@@ -439,6 +440,7 @@
     <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.controller.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\analyze.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\dashboard.service.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\services\rankonerequesthelper.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\services\webresult.service.js" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.html" />
     <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.js" />
