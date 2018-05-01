@@ -389,8 +389,8 @@
     <Compile Include="Services\AnalyzeService.cs" />
     <Compile Include="Helpers\WordCounter.cs" />
     <Compile Include="Services\AnalysisCacheService.cs" />
-    <Compile Include="Repositories\NodeReportService.cs" />
-    <Compile Include="Repositories\UmbracoDatabaseService.cs" />
+    <Compile Include="Repositories\NodeReportRepository.cs" />
+    <Compile Include="Repositories\UmbracoDatabaseRepository.cs" />
     <Compile Include="Services\PageAnalysisService.cs" />
     <Compile Include="Services\PageInformationService.cs" />
     <Compile Include="Services\ScoreService.cs" />

@@ -16,6 +16,7 @@ namespace RankOne.Repositories
         protected DatabaseContext DatabaseContext;
         protected UmbracoDatabase Database;
         private ITableNameHelper<T> _tableNameHelper;
+        private DatabaseSchemaHelper _databaseSchemaHelper;
         private string _tableName;
         private bool? _tableExists;
 
@@ -69,6 +70,7 @@ namespace RankOne.Repositories
 
             DatabaseContext = umbracoContext.Application.DatabaseContext;
             Database = DatabaseContext.Database;
+            _databaseSchemaHelper = new DatabaseSchemaHelper(Database, LoggerResolver.Current.Logger, DatabaseContext.SqlSyntax);
         }
 
         public virtual T GetById(int id)
@@ -107,8 +109,7 @@ namespace RankOne.Repositories
 
         public void CreateTable()
         {
-            var databaseSchemaHelper = new DatabaseSchemaHelper(Database, LoggerResolver.Current.Logger, DatabaseContext.SqlSyntax);
-            databaseSchemaHelper.CreateTable(false, typeof(T));
+            _databaseSchemaHelper.CreateTable(false, typeof(T));
         }
     }
 }
