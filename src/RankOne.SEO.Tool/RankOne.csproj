@@ -283,6 +283,8 @@
   <ItemGroup>
     <Compile Include="Analyzers\Performance\MinificationAnalyzer.cs" />
     <Compile Include="Analyzers\Template\BrokenLinkAnalyzer.cs" />
+    <Compile Include="Factories\WebRequestFactory.cs" />
+    <Compile Include="Interfaces\IHttpWebRequestFactory.cs" />
     <Compile Include="Events\ParsingApplicationEventHandler.cs" />
     <Compile Include="Helpers\CacheHelper.cs" />
     <Compile Include="Helpers\OptionHelper.cs" />
