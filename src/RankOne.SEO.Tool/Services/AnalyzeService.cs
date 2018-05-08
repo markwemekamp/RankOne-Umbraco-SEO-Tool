@@ -9,24 +9,20 @@ namespace RankOne.Services
     {
         private readonly IFocusKeywordHelper _focusKeywordHelper;
         private readonly IPageAnalysisService _pageAnalysisService;
-        private readonly IAnalysisCacheService _analysisCacheService;
 
         public AnalyzeService() : this(RankOneContext.Instance)
         { }
 
-        public AnalyzeService(IRankOneContext rankOneContext) : this(rankOneContext.FocusKeywordHelper.Value, rankOneContext.PageAnalysisService.Value,
-            rankOneContext.AnalysisCacheService.Value)
+        public AnalyzeService(IRankOneContext rankOneContext) : this(rankOneContext.FocusKeywordHelper.Value, rankOneContext.PageAnalysisService.Value)
         { }
 
-        public AnalyzeService(IFocusKeywordHelper focusKeywordHelper, IPageAnalysisService pageAnalysisService, IAnalysisCacheService analysisCacheRepository)
+        public AnalyzeService(IFocusKeywordHelper focusKeywordHelper, IPageAnalysisService pageAnalysisService)
         {
             if (focusKeywordHelper == null) throw new ArgumentNullException(nameof(focusKeywordHelper));
             if (focusKeywordHelper == null) throw new ArgumentNullException(nameof(focusKeywordHelper));
-            if (analysisCacheRepository == null) throw new ArgumentNullException(nameof(analysisCacheRepository));
 
             _focusKeywordHelper = focusKeywordHelper;
             _pageAnalysisService = pageAnalysisService;
-            _analysisCacheService = analysisCacheRepository;
         }
 
         public PageAnalysis CreateAnalysis(IPublishedContent node, string focusKeyword = null)
@@ -41,14 +37,14 @@ namespace RankOne.Services
 
             var analysis = _pageAnalysisService.CreatePageAnalysis(node, focusKeyword);
 
-            CreateCachedAnalysisItem(node.Id, analysis);
+            SavePageAnalysis(node.Id, analysis);
 
             return analysis;
         }
 
-        private void CreateCachedAnalysisItem(int pageId, PageAnalysis analysis)
+        private void SavePageAnalysis(int pageId, PageAnalysis analysis)
         {
-            _analysisCacheService.Save(pageId, analysis);
+            _pageAnalysisService.Save(pageId, analysis);
         }
     }
 }

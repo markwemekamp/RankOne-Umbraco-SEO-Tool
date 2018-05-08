@@ -328,7 +328,6 @@
     <Compile Include="Helpers\NodeReportHelper.cs" />
     <Compile Include="Helpers\PageScoreNodeHelper.cs" />
     <Compile Include="Helpers\TableNameHelper.cs" />
-    <Compile Include="Interfaces\IAnalysisCacheService.cs" />
     <Compile Include="Interfaces\IByteSizeHelper.cs" />
     <Compile Include="Interfaces\IConfigurationHelper.cs" />
     <Compile Include="Interfaces\IDatabaseRepository.cs" />
@@ -390,7 +389,6 @@
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Services\AnalyzeService.cs" />
     <Compile Include="Helpers\WordCounter.cs" />
-    <Compile Include="Services\AnalysisCacheService.cs" />
     <Compile Include="Repositories\NodeReportRepository.cs" />
     <Compile Include="Repositories\UmbracoDatabaseRepository.cs" />
     <Compile Include="Services\PageAnalysisService.cs" />

@@ -239,14 +239,6 @@ namespace RankOne.Models
             }
         }
 
-        public Lazy<IAnalysisCacheService> AnalysisCacheService
-        {
-            get
-            {
-                return new Lazy<IAnalysisCacheService>(() => new AnalysisCacheService());
-            }
-        }
-
         public Lazy<IHttpWebRequestFactory> WebRequestFactory
         {
             get
