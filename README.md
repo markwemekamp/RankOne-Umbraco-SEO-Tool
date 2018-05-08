@@ -80,12 +80,6 @@ Umbraco 7.4+
 
     grunt --target="C:\inetpub\umbraco"
 
-You can also watch for changes using:
-
-    grunt watch
-    grunt watch --target="C:\inetpub\umbraco"
-
-
 Add `--touch` to either command to automatically touch the web.config on a deploy
 
 Create an Umbraco package

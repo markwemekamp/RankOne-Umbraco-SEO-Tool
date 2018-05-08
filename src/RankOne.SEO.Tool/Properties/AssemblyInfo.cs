@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("RankOne")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("The Umbraco Community")]
+[assembly: AssemblyCompany("Mark Wemekamp")]
 [assembly: AssemblyProduct("RankOne")]
 [assembly: AssemblyCopyright("Copyright \xa9 Mark Wemekamp")]
 [assembly: AssemblyTrademark("")]

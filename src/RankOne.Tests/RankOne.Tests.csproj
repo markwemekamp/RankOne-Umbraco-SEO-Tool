@@ -240,6 +240,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Analyzers\BaseAnalyzerTest.cs" />
     <Compile Include="Analyzers\ImageTagAnalyzerTest.cs" />
     <Compile Include="Analyzers\JavascriptMinificationAnalyzerTest.cs" />
     <Compile Include="Analyzers\CssMinificationAnalyzerTest.cs" />

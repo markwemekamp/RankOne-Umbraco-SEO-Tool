@@ -29,7 +29,7 @@ namespace RankOne.Tests.Helpers
         [TestInitialize]
         public void Initialize()
         {
-            var databaseContext = new DatabaseContext(Moq.Mock.Of<IDatabaseFactory>(), Moq.Mock.Of<ILogger>(),
+            var databaseContext = new DatabaseContext(Moq.Mock.Of<IDatabaseFactory2>(), Moq.Mock.Of<ILogger>(),
                 new SqlSyntaxProviders(new[] { Moq.Mock.Of<ISqlSyntaxProvider>() }));
 
             var applicationContext = ApplicationContext.EnsureContext(

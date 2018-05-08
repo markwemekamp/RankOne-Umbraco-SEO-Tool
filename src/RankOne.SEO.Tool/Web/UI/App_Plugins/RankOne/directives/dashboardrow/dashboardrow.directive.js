@@ -10,9 +10,9 @@
         link: function (scope, element) {
             if (scope.row.PageScore) {
                 if (scope.row.PageScore.OverallScore < 33) {
-                    scope.cssClass = 'error-background';
+                    scope.cssClass = 'error';
                 } else if (scope.row.PageScore.OverallScore < 66) {
-                    scope.cssClass = 'warning-background';
+                    scope.cssClass = 'warning';
                 }
             }
 

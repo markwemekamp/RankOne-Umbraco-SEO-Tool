@@ -6,15 +6,41 @@ namespace RankOne.Analyzers
 {
     public abstract class BaseAnalyzer : IAnalyzer
     {
-        public string Alias { get; set; }
-        public int Weight { get; set; }
+        private string _alias;
+        private int _weight;
+
+        public string Alias
+        {
+            get
+            {
+                return _alias;
+            }
+            set
+            {
+                _alias = value;
+                AnalyzeResult.Alias = _alias;
+            }
+        }
+
+        public int Weight
+        {
+            get
+            {
+                return _weight;
+            }
+            set
+            {
+                _weight = value;
+                AnalyzeResult.Weight = _weight;
+            }
+        }
 
         public IEnumerable<IOption> Options { get; set; }
         public AnalyzeResult AnalyzeResult { get; internal set; }
 
         public BaseAnalyzer()
         {
-            AnalyzeResult = new AnalyzeResult() { Weight = Weight, Alias = Alias };
+            AnalyzeResult = new AnalyzeResult();
         }
 
         public void AddResultRule(string code, string type)
